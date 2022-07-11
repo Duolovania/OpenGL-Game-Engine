@@ -5,6 +5,8 @@
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 600
 
+void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods);
+
 int main(void)
 {
     GLFWwindow* window;
@@ -12,9 +14,11 @@ int main(void)
     /* Initialize the library */
     if (!glfwInit())
         return -1;
-    
+
     /* Create a windowed mode window and its OpenGL context */
     window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Ranut has small bols", NULL, NULL);
+
+    glfwSetKeyCallback(window, HandleInput);
 
     if (!window)
     {
@@ -29,10 +33,10 @@ int main(void)
 
     float positions[] = 
     { 
-        0.5f, -0.5f,
+        0.2f, -0.5f,
         -0.5f, -0.5f,
         -0.5f, 0.5f,
-        0.5f, 0.5f,
+        0.2f, 0.5f,
     };
 
     unsigned int buffer;
@@ -55,7 +59,6 @@ int main(void)
         // Create triangle.
         glColor3f(1.0f, 0.2f, 0.2f); //sets color
         glDrawArrays(GL_QUADS, 0, 4);
-
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
 
@@ -65,4 +68,14 @@ int main(void)
 
     glfwTerminate();
     return 0;
+}
+
+void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods)
+{
+    switch (key)
+    {
+        case GLFW_KEY_SPACE:
+            std::cout << "space pressed";
+            break;
+    }
 }
