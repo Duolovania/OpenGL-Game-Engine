@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Scripts\Application.cpp" />
     <ClCompile Include="Scripts\imgui\imgui.cpp" />
     <ClCompile Include="Scripts\imgui\imgui_demo.cpp" />
     <ClCompile Include="Scripts\imgui\imgui_draw.cpp" />
@@ -147,8 +148,11 @@
     <ClCompile Include="Scripts\imgui\imgui_tables.cpp" />
     <ClCompile Include="Scripts\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Scripts\Source.cpp" />
+    <ClCompile Include="Scripts\Sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scripts\Headers\application.h" />
+    <ClInclude Include="Scripts\Headers\vector2.h" />
     <ClInclude Include="Scripts\imgui\imconfig.h" />
     <ClInclude Include="Scripts\imgui\imgui.h" />
     <ClInclude Include="Scripts\imgui\imgui_impl_glfw.h" />
@@ -157,6 +161,7 @@
     <ClInclude Include="Scripts\imgui\imstb_rectpack.h" />
     <ClInclude Include="Scripts\imgui\imstb_textedit.h" />
     <ClInclude Include="Scripts\imgui\imstb_truetype.h" />
+    <ClInclude Include="Scripts\Headers\sprite.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
