@@ -148,7 +148,8 @@
     <ClCompile Include="Scripts\imgui\imgui_tables.cpp" />
     <ClCompile Include="Scripts\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Scripts\Source.cpp" />
-    <ClCompile Include="Scripts\Sprite.cpp" />
+    <ClCompile Include="Scripts\Texture.cpp" />
+    <ClCompile Include="Scripts\Vendor\STB\STB_Image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\Headers\application.h" />
@@ -161,7 +162,8 @@
     <ClInclude Include="Scripts\imgui\imstb_rectpack.h" />
     <ClInclude Include="Scripts\imgui\imstb_textedit.h" />
     <ClInclude Include="Scripts\imgui\imstb_truetype.h" />
-    <ClInclude Include="Scripts\Headers\sprite.h" />
+    <ClInclude Include="Scripts\Headers\texture.h" />
+    <ClInclude Include="Scripts\Vendor\STB\std_image.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

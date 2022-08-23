@@ -1,4 +1,5 @@
 #include "Headers/application.h"
+#include "Headers/texture.h"
 
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 600
@@ -6,13 +7,13 @@
 float color[3] = { 1.0f, 0.2f, 0.2f };
 float vertex = 0.05f;
 
-float positions[] =
-{
-    0.2f, -0.5f,
-    -0.5f, -0.5f,
-    -0.5f, 0.5f,
-    0.2f, 0.5f,
-};
+//float positions[] =
+//{
+//    0.2f, -0.5f,
+//    -0.5f, -0.5f,
+//    -0.5f, 0.5f,
+//    0.2f, 0.5f,
+//};
 
 unsigned int buffer; // buffer ID
 
@@ -49,9 +50,9 @@ void::Application::Init(int screenWidth, int screenHeight, const char* windowTit
         std::cout << "Error: glewInit non-operational";
 
     
-    glGenBuffers(1, &buffer); // How many buffers and the ID
-    glBindBuffer(GL_ARRAY_BUFFER, buffer); // Selects buffer
-    glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(float), positions, GL_STATIC_DRAW); // Generates buffer data
+    //glGenBuffers(1, &buffer); // How many buffers and the ID
+    //glBindBuffer(GL_ARRAY_BUFFER, buffer); // Selects buffer
+    //glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(float), positions, GL_STATIC_DRAW); // Generates buffer data
 
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
@@ -68,6 +69,9 @@ void::Application::Init(int screenWidth, int screenHeight, const char* windowTit
 
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
+
+    Texture my_Sprite("Assets/Sprites/B happy.png");
+    my_Sprite.Bind();
 }
 
 // Application loop.
@@ -80,13 +84,13 @@ void Application::Loop()
     ImGui_ImplOpenGL3_NewFrame();
     ImGui::NewFrame();
 
-    //positions[0] = vertex;
-    glBindBuffer(GL_ARRAY_BUFFER, buffer); // Selects buffer
-    glBufferSubData(GL_ARRAY_BUFFER, 0, 8 * sizeof(float), positions); // Generates buffer data
+    ////positions[0] = vertex;
+    //glBindBuffer(GL_ARRAY_BUFFER, buffer); // Selects buffer
+    //glBufferSubData(GL_ARRAY_BUFFER, 0, 8 * sizeof(float), positions); // Generates buffer data
 
-    // Create triangle.
-    glColor3f(color[0], color[1], color[2]); // Sets color
-    glDrawArrays(GL_QUADS, 0, 4); // Draws buffer
+    //// Create triangle.
+    //glColor3f(color[0], color[1], color[2]); // Sets color
+    //glDrawArrays(GL_QUADS, 0, 4); // Draws buffer
 
     ImGui::Begin("Rect Properties");
     ImGui::Text("Control properties of rect texture.");
@@ -117,7 +121,7 @@ void Application::Close()
 // Handles key input actions.
 void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods)
 {
-    switch (key)
+    /*switch (key)
     {
         case GLFW_KEY_D:
             positions[0] += vertex;
@@ -143,5 +147,5 @@ void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods
             positions[5] -= vertex;
             positions[7] -= vertex;
             break;
-    }
+    }*/
 }

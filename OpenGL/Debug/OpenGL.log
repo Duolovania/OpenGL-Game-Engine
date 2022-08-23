@@ -9,4 +9,7 @@
   Source.cpp
   Sprite.cpp
   Generating Code...
-  OpenGL.vcxproj -> C:\Users\ryhan\Downloads\Other\GitHubRepo\OpenGL\Debug\OpenGL.exe
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\Debug\vc120.pdb'; linking object as if no debug info
+  OpenGL.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\Debug\OpenGL.exe
