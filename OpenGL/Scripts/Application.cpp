@@ -1,10 +1,50 @@
 #include "Headers/application.h"
 #include "Headers/texture.h"
+#include <fstream>
+#include <sstream>
+
+// Struct contains Vertex and Fragment data.
+struct ShaderProgramSource
+{
+    std::string VertexSource;
+    std::string FragmentSource;
+};
+
+// Searches .shader files for vertex and fragment data.
+static ShaderProgramSource ParseShader(const std::string& filePath)
+{
+    std::ifstream stream(filePath);
+
+    enum class ShaderType
+    {
+        NONE = -1, VERTEX = 0, FRAGMENT = 1
+    };
+
+    std::string line;
+    std::stringstream ss[2];
+    ShaderType type = ShaderType::NONE;
+
+    while (getline(stream, line))
+    {
+        if (line.find("#shader") != std::string::npos)
+        {
+            if (line.find("vertex") != std::string::npos)
+                type = ShaderType::VERTEX;
+            else if (line.find("fragment") != std::string::npos)
+                type = ShaderType::FRAGMENT;
+        }
+        else
+        {
+            ss[(int)type] << line << '\n';
+        }
+    }
+
+    // Returns vertex and fragment data
+    return { ss[0].str(), ss[1].str() };
+}
 
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 600
-
-
 
 static unsigned int CompileShader(unsigned int type, const std::string& source)
 {
@@ -57,14 +97,21 @@ float vertex = 0.05f;
 
 float positions[] =
 {
-    0.2f, -0.5f,
     -0.5f, -0.5f,
+    0.5f, -0.5f,
+    0.5f, 0.5f,
     -0.5f, 0.5f,
-    0.2f, 0.5f,
+};
+
+unsigned int indices[] =
+{
+    0, 1, 2,
+    2, 3, 0
 };
 
 unsigned int buffer; // buffer ID
 unsigned int shader; // Create shader
+unsigned int ibo; // Index buffer
 
 void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods);
 
@@ -104,35 +151,21 @@ void::Application::Init(int screenWidth, int screenHeight, const char* windowTit
     
     glGenBuffers(1, &buffer); // How many buffers and the ID
     glBindBuffer(GL_ARRAY_BUFFER, buffer); // Selects buffer
-    glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(float), positions, GL_STATIC_DRAW); // Generates buffer data
+    glBufferData(GL_ARRAY_BUFFER, 12 * sizeof(float), positions, GL_STATIC_DRAW); // Generates buffer data
 
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+    
+    glGenBuffers(1, &ibo); // How many buffers and the ID
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo); // Selects buffer
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), indices, GL_STATIC_DRAW); // Generates buffer data
 
-    std::string vertexShader =
-        "#version 330 core\n"
-        "\n"
-        "layout(location = 0) in vec4 position;\n"
-        "\n"
-        "void main()\n"
-        "{\n"
-        "   gl_Position = position;\n"
-        "}\n";
+    ShaderProgramSource source = ParseShader("Res/Shaders/Basic.shader");
 
-    std::string fragmentShader =
-        "#version 330 core\n"
-        "\n"
-        "layout(location = 0) out vec4 color;\n"
-        "\n"
-        "void main()\n"
-        "{\n"
-        "   color = vec4(1.0, 0.0, 1.0, 1.0);\n"
-        "}\n";
-
-    shader = CreateShader(vertexShader, fragmentShader); // assign vertex and fragment to shader.
+    shader = CreateShader(source.VertexSource, source.FragmentSource); // assign vertex and fragment to shader.
     glUseProgram(shader);
 
-    glBindBuffer(GL_ARRAY_BUFFER, 0); // Deselects buffer.
+    //glBindBuffer(GL_ARRAY_BUFFER, 0); // Deselects buffer.
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -144,8 +177,6 @@ void::Application::Init(int screenWidth, int screenHeight, const char* windowTit
 
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
-
-    
 
     /*Texture my_Sprite("Assets/Sprites/B happy.png");
     my_Sprite.Bind();*/
@@ -161,13 +192,13 @@ void Application::Loop()
     ImGui_ImplOpenGL3_NewFrame();
     ImGui::NewFrame();
 
-    positions[0] = vertex;
-    glBindBuffer(GL_ARRAY_BUFFER, buffer); // Selects buffer
-    glBufferSubData(GL_ARRAY_BUFFER, 0, 8 * sizeof(float), positions); // Generates buffer data
+    // positions[0] = vertex;
+    //glBindBuffer(GL_ARRAY_BUFFER, buffer); // Selects buffer
+    //glBufferSubData(GL_ARRAY_BUFFER, 0, 8 * sizeof(float), positions); // Generates buffer data
 
     // Create triangle.
-    //glColor3f(color[0], color[1], color[2]); // Sets color
-    glDrawArrays(GL_QUADS, 0, 4); // Draws buffer
+    //glDrawArrays(GL_QUADS, 0, 4); // Draws buffer
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
     ImGui::Begin("Rect Properties");
     ImGui::Text("Control properties of rect texture.");
