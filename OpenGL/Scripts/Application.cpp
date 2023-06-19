@@ -1,29 +1,15 @@
 #include "Headers/application.h"
 #include "Headers/texture.h"
+#include "Headers/Renderer.h"
+#include "Headers/IndexBuffer.h"
+#include "Headers/VertexBuffer.h"
+#include "Headers/VertexArray.h"
+#include "Headers/VertexBufferLayout.h"
 #include <fstream>
 #include <sstream>
 
-#define ASSERT(x) if (!(x)) __debugbreak();
-#define GLCall(x) GLClearError();\
-    x;\
-    ASSERT(GLLogCall(#x, __FILE__, __LINE__))
-
-static void GLClearError()
-{
-    while (glGetError() != GL_NO_ERROR);
-}
-
-// Use ASSERT(GLLogCall()) to debug.
-static bool GLLogCall(const char* function, const char* file, int line)
-{
-    while (GLenum error = glGetError())
-    {
-        std::cout << "[OpenGL Error] (" << error << "): " << function << " " << file << ":" << line << std::endl;
-        return false;
-    }
-
-    return true;
-}
+#define SCREEN_WIDTH 1024
+#define SCREEN_HEIGHT 600
 
 // Struct contains Vertex and Fragment data.
 struct ShaderProgramSource
@@ -64,9 +50,6 @@ static ShaderProgramSource ParseShader(const std::string& filePath)
     // Returns vertex and fragment data
     return { ss[0].str(), ss[1].str() };
 }
-
-#define SCREEN_WIDTH 1024
-#define SCREEN_HEIGHT 600
 
 static unsigned int CompileShader(unsigned int type, const std::string& source)
 {
@@ -114,7 +97,6 @@ static unsigned int CreateShader(const std::string& vertexShader, const std::str
     return program;
 }
 
-//float color[3] = { 1.0f, 0.2f, 0.2f };
 float vertex = 0.05f;
 
 float positions[] =
@@ -131,9 +113,13 @@ unsigned int indices[] =
     2, 3, 0
 };
 
-unsigned int buffer; // buffer ID
+unsigned int vao;
+VertexArray va;
+
+float red = 0.0f, increment = 1.0f;
+int location;
+
 unsigned int shader; // Create shader
-unsigned int ibo; // Index buffer
 
 void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods);
 
@@ -158,6 +144,10 @@ void::Application::Init(int screenWidth, int screenHeight, const char* windowTit
 {
     glfwInit();
 
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
     // Create a windowed mode window and its OpenGL context 
     window = glfwCreateWindow(screenWidth, screenHeight, windowTitle, NULL, NULL);
     glfwSetKeyCallback(window, HandleInput);
@@ -167,27 +157,35 @@ void::Application::Init(int screenWidth, int screenHeight, const char* windowTit
 
     // Make the window's context current
     glfwMakeContextCurrent(window);
+    glfwSwapInterval(1);
 
     if (glewInit() != GLEW_OK)
         std::cout << "Error: glewInit non-operational";
-    
-    glGenBuffers(1, &buffer); // How many buffers and the ID
-    glBindBuffer(GL_ARRAY_BUFFER, buffer); // Selects buffer
-    glBufferData(GL_ARRAY_BUFFER, 12 * sizeof(float), positions, GL_STATIC_DRAW); // Generates buffer data
 
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+    GLCall(glGenVertexArrays(1, &vao));
+    GLCall(glBindVertexArray(vao));
     
-    glGenBuffers(1, &ibo); // How many buffers and the ID
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo); // Selects buffer
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), indices, GL_STATIC_DRAW); // Generates buffer data
+    VertexBuffer vb(positions, 4 * 2 * sizeof(float));
+
+    VertexBufferLayout layout;
+    layout.Push<float>(2);
+    va.AddBuffer(vb, layout);
+
+    IndexBuffer ib(indices, 6);
 
     ShaderProgramSource source = ParseShader("Res/Shaders/Basic.shader");
 
     shader = CreateShader(source.VertexSource, source.FragmentSource); // assign vertex and fragment to shader.
     glUseProgram(shader);
 
-    //glBindBuffer(GL_ARRAY_BUFFER, 0); // Deselects buffer.
+    GLCall(location = glGetUniformLocation(shader, "u_Color"));
+    ASSERT(location != -1);
+    GLCall(glUniform4f(location, 0.2f, 0.3f, 0.8f, 1.0f));
+
+    GLCall(glBindVertexArray(0));
+    GLCall(glUseProgram(0));
+    GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
+    GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -199,9 +197,6 @@ void::Application::Init(int screenWidth, int screenHeight, const char* windowTit
 
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
-
-    /*Texture my_Sprite("Assets/Sprites/B happy.png");
-    my_Sprite.Bind();*/
 }
 
 // Application loop.
@@ -214,13 +209,18 @@ void Application::Loop()
     ImGui_ImplOpenGL3_NewFrame();
     ImGui::NewFrame();
 
-    // positions[0] = vertex;
-    //glBindBuffer(GL_ARRAY_BUFFER, buffer); // Selects buffer
-    //glBufferSubData(GL_ARRAY_BUFFER, 0, 8 * sizeof(float), positions); // Generates buffer data
+    GLCall(glUseProgram(shader));
+    GLCall(glUniform4f(location, red, 0.3f, 0.8f, 1.0f));
 
-    // Create triangle.
-    //glDrawArrays(GL_QUADS, 0, 4); // Draws buffer
+    va.Bind();
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+
+    if (red > 1.0f)
+        increment = -0.05f;
+    else if (red < 0.0f)
+        increment = 0.05f;
+
+    red += increment;
 
     ImGui::Begin("Rect Properties");
     ImGui::Text("Control properties of rect texture.");
@@ -254,28 +254,12 @@ void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods
     /*switch (key)
     {
         case GLFW_KEY_D:
-            positions[0] += vertex;
-            positions[2] += vertex;
-            positions[4] += vertex;
-            positions[6] += vertex;
             break;
         case GLFW_KEY_W:
-            positions[1] += vertex;
-            positions[3] += vertex;
-            positions[5] += vertex;
-            positions[7] += vertex;
             break;
         case GLFW_KEY_A:
-            positions[0] -= vertex;
-            positions[2] -= vertex;
-            positions[4] -= vertex;
-            positions[6] -= vertex;
             break;
         case GLFW_KEY_S:
-            positions[1] -= vertex;
-            positions[3] -= vertex;
-            positions[5] -= vertex;
-            positions[7] -= vertex;
             break;
     }*/
 }

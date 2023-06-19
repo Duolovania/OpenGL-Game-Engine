@@ -147,13 +147,22 @@
     <ClCompile Include="Scripts\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="Scripts\imgui\imgui_tables.cpp" />
     <ClCompile Include="Scripts\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Scripts\IndexBuffer.cpp" />
+    <ClCompile Include="Scripts\Renderer.cpp" />
     <ClCompile Include="Scripts\Source.cpp" />
     <ClCompile Include="Scripts\Texture.cpp" />
     <ClCompile Include="Scripts\Vendor\STB\STB_Image.cpp" />
+    <ClCompile Include="Scripts\VertexArray.cpp" />
+    <ClCompile Include="Scripts\VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\Headers\application.h" />
+    <ClInclude Include="Scripts\Headers\IndexBuffer.h" />
+    <ClInclude Include="Scripts\Headers\Renderer.h" />
     <ClInclude Include="Scripts\Headers\vector2.h" />
+    <ClInclude Include="Scripts\Headers\VertexArray.h" />
+    <ClInclude Include="Scripts\Headers\VertexBuffer.h" />
+    <ClInclude Include="Scripts\Headers\VertexBufferLayout.h" />
     <ClInclude Include="Scripts\imgui\imconfig.h" />
     <ClInclude Include="Scripts\imgui\imgui.h" />
     <ClInclude Include="Scripts\imgui\imgui_impl_glfw.h" />
