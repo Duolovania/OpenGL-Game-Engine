@@ -1,101 +1,21 @@
 #include "Headers/application.h"
+
 #include "Headers/texture.h"
 #include "Headers/Renderer.h"
+
 #include "Headers/IndexBuffer.h"
 #include "Headers/VertexBuffer.h"
+
 #include "Headers/VertexArray.h"
 #include "Headers/VertexBufferLayout.h"
+
+#include "Headers/shader.h"
+
 #include <fstream>
 #include <sstream>
 
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 600
-
-// Struct contains Vertex and Fragment data.
-struct ShaderProgramSource
-{
-    std::string VertexSource;
-    std::string FragmentSource;
-};
-
-// Searches .shader files for vertex and fragment data.
-static ShaderProgramSource ParseShader(const std::string& filePath)
-{
-    std::ifstream stream(filePath);
-
-    enum class ShaderType
-    {
-        NONE = -1, VERTEX = 0, FRAGMENT = 1
-    };
-
-    std::string line;
-    std::stringstream ss[2];
-    ShaderType type = ShaderType::NONE;
-
-    while (getline(stream, line))
-    {
-        if (line.find("#shader") != std::string::npos)
-        {
-            if (line.find("vertex") != std::string::npos)
-                type = ShaderType::VERTEX;
-            else if (line.find("fragment") != std::string::npos)
-                type = ShaderType::FRAGMENT;
-        }
-        else
-        {
-            ss[(int)type] << line << '\n';
-        }
-    }
-
-    // Returns vertex and fragment data
-    return { ss[0].str(), ss[1].str() };
-}
-
-static unsigned int CompileShader(unsigned int type, const std::string& source)
-{
-    unsigned int id = glCreateShader(type);
-    const char* src = source.c_str();
-    GLCall(glShaderSource(id, 1, &src, nullptr));
-    GLCall(glCompileShader(id));
-
-    int result;
-    GLCall(glGetShaderiv(id, GL_COMPILE_STATUS, &result));
-
-    // Error handler
-    if (result == GL_FALSE)
-    {
-        int length;
-        GLCall(glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length));
-        char* message = (char*) _malloca(length * sizeof(char));
-
-        GLCall(glGetShaderInfoLog(id, length, &length, message));
-        std::cout << "Failed to compile " << (type == GL_VERTEX_SHADER ? "vertex" : "fragment") << " shader!" << std::endl;
-        std::cout << message << std::endl;
-
-        GLCall(glDeleteShader(id));
-        return 0;
-    }
-
-    return id;
-}
-
-static unsigned int CreateShader(const std::string& vertexShader, const std::string& fragmentShader)
-{
-    unsigned int program = glCreateProgram();
-    unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
-    unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
-
-    GLCall(glAttachShader(program, vs));
-    GLCall(glAttachShader(program, fs));
-
-    GLCall(glLinkProgram(program));
-    GLCall(glValidateProgram(program));
-
-    GLCall(glDeleteShader(vs));
-    GLCall(glDeleteShader(fs));
-
-    return program;
-}
 
 float vertex = 0.05f;
 
@@ -120,7 +40,7 @@ IndexBuffer ib(indices, 6);
 float red = 0.0f, increment = 1.0f;
 int location;
 
-unsigned int shader; // Create shader
+Shader shader("Res/Shaders/Basic.shader");
 
 void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods);
 
@@ -138,12 +58,11 @@ void Application::Run()
         Loop();
     }
 
-    glDeleteProgram(shader);
     Close();
 }
 
 // Initializer.
-void::Application::Init(int screenWidth, int screenHeight, const char* windowTitle)
+void Application::Init(int screenWidth, int screenHeight, const char* windowTitle)
 {
     glfwInit();
 
@@ -176,17 +95,15 @@ void::Application::Init(int screenWidth, int screenHeight, const char* windowTit
     VertexBufferLayout layout;
     layout.Push<float>(2);
     va.AddBuffer(vb, layout);
-    
-    ShaderProgramSource source = ParseShader("Res/Shaders/Basic.shader");
 
-    shader = CreateShader(source.VertexSource, source.FragmentSource); // Assign vertex and fragment to shader.
-    GLCall(glUseProgram(shader));
-
-    GLCall(location = glGetUniformLocation(shader, "u_Color"));
-    ASSERT(location != -1);
-    GLCall(glUniform4f(location, 0.2f, 0.3f, 0.8f, 1.0f));
+    shader.CreateShader();
+    shader.Bind();
+    shader.SetUniform4f("u_Color", 0.2f, 0.3f, 0.8f, 1.0f);
 
     va.Unbind();
+    shader.UnBind();
+    vb.Unbind();
+    ib.Unbind();
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -210,8 +127,8 @@ void Application::Loop()
     ImGui_ImplOpenGL3_NewFrame();
     ImGui::NewFrame();
 
-    GLCall(glUseProgram(shader));
-    GLCall(glUniform4f(location, red, 0.3f, 0.8f, 1.0f));
+    shader.Bind();
+    shader.SetUniform4f("u_Color", red, 0.3f, 0.8f, 1.0f);
 
     va.Bind();
     ib.Bind();
