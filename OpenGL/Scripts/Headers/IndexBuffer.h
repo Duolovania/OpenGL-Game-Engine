@@ -8,6 +8,8 @@ class IndexBuffer
 		IndexBuffer(const unsigned int* data, unsigned int count);
 		~IndexBuffer();
 
+		void Gen(const unsigned int* data, unsigned int count);
+
 		void Bind() const;
 		void Unbind() const;
 

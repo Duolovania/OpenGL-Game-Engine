@@ -4,14 +4,15 @@
 
 class VertexArray
 {
-private:
-	unsigned int rendererID;
-public:
-	VertexArray();
-	~VertexArray();
+	private:
+		unsigned int rendererID;
+	public:
+		VertexArray();
+		~VertexArray();
 	
-	void AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout);
+		void AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout);
 
-	void Bind() const;
-	void Unbind() const;
+		void Gen();
+		void Bind() const;
+		void Unbind() const;
 };

@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Scripts\Application.cpp" />
+    <ClCompile Include="Scripts\Shader.cpp" />
     <ClCompile Include="Scripts\imgui\imgui.cpp" />
     <ClCompile Include="Scripts\imgui\imgui_demo.cpp" />
     <ClCompile Include="Scripts\imgui\imgui_draw.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Scripts\Headers\application.h" />
     <ClInclude Include="Scripts\Headers\IndexBuffer.h" />
     <ClInclude Include="Scripts\Headers\Renderer.h" />
+    <ClInclude Include="Scripts\Headers\shader.h" />
     <ClInclude Include="Scripts\Headers\vector2.h" />
     <ClInclude Include="Scripts\Headers\VertexArray.h" />
     <ClInclude Include="Scripts\Headers\VertexBuffer.h" />

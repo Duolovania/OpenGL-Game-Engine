@@ -4,6 +4,17 @@
 IndexBuffer::IndexBuffer(const unsigned int* data, unsigned int count)
     : count(count)
 {
+    //ASSERT(sizeof(unsigned int) == sizeof(GLuint));
+
+    //GLCall(glGenBuffers(1, &rendererID)); // How many buffers and the ID
+    //GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, rendererID)); // Selects buffer
+    //GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(unsigned int), data, GL_STATIC_DRAW)); // Generates buffer data
+}
+
+void IndexBuffer::Gen(const unsigned int* data, unsigned int count)
+{
+    count = count;
+
     ASSERT(sizeof(unsigned int) == sizeof(GLuint));
 
     GLCall(glGenBuffers(1, &rendererID)); // How many buffers and the ID

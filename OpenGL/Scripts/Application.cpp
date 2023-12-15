@@ -66,7 +66,7 @@ static unsigned int CompileShader(unsigned int type, const std::string& source)
     {
         int length;
         GLCall(glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length));
-        char* message = (char*) alloca(length * sizeof(char));
+        char* message = (char*) _malloca(length * sizeof(char));
 
         GLCall(glGetShaderInfoLog(id, length, &length, message));
         std::cout << "Failed to compile " << (type == GL_VERTEX_SHADER ? "vertex" : "fragment") << " shader!" << std::endl;
@@ -114,8 +114,8 @@ unsigned int indices[] =
 };
 
 unsigned int vao;
-//VertexArray va;
-//IndexBuffer ib(indices, 6);
+VertexArray va;
+IndexBuffer ib(indices, 6);
 
 float red = 0.0f, increment = 1.0f;
 int location;
@@ -129,12 +129,14 @@ void Application::Run()
 {
     Init(SCREEN_WIDTH, SCREEN_HEIGHT, "Test Window");
 
-    Texture texture("../Assets/Sprites/B happy.png");
-    texture.Bind();
+    /*Texture texture("../Assets/Sprites/B happy.png");
+    texture.Bind();*/
 
     // Loop until the user closes the window
-    /*while (!glfwWindowShouldClose(window))
-        Loop();*/
+    while (!glfwWindowShouldClose(window))
+    {
+        Loop();
+    }
 
     glDeleteProgram(shader);
     Close();
@@ -163,8 +165,8 @@ void::Application::Init(int screenWidth, int screenHeight, const char* windowTit
     if (glewInit() != GLEW_OK)
         std::cout << "Error: glewInit non-operational";
 
-    VertexArray va;
-    IndexBuffer ib(indices, 6);
+    va.Gen();
+    ib.Gen(indices, 6);
 
     GLCall(glGenVertexArrays(1, &vao));
     GLCall(glBindVertexArray(vao));
@@ -177,12 +179,14 @@ void::Application::Init(int screenWidth, int screenHeight, const char* windowTit
     
     ShaderProgramSource source = ParseShader("Res/Shaders/Basic.shader");
 
-    shader = CreateShader(source.VertexSource, source.FragmentSource); // assign vertex and fragment to shader.
+    shader = CreateShader(source.VertexSource, source.FragmentSource); // Assign vertex and fragment to shader.
     GLCall(glUseProgram(shader));
 
     GLCall(location = glGetUniformLocation(shader, "u_Color"));
     ASSERT(location != -1);
     GLCall(glUniform4f(location, 0.2f, 0.3f, 0.8f, 1.0f));
+
+    va.Unbind();
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -194,28 +198,6 @@ void::Application::Init(int screenWidth, int screenHeight, const char* windowTit
 
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
-
-    while (!glfwWindowShouldClose(window))
-    {
-        GLCall(glClear(GL_COLOR_BUFFER_BIT));
-
-        GLCall(glUseProgram(shader));
-        GLCall(glUniform4f(location, red, 0.3f, 0.8f, 1.0f));
-
-        va.Bind();
-        ib.Bind();
-        GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
-
-        if (red > 1.0f)
-            increment = -0.05f;
-        else if (red < 0.0f)
-            increment = 0.05f;
-
-        red += increment;
-
-        glfwSwapBuffers(window);
-        glfwPollEvents();
-    }
 }
 
 // Application loop.
@@ -231,8 +213,8 @@ void Application::Loop()
     GLCall(glUseProgram(shader));
     GLCall(glUniform4f(location, red, 0.3f, 0.8f, 1.0f));
 
-    /*va.Bind();
-    ib.Bind();*/
+    va.Bind();
+    ib.Bind();
     GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
 
     if (red > 1.0f)
