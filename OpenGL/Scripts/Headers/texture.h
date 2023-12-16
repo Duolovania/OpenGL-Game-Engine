@@ -1,6 +1,6 @@
 #pragma once
-#include <iostream>
 #include "vector2.h"
+#include "Renderer.h"
 
 class Texture
 {
@@ -16,6 +16,8 @@ class Texture
 
 		void Bind(unsigned int slot = 0) const;
 		void UnBind() const;
+
+		void Gen();
 
 		Vector2 position;
 		inline int GetWidth() { return w; }

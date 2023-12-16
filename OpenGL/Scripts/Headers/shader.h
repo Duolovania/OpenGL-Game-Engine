@@ -14,7 +14,7 @@ class Shader
 	private:
 		std::string filePath;
 		unsigned int rendererID;
-		unsigned int GetUniformLocation(const std::string& name);
+		int GetUniformLocation(const std::string& name);
 
 		unsigned int CompileShader(unsigned int type, const std::string& source);
 		ShaderProgramSource source;
@@ -34,6 +34,8 @@ class Shader
 		void UnBind() const;
 
 		void SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3);
+		void SetUniform1f(const std::string& name, float value);
+		void SetUniform1i(const std::string& name, int value);
 
 		// Assign vertex and fragment to shader.
 		void CreateShader();

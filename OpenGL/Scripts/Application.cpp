@@ -21,10 +21,10 @@ float vertex = 0.05f;
 
 float positions[] =
 {
-    -0.5f, -0.5f,
-    0.5f, -0.5f,
-    0.5f, 0.5f,
-    -0.5f, 0.5f,
+    -0.5f, -0.5f, 0.0f, 0.0f,
+    0.5f, -0.5f, 1.0f, 0.0f,
+    0.5f, 0.5f, 1.0f, 1.0f,
+    -0.5f, 0.5f, 0.0f, 1.0f,
 };
 
 unsigned int indices[] =
@@ -33,14 +33,15 @@ unsigned int indices[] =
     2, 3, 0
 };
 
-unsigned int vao;
 VertexArray va;
 IndexBuffer ib(indices, 6);
+Texture texture("Res/Textures/namjas.JPG");
 
 float red = 0.0f, increment = 1.0f;
 int location;
 
 Shader shader("Res/Shaders/Basic.shader");
+Renderer renderer;
 
 void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods);
 
@@ -48,9 +49,6 @@ void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods
 void Application::Run()
 {
     Init(SCREEN_WIDTH, SCREEN_HEIGHT, "Test Window");
-
-    /*Texture texture("../Assets/Sprites/B happy.png");
-    texture.Bind();*/
 
     // Loop until the user closes the window
     while (!glfwWindowShouldClose(window))
@@ -84,21 +82,27 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     if (glewInit() != GLEW_OK)
         std::cout << "Error: glewInit non-operational";
 
+    GLCall(glEnable(GL_BLEND));
+    GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+
     va.Gen();
     ib.Gen(indices, 6);
-
-    GLCall(glGenVertexArrays(1, &vao));
-    GLCall(glBindVertexArray(vao));
     
-    VertexBuffer vb(positions, 4 * 2 * sizeof(float));
-
+    VertexBuffer vb(positions, 4 * 4 * sizeof(float));
     VertexBufferLayout layout;
+
     layout.Push<float>(2);
+    layout.Push<float>(2);
+
     va.AddBuffer(vb, layout);
 
     shader.CreateShader();
     shader.Bind();
     shader.SetUniform4f("u_Color", 0.2f, 0.3f, 0.8f, 1.0f);
+
+    texture.Gen();
+    texture.Bind();
+    shader.SetUniform1i("u_Texture", 0);
 
     va.Unbind();
     shader.UnBind();
@@ -121,7 +125,7 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
 void Application::Loop()
 {
     // Render here 
-    GLCall(glClear(GL_COLOR_BUFFER_BIT));
+    renderer.Clear();
 
     ImGui_ImplGlfw_NewFrame();
     ImGui_ImplOpenGL3_NewFrame();
@@ -130,9 +134,7 @@ void Application::Loop()
     shader.Bind();
     shader.SetUniform4f("u_Color", red, 0.3f, 0.8f, 1.0f);
 
-    va.Bind();
-    ib.Bind();
-    GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
+    renderer.Draw(va, ib, shader);
 
     if (red > 1.0f)
         increment = -0.05f;

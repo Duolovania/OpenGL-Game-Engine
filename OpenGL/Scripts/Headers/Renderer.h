@@ -1,5 +1,8 @@
 #pragma once
 #include <glew.h>
+#include "vertexarray.h"
+#include "indexbuffer.h"
+#include "shader.h"
 
 #define ASSERT(x) if (!(x)) __debugbreak();
 #define GLCall(x) GLClearError();\
@@ -10,3 +13,10 @@ void GLClearError();
 
 // Use ASSERT(GLLogCall()) to debug.
 bool GLLogCall(const char* function, const char* file, int line);
+
+class Renderer
+{
+public:
+    void Clear() const;
+    void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const;
+};
