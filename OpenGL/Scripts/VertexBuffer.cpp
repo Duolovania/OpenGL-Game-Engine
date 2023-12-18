@@ -2,15 +2,23 @@
 #include "Headers/Renderer.h"
 
 VertexBuffer::VertexBuffer(const void* data, unsigned int size) 
+    : size(size)
 {
-    GLCall(glGenBuffers(1, &rendererID)); // How many buffers and the ID
-    GLCall(glBindBuffer(GL_ARRAY_BUFFER, rendererID)); // Selects buffer
-    GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW)); // Generates buffer data
+    //GLCall(glGenBuffers(1, &rendererID)); // How many buffers and the ID
+    //GLCall(glBindBuffer(GL_ARRAY_BUFFER, rendererID)); // Selects buffer
+    //GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW)); // Generates buffer data
 }
 
 VertexBuffer::~VertexBuffer() 
 {
     GLCall(glDeleteBuffers(1, &rendererID));
+}
+
+void VertexBuffer::Gen(const void* data)
+{
+    GLCall(glGenBuffers(1, &rendererID)); // How many buffers and the ID
+    GLCall(glBindBuffer(GL_ARRAY_BUFFER, rendererID)); // Selects buffer
+    GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW)); // Generates buffer data
 }
 
 void VertexBuffer::Bind() const
@@ -20,5 +28,10 @@ void VertexBuffer::Bind() const
 
 void VertexBuffer::Unbind() const
 {
-    GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0)); // Selects buffer
+    GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0)); // Deselects buffer
+}
+
+void VertexBuffer::ModData(const void* data)
+{
+    GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW)); // Generates buffer data
 }

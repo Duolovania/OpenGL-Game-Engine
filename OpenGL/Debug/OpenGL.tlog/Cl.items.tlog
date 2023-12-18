@@ -11,6 +11,7 @@ C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\IndexBuf
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Renderer.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Debug\Renderer.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Source.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Debug\Source.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Texture.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Debug\Texture.obj
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Vendor\glm\detail\glm.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Debug\glm.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Vendor\STB\STB_Image.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Debug\STB_Image.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\VertexArray.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Debug\VertexArray.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\VertexBuffer.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Debug\VertexBuffer.obj

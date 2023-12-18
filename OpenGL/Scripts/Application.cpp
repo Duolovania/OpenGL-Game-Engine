@@ -10,6 +10,7 @@
 #include "Headers/VertexBufferLayout.h"
 
 #include "Headers/shader.h"
+#include "glm/gtc/matrix_transform.hpp"
 
 #include <fstream>
 #include <sstream>
@@ -17,14 +18,14 @@
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 600
 
-float vertex = 0.05f;
+float vertex = 1.0f;
 
 float positions[] =
 {
-    -0.5f, -0.5f, 0.0f, 0.0f,
-    0.5f, -0.5f, 1.0f, 0.0f,
-    0.5f, 0.5f, 1.0f, 1.0f,
-    -0.5f, 0.5f, 0.0f, 1.0f,
+    -vertex, -vertex, 0.0f, 0.0f, // 0
+    vertex, -vertex, 1.0f, 0.0f, // 1
+    vertex, vertex, 1.0f, 1.0f, // 2
+    -vertex, vertex, 0.0f, 1.0f, // 3
 };
 
 unsigned int indices[] =
@@ -34,11 +35,15 @@ unsigned int indices[] =
 };
 
 VertexArray va;
+VertexBuffer vb(positions, 4 * 4 * sizeof(float));
 IndexBuffer ib(indices, 6);
+//Texture texture("Assets/Sprites/ForestE.png");
 Texture texture("Res/Textures/namjas.JPG");
 
-float red = 0.0f, increment = 1.0f;
+float red = 0.0f, green = 1.0f, blue = 1.0f, alpha = 1.0f, increment = 1.0f;
 int location;
+
+float camX = 0.0, camY = 0.0;
 
 Shader shader("Res/Shaders/Basic.shader");
 Renderer renderer;
@@ -88,7 +93,9 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     va.Gen();
     ib.Gen(indices, 6);
     
-    VertexBuffer vb(positions, 4 * 4 * sizeof(float));
+    /*VertexBuffer vb(positions, 4 * 4 * sizeof(float));*/
+
+    vb.Gen(positions);
     VertexBufferLayout layout;
 
     layout.Push<float>(2);
@@ -96,9 +103,18 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
 
     va.AddBuffer(vb, layout);
 
+    glm::mat4 proj = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f); // Orthrographic projection.
+    glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)); // Camera translation.
+
+    glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(-2.0, -2.0, 0)); // Model translation
+
+    glm::mat4 mvp = proj * view * model;
+
     shader.CreateShader();
     shader.Bind();
-    shader.SetUniform4f("u_Color", 0.2f, 0.3f, 0.8f, 1.0f);
+
+    //shader.SetUniform4f("u_Color", 0.2f, 0.3f, 0.8f, 1.0f);
+    shader.SetUniformMat4f("u_MVP", mvp);
 
     texture.Gen();
     texture.Bind();
@@ -132,21 +148,38 @@ void Application::Loop()
     ImGui::NewFrame();
 
     shader.Bind();
-    shader.SetUniform4f("u_Color", red, 0.3f, 0.8f, 1.0f);
+
+    glm::mat4 proj = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+    glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(-camX, -camY, 0)); // Camera translation.
+
+    glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)); // Model translation
+
+    glm::mat4 mvp = proj * view * model;
+    shader.SetUniform4f("u_Color", red, green, blue, alpha);
+    shader.SetUniformMat4f("u_MVP", mvp);
+
+    vb.Bind();
+    vb.ModData(positions);
 
     renderer.Draw(va, ib, shader);
 
     if (red > 1.0f)
-        increment = -0.05f;
-    else if (red < 0.0f)
-        increment = 0.05f;
+        increment = -0.025f;
+    else if (red < 0.7f)
+        increment = 0.025f;
 
     red += increment;
 
     ImGui::Begin("Rect Properties");
-    ImGui::Text("Control properties of rect texture.");
-    //ImGui::ColorEdit3("Rect Color", color);
-    ImGui::SliderFloat("Move Vertex", &vertex, 0.05f, 0.5f);
+
+    ImGui::Text("Control RGB values of shader");
+    ImGui::SliderFloat("G:", &green, 0.0f, 1.0f, "%.1f");
+    ImGui::SliderFloat("B:", &blue, 0.0f, 1.0f, "%.1f");
+    ImGui::SliderFloat("A:", &alpha, 0.0f, 1.0f, "%.1f");
+
+    ImGui::SliderFloat("X:", &camX, -2.0f, 2.0f, "%.3f");
+    ImGui::SliderFloat("Y:", &camY, -2.0f, 2.0f, "%.3f");
+
     ImGui::End();
 
     ImGui::Render();
@@ -172,15 +205,16 @@ void Application::Close()
 // Handles key input actions.
 void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods)
 {
-    /*switch (key)
+    switch (key)
     {
         case GLFW_KEY_D:
             break;
         case GLFW_KEY_W:
+            positions[0] += 0.1f;
             break;
         case GLFW_KEY_A:
             break;
         case GLFW_KEY_S:
             break;
-    }*/
+    }
 }
