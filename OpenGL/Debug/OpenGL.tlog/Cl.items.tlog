@@ -10,6 +10,9 @@ C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\imgui\im
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\IndexBuffer.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Debug\IndexBuffer.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Renderer.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Debug\Renderer.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Source.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Debug\Source.obj
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\Test.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Debug\Test.obj
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestClearColour.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Debug\TestClearColour.obj
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Debug\TestTexture2D.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Texture.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Debug\Texture.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Vendor\glm\detail\glm.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Debug\glm.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Vendor\STB\STB_Image.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Debug\STB_Image.obj

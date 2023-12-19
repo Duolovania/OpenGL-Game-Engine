@@ -78,7 +78,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>Default</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include\GLFW;$(SolutionDir)Dependencies\GLEW\include\GL;$(SolutionDir)OpenGL\Scripts\Vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Scripts;$(SolutionDir)Dependencies\GLFW\include\GLFW;$(SolutionDir)Dependencies\GLEW\include\GL;$(SolutionDir)OpenGL\Scripts\Vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -97,7 +97,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>Default</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include\GLFW;$(SolutionDir)Dependencies\GLEW\include\GL;$(SolutionDir)OpenGL\Scripts\Vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Scripts;$(SolutionDir)Dependencies\GLFW\include\GLFW;$(SolutionDir)Dependencies\GLEW\include\GL;$(SolutionDir)OpenGL\Scripts\Vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -116,7 +116,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>Default</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include\GLFW;$(SolutionDir)Dependencies\GLEW\include\GL;$(SolutionDir)OpenGL\Scripts\Vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Scripts;$(SolutionDir)Dependencies\GLFW\include\GLFW;$(SolutionDir)Dependencies\GLEW\include\GL;$(SolutionDir)OpenGL\Scripts\Vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,7 +135,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>Default</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include\GLFW;$(SolutionDir)Dependencies\GLEW\include\GL;$(SolutionDir)OpenGL\Scripts\Vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Scripts;$(SolutionDir)Dependencies\GLFW\include\GLFW;$(SolutionDir)Dependencies\GLEW\include\GL;$(SolutionDir)OpenGL\Scripts\Vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -159,6 +159,9 @@
     <ClCompile Include="Scripts\IndexBuffer.cpp" />
     <ClCompile Include="Scripts\Renderer.cpp" />
     <ClCompile Include="Scripts\Source.cpp" />
+    <ClCompile Include="Scripts\Tests\Test.cpp" />
+    <ClCompile Include="Scripts\Tests\TestClearColour.cpp" />
+    <ClCompile Include="Scripts\Tests\TestTexture2D.cpp" />
     <ClCompile Include="Scripts\Texture.cpp" />
     <ClCompile Include="Scripts\Vendor\glm\detail\glm.cpp" />
     <ClCompile Include="Scripts\Vendor\STB\STB_Image.cpp" />
@@ -183,6 +186,9 @@
     <ClInclude Include="Scripts\imgui\imstb_textedit.h" />
     <ClInclude Include="Scripts\imgui\imstb_truetype.h" />
     <ClInclude Include="Scripts\Headers\texture.h" />
+    <ClInclude Include="Scripts\Tests\test.h" />
+    <ClInclude Include="Scripts\Tests\testclearcolour.h" />
+    <ClInclude Include="Scripts\Tests\testtexture2d.h" />
     <ClInclude Include="Scripts\Vendor\glm\common.hpp" />
     <ClInclude Include="Scripts\Vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="Scripts\Vendor\glm\detail\compute_vector_relational.hpp" />

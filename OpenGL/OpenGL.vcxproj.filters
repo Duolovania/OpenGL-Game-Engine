@@ -66,6 +66,15 @@
     <ClCompile Include="Scripts\Vendor\glm\detail\glm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Tests\TestClearColour.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Tests\Test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Tests\TestTexture2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\imgui\imconfig.h">
@@ -981,6 +990,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Vendor\glm\vector_relational.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Tests\test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Tests\testclearcolour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Tests\testtexture2d.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
