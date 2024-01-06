@@ -4,6 +4,7 @@
 #include "Headers/VertexBufferLayout.h"
 #include "Headers/VertexBuffer.h"
 #include <memory>
+#include <algorithm>
 
 namespace testSpace
 {
@@ -16,10 +17,11 @@ namespace testSpace
 			void OnUpdate(float deltaTime) override;
 			void OnImGuiRender() override;
 			void OnRender() override;
+			void OnHandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods) override;
 		private:
 			glm::vec3 translationA, translationB;
 			float red = 0.0f, green = 1.0f, blue = 1.0f, alpha = 1.0f, increment = 1.0f;
-			float camX = 0.0, camY = 0.0;
+			glm::vec2 camPos;
 
 			std::unique_ptr<VertexArray> va;
 			std::unique_ptr<IndexBuffer> ib;
@@ -32,5 +34,9 @@ namespace testSpace
 			glm::mat4 proj, view, model, mvp;
 
 			float vertex = 50.0f;
+			float deltaTime;
+
+			void InputMap(float& input, int action, float value);
+			float Clamp(float var, float min, float max);
 	};
 }

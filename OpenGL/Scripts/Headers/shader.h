@@ -2,6 +2,7 @@
 #include <iostream>
 #include <unordered_map>
 #include "glm/glm.hpp"
+#include <glew.h>
 
 // Struct contains Vertex and Fragment data.
 struct ShaderProgramSource
@@ -15,17 +16,15 @@ class Shader
 	private:
 		std::string filePath;
 		unsigned int rendererID;
-		int GetUniformLocation(const std::string& name);
 
-		unsigned int CompileShader(unsigned int type, const std::string& source);
+		mutable std::unordered_map<std::string, GLint> uniformLocationCache;
 		ShaderProgramSource source;
 
-		// Searches .shader files for vertex and fragment data.
-		ShaderProgramSource ParseShader(const std::string& filePath);
+		GLint GetUniformLocation(const std::string& name) const;
+		ShaderProgramSource ParseShader(const std::string& filePath); // Searches .shader files for vertex and fragment data.
 
 		//unsigned int CreateShader(const std::string& vertexShader, const std::string& fragmentShader);
-
-		std::unordered_map<std::string, int> uniformLocationCache;
+		unsigned int CompileShader(unsigned int type, const std::string& source);
 
 	public:
 		Shader(const std::string& filePath);
@@ -34,13 +33,14 @@ class Shader
 		void Bind() const;
 		void UnBind() const;
 
-		void SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3);
+		void SetUniform4f(const std::string& name, const glm::vec4& value);
+		void SetUniform3f(const std::string& name, const glm::vec3& value);
+		void SetUniform2f(const std::string& name, const glm::vec2& value);
+
 		void SetUniform1f(const std::string& name, float value);
 		void SetUniform1i(const std::string& name, int value);
 
 		void SetUniformMat4f(const std::string& name, const glm::mat4& matrix);
-
-		// Assign vertex and fragment to shader.
-		void CreateShader();
+		void CreateShader(); // Assign vertex and fragment to shader.
 
 };
