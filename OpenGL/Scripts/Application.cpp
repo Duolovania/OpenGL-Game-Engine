@@ -21,10 +21,7 @@
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 600
 
-float timeTime = 0;
-
-float oldTimeSinceStart = 0, timeSinceStart, deltaTime;
-
+float timeTime = 0, oldTimeSinceStart = 0, timeSinceStart, deltaTime;
 Renderer renderer;
 
 testSpace::Test* currentTest = nullptr;

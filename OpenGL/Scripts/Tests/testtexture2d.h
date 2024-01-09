@@ -3,6 +3,8 @@
 #include "Headers/texture.h"
 #include "Headers/VertexBufferLayout.h"
 #include "Headers/VertexBuffer.h"
+#include "Headers/input.h"
+
 #include <memory>
 #include <algorithm>
 
@@ -30,13 +32,14 @@ namespace testSpace
 			std::unique_ptr<Shader> shader;
 			std::unique_ptr<VertexBuffer> vb;
 
+			Input InputManager;
+
 			// Proj = Orthrographic projection.
 			glm::mat4 proj, view, model, mvp;
 
 			float vertex = 50.0f;
 			float deltaTime;
 
-			void InputMap(float& input, int action, float value);
 			float Clamp(float var, float min, float max);
 	};
 }

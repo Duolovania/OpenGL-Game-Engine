@@ -1,2 +1,16 @@
-﻿  TestTexture2D.cpp
+﻿  Application.cpp
+  Input.cpp
+  TestTexture2D.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(91,59): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(92,56): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  action.cpp
+  Generating Code...
   OpenGL.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\Debug\OpenGL.exe

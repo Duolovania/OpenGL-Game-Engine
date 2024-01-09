@@ -4,8 +4,11 @@
 #include "Headers/shader.h"
 #include "glm/gtc/matrix_transform.hpp"
 
+
 glm::vec2 inputVector;
 bool horizontal, vertical;
+
+int rightStrength, leftStrength;
 
 namespace testSpace
 {
@@ -84,6 +87,10 @@ namespace testSpace
 			increment = 0.025f;
 
 		red += increment;
+
+		inputVector.x = InputManager.GetActionStrength("right") - InputManager.GetActionStrength("left");
+		inputVector.y = InputManager.GetActionStrength("up") - InputManager.GetActionStrength("down");
+
 		this->deltaTime = deltaTime;
 	}
 
@@ -138,35 +145,7 @@ namespace testSpace
 
 	void TestTexture2D::OnHandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods)
 	{
-		switch (key)
-		{
-			case GLFW_KEY_D:
-				InputMap(inputVector.x, action, 1);
-				break;
-			case GLFW_KEY_W:
-				InputMap(inputVector.y, action, 1);
-				break;
-			case GLFW_KEY_A:
-				InputMap(inputVector.x, action, -1);
-				break;
-			case GLFW_KEY_S:
-				InputMap(inputVector.y, action, -1);
-				break;
-		}
-	}
-
-	void TestTexture2D::InputMap(float& input, int action, float value)
-	{
-		if (action == GLFW_RELEASE)
-		{
-			input -= value;
-		}
-		else
-		{
-			input += value;
-		}
-
-		input = Clamp(input, -1, 1);
+		InputManager.actionMap[key].SetStrength(action);
 	}
 
 	float TestTexture2D::Clamp(float var, float min, float max)

@@ -147,7 +147,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Scripts\action.cpp" />
     <ClCompile Include="Scripts\Application.cpp" />
+    <ClCompile Include="Scripts\Input.cpp" />
     <ClCompile Include="Scripts\Shader.cpp" />
     <ClCompile Include="Scripts\imgui\imgui.cpp" />
     <ClCompile Include="Scripts\imgui\imgui_demo.cpp" />
@@ -169,8 +171,10 @@
     <ClCompile Include="Scripts\VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scripts\Headers\action.h" />
     <ClInclude Include="Scripts\Headers\application.h" />
     <ClInclude Include="Scripts\Headers\IndexBuffer.h" />
+    <ClInclude Include="Scripts\Headers\input.h" />
     <ClInclude Include="Scripts\Headers\Renderer.h" />
     <ClInclude Include="Scripts\Headers\shader.h" />
     <ClInclude Include="Scripts\Headers\vector2.h" />
