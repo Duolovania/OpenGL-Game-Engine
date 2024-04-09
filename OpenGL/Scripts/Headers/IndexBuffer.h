@@ -5,10 +5,10 @@ class IndexBuffer
 	private:
 		unsigned int rendererID, count;
 	public:
-		IndexBuffer(const unsigned int* data, unsigned int count);
+		IndexBuffer(unsigned int count);
 		~IndexBuffer();
 
-		void Gen(const unsigned int* data, unsigned int count);
+		void Gen(const unsigned int* data);
 
 		void Bind() const;
 		void Unbind() const;

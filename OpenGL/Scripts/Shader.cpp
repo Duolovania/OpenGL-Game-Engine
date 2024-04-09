@@ -8,13 +8,17 @@
 Shader::Shader(const std::string& filePath)
 	:filePath(filePath), rendererID(0)
 {
-    //ShaderProgramSource source = ParseShader(filePath);
     source = ParseShader(filePath);
 }
 
 Shader::~Shader()
 {
     GLCall(glDeleteProgram(rendererID));
+}
+
+unsigned int Shader::GetRendererID()
+{
+    return rendererID;
 }
 
 ShaderProgramSource Shader::ParseShader(const std::string& filePath)
@@ -66,24 +70,6 @@ void Shader::CreateShader()
 
     rendererID = program;
 }
-
-//unsigned int Shader::CreateShader(const std::string& vertexShader, const std::string& fragmentShader)
-//{
-//    unsigned int program = glCreateProgram();
-//    unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
-//    unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
-//
-//    GLCall(glAttachShader(program, vs));
-//    GLCall(glAttachShader(program, fs));
-//
-//    GLCall(glLinkProgram(program));
-//    GLCall(glValidateProgram(program));
-//
-//    GLCall(glDeleteShader(vs));
-//    GLCall(glDeleteShader(fs));
-//
-//    return program;
-//}
 
 unsigned int Shader::CompileShader(unsigned int type, const std::string& source)
 {
@@ -148,6 +134,11 @@ void Shader::SetUniform1i(const std::string& name, int value)
     GLCall(glUniform1i(GetUniformLocation(name), value));
 }
 
+void Shader::SetUniform1iv(const std::string& name, int count, const int* value)
+{
+    GLCall(glUniform1iv(GetUniformLocation(name), count, value));
+}
+
 void Shader::SetUniformMat4f(const std::string& name, const glm::mat4& matrix)
 {
     GLCall(glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]));
@@ -160,8 +151,13 @@ GLint Shader::GetUniformLocation(const std::string& name) const
 
     GLCall(GLint location = glGetUniformLocation(rendererID, name.c_str()));
     if (location == -1)
-        std::cout << "Warning: uniform: '" << name << "' doesn't exist." << std::endl;
+        std::cout << "Warning: \n    Uniform: '" << name << "' doesn't exist." << std::endl;
     
     uniformLocationCache[name] = location;
     return location;
+}
+
+void Shader::BindTexture(unsigned int index, unsigned int value)
+{
+    GLCall(glBindTextureUnit(index, value));
 }

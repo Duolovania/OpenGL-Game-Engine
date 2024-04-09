@@ -40,7 +40,6 @@ class VertexBufferLayout
 		void Push(unsigned int count)
 		{
 			std::runtime_error(false);
-			//static_assert(false);
 		}
 
 		template<>

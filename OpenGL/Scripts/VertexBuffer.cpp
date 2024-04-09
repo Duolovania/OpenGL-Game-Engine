@@ -1,12 +1,10 @@
 #include "Headers/VertexBuffer.h"
 #include "Headers/Renderer.h"
 
-VertexBuffer::VertexBuffer(const void* data, unsigned int size) 
+VertexBuffer::VertexBuffer(unsigned int size) 
     : size(size)
 {
-    //GLCall(glGenBuffers(1, &rendererID)); // How many buffers and the ID
-    //GLCall(glBindBuffer(GL_ARRAY_BUFFER, rendererID)); // Selects buffer
-    //GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW)); // Generates buffer data
+
 }
 
 VertexBuffer::~VertexBuffer() 
@@ -16,9 +14,9 @@ VertexBuffer::~VertexBuffer()
 
 void VertexBuffer::Gen(const void* data)
 {
-    GLCall(glGenBuffers(1, &rendererID)); // How many buffers and the ID
+    GLCall(glCreateBuffers(1, &rendererID)); // How many buffers and the ID
     GLCall(glBindBuffer(GL_ARRAY_BUFFER, rendererID)); // Selects buffer
-    GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW)); // Generates buffer data
+    GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW)); // Generates buffer data
 }
 
 void VertexBuffer::Bind() const
@@ -33,5 +31,7 @@ void VertexBuffer::Unbind() const
 
 void VertexBuffer::ModData(const void* data)
 {
-    GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW)); // Generates buffer data
+    //GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW)); // Generates buffer data
+
+    GLCall(glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(data) * 1000, data));
 }

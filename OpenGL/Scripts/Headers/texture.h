@@ -17,7 +17,11 @@ class Texture
 		void Bind(unsigned int slot = 0) const;
 		void UnBind() const;
 
+
 		void Gen();
+		void Load(const std::string& path);
+
+		unsigned int GetBufferID();
 
 		Vector2 position;
 		inline int GetWidth() { return w; }
