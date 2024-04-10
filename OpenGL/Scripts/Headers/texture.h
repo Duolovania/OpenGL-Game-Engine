@@ -1,6 +1,6 @@
 #pragma once
 #include "vector2.h"
-#include "Renderer.h"
+#include "renderer.h"
 
 class Texture
 {

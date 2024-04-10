@@ -3,7 +3,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include "Headers/Renderer.h"
+#include "Headers/renderer.h"
 
 Shader::Shader(const std::string& filePath)
 	:filePath(filePath), rendererID(0)

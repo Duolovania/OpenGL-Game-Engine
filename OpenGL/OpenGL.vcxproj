@@ -147,7 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Scripts\action.cpp" />
+    <ClCompile Include="Scripts\Action.cpp" />
     <ClCompile Include="Scripts\Application.cpp" />
     <ClCompile Include="Scripts\Input.cpp" />
     <ClCompile Include="Scripts\Shader.cpp" />
@@ -173,14 +173,14 @@
   <ItemGroup>
     <ClInclude Include="Scripts\Headers\action.h" />
     <ClInclude Include="Scripts\Headers\application.h" />
-    <ClInclude Include="Scripts\Headers\IndexBuffer.h" />
+    <ClInclude Include="Scripts\Headers\indexbuffer.h" />
     <ClInclude Include="Scripts\Headers\input.h" />
-    <ClInclude Include="Scripts\Headers\Renderer.h" />
+    <ClInclude Include="Scripts\Headers\renderer.h" />
     <ClInclude Include="Scripts\Headers\shader.h" />
     <ClInclude Include="Scripts\Headers\vector2.h" />
-    <ClInclude Include="Scripts\Headers\VertexArray.h" />
-    <ClInclude Include="Scripts\Headers\VertexBuffer.h" />
-    <ClInclude Include="Scripts\Headers\VertexBufferLayout.h" />
+    <ClInclude Include="Scripts\Headers\vertexarray.h" />
+    <ClInclude Include="Scripts\Headers\vertexbuffer.h" />
+    <ClInclude Include="Scripts\Headers\vertexbufferlayout.h" />
     <ClInclude Include="Scripts\imgui\imconfig.h" />
     <ClInclude Include="Scripts\imgui\imgui.h" />
     <ClInclude Include="Scripts\imgui\imgui_impl_glfw.h" />

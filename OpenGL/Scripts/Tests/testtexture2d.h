@@ -1,8 +1,8 @@
 #pragma once
 #include "test.h"
 #include "Headers/texture.h"
-#include "Headers/VertexBufferLayout.h"
-#include "Headers/VertexBuffer.h"
+#include "Headers/vertexbufferlayout.h"
+#include "Headers/vertexbuffer.h"
 #include "Headers/input.h"
 
 #include <memory>

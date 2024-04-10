@@ -1,5 +1,5 @@
-#include "Headers/IndexBuffer.h"
-#include "Headers/Renderer.h"
+#include "Headers/indexbuffer.h"
+#include "Headers/renderer.h"
 
 IndexBuffer::IndexBuffer(unsigned int count)
     : count(count)
@@ -21,7 +21,6 @@ void IndexBuffer::Gen(const unsigned int* data)
     GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, rendererID)); // Selects buffer
     GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, count, data, GL_STATIC_DRAW)); // Generates buffer data
     //GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(data), data, GL_STATIC_DRAW)); // Generates buffer data
-
 }
 
 // Selects this as current buffer.

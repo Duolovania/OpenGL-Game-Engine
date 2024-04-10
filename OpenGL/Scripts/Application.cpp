@@ -1,13 +1,13 @@
 #include "Headers/application.h"
 
 #include "Headers/texture.h"
-#include "Headers/Renderer.h"
+#include "Headers/renderer.h"
 
-#include "Headers/IndexBuffer.h"
-#include "Headers/VertexBuffer.h"
+#include "Headers/indexbuffer.h"
+#include "Headers/vertexBuffer.h"
 
-#include "Headers/VertexArray.h"
-#include "Headers/VertexBufferLayout.h"
+#include "Headers/vertexarray.h"
+#include "Headers/vertexbufferlayout.h"
 
 #include "Headers/shader.h"
 #include "glm/gtc/matrix_transform.hpp"

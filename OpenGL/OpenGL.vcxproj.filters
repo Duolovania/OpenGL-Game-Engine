@@ -78,7 +78,7 @@
     <ClCompile Include="Scripts\Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\action.cpp">
+    <ClCompile Include="Scripts\Action.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -119,19 +119,19 @@
     <ClInclude Include="Scripts\Vendor\STB\std_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\Renderer.h">
+    <ClInclude Include="Scripts\Headers\renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\VertexBuffer.h">
+    <ClInclude Include="Scripts\Headers\vertexbuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\IndexBuffer.h">
+    <ClInclude Include="Scripts\Headers\indexbuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\VertexArray.h">
+    <ClInclude Include="Scripts\Headers\vertexarray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\VertexBufferLayout.h">
+    <ClInclude Include="Scripts\Headers\vertexbufferlayout.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Headers\shader.h">

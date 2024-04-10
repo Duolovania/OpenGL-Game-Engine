@@ -1,5 +1,5 @@
-#include "Headers/VertexBuffer.h"
-#include "Headers/Renderer.h"
+#include "Headers/vertexbuffer.h"
+#include "Headers/renderer.h"
 
 VertexBuffer::VertexBuffer(unsigned int size) 
     : size(size)

@@ -1,5 +1,5 @@
 #include "testtexture2d.h"
-#include "Headers/Renderer.h"
+#include "Headers/renderer.h"
 
 #include "Headers/shader.h"
 #include "glm/gtc/matrix_transform.hpp"
@@ -11,6 +11,7 @@ bool horizontal, vertical;
 int index;
 float vertex = 50.0f;
 float upVertex = vertex * 3;
+float sprintSpeed;
 
 struct Vec3
 {
@@ -68,6 +69,7 @@ static Vertex* CreateQuad(Vertex* target, float x, float y, float texID, Vec4 co
 
 namespace testSpace
 {
+	// Scene initializer.
 	TestTexture2D::TestTexture2D()
 		: translationB(0, 50, 0), proj(glm::ortho(-100.0f, 100.0f, -75.0f, 75.0f, -1.0f, 1.0f))
 	{
@@ -141,12 +143,13 @@ namespace testSpace
 
 	}
 
+	// Frame-by-frame scene logic.
 	void TestTexture2D::OnUpdate(float deltaTime)
 	{
 		translationB.x = ((cos((deltaTime) * 1)) * 10);
 		translationB.y = ((sin((deltaTime) * 1)) * 10);
 
-		camPos += glm::vec2(inputVector.x * 100.0f * deltaTime, inputVector.y * 100.0f * deltaTime);
+		camPos += glm::vec2(inputVector.x * (100.0f + sprintSpeed) * deltaTime, inputVector.y * (100.0f + sprintSpeed) * deltaTime);
 		namPos += glm::vec2(namVector.x * 100.0f * deltaTime, namVector.y * 100.0f * deltaTime);
 
 		inputVector.x = InputManager.GetActionStrength("right") - InputManager.GetActionStrength("left");
@@ -155,9 +158,12 @@ namespace testSpace
 		namVector.x = InputManager.GetActionStrength("arrowRight") - InputManager.GetActionStrength("arrowLeft");
 		namVector.y = InputManager.GetActionStrength("arrowUp") - InputManager.GetActionStrength("arrowDown");
 
+		sprintSpeed = (InputManager.GetActionStrength("sprint")) ? 100 : 0;
+
 		this->deltaTime = deltaTime;
 	}
 
+	// Frame-by-frame rendering logic.
 	void TestTexture2D::OnRender()
 	{
 		GLCall(glClearColor(0.05f, 0.05f, 0.05f, 1.0f));
@@ -170,7 +176,7 @@ namespace testSpace
 		{
 			for (int x = 0; x < 5; x++)
 			{
-				buffer = CreateQuad(buffer, x, y, (x + y) % 2, {1.0f, 0.93f, 0.24f, 1.0f}); // Creates a grid of quads.
+				buffer = CreateQuad(buffer, x * 100, y * 100, (x + y) % 2, {1.0f, 0.93f, 0.24f, 1.0f}); // Creates a grid of quads.
 			}
 		}
 
@@ -196,6 +202,7 @@ namespace testSpace
 		renderer.Draw(*va, *ib, *shader);
 	}
 
+	// Frame-by-frame GUI logic.
 	void TestTexture2D::OnImGuiRender()
 	{
 		ImGui::Text("FPS %.1f FPS", double(ImGui::GetIO().Framerate));
@@ -205,14 +212,17 @@ namespace testSpace
 		ImGui::SliderFloat("G:", &green, 0.0f, 1.0f, "%.1f");
 		ImGui::SliderFloat("B:", &blue, 0.0f, 1.0f, "%.1f");
 		ImGui::SliderFloat("A:", &alpha, 0.0f, 1.0f, "%.1f");
+
 		ImGui::SliderInt("Texture Index:", &index, 0, 3);
 	}
 
+	// Keyboard input handler.
 	void TestTexture2D::OnHandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods)
 	{
 		InputManager.actionMap[key].SetStrength(action);
 	}
 
+	// Simple float clamping function.
 	float TestTexture2D::Clamp(float var, float min, float max)
 	{
 		const float tempVar = (var > min) ? var : min;
