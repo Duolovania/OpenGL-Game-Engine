@@ -11,7 +11,8 @@ class VertexBuffer
 
 		void Bind() const;
 		void Unbind() const;
-		void ModData(const void* data);
+		void ModifyData(unsigned int size, const void* data);
+		void ModifyData(const void* data);
 
 		void Gen(const void* data);
 };

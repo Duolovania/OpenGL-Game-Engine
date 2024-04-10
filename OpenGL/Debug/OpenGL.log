@@ -1,22 +1,2 @@
-﻿  TestTexture2D.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(144,59): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(144,59): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(144,59): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(144,59): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(144,59): warning C4244:         ]
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(145,56): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(145,56): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(145,56): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(145,56): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(145,56): warning C4244:         ]
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(147,62): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(147,62): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(147,62): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(147,62): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(147,62): warning C4244:         ]
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(148,59): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(148,59): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(148,59): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(148,59): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(148,59): warning C4244:         ]
+﻿  VertexArray.cpp
   OpenGL.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\Debug\OpenGL.exe

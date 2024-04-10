@@ -8,11 +8,12 @@ Texture::Texture(const std::string& path)
 	localBuffer = stbi_load(path.c_str(), &w, &h, &bpp, 4);
 }
 
-unsigned int Texture::GetBufferID()
+Texture::~Texture()
 {
-	return bufferID;
+	GLCall(glDeleteTextures(1, &bufferID));
 }
 
+// Generates texture data.
 void Texture::Gen()
 {
 	//GLCall(glGenTextures(1, &bufferID));
@@ -31,27 +32,32 @@ void Texture::Gen()
 		stbi_image_free(localBuffer);
 }
 
-void Texture::Load(const std::string& path)
+// Generates texture data and returns the buffer ID (returns the new texture data through the ID).
+unsigned int Texture::Load(const std::string& path)
 {
 	stbi_set_flip_vertically_on_load(1);
 	localBuffer = stbi_load(path.c_str(), &w, &h, &bpp, 4);
 
 	Gen();
+	return bufferID;
 }
 
-Texture::~Texture()
-{
-	GLCall(glDeleteTextures(1, &bufferID));
-}
-
+// Selects this as the current texture.
 void Texture::Bind(unsigned int slot) const
 {
 	GLCall(glActiveTexture(GL_TEXTURE0 + slot));
 	GLCall(glBindTexture(GL_TEXTURE_2D, bufferID));
 }
 
+// Resets the selection.
 void Texture::UnBind() const
 {
 	GLCall(glBindTexture(GL_TEXTURE_2D, 0));
+}
+
+// Returns the bufferID.
+unsigned int Texture::GetBufferID()
+{
+	return bufferID;
 }
 
