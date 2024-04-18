@@ -3,6 +3,7 @@
 
 #include "Headers/shader.h"
 #include "glm/gtc/matrix_transform.hpp"
+#include "Headers/application.h"
 #include <array>
 
 glm::vec2 inputVector, namVector, namPos;
@@ -12,6 +13,7 @@ int index;
 float vertex = 50.0f;
 float upVertex = vertex * 3;
 float sprintSpeed;
+std::vector<int>::iterator it;
 
 struct Vec3
 {
@@ -106,10 +108,10 @@ namespace testSpace
 
 		VertexBufferLayout layout;
 
-		layout.Push<float>(3); // Position
-		layout.Push<float>(4); // Colour
-		layout.Push<float>(2); // TexCoords
-		layout.Push<float>(1); // TexIndex
+		layout.Push<float>(3); // Position (takes 3 params).
+		layout.Push<float>(4); // Colour (takes 4 params).
+		layout.Push<float>(2); // TexCoords (takes 2 params).
+		layout.Push<float>(1); // TexIndex (has 1 value).
 
 		va->AddBuffer(*vb, layout);
 
@@ -152,13 +154,13 @@ namespace testSpace
 		camPos += glm::vec2(inputVector.x * (100.0f + sprintSpeed) * deltaTime, inputVector.y * (100.0f + sprintSpeed) * deltaTime);
 		namPos += glm::vec2(namVector.x * 100.0f * deltaTime, namVector.y * 100.0f * deltaTime);
 
-		inputVector.x = InputManager.GetActionStrength("right") - InputManager.GetActionStrength("left");
-		inputVector.y = InputManager.GetActionStrength("up") - InputManager.GetActionStrength("down");
+		inputVector.x = Core.InputManager.GetActionStrength("right") - Core.InputManager.GetActionStrength("left");
+		inputVector.y = Core.InputManager.GetActionStrength("up") - Core.InputManager.GetActionStrength("down");
 
-		namVector.x = InputManager.GetActionStrength("arrowRight") - InputManager.GetActionStrength("arrowLeft");
-		namVector.y = InputManager.GetActionStrength("arrowUp") - InputManager.GetActionStrength("arrowDown");
+		namVector.x = Core.InputManager.GetActionStrength("arrowRight") - Core.InputManager.GetActionStrength("arrowLeft");
+		namVector.y = Core.InputManager.GetActionStrength("arrowUp") - Core.InputManager.GetActionStrength("arrowDown");
 
-		sprintSpeed = (InputManager.GetActionStrength("sprint")) ? 100 : 0;
+		sprintSpeed = Core.InputManager.GetActionStrength("sprint") * 100;
 
 		this->deltaTime = deltaTime;
 	}
@@ -214,12 +216,6 @@ namespace testSpace
 		ImGui::SliderFloat("A:", &alpha, 0.0f, 1.0f, "%.1f");
 
 		ImGui::SliderInt("Texture Index:", &index, 0, 3);
-	}
-
-	// Keyboard input handler.
-	void TestTexture2D::OnHandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods)
-	{
-		InputManager.actionMap[key].SetStrength(action);
 	}
 
 	// Simple float clamping function.

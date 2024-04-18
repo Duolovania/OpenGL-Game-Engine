@@ -19,7 +19,6 @@ namespace testSpace
 			void OnUpdate(float deltaTime) override;
 			void OnImGuiRender() override;
 			void OnRender() override;
-			void OnHandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods) override;
 		private:
 			glm::vec3 translationB;
 			glm::vec2 camPos;
@@ -30,8 +29,6 @@ namespace testSpace
 
 			std::unique_ptr<Texture> texture;
 			std::unique_ptr<Shader> shader;
-
-			Input InputManager;
 			
 			glm::mat4 proj, view, model, mvp;  // Proj = Orthrographic projection.
 			

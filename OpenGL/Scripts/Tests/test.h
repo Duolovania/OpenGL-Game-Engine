@@ -17,7 +17,6 @@ namespace testSpace
 			virtual void OnUpdate(float deltaTime) {};
 			virtual void OnRender() {};
 			virtual void OnImGuiRender() {};
-			virtual void OnHandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods) {};
 	};
 
 	class TestMenu : public Test

@@ -22,12 +22,15 @@
 #define SCREEN_HEIGHT 600
 
 float timeTime = 0, oldTimeSinceStart = 0, timeSinceStart, deltaTime;
+bool applicationQuit = false;
+static char inputString[10];
+
 Renderer renderer;
 
 testSpace::Test* currentTest = nullptr;
 testSpace::TestMenu* testMenu = new testSpace::TestMenu(currentTest);
+Engine Engine::instance;
 
-void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods);
 
 // Application starting point.
 void Application::Run()
@@ -35,7 +38,7 @@ void Application::Run()
     Init(SCREEN_WIDTH, SCREEN_HEIGHT, "Nam Nam Grabbers");
 
     // Loop until the user closes the window
-    while (!glfwWindowShouldClose(window))
+    while (!glfwWindowShouldClose(window) && !applicationQuit)
     {
         Loop();
     }
@@ -54,7 +57,7 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
 
     // Create a windowed mode window and its OpenGL context 
     window = glfwCreateWindow(screenWidth, screenHeight, windowTitle, NULL, NULL);
-    glfwSetKeyCallback(window, HandleInput);
+    glfwSetKeyCallback(window, Engine::HandleInput);
 
     if (!window)
         glfwTerminate();
@@ -111,6 +114,32 @@ void Application::Loop()
         }
 
         currentTest->OnImGuiRender();
+
+        ImGui::InputText("Input:", inputString, IM_ARRAYSIZE(inputString));
+
+        if (ImGui::Button("Print"))
+        {
+            std::cout << inputString << std::endl;
+        }
+
+        if (ImGui::ListBoxHeader("Input Actions"))
+        {
+            for (int i = 0; i < Core.InputManager.actionList.size(); i++)
+            {
+                ImGui::Selectable(("Name: " + Core.InputManager.actionList[i].GetActionName()).c_str());
+                
+                for (int j = 0; j < Core.InputManager.actionList[i].GetKeyBinds().size(); j++)
+                {
+                    //"      Key: " + std::to_string(glfwGetKeyName(InputManager.actionList[i].GetKeyBind(j), 0))
+
+                    ImGui::Selectable(Core.InputManager.actionList[i].GetKeyName(j));
+                }
+            }
+
+            ImGui::ListBoxFooter();
+        }
+
+        if (ImGui::Button("Quit to Desktop")) applicationQuit = true;
         ImGui::End();
     }
 
@@ -143,10 +172,16 @@ void Application::Close()
 }
 
 // Handles key input actions.
-void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods)
+void Engine::HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods)
 {
-    if (currentTest)
+    for (int i = 0; i < Core.InputManager.actionList.size(); i++)
     {
-        currentTest->OnHandleInput(window, key, scanCode, action, mods);
+        for (int j = 0; j < Core.InputManager.actionList[i].GetKeyBinds().size(); j++)
+        {
+            if (Core.InputManager.actionList[i].GetKeyBind(j) == key)
+            {
+                Core.InputManager.actionList[i].SetStrength(action);
+            }
+        }
     }
 }

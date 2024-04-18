@@ -6,7 +6,8 @@ class Input
 {
 	public:
 		int GetActionStrength(const std::string actionName);
-		std::map<int, Action> actionMap;
+
+		std::vector<Action> actionList;
 
 		Input();
 };

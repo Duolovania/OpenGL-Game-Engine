@@ -5,6 +5,7 @@
 #include <glew.h>
 #include <glfw3.h>
 #include <iostream>
+#include "Headers/input.h"
 
 class Application
 {
@@ -16,3 +17,24 @@ class Application
 
 		GLFWwindow* window;
 };
+
+class Engine
+{
+	public:
+		Engine(const Engine&) = delete;
+
+		static Engine& Get()
+		{
+			return instance;
+		}
+
+		Input InputManager;
+		static void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods);
+
+
+	private:
+		Engine() {}
+		static Engine instance;
+};
+
+#define Core Engine::Get()
