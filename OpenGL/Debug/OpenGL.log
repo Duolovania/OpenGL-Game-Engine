@@ -1,8 +1,38 @@
 ﻿  Application.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Application.cpp(127,31): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Application.cpp(131,35): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Application.cpp(177,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Application.cpp(179,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Application.cpp(176,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Application.cpp(184,35): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Application.cpp(233,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Application.cpp(235,27): warning C4018: '<': signed/unsigned mismatch
+  Input.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Input.cpp(23,20): warning C4018: '<': signed/unsigned mismatch
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(4869,20): error C2280: 'Action &Action::operator =(const Action &)': attempting to reference a deleted function
+  (compiling source file 'Scripts/Input.cpp')
+  C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Headers\action.h(31,1):
+  compiler has generated 'Action::operator =' here
+  C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Headers\action.h(31,1):
+  'Action &Action::operator =(const Action &)': function was implicitly deleted because a data member 'Action::actionName' has either no appropriate copy assignment operator or overload resolution was ambiguous
+  C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Headers\action.h(26,21):
+  see declaration of 'Action::actionName'
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xutility(4869,20):
+  the template instantiation context (the oldest one first) is
+  	C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Headers\input.h(8,23):
+  	see reference to class template instantiation 'std::vector<Action,std::allocator<Action>>' being compiled
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(1724,27):
+  	while compiling class template member function 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> std::vector<_Ty,std::allocator<_Ty>>::erase(std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>) noexcept(false)'
+          with
+          [
+              _Ty=Action
+          ]
+  		C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Input.cpp(35,18):
+  		see the first reference to 'std::vector<Action,std::allocator<Action>>::erase' in 'Input::DeleteAction'
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(1737,14):
+  	see reference to function template instantiation '_OutIt *std::_Move_unchecked<Action*,Action*>(_InIt,_InIt,_OutIt)' being compiled
+          with
+          [
+              _OutIt=Action *,
+              _InIt=Action *
+          ]
+  
   Source.cpp
   TestTexture2D.cpp
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(157,64): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
@@ -30,7 +60,3 @@ C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\Te
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(181,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(181,35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Generating Code...
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
-glew32s.lib(glew.obj) : warning LNK4099: PDB '' was not found with 'glew32s.lib(glew.obj)' or at ''; linking object as if no debug info
-  OpenGL.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGLEngine\OpenGL\Debug\OpenGL.exe

@@ -38,3 +38,4 @@ class Engine
 };
 
 #define Core Engine::Get()
+#define LOG(x) std::cout << x << std::endl;

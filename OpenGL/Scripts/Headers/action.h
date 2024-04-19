@@ -15,7 +15,9 @@ class Action
 		const char* GetKeyName(int keyCode);
 
 		int GetKeyBind(int index) const;
+
 		void AddKeyBind(int newKey);
+		void DeleteKeyBind(int index);
 
 		void SetStrength(int glfwAction);
 		const std::string GetActionName() const;

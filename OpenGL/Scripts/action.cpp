@@ -29,10 +29,18 @@ void Action::SetStrength(int glfwAction)
 	strength = (glfwAction == GLFW_RELEASE) ? 0 : 1;
 };
 
-// Reassigns the keybinding.
+// Adds a new keybinding.
 void Action::AddKeyBind(int newKey)
 {
+	if (std::find(keybinds.begin(), keybinds.end(), newKey) != keybinds.end()) return;
+
 	keybinds.push_back(newKey);
+};
+
+// Deletes a keybinding.
+void Action::DeleteKeyBind(int index)
+{
+	keybinds.erase(keybinds.begin() + index);
 };
 
 // Returns the name of the action.

@@ -2,17 +2,17 @@
 
 Input::Input()
 {
-	actionList.push_back(Action("right", GLFW_KEY_D));
-	actionList.push_back(Action("left", GLFW_KEY_A));
-	actionList.push_back(Action("down", GLFW_KEY_S));
-	actionList.push_back(Action("up", GLFW_KEY_W));
+	AddAction(Action("right", GLFW_KEY_D));
+	AddAction(Action("left", GLFW_KEY_A));
+	AddAction(Action("down", GLFW_KEY_S));
+	AddAction(Action("up", GLFW_KEY_W));
 
-	actionList.push_back(Action("arrowRight", GLFW_KEY_RIGHT));
-	actionList.push_back(Action("arrowLeft", GLFW_KEY_LEFT));
-	actionList.push_back(Action("arrowDown", GLFW_KEY_DOWN));
-	actionList.push_back(Action("arrowUp", GLFW_KEY_UP));
+	AddAction(Action("arrowRight", GLFW_KEY_RIGHT));
+	AddAction(Action("arrowLeft", GLFW_KEY_LEFT));
+	AddAction(Action("arrowDown", GLFW_KEY_DOWN));
+	AddAction(Action("arrowUp", GLFW_KEY_UP));
 
-	actionList.push_back(Action("sprint", GLFW_KEY_LEFT_SHIFT));
+	AddAction(Action("sprint", GLFW_KEY_LEFT_SHIFT));
 
 	actionList[0].AddKeyBind(GLFW_KEY_RIGHT);
 };
@@ -27,4 +27,18 @@ int Input::GetActionStrength(const std::string actionName)
 
 	std::cout << "Input action with name: " << actionName << " was not found." << std::endl;
 	return 0;
+};
+
+// Removes an action from the list.
+void Input::DeleteAction(int index)
+{
+	actionList.erase(actionList.begin() + index);
+};
+
+// Adds a new action if there one does not exist with the same name.
+void Input::AddAction(Action newAction)
+{
+	if (std::find(actionList.begin(), actionList.end(), newAction) != actionList.end()) return;
+
+	actionList.push_back(newAction);
 };

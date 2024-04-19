@@ -31,6 +31,17 @@ testSpace::Test* currentTest = nullptr;
 testSpace::TestMenu* testMenu = new testSpace::TestMenu(currentTest);
 Engine Engine::instance;
 
+bool listenToInput = false;
+int actionIndex, keyBindIndex;
+
+enum UISelect
+{
+    None,
+    Action,
+    Keybind
+};
+
+UISelect uiSelect = UISelect::None;
 
 // Application starting point.
 void Application::Run()
@@ -54,6 +65,7 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    //glfwWindowHint(GLFW_DECORATED, false);
 
     // Create a windowed mode window and its OpenGL context 
     window = glfwCreateWindow(screenWidth, screenHeight, windowTitle, NULL, NULL);
@@ -80,7 +92,7 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     ImGui::CreateContext();
 
     ImGuiIO& io = ImGui::GetIO(); (void)io;
-    io.FontDefault = io.Fonts->AddFontFromFileTTF("Assets/Fonts/Moon2.0-Bold.otf", 16.0f);
+    io.FontDefault = io.Fonts->AddFontFromFileTTF("Assets/Fonts/Chivo/Chivo-Light.ttf", 16.0f);
 
     ImGui::StyleColorsDark();
 
@@ -117,22 +129,65 @@ void Application::Loop()
 
         ImGui::InputText("Input:", inputString, IM_ARRAYSIZE(inputString));
 
+        //ImGui::OpenPopup("ThePopup");
+
+        //if (ImGui::BeginPopupModal("ThePopup"))
+        //{
+        //    ImGui::Text("you suck hehe");
+
+        //    // Draw popup contents.
+        //    if (ImGui::Button("eshay"))
+        //    {
+        //        ImGui::CloseCurrentPopup();
+        //    }
+        //    ImGui::EndPopup();
+        //}
+
         if (ImGui::Button("Print"))
         {
-            std::cout << inputString << std::endl;
+            LOG(inputString);
         }
+
+        if (ImGui::Button("Listen to Input"))
+        {
+            listenToInput = true;
+        }
+
+        if (ImGui::Button("Delete"))
+        {
+            switch (uiSelect)
+            {
+                case UISelect::Action:
+                    Core.InputManager.DeleteAction(actionIndex);
+                    break;
+                case UISelect::Keybind:
+                    Core.InputManager.actionList[actionIndex].DeleteKeyBind(keyBindIndex);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (listenToInput) ImGui::Text("Listening...");
 
         if (ImGui::ListBoxHeader("Input Actions"))
         {
             for (int i = 0; i < Core.InputManager.actionList.size(); i++)
             {
-                ImGui::Selectable(("Name: " + Core.InputManager.actionList[i].GetActionName()).c_str());
+                if (ImGui::Selectable(("Name: " + Core.InputManager.actionList[i].GetActionName()).c_str()))
+                {
+                    actionIndex = i;
+                    uiSelect = UISelect::Action;
+                }
                 
                 for (int j = 0; j < Core.InputManager.actionList[i].GetKeyBinds().size(); j++)
                 {
-                    //"      Key: " + std::to_string(glfwGetKeyName(InputManager.actionList[i].GetKeyBind(j), 0))
-
-                    ImGui::Selectable(Core.InputManager.actionList[i].GetKeyName(j));
+                    if (ImGui::Selectable(Core.InputManager.actionList[i].GetKeyName(j)))
+                    {
+                        actionIndex = i;
+                        keyBindIndex = j;
+                        uiSelect = UISelect::Keybind;
+                    }
                 }
             }
 
@@ -183,5 +238,11 @@ void Engine::HandleInput(GLFWwindow* window, int key, int scanCode, int action, 
                 Core.InputManager.actionList[i].SetStrength(action);
             }
         }
+    }
+
+    if (listenToInput)
+    {
+        Core.InputManager.actionList[actionIndex].AddKeyBind(key);
+        listenToInput = false;
     }
 }
