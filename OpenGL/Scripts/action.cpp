@@ -3,7 +3,7 @@
 Action::Action(const std::string actionName, int keyBind)
 	: actionName(actionName), strength(0)
 {
-	keybinds.push_back(keyBind);
+	AddKeyBind(keyBind);
 };
 
 // Returns the result of the key pressed event given from 'SetStrength()'.
@@ -12,13 +12,14 @@ int Action::GetStrength() const
 	return strength;
 };
 
-// Returns the selected keybinding.
+// Returns all keybinds.
 std::vector<int> Action::GetKeyBinds() const
 {
 	return keybinds;
 };
 
-int Action::GetKeyBind(int index) const
+// Returns the keybind value using the index.
+int Action::GetKeyBindIndex(int index) const
 {
 	return keybinds[index];
 };
@@ -49,13 +50,13 @@ const std::string Action::GetActionName() const
 	return actionName;
 };
 
+// Returns the name of the keybind.
 const char* Action::GetKeyName(int keyCode)
 {
 	const char* getName = glfwGetKeyName(keybinds[keyCode], 0);
 
 	if (getName)
 	{
-		//return "	A";
 		return getName;
 	}
 

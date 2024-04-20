@@ -22,7 +22,9 @@
 #define SCREEN_HEIGHT 600
 
 float timeTime = 0, oldTimeSinceStart = 0, timeSinceStart, deltaTime;
-bool applicationQuit = false;
+int actionIndex = 0, keyBindIndex = 0;
+
+bool applicationQuit = false, listenToInput = false;
 static char inputString[10];
 
 Renderer renderer;
@@ -31,14 +33,11 @@ testSpace::Test* currentTest = nullptr;
 testSpace::TestMenu* testMenu = new testSpace::TestMenu(currentTest);
 Engine Engine::instance;
 
-bool listenToInput = false;
-int actionIndex, keyBindIndex;
-
 enum UISelect
 {
     None,
-    Action,
-    Keybind
+    ActionButton,
+    KeybindButton
 };
 
 UISelect uiSelect = UISelect::None;
@@ -65,7 +64,6 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    //glfwWindowHint(GLFW_DECORATED, false);
 
     // Create a windowed mode window and its OpenGL context 
     window = glfwCreateWindow(screenWidth, screenHeight, windowTitle, NULL, NULL);
@@ -157,10 +155,11 @@ void Application::Loop()
         {
             switch (uiSelect)
             {
-                case UISelect::Action:
+                case UISelect::ActionButton:
+                    LOG(actionIndex);
                     Core.InputManager.DeleteAction(actionIndex);
                     break;
-                case UISelect::Keybind:
+                case UISelect::KeybindButton:
                     Core.InputManager.actionList[actionIndex].DeleteKeyBind(keyBindIndex);
                     break;
                 default:
@@ -177,7 +176,7 @@ void Application::Loop()
                 if (ImGui::Selectable(("Name: " + Core.InputManager.actionList[i].GetActionName()).c_str()))
                 {
                     actionIndex = i;
-                    uiSelect = UISelect::Action;
+                    uiSelect = UISelect::ActionButton;
                 }
                 
                 for (int j = 0; j < Core.InputManager.actionList[i].GetKeyBinds().size(); j++)
@@ -186,7 +185,7 @@ void Application::Loop()
                     {
                         actionIndex = i;
                         keyBindIndex = j;
-                        uiSelect = UISelect::Keybind;
+                        uiSelect = UISelect::KeybindButton;
                     }
                 }
             }
@@ -233,7 +232,7 @@ void Engine::HandleInput(GLFWwindow* window, int key, int scanCode, int action, 
     {
         for (int j = 0; j < Core.InputManager.actionList[i].GetKeyBinds().size(); j++)
         {
-            if (Core.InputManager.actionList[i].GetKeyBind(j) == key)
+            if (Core.InputManager.actionList[i].GetKeyBindIndex(j) == key)
             {
                 Core.InputManager.actionList[i].SetStrength(action);
             }

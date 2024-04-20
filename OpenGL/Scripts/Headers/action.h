@@ -14,7 +14,7 @@ class Action
 		std::vector<int> GetKeyBinds() const;
 		const char* GetKeyName(int keyCode);
 
-		int GetKeyBind(int index) const;
+		int GetKeyBindIndex(int index) const;
 
 		void AddKeyBind(int newKey);
 		void DeleteKeyBind(int index);
@@ -22,9 +22,22 @@ class Action
 		void SetStrength(int glfwAction);
 		const std::string GetActionName() const;
 
+		// Overwrites the '==' operator for objects of type: Action.
+		bool operator==(const Action& other)
+		{
+			return (other.actionName == this->actionName && other.GetKeyBinds() == this->GetKeyBinds()) ? true : false;
+		}
+
+		Action& operator=(const Action& other)
+		{
+			actionName = other.GetActionName();
+			keybinds = other.GetKeyBinds();
+
+			return *this;
+		}
+
 	private:
-		const std::string actionName;
-		int keybind;
+		std::string actionName;
 		int strength;
 
 		std::vector<int> keybinds;

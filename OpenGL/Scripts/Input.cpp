@@ -14,7 +14,7 @@ Input::Input()
 
 	AddAction(Action("sprint", GLFW_KEY_LEFT_SHIFT));
 
-	actionList[0].AddKeyBind(GLFW_KEY_RIGHT);
+	//actionList[0].AddKeyBind(GLFW_KEY_RIGHT);
 };
 
 // Verifies that the action exists and returns the value.
