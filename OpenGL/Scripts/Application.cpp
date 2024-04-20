@@ -115,7 +115,7 @@ void Application::Loop()
         currentTest->OnUpdate(deltaTime);
         currentTest->OnRender();
 
-        ImGui::Begin("Testis");
+        ImGui::Begin("Main");
 
         if (currentTest != testMenu && ImGui::Button("<-"))
         {
@@ -125,75 +125,80 @@ void Application::Loop()
 
         currentTest->OnImGuiRender();
 
-        ImGui::InputText("Input:", inputString, IM_ARRAYSIZE(inputString));
-
-        //ImGui::OpenPopup("ThePopup");
-
-        //if (ImGui::BeginPopupModal("ThePopup"))
-        //{
-        //    ImGui::Text("you suck hehe");
-
-        //    // Draw popup contents.
-        //    if (ImGui::Button("eshay"))
-        //    {
-        //        ImGui::CloseCurrentPopup();
-        //    }
-        //    ImGui::EndPopup();
-        //}
-
-        if (ImGui::Button("Print"))
+        if (ImGui::Button("Input settings"))
         {
-            LOG(inputString);
-        }
-
-        if (ImGui::Button("Listen to Input"))
-        {
-            listenToInput = true;
-        }
-
-        if (ImGui::Button("Delete"))
-        {
-            switch (uiSelect)
-            {
-                case UISelect::ActionButton:
-                    LOG(actionIndex);
-                    Core.InputManager.DeleteAction(actionIndex);
-                    break;
-                case UISelect::KeybindButton:
-                    Core.InputManager.actionList[actionIndex].DeleteKeyBind(keyBindIndex);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        if (listenToInput) ImGui::Text("Listening...");
-
-        if (ImGui::ListBoxHeader("Input Actions"))
-        {
-            for (int i = 0; i < Core.InputManager.actionList.size(); i++)
-            {
-                if (ImGui::Selectable(("Name: " + Core.InputManager.actionList[i].GetActionName()).c_str()))
-                {
-                    actionIndex = i;
-                    uiSelect = UISelect::ActionButton;
-                }
-                
-                for (int j = 0; j < Core.InputManager.actionList[i].GetKeyBinds().size(); j++)
-                {
-                    if (ImGui::Selectable(Core.InputManager.actionList[i].GetKeyName(j)))
-                    {
-                        actionIndex = i;
-                        keyBindIndex = j;
-                        uiSelect = UISelect::KeybindButton;
-                    }
-                }
-            }
-
-            ImGui::ListBoxFooter();
+            ImGui::OpenPopup("Input");
         }
 
         if (ImGui::Button("Quit to Desktop")) applicationQuit = true;
+
+        if (ImGui::BeginPopupModal("Input", NULL))
+        {
+            ImGui::InputText("Input:", inputString, IM_ARRAYSIZE(inputString));
+
+            if (ImGui::Button("Add"))
+            {
+                LOG(inputString);
+                Core.InputManager.AddAction(Action(inputString));
+            }
+
+            ImGui::SameLine();
+
+            if (ImGui::Button("Delete"))
+            {
+                switch (uiSelect)
+                {
+                    case UISelect::ActionButton:
+                        Core.InputManager.DeleteAction(actionIndex);
+                        break;
+                    case UISelect::KeybindButton:
+                        Core.InputManager.actionList[actionIndex].DeleteKeyBind(keyBindIndex);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            ImGui::SameLine();
+
+            if (ImGui::Button("Listen to Input")) listenToInput = true;
+
+            if (listenToInput)
+            {
+                ImGui::SameLine();
+                ImGui::Text("Listening...");
+            }
+
+            if (ImGui::ListBoxHeader("Input Actions"))
+            {
+                for (int i = 0; i < Core.InputManager.actionList.size(); i++)
+                {
+                    if (ImGui::Selectable(("Name: " + Core.InputManager.actionList[i].GetActionName()).c_str()), actionIndex == i)
+                    {
+                        actionIndex = i;
+
+                        uiSelect = UISelect::ActionButton;
+                    }
+
+                    for (int j = 0; j < Core.InputManager.actionList[i].GetKeyBinds().size(); j++)
+                    {
+                        if (ImGui::Selectable(Core.InputManager.actionList[i].GetKeyName(j)), keyBindIndex == j)
+                        {
+                            actionIndex = i;
+                            keyBindIndex = j;
+
+                            uiSelect = UISelect::KeybindButton;
+                        }
+                    }
+                }
+
+                ImGui::ListBoxFooter();
+            }
+
+            if (ImGui::Button("Save and Close")) ImGui::CloseCurrentPopup();
+            ImGui::EndPopup();
+        }
+
         ImGui::End();
     }
 

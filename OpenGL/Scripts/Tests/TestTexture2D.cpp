@@ -135,6 +135,7 @@ namespace testSpace
 		shader->BindTexture(2, monkeyTexture);
 
 		va->Unbind();
+		texture->UnBind();
 		shader->UnBind();
 		vb->Unbind();
 		ib->Unbind();
