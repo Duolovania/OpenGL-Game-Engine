@@ -9,7 +9,7 @@
 glm::vec2 inputVector, namVector, namPos;
 bool horizontal, vertical;
 
-int index;
+int index = 2;
 float vertex = 50.0f;
 float upVertex = vertex * 3;
 float sprintSpeed;
@@ -76,7 +76,7 @@ namespace testSpace
 		: translationB(0, 50, 0), proj(glm::ortho(-100.0f, 100.0f, -75.0f, 75.0f, -1.0f, 1.0f))
 	{
 
-		const size_t MaxQuadCount = 1000, MaxVertexCount = MaxQuadCount * 4, MaxIndexCount = MaxQuadCount * 6;
+		const size_t MaxQuadCount = 200, MaxVertexCount = MaxQuadCount * 4, MaxIndexCount = MaxQuadCount * 6;
 
 		uint32_t indices[MaxIndexCount];
 		uint32_t offset = 0;
@@ -143,7 +143,11 @@ namespace testSpace
 
 	TestTexture2D::~TestTexture2D()
 	{
-
+		va->Unbind();
+		texture->UnBind();
+		shader->UnBind();
+		vb->Unbind();
+		ib->Unbind();
 	}
 
 	// Frame-by-frame scene logic.
@@ -161,7 +165,7 @@ namespace testSpace
 		namVector.x = Core.InputManager.GetActionStrength("arrowRight") - Core.InputManager.GetActionStrength("arrowLeft");
 		namVector.y = Core.InputManager.GetActionStrength("arrowUp") - Core.InputManager.GetActionStrength("arrowDown");
 
-		sprintSpeed = Core.InputManager.GetActionStrength("sprint") * 100;
+		sprintSpeed = Core.InputManager.GetActionStrength("sprint") * 150;
 
 		this->deltaTime = deltaTime;
 	}
@@ -172,7 +176,7 @@ namespace testSpace
 		GLCall(glClearColor(0.05f, 0.05f, 0.05f, 1.0f));
 		GLCall(glClear(GL_COLOR_BUFFER_BIT));
 
-		std::array<Vertex, 1000> vertices;
+		std::array<Vertex, 200> vertices;
 		Vertex* buffer = vertices.data();
 
 		for (int y = 0; y < 5; y++)
@@ -216,7 +220,7 @@ namespace testSpace
 		ImGui::SliderFloat("B:", &blue, 0.0f, 1.0f, "%.1f");
 		ImGui::SliderFloat("A:", &alpha, 0.0f, 1.0f, "%.1f");
 
-		ImGui::SliderInt("Texture Index:", &index, 0, 3);
+		ImGui::SliderInt("Texture Index:", &index, 2, 3);
 	}
 
 	// Simple float clamping function.

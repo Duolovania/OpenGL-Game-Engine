@@ -45,7 +45,7 @@ UISelect uiSelect = UISelect::None;
 // Application starting point.
 void Application::Run()
 {
-    Init(SCREEN_WIDTH, SCREEN_HEIGHT, "Nam Nam Grabbers");
+    Init(SCREEN_WIDTH, SCREEN_HEIGHT, "Engine");
 
     // Loop until the user closes the window
     while (!glfwWindowShouldClose(window) && !applicationQuit)
@@ -64,6 +64,7 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    //glfwWindowHint(GLFW_DECORATED, false);
 
     // Create a windowed mode window and its OpenGL context 
     window = glfwCreateWindow(screenWidth, screenHeight, windowTitle, NULL, NULL);
@@ -125,20 +126,23 @@ void Application::Loop()
 
         currentTest->OnImGuiRender();
 
-        if (ImGui::Button("Input settings"))
+        if (ImGui::Button("Input Settings"))
         {
             ImGui::OpenPopup("Input");
         }
 
-        if (ImGui::Button("Quit to Desktop")) applicationQuit = true;
+
+
+
+
+
 
         if (ImGui::BeginPopupModal("Input", NULL))
         {
-            ImGui::InputText("Input:", inputString, IM_ARRAYSIZE(inputString));
+            ImGui::InputText("Enter Action Name:", inputString, IM_ARRAYSIZE(inputString));
 
             if (ImGui::Button("Add"))
             {
-                LOG(inputString);
                 Core.InputManager.AddAction(Action(inputString));
             }
 
@@ -149,9 +153,11 @@ void Application::Loop()
                 switch (uiSelect)
                 {
                     case UISelect::ActionButton:
+                        LOG(actionIndex);
                         Core.InputManager.DeleteAction(actionIndex);
                         break;
                     case UISelect::KeybindButton:
+                        LOG(keyBindIndex);
                         Core.InputManager.actionList[actionIndex].DeleteKeyBind(keyBindIndex);
                         break;
                     default:
@@ -169,7 +175,7 @@ void Application::Loop()
                 ImGui::Text("Listening...");
             }
 
-            if (ImGui::ListBoxHeader("Input Actions"))
+            if (ImGui::ListBoxHeader("Actions"))
             {
                 for (int i = 0; i < Core.InputManager.actionList.size(); i++)
                 {
@@ -198,6 +204,14 @@ void Application::Loop()
             if (ImGui::Button("Save and Close")) ImGui::CloseCurrentPopup();
             ImGui::EndPopup();
         }
+
+
+
+
+
+
+
+        if (ImGui::Button("Quit to Desktop")) applicationQuit = true;
 
         ImGui::End();
     }
