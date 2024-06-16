@@ -1,117 +1,40 @@
-﻿  Action.cpp
-  Application.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Application.cpp(180,35): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Application.cpp(189,39): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Application.cpp(250,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Application.cpp(252,27): warning C4018: '<': signed/unsigned mismatch
-  IndexBuffer.cpp
-  Input.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Input.cpp(23,20): warning C4018: '<': signed/unsigned mismatch
-  Renderer.cpp
-  Shader.cpp
-  Source.cpp
-  Test.cpp
-  TestClearColour.cpp
-  TestTexture2D.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(162,64): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(162,64): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(162,64): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(162,64): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(162,64): warning C4244:         ]
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(163,61): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(163,61): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(163,61): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(163,61): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(163,61): warning C4244:         ]
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(165,67): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(165,67): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(165,67): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(165,67): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(165,67): warning C4244:         ]
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(166,64): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(166,64): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(166,64): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(166,64): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(166,64): warning C4244:         ]
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(168,63): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(186,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(186,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(186,35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Texture.cpp
-  STB_Image.cpp
-  glm.cpp
-  VertexArray.cpp
-  VertexBuffer.cpp
-  imgui.cpp
-  imgui_demo.cpp
-  imgui_draw.cpp
-  imgui_impl_glfw.cpp
-  imgui_impl_opengl3.cpp
-  Generating Code...
-  Compiling...
-  imgui_tables.cpp
-  imgui_widgets.cpp
-  Generating Code...
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-LINK : warning LNK4217: symbol '_strcspn' defined in 'libucrtd.lib(strcspn.obj)' is imported by 'glfw3.lib(input.obj)' in function '_glfwUpdateGamepadMappings'
-LINK : warning LNK4217: symbol '_strncmp' defined in 'libucrtd.lib(strncmp.obj)' is imported by 'glfw3.lib(input.obj)' in function '_parseMapping'
-LINK : warning LNK4286: symbol '_strncmp' defined in 'libucrtd.lib(strncmp.obj)' is imported by 'glfw3.lib(context.obj)'
-LINK : warning LNK4286: symbol '_strncmp' defined in 'libucrtd.lib(strncmp.obj)' is imported by 'glfw3.lib(egl_context.obj)'
-LINK : warning LNK4217: symbol '_strncpy' defined in 'libucrtd.lib(strncpy.obj)' is imported by 'glfw3.lib(input.obj)' in function '__glfwAllocJoystick'
-LINK : warning LNK4286: symbol '_strncpy' defined in 'libucrtd.lib(strncpy.obj)' is imported by 'glfw3.lib(window.obj)'
-LINK : warning LNK4286: symbol '_strncpy' defined in 'libucrtd.lib(strncpy.obj)' is imported by 'glfw3.lib(monitor.obj)'
-LINK : warning LNK4286: symbol '_strncpy' defined in 'libucrtd.lib(strncpy.obj)' is imported by 'glfw3.lib(win32_joystick.obj)'
-LINK : warning LNK4286: symbol '_free' defined in 'libucrtd.lib(free.obj)' is imported by 'glfw3.lib(vulkan.obj)'
-LINK : warning LNK4286: symbol '_free' defined in 'libucrtd.lib(free.obj)' is imported by 'glfw3.lib(wgl_context.obj)'
-LINK : warning LNK4286: symbol '_free' defined in 'libucrtd.lib(free.obj)' is imported by 'glfw3.lib(egl_context.obj)'
-LINK : warning LNK4286: symbol '_free' defined in 'libucrtd.lib(free.obj)' is imported by 'glfw3.lib(osmesa_context.obj)'
-LINK : warning LNK4286: symbol '_free' defined in 'libucrtd.lib(free.obj)' is imported by 'glfw3.lib(win32_window.obj)'
-LINK : warning LNK4286: symbol '_free' defined in 'libucrtd.lib(free.obj)' is imported by 'glfw3.lib(win32_joystick.obj)'
-LINK : warning LNK4286: symbol '_free' defined in 'libucrtd.lib(free.obj)' is imported by 'glfw3.lib(win32_init.obj)'
-LINK : warning LNK4286: symbol '_free' defined in 'libucrtd.lib(free.obj)' is imported by 'glfw3.lib(win32_monitor.obj)'
-LINK : warning LNK4217: symbol '_free' defined in 'libucrtd.lib(free.obj)' is imported by 'glfw3.lib(input.obj)' in function '__glfwFreeJoystick'
-LINK : warning LNK4286: symbol '_free' defined in 'libucrtd.lib(free.obj)' is imported by 'glfw3.lib(init.obj)'
-LINK : warning LNK4286: symbol '_free' defined in 'libucrtd.lib(free.obj)' is imported by 'glfw3.lib(window.obj)'
-LINK : warning LNK4286: symbol '_free' defined in 'libucrtd.lib(free.obj)' is imported by 'glfw3.lib(monitor.obj)'
-LINK : warning LNK4217: symbol '_realloc' defined in 'libucrtd.lib(realloc.obj)' is imported by 'glfw3.lib(input.obj)' in function '_glfwUpdateGamepadMappings'
-LINK : warning LNK4286: symbol '_realloc' defined in 'libucrtd.lib(realloc.obj)' is imported by 'glfw3.lib(monitor.obj)'
-LINK : warning LNK4286: symbol '_realloc' defined in 'libucrtd.lib(realloc.obj)' is imported by 'glfw3.lib(win32_monitor.obj)'
-LINK : warning LNK4217: symbol '_strtoul' defined in 'libucrtd.lib(strtox.obj)' is imported by 'glfw3.lib(input.obj)' in function '_parseMapping'
-LINK : warning LNK4217: symbol '___stdio_common_vsprintf' defined in 'libucrtd.lib(output.obj)' is imported by 'glfw3.lib(init.obj)' in function '__glfwInputError'
-LINK : warning LNK4217: symbol '___stdio_common_vsprintf' defined in 'libucrtd.lib(output.obj)' is imported by 'glfw3.lib(win32_joystick.obj)' in function '_deviceCallback@8'
-LINK : warning LNK4217: symbol '___stdio_common_vsscanf' defined in 'libucrtd.lib(input.obj)' is imported by 'glfw3.lib(context.obj)' in function '_sscanf'
-LINK : warning LNK4217: symbol '_qsort' defined in 'libucrtd.lib(qsort.obj)' is imported by 'glfw3.lib(monitor.obj)' in function '_refreshVideoModes'
-LINK : warning LNK4217: symbol '_qsort' defined in 'libucrtd.lib(qsort.obj)' is imported by 'glfw3.lib(win32_joystick.obj)' in function '__glfwDetectJoystickConnectionWin32'
-Application.obj : error LNK2019: unresolved external symbol __imp__glBlendFunc@8 referenced in function "public: void __thiscall Application::Init(int,int,char const *)" (?Init@Application@@QAEXHHPBD@Z)
-TestTexture2D.obj : error LNK2001: unresolved external symbol __imp__glBlendFunc@8
-Application.obj : error LNK2019: unresolved external symbol __imp__glClearColor@16 referenced in function "public: void __thiscall Application::Loop(void)" (?Loop@Application@@QAEXXZ)
-TestClearColour.obj : error LNK2001: unresolved external symbol __imp__glClearColor@16
-TestTexture2D.obj : error LNK2001: unresolved external symbol __imp__glClearColor@16
-Application.obj : error LNK2019: unresolved external symbol __imp__glEnable@4 referenced in function "public: void __thiscall Application::Init(int,int,char const *)" (?Init@Application@@QAEXHHPBD@Z)
-TestTexture2D.obj : error LNK2001: unresolved external symbol __imp__glEnable@4
-Renderer.obj : error LNK2019: unresolved external symbol __imp__glClear@4 referenced in function "public: void __thiscall Renderer::Clear(void)const " (?Clear@Renderer@@QBEXXZ)
-TestClearColour.obj : error LNK2001: unresolved external symbol __imp__glClear@4
-TestTexture2D.obj : error LNK2001: unresolved external symbol __imp__glClear@4
-Renderer.obj : error LNK2019: unresolved external symbol __imp__glDrawElements@16 referenced in function "public: void __thiscall Renderer::Draw(class VertexArray const &,class IndexBuffer const &,class Shader const &)const " (?Draw@Renderer@@QBEXABVVertexArray@@ABVIndexBuffer@@ABVShader@@@Z)
-Renderer.obj : error LNK2019: unresolved external symbol __imp__glGetError@0 referenced in function "void __cdecl GLClearError(void)" (?GLClearError@@YAXXZ)
-Texture.obj : error LNK2019: unresolved external symbol __imp__glBindTexture@8 referenced in function "public: void __thiscall Texture::Bind(unsigned int)const " (?Bind@Texture@@QBEXI@Z)
-Texture.obj : error LNK2019: unresolved external symbol __imp__glDeleteTextures@8 referenced in function "public: __thiscall Texture::~Texture(void)" (??1Texture@@QAE@XZ)
-Texture.obj : error LNK2019: unresolved external symbol __imp__glTexImage2D@36 referenced in function "public: void __thiscall Texture::Gen(void)" (?Gen@Texture@@QAEXXZ)
-Texture.obj : error LNK2019: unresolved external symbol __imp__glTexParameteri@12 referenced in function "public: void __thiscall Texture::Gen(void)" (?Gen@Texture@@QAEXXZ)
-glfw3.lib(input.obj) : error LNK2019: unresolved external symbol __imp__strspn referenced in function _glfwUpdateGamepadMappings
-glfw3.lib(vulkan.obj) : error LNK2001: unresolved external symbol __imp__calloc
-glfw3.lib(wgl_context.obj) : error LNK2001: unresolved external symbol __imp__calloc
-glfw3.lib(egl_context.obj) : error LNK2001: unresolved external symbol __imp__calloc
-glfw3.lib(osmesa_context.obj) : error LNK2001: unresolved external symbol __imp__calloc
-glfw3.lib(win32_window.obj) : error LNK2001: unresolved external symbol __imp__calloc
-glfw3.lib(win32_joystick.obj) : error LNK2001: unresolved external symbol __imp__calloc
-glfw3.lib(win32_init.obj) : error LNK2001: unresolved external symbol __imp__calloc
-glfw3.lib(win32_monitor.obj) : error LNK2001: unresolved external symbol __imp__calloc
-glfw3.lib(input.obj) : error LNK2001: unresolved external symbol __imp__calloc
-glfw3.lib(init.obj) : error LNK2001: unresolved external symbol __imp__calloc
-glfw3.lib(window.obj) : error LNK2001: unresolved external symbol __imp__calloc
-glfw3.lib(monitor.obj) : error LNK2001: unresolved external symbol __imp__calloc
-MSVCRT.lib(chandler4gs.obj) : error LNK2019: unresolved external symbol __except_handler4_common referenced in function __except_handler4
-..\Dependencies\GLEW\lib\Release\x64\glew32.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
-..\Dependencies\GLEW\lib\Release\x64\glew32s.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\Debug\OpenGL.exe : fatal error LNK1120: 13 unresolved externals
+﻿LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+Application.obj : error LNK2019: unresolved external symbol __imp__glewInit@0 referenced in function "public: void __thiscall Application::Init(int,int,char const *)" (?Init@Application@@QAEXHHPBD@Z)
+IndexBuffer.obj : error LNK2019: unresolved external symbol __imp____glewBindBuffer referenced in function "public: void __thiscall IndexBuffer::Bind(void)const " (?Bind@IndexBuffer@@QBEXXZ)
+VertexBuffer.obj : error LNK2001: unresolved external symbol __imp____glewBindBuffer
+IndexBuffer.obj : error LNK2019: unresolved external symbol __imp____glewBufferData referenced in function "public: void __thiscall IndexBuffer::Gen(unsigned int const *)" (?Gen@IndexBuffer@@QAEXPBI@Z)
+VertexBuffer.obj : error LNK2001: unresolved external symbol __imp____glewBufferData
+IndexBuffer.obj : error LNK2019: unresolved external symbol __imp____glewDeleteBuffers referenced in function "public: __thiscall IndexBuffer::~IndexBuffer(void)" (??1IndexBuffer@@QAE@XZ)
+VertexBuffer.obj : error LNK2001: unresolved external symbol __imp____glewDeleteBuffers
+IndexBuffer.obj : error LNK2019: unresolved external symbol __imp____glewGenBuffers referenced in function "public: void __thiscall IndexBuffer::Gen(unsigned int const *)" (?Gen@IndexBuffer@@QAEXPBI@Z)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewAttachShader referenced in function "public: void __thiscall Shader::CreateShader(void)" (?CreateShader@Shader@@QAEXXZ)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewCompileShader referenced in function "private: unsigned int __thiscall Shader::CompileShader(unsigned int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?CompileShader@Shader@@AAEIIABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewCreateProgram referenced in function "public: void __thiscall Shader::CreateShader(void)" (?CreateShader@Shader@@QAEXXZ)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewCreateShader referenced in function "private: unsigned int __thiscall Shader::CompileShader(unsigned int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?CompileShader@Shader@@AAEIIABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewDeleteProgram referenced in function "public: __thiscall Shader::~Shader(void)" (??1Shader@@QAE@XZ)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewDeleteShader referenced in function "private: unsigned int __thiscall Shader::CompileShader(unsigned int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?CompileShader@Shader@@AAEIIABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewGetShaderInfoLog referenced in function "private: unsigned int __thiscall Shader::CompileShader(unsigned int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?CompileShader@Shader@@AAEIIABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewGetShaderiv referenced in function "private: unsigned int __thiscall Shader::CompileShader(unsigned int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?CompileShader@Shader@@AAEIIABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewGetUniformLocation referenced in function "private: int __thiscall Shader::GetUniformLocation(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)const " (?GetUniformLocation@Shader@@ABEHABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewLinkProgram referenced in function "public: void __thiscall Shader::CreateShader(void)" (?CreateShader@Shader@@QAEXXZ)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewShaderSource referenced in function "private: unsigned int __thiscall Shader::CompileShader(unsigned int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?CompileShader@Shader@@AAEIIABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewUniform1f referenced in function "public: void __thiscall Shader::SetUniform1f(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,float)" (?SetUniform1f@Shader@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@M@Z)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewUniform1i referenced in function "public: void __thiscall Shader::SetUniform1i(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,int)" (?SetUniform1i@Shader@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewUniform1iv referenced in function "public: void __thiscall Shader::SetUniform1iv(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,int,int const *)" (?SetUniform1iv@Shader@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HPBH@Z)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewUniform2f referenced in function "public: void __thiscall Shader::SetUniform2f(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,struct glm::vec<2,float,0> const &)" (?SetUniform2f@Shader@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABU?$vec@$01M$0A@@glm@@@Z)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewUniform3f referenced in function "public: void __thiscall Shader::SetUniform3f(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,struct glm::vec<3,float,0> const &)" (?SetUniform3f@Shader@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABU?$vec@$02M$0A@@glm@@@Z)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewUniform4f referenced in function "public: void __thiscall Shader::SetUniform4f(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,struct glm::vec<4,float,0> const &)" (?SetUniform4f@Shader@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABU?$vec@$03M$0A@@glm@@@Z)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewUniformMatrix4fv referenced in function "public: void __thiscall Shader::SetUniformMat4f(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,struct glm::mat<4,4,float,0> const &)" (?SetUniformMat4f@Shader@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABU?$mat@$03$03M$0A@@glm@@@Z)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewUseProgram referenced in function "public: void __thiscall Shader::Bind(void)const " (?Bind@Shader@@QBEXXZ)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewValidateProgram referenced in function "public: void __thiscall Shader::CreateShader(void)" (?CreateShader@Shader@@QAEXXZ)
+Shader.obj : error LNK2019: unresolved external symbol __imp____glewBindTextureUnit referenced in function "public: void __thiscall Shader::BindTexture(unsigned int,unsigned int)" (?BindTexture@Shader@@QAEXII@Z)
+Texture.obj : error LNK2019: unresolved external symbol __imp____glewActiveTexture referenced in function "public: void __thiscall Texture::Bind(unsigned int)const " (?Bind@Texture@@QBEXI@Z)
+Texture.obj : error LNK2019: unresolved external symbol __imp____glewCreateTextures referenced in function "public: void __thiscall Texture::Gen(void)" (?Gen@Texture@@QAEXXZ)
+VertexArray.obj : error LNK2019: unresolved external symbol __imp____glewEnableVertexAttribArray referenced in function "public: void __thiscall VertexArray::AddBuffer(class VertexBuffer const &,class VertexBufferLayout const &,unsigned int)" (?AddBuffer@VertexArray@@QAEXABVVertexBuffer@@ABVVertexBufferLayout@@I@Z)
+VertexArray.obj : error LNK2019: unresolved external symbol __imp____glewVertexAttribPointer referenced in function "public: void __thiscall VertexArray::AddBuffer(class VertexBuffer const &,class VertexBufferLayout const &,unsigned int)" (?AddBuffer@VertexArray@@QAEXABVVertexBuffer@@ABVVertexBufferLayout@@I@Z)
+VertexArray.obj : error LNK2019: unresolved external symbol __imp____glewBindVertexArray referenced in function "public: void __thiscall VertexArray::Bind(void)const " (?Bind@VertexArray@@QBEXXZ)
+VertexArray.obj : error LNK2019: unresolved external symbol __imp____glewDeleteVertexArrays referenced in function "public: __thiscall VertexArray::~VertexArray(void)" (??1VertexArray@@QAE@XZ)
+VertexArray.obj : error LNK2019: unresolved external symbol __imp____glewGenVertexArrays referenced in function "public: void __thiscall VertexArray::Gen(void)" (?Gen@VertexArray@@QAEXXZ)
+VertexBuffer.obj : error LNK2019: unresolved external symbol __imp____glewBufferSubData referenced in function "public: void __thiscall VertexBuffer::ModifyData(unsigned int,void const *)" (?ModifyData@VertexBuffer@@QAEXIPBX@Z)
+VertexBuffer.obj : error LNK2019: unresolved external symbol __imp____glewCreateBuffers referenced in function "public: void __thiscall VertexBuffer::Gen(void const *)" (?Gen@VertexBuffer@@QAEXPBX@Z)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\Debug\OpenGL.exe : fatal error LNK1120: 35 unresolved externals

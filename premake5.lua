@@ -28,29 +28,37 @@ project "OpenGL"
     -- Includes dependencies and include paths.
     includedirs 
     {
-        "Dependencies/GLFW/include/GLFW",
+        -- "../Dependencies/GLFW/include/GLFW",
         "Dependencies/GLEW/include/GL",
         "%{prj.name}/Scripts/Vendor",
         "%{prj.name}/Scripts/imgui",
         "%{prj.name}/Scripts",
 
-        "%{prj.name}/Scripts/Vendor/glfw-master/include",
+        "%{prj.name}/Scripts/Vendor/glfw-master-cherno/include/GLFW",
         "%{prj.name}/Scripts/Vendor/glm",
         "%{prj.name}/Scripts/Vendor/STB",
     }
 
+    libdirs
+    {
+        "Dependencies/GLFW/lib-vc2022",
+
+        "Dependencies/GLEW/lib/Release/Win32",
+        "Dependencies/GLEW/lib"
+    }
+
     links
     {
-        "Dependencies/GLFW/lib-vc2022/glfw3",
-        "Dependencies/GLEW/lib/Release/Win32/glew32",
-        "Dependencies/GLEW/lib/Release/Win32/glew32s",
-
-        "Dependencies/GLEW/lib/Release/x64/glew32",
-        "Dependencies/GLEW/lib/Release/x64/glew32s"
+        "glfw3_mt",
+        "opengl32",
+        "Gdi32",
+        "User32",
+        "Shell32",
+        "glew32s"
     }
 
     filter "system:windows"
-        cppdialect "C++17"
+        cppdialect "C++20"
         staticruntime "On"
         systemversion "latest"
 
