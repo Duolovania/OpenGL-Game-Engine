@@ -8,6 +8,20 @@ workspace "OpenGLEngine"
         "Dist"
     }
 
+    platforms
+    {
+        "Win32",
+        "x64"
+    }
+
+    filter { "platforms:Win32" }
+        system "Windows"
+        architecture "x86"
+
+    filter { "platforms:x64" }
+        system "Windows"
+        architecture "x64"
+
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 project "OpenGL"
@@ -22,34 +36,47 @@ project "OpenGL"
     files
     {
         "%{prj.name}/Scripts/Headers/**.h",
-        "%{prj.name}/Scripts/**.cpp"
+        "%{prj.name}/Scripts/**.cpp",
+
+        "%{prj.name}/Scripts/Vendor/STB/**.h",
+        "%{prj.name}/Scripts/Vendor/STB/**.cpp",
+
+        -- "%{prj.name}/Scripts/Vendor/stb_image/**.h",
+        -- "%{prj.name}/Scripts/Vendor/stb_image/**.cpp",
+
+        "%{prj.name}/Scripts/Vendor/glm/**.hpp",
+        "%{prj.name}/Scripts/Vendor/glm/**.inl"
     }
 
     -- Includes dependencies and include paths.
     includedirs 
     {
-        -- "../Dependencies/GLFW/include/GLFW",
+        "Dependencies/GLFW/Win32/include/GLFW",
+        "Dependencies/GLFW/x64/include/GLFW",
+
         "Dependencies/GLEW/include/GL",
         "%{prj.name}/Scripts/Vendor",
-        "%{prj.name}/Scripts/imgui",
-        "%{prj.name}/Scripts",
 
-        "%{prj.name}/Scripts/Vendor/glfw-master-cherno/include/GLFW",
-        "%{prj.name}/Scripts/Vendor/glm",
+        "%{prj.name}/Scripts/Vendor/imgui",
         "%{prj.name}/Scripts/Vendor/STB",
+        -- "%{prj.name}/Scripts/Vendor/stb_image",
+        "%{prj.name}/Scripts",
+        "%{prj.name}/Res",
+        -- "%{prj.name}/Scripts/Vendor/glfw-master-cherno/include/GLFW"
     }
 
     libdirs
     {
-        "Dependencies/GLFW/lib-vc2022",
+        "Dependencies/GLFW/Win32/lib-vc2022",
+        "Dependencies/GLFW/x64/lib-vc2022",
 
         "Dependencies/GLEW/lib/Release/Win32",
-        "Dependencies/GLEW/lib"
+        "Dependencies/GLEW/lib/Release/x64"
     }
 
     links
     {
-        "glfw3_mt",
+        "glfw3",
         "opengl32",
         "Gdi32",
         "User32",
@@ -64,7 +91,8 @@ project "OpenGL"
 
         defines
         {
-            "WIN32"
+            "WIN32",
+            "GLEW_STATIC"
         }
 
         ---- Copies engine project DLL into sandbox project.
@@ -76,6 +104,7 @@ project "OpenGL"
     filter "configurations:Debug"
         defines "GL_DEBUG"
         symbols "On"
+        buildoptions "/MDd"
 
     filter "configurations:Release"
         defines "GL_RELEASE"
