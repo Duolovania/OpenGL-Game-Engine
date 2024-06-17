@@ -59,7 +59,8 @@ void Application::Run()
 // Initializer.
 void Application::Init(int screenWidth, int screenHeight, const char* windowTitle)
 {
-    glfwInit();
+    if (!glfwInit())
+        std::cout << "Error: glfwInit non-operational";
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);

@@ -7,6 +7,14 @@
       "RelativeMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|solutionrelative:OpenGL\\Scripts\\Tests\\TestTexture2D.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Tests\\TestClearColour.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|solutionrelative:OpenGL\\Scripts\\Tests\\TestClearColour.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|solutionrelative:OpenGL\\Scripts\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Texture.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|solutionrelative:OpenGL\\Scripts\\Texture.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -26,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -43,6 +51,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Application.cpp",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Application.cpp",
+              "RelativeDocumentMoniker": "OpenGL\\Scripts\\Application.cpp",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Application.cpp",
+              "RelativeToolTip": "OpenGL\\Scripts\\Application.cpp",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAADsAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-17T14:26:36.483Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TestClearColour.cpp",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Tests\\TestClearColour.cpp",
+              "RelativeDocumentMoniker": "OpenGL\\Scripts\\Tests\\TestClearColour.cpp",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Tests\\TestClearColour.cpp",
+              "RelativeToolTip": "OpenGL\\Scripts\\Tests\\TestClearColour.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACgAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-17T14:16:11.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "shader.h",
               "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Headers\\shader.h",
               "RelativeDocumentMoniker": "OpenGL\\Scripts\\Headers\\shader.h",
@@ -54,7 +88,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Texture.cpp",
               "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Texture.cpp",
               "RelativeDocumentMoniker": "OpenGL\\Scripts\\Texture.cpp",
@@ -72,14 +106,14 @@
               "RelativeDocumentMoniker": "OpenGL\\Scripts\\Tests\\TestTexture2D.cpp",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Tests\\TestTexture2D.cpp",
               "RelativeToolTip": "OpenGL\\Scripts\\Tests\\TestTexture2D.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAASAAAA",
+              "ViewState": "AQIAAGAAAAAAAAAAAAAAAHUAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-06-17T09:56:29.771Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Source.cpp",
               "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Source.cpp",
               "RelativeDocumentMoniker": "OpenGL\\Scripts\\Source.cpp",
