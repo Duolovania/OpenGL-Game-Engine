@@ -36,33 +36,24 @@ project "OpenGL"
     files
     {
         "%{prj.name}/Scripts/Headers/**.h",
-        "%{prj.name}/Scripts/**.cpp",
-
-        "%{prj.name}/Scripts/Vendor/STB/**.h",
-        "%{prj.name}/Scripts/Vendor/STB/**.cpp",
-
-        -- "%{prj.name}/Scripts/Vendor/stb_image/**.h",
-        -- "%{prj.name}/Scripts/Vendor/stb_image/**.cpp",
-
-        "%{prj.name}/Scripts/Vendor/glm/**.hpp",
-        "%{prj.name}/Scripts/Vendor/glm/**.inl"
+        "%{prj.name}/Scripts/**.cpp"
     }
 
     -- Includes dependencies and include paths.
     includedirs 
     {
-        "Dependencies/GLFW/Win32/include/GLFW",
-        "Dependencies/GLFW/x64/include/GLFW",
-
+        -- "Dependencies/GLFW/Win32/include/GLFW",
+        -- "Dependencies/GLFW/x64/include/GLFW",
+        "%{prj.name}/Scripts/Vendor/glfw-master-cherno/include/GLFW",
         "Dependencies/GLEW/include/GL",
-        "%{prj.name}/Scripts/Vendor",
 
+        "%{prj.name}/Scripts/Tests",
+
+        "%{prj.name}/Scripts/Vendor",
         "%{prj.name}/Scripts/Vendor/imgui",
-        "%{prj.name}/Scripts/Vendor/STB",
-        -- "%{prj.name}/Scripts/Vendor/stb_image",
-        "%{prj.name}/Scripts",
-        "%{prj.name}/Res",
-        -- "%{prj.name}/Scripts/Vendor/glfw-master-cherno/include/GLFW"
+        "%{prj.name}/Scripts/Vendor/stb_image",
+        "%{prj.name}/Scripts/Vendor/glm",
+        "%{prj.name}/Scripts"
     }
 
     libdirs

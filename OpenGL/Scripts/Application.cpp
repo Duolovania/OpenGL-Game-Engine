@@ -10,10 +10,10 @@
 #include "Headers/vertexbufferlayout.h"
 
 #include "Headers/shader.h"
-#include "glm/gtc/matrix_transform.hpp"
+#include "gtc/matrix_transform.hpp"
 
-#include "Tests/testclearcolour.h"
-#include "Tests/testtexture2d.h"
+#include "testclearcolour.h"
+#include "testtexture2d.h"
 
 #include <fstream>
 #include <sstream>

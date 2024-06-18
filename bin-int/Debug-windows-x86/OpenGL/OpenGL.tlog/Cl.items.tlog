@@ -9,7 +9,6 @@ C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\T
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestClearColour.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86\OpenGL\TestClearColour.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86\OpenGL\TestTexture2D.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Texture.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86\OpenGL\Texture.obj
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\STB\STB_Image.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86\OpenGL\STB_Image.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\glm\detail\glm.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86\OpenGL\glm.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\imgui\imgui.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86\OpenGL\imgui.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\imgui\imgui_demo.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86\OpenGL\imgui_demo.obj
@@ -18,5 +17,6 @@ C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\imgui\imgui_impl_opengl3.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86\OpenGL\imgui_impl_opengl3.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\imgui\imgui_tables.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86\OpenGL\imgui_tables.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\imgui\imgui_widgets.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86\OpenGL\imgui_widgets.obj
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\stb_image\STB_Image.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86\OpenGL\STB_Image.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\VertexArray.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86\OpenGL\VertexArray.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\VertexBuffer.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86\OpenGL\VertexBuffer.obj

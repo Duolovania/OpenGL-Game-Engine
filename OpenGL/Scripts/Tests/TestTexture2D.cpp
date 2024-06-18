@@ -2,7 +2,7 @@
 #include "Headers/renderer.h"
 
 #include "Headers/shader.h"
-#include "glm/gtc/matrix_transform.hpp"
+#include "gtc/matrix_transform.hpp"
 #include "Headers/application.h"
 #include <array>
 
@@ -13,7 +13,7 @@ int index = 2;
 float vertex = 50.0f;
 float upVertex = vertex * 3;
 float sprintSpeed;
-std::vector<int>::iterator it;
+//std::vector<int>::iterator it;
 
 struct Vec3
 {

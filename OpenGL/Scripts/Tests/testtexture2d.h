@@ -20,8 +20,8 @@ namespace testSpace
 			void OnImGuiRender() override;
 			void OnRender() override;
 		private:
+			glm::vec2 camPos = glm::vec2(0, 0);
 			glm::vec3 translationB;
-			glm::vec2 camPos;
 
 			std::unique_ptr<VertexArray> va;
 			std::unique_ptr<IndexBuffer> ib;
