@@ -1,5 +1,7 @@
 #include "stb_image.h"
 #include "Headers/texture.h"
+#include "Headers/renderer.h"
+
 
 Texture::Texture(const std::string& path)
 	: bufferID(0), filePath{path}, localBuffer(nullptr), w(0), h(0), bpp(0)

@@ -139,7 +139,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLEW_STATIC;GL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Vendor;Scripts\Tests;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -159,7 +159,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLEW_STATIC;GL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Vendor;Scripts\Tests;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -179,7 +179,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLEW_STATIC;GL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Vendor;Scripts\Tests;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -202,7 +202,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLEW_STATIC;GL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Vendor;Scripts\Tests;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -225,7 +225,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLEW_STATIC;GL_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Vendor;Scripts\Tests;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -248,7 +248,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLEW_STATIC;GL_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Vendor;Scripts\Tests;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -274,7 +274,7 @@
     <ClInclude Include="Scripts\Headers\renderer.h" />
     <ClInclude Include="Scripts\Headers\shader.h" />
     <ClInclude Include="Scripts\Headers\texture.h" />
-    <ClInclude Include="Scripts\Headers\vector2.h" />
+    <ClInclude Include="Scripts\Headers\vector.h" />
     <ClInclude Include="Scripts\Headers\vertexarray.h" />
     <ClInclude Include="Scripts\Headers\vertexbuffer.h" />
     <ClInclude Include="Scripts\Headers\vertexbufferlayout.h" />

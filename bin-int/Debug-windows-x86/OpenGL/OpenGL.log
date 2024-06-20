@@ -1,59 +1,40 @@
 ﻿cl : command line  warning D9025: overriding '/MTd' with '/MDd'
-  Action.cpp
   Application.cpp
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Application.cpp(181,35): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Application.cpp(190,39): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Application.cpp(251,23): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Application.cpp(253,27): warning C4018: '<': signed/unsigned mismatch
   IndexBuffer.cpp
-  Input.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Input.cpp(23,20): warning C4018: '<': signed/unsigned mismatch
   Renderer.cpp
   Shader.cpp
-  Source.cpp
-  Test.cpp
   TestClearColour.cpp
   TestTexture2D.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(162,64): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(162,64): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(162,64): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(162,64): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(162,64): warning C4244:         ]
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(163,61): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(163,61): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(163,61): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(163,61): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(163,61): warning C4244:         ]
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(165,67): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(165,67): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(165,67): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(165,67): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(165,67): warning C4244:         ]
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(166,64): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(166,64): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(166,64): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(166,64): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(166,64): warning C4244:         ]
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(168,63): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(186,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(186,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(186,35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(39,64): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(39,64): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(39,64): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(39,64): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(39,64): warning C4244:         ]
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(40,61): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(40,61): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(40,61): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(40,61): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(40,61): warning C4244:         ]
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(42,67): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(42,67): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(42,67): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(42,67): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(42,67): warning C4244:         ]
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(43,64): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(43,64): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(43,64): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(43,64): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(43,64): warning C4244:         ]
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(45,63): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(63,51): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(63,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(63,27): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Texture.cpp
-  glm.cpp
-  imgui.cpp
-  imgui_demo.cpp
-  imgui_draw.cpp
-  imgui_impl_glfw.cpp
-  imgui_impl_opengl3.cpp
-  imgui_tables.cpp
-  imgui_widgets.cpp
-  STB_Image.cpp
-  Generating Code...
-  Compiling...
   VertexArray.cpp
   VertexBuffer.cpp
   Generating Code...
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
-glew32s.lib(glew.obj) : warning LNK4099: PDB '' was not found with 'glew32s.lib(glew.obj)' or at ''; linking object as if no debug info
   OpenGL.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin\Debug-windows-x86\OpenGL\OpenGL.exe

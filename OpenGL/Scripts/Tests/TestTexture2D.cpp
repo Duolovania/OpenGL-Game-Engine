@@ -1,73 +1,17 @@
 #include "testtexture2d.h"
-#include "Headers/renderer.h"
 
-#include "Headers/shader.h"
 #include "gtc/matrix_transform.hpp"
 #include "Headers/application.h"
+#include "Headers/shader.h"
+
 #include <array>
 
 glm::vec2 inputVector, namVector, namPos;
-bool horizontal, vertical;
 
 int index = 2;
 float vertex = 50.0f;
 float upVertex = vertex * 3;
 float sprintSpeed;
-//std::vector<int>::iterator it;
-
-struct Vec3
-{
-	float x, y, z;
-};
-
-struct Vec2
-{
-	float x, y;
-};
-
-struct Vec4
-{
-	float x, y, z, w;
-};
-
-struct Vertex
-{
-	Vec3 Position;
-	Vec4 Color;
-	Vec2 TextureCoords;
-	float TextureID;
-};
-
-static Vertex* CreateQuad(Vertex* target, float x, float y, float texID, Vec4 color)
-{
-	float size = 100.0f;
-
-	target->Position = { x, y, 0.0f };
-	target->Color = color;
-	target->TextureCoords = { 0.0f, 0.0f };
-	target->TextureID = texID;
-	target++;
-
-	target->Position = { x + size, y, 0.0f };
-	target->Color = color;
-	target->TextureCoords = { 1.0f, 0.0f };
-	target->TextureID = texID;
-	target++;
-
-	target->Position = { x + size, y + size, 0.0f };
-	target->Color = color;
-	target->TextureCoords = { 1.0f, 1.0f };
-	target->TextureID = texID;
-	target++;
-
-	target->Position = { x, y + size, 0.0f };
-	target->Color = color;
-	target->TextureCoords = { 0.0f, 1.0f };
-	target->TextureID = texID;
-	target++;
-
-	return target;
-}
 
 namespace testSpace
 {
@@ -75,79 +19,12 @@ namespace testSpace
 	TestTexture2D::TestTexture2D()
 		: translationB(0, 50, 0), proj(glm::ortho(-100.0f, 100.0f, -75.0f, 75.0f, -1.0f, 1.0f))
 	{
-
-		const size_t MaxQuadCount = 200, MaxVertexCount = MaxQuadCount * 4, MaxIndexCount = MaxQuadCount * 6;
-
-		uint32_t indices[MaxIndexCount];
-		uint32_t offset = 0;
-
-		for (size_t i = 0; i < MaxIndexCount; i += 6) // Creates as many vertices as max.
-		{
-			indices[i + 0] = 0 + offset;
-			indices[i + 1] = 1 + offset;
-			indices[i + 2] = 2 + offset;
-
-			indices[i + 3] = 2 + offset;
-			indices[i + 4] = 3 + offset;
-			indices[i + 5] = 0 + offset;
-
-			offset += 4;
-		}
-
-		GLCall(glEnable(GL_BLEND));
-		GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
-
-		va = std::make_unique<VertexArray>();
-		va->Gen();
-
-		ib = std::make_unique<IndexBuffer>(sizeof(indices));
-		ib->Gen(indices);
-
-		vb = std::make_unique<VertexBuffer>(MaxVertexCount * sizeof(Vertex));
-		vb->Gen(nullptr);
-
-		VertexBufferLayout layout;
-
-		layout.Push<float>(3); // Position (takes 3 params).
-		layout.Push<float>(4); // Colour (takes 4 params).
-		layout.Push<float>(2); // TexCoords (takes 2 params).
-		layout.Push<float>(1); // TexIndex (has 1 value).
-
-		va->AddBuffer(*vb, layout);
-
-		shader = std::make_unique<Shader>("Res/Shaders/Basic.shader");
-		shader->CreateShader();
-		shader->Bind();
-
-		int samplers[] = { 0, 1, 2 }; // How many texture slots.
-		shader->SetUniform1iv("u_Textures", sizeof(samplers), samplers); // Sets the shader texture slots to samplers.
-
-		texture = std::make_unique<Texture>("Res/Textures/namjas.JPG");
-		texture->Gen();
-		texture->Bind();
-
-		namjasTexture = texture->GetBufferID();
-		shrekTexture = texture->Load("Res/Textures/shronk.jpg");
-		monkeyTexture = texture->Load("Res/Textures/B happy.png");
-
-		shader->BindTexture(0, namjasTexture);
-		shader->BindTexture(1, shrekTexture);
-		shader->BindTexture(2, monkeyTexture);
-
-		va->Unbind();
-		texture->UnBind();
-		shader->UnBind();
-		vb->Unbind();
-		ib->Unbind();
+		renderer.Init();
 	}
 
 	TestTexture2D::~TestTexture2D()
 	{
-		va->Unbind();
-		texture->UnBind();
-		shader->UnBind();
-		vb->Unbind();
-		ib->Unbind();
+
 	}
 
 	// Frame-by-frame scene logic.
@@ -176,37 +53,28 @@ namespace testSpace
 		GLCall(glClearColor(0.05f, 0.05f, 0.05f, 1.0f));
 		GLCall(glClear(GL_COLOR_BUFFER_BIT));
 
-		std::array<Vertex, 200> vertices;
-		Vertex* buffer = vertices.data();
+		renderer.ClearVertices();
 
+		// Creates a grid of quads.
 		for (int y = 0; y < 5; y++)
 		{
 			for (int x = 0; x < 5; x++)
 			{
-				buffer = CreateQuad(buffer, x * 100, y * 100, (x + y) % 2, {1.0f, 0.93f, 0.24f, 1.0f}); // Creates a grid of quads.
+				renderer.CreateQuad(x * 100, y * 100, (x + y) % 2, { 1.0f, 0.93f, 0.24f, 1.0f });
 			}
 		}
 
-		buffer = CreateQuad(buffer, -upVertex - 150, -vertex, 0, { 0.18f, 0.6f, 0.96f, 1.0f }); // Creates single quad.
-		buffer = CreateQuad(buffer, -upVertex, -vertex, 2, { 1.0f, 1.0f, 1.0f, 1.0f }); // Creates single quad.
-
-		Renderer renderer;
+		renderer.CreateQuad(-upVertex - 150, -vertex, 0, { 0.18f, 0.6f, 0.96f, 1.0f }); // Creates single quad.
+		renderer.CreateQuad(-upVertex, -vertex, 2, { 1.0f, 1.0f, 1.0f, 1.0f }); // Creates single quad.
 
 		view = glm::translate(glm::mat4(1.0f), glm::vec3(-camPos.x, -camPos.y, 0)); // Camera translation.
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(namPos.x, namPos.y, 0)); // Model translation.
 
 		mvp = proj * view * model;
 
-		shader->Bind();
-		shader->SetUniform4f("u_Color", glm::vec4(red, green, blue, alpha));
+		renderer.ChangeTexture(index);
 
-		shader->BindTexture(0, index);
-
-		vb->Bind();
-		vb->ModifyData(vertices.size() * sizeof(Vertex), vertices.data());
-
-		shader->SetUniformMat4f("u_MVP", mvp);
-		renderer.Draw(*va, *ib, *shader);
+		renderer.Draw(mvp, glm::vec4(red, green, blue, alpha));
 	}
 
 	// Frame-by-frame GUI logic.

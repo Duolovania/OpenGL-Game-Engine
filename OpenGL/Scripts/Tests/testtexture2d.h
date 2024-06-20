@@ -1,6 +1,8 @@
 #pragma once
 #include "test.h"
 #include "Headers/texture.h"
+#include "Headers/renderer.h"
+
 #include "Headers/vertexbufferlayout.h"
 #include "Headers/vertexbuffer.h"
 #include "Headers/input.h"
@@ -23,12 +25,7 @@ namespace testSpace
 			glm::vec2 camPos = glm::vec2(0, 0);
 			glm::vec3 translationB;
 
-			std::unique_ptr<VertexArray> va;
-			std::unique_ptr<IndexBuffer> ib;
-			std::unique_ptr<VertexBuffer> vb;
-
-			std::unique_ptr<Texture> texture;
-			std::unique_ptr<Shader> shader;
+			Renderer renderer;
 			
 			glm::mat4 proj, view, model, mvp;  // Proj = Orthrographic projection.
 			

@@ -45,7 +45,7 @@
     <ClInclude Include="Scripts\Headers\texture.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\vector2.h">
+    <ClInclude Include="Scripts\Headers\vector.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Headers\vertexarray.h">
