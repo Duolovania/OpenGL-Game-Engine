@@ -1,11 +1,12 @@
 #pragma once
 #include "test.h"
-#include "Headers/texture.h"
-#include "Headers/renderer.h"
+#include "Rendering/texture.h"
+#include "Core/renderer.h"
 
-#include "Headers/vertexbufferlayout.h"
-#include "Headers/vertexbuffer.h"
-#include "Headers/input.h"
+#include "Rendering/vertexbufferlayout.h"
+#include "Rendering/vertexbuffer.h"
+#include "Core/input.h"
+#include "Core/animationplayer.h"
 
 #include <memory>
 #include <algorithm>
@@ -26,6 +27,7 @@ namespace testSpace
 			glm::vec3 translationB;
 
 			Renderer renderer;
+			AnimationPlayer playerAnimator;
 			
 			glm::mat4 proj, view, model, mvp;  // Proj = Orthrographic projection.
 			

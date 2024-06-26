@@ -53,6 +53,7 @@ project "OpenGL"
         "%{prj.name}/Scripts/Vendor/imgui",
         "%{prj.name}/Scripts/Vendor/stb_image",
         "%{prj.name}/Scripts/Vendor/glm",
+        "%{prj.name}/Scripts/Headers",
         "%{prj.name}/Scripts"
     }
 

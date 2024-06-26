@@ -1,8 +1,8 @@
 #include "testtexture2d.h"
 
 #include "gtc/matrix_transform.hpp"
-#include "Headers/application.h"
-#include "Headers/shader.h"
+#include "Core/application.h"
+#include "Rendering/shader.h"
 
 #include <array>
 
@@ -55,25 +55,26 @@ namespace testSpace
 
 		renderer.ClearVertices();
 
-		// Creates a grid of quads.
-		for (int y = 0; y < 5; y++)
-		{
-			for (int x = 0; x < 5; x++)
-			{
-				renderer.CreateQuad(x * 100, y * 100, (x + y) % 2, { 1.0f, 0.93f, 0.24f, 1.0f });
-			}
-		}
+		//// Creates a grid of quads.
+		//for (int y = 0; y < 5; y++)
+		//{
+		//	for (int x = 0; x < 5; x++)
+		//	{
+		//		renderer.CreateQuad(x * 100, y * 100, (x + y) % 2, { 1.0f, 0.93f, 0.24f, 1.0f });
+		//	}
+		//}
 
-		renderer.CreateQuad(-upVertex - 150, -vertex, 0, { 0.18f, 0.6f, 0.96f, 1.0f }); // Creates single quad.
-		renderer.CreateQuad(-upVertex, -vertex, 2, { 1.0f, 1.0f, 1.0f, 1.0f }); // Creates single quad.
+		//renderer.CreateQuad(-upVertex - 150, -vertex, 0, { 0.18f, 0.6f, 0.96f, 1.0f }); // Creates single quad.
+		//renderer.CreateQuad(-upVertex, -vertex, 2, { 1.0f, 1.0f, 1.0f, 1.0f }); // Creates single quad.
 
 		view = glm::translate(glm::mat4(1.0f), glm::vec3(-camPos.x, -camPos.y, 0)); // Camera translation.
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(namPos.x, namPos.y, 0)); // Model translation.
 
 		mvp = proj * view * model;
 
-		renderer.ChangeTexture(index);
+		//playerAnimator.Play("Test");
 
+		//renderer.ChangeTexture(index);
 		renderer.Draw(mvp, glm::vec4(red, green, blue, alpha));
 	}
 

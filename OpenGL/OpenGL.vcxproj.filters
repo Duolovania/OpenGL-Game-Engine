@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Headers">
       <UniqueIdentifier>{C196CD9C-2D76-4C38-368E-D70EA2ECB299}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Core">
+      <UniqueIdentifier>{B91B6850-A57E-F7F4-4E04-30AB3A46C377}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Rendering">
+      <UniqueIdentifier>{4E8519E6-BA9B-177C-0313-A39D6F68E803}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{E3AE1F7C-4F19-D4F2-9857-85980401B247}</UniqueIdentifier>
     </Filter>
     <Filter Include="Tests">
       <UniqueIdentifier>{5865280E-C479-50BF-8DFB-F31EF9CE4CF0}</UniqueIdentifier>
@@ -24,47 +36,92 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Scripts\Headers\action.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="Scripts\Headers\Core\action.h">
+      <Filter>Headers\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\application.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="Scripts\Headers\Core\animation.h">
+      <Filter>Headers\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\indexbuffer.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="Scripts\Headers\Core\animationplayer.h">
+      <Filter>Headers\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\input.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="Scripts\Headers\Core\application.h">
+      <Filter>Headers\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\renderer.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="Scripts\Headers\Core\input.h">
+      <Filter>Headers\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\shader.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="Scripts\Headers\Core\renderer.h">
+      <Filter>Headers\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\texture.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="Scripts\Headers\Math\vector.h">
+      <Filter>Headers\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\vector.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="Scripts\Headers\Rendering\indexbuffer.h">
+      <Filter>Headers\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\vertexarray.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="Scripts\Headers\Rendering\shader.h">
+      <Filter>Headers\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\vertexbuffer.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="Scripts\Headers\Rendering\texture.h">
+      <Filter>Headers\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\vertexbufferlayout.h">
-      <Filter>Headers</Filter>
+    <ClInclude Include="Scripts\Headers\Rendering\vertexarray.h">
+      <Filter>Headers\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Rendering\vertexbuffer.h">
+      <Filter>Headers\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Rendering\vertexbufferlayout.h">
+      <Filter>Headers\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\animationframe.h">
+      <Filter>Headers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\character.h">
+      <Filter>Headers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\gameobject.h">
+      <Filter>Headers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Math\transform.h">
+      <Filter>Headers\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Scripts\Action.cpp" />
-    <ClCompile Include="Scripts\Application.cpp" />
-    <ClCompile Include="Scripts\IndexBuffer.cpp" />
-    <ClCompile Include="Scripts\Input.cpp" />
-    <ClCompile Include="Scripts\Renderer.cpp" />
-    <ClCompile Include="Scripts\Shader.cpp" />
+    <ClCompile Include="Scripts\Core\Action.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Core\Animation.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Core\AnimationPlayer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Core\Application.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Core\Input.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Core\Renderer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Rendering\IndexBuffer.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Rendering\Shader.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Rendering\Texture.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Rendering\VertexArray.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Rendering\VertexBuffer.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
     <ClCompile Include="Scripts\Source.cpp" />
     <ClCompile Include="Scripts\Tests\Test.cpp">
       <Filter>Tests</Filter>
@@ -75,7 +132,6 @@
     <ClCompile Include="Scripts\Tests\TestTexture2D.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Texture.cpp" />
     <ClCompile Include="Scripts\Vendor\glm\detail\glm.cpp">
       <Filter>Vendor\glm\detail</Filter>
     </ClCompile>
@@ -103,7 +159,9 @@
     <ClCompile Include="Scripts\Vendor\stb_image\STB_Image.cpp">
       <Filter>Vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\VertexArray.cpp" />
-    <ClCompile Include="Scripts\VertexBuffer.cpp" />
+    <ClCompile Include="Scripts\Core\AnimationFrame.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Core\Character.cpp" />
   </ItemGroup>
 </Project>
