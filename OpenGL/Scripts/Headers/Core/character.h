@@ -10,8 +10,7 @@ class Character
 		Transform transform;
 		unsigned int texture;
 
-		std::string objectName;
+		std::string objectName, m_imagePath;
 
-		std::shared_ptr<Texture> m_text;
 		AnimationPlayer animator;
 };

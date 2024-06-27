@@ -32,9 +32,8 @@ namespace testSpace
 			glm::mat4 proj, view, model, mvp;  // Proj = Orthrographic projection.
 			
 			float deltaTime;
-			float red = 1.0f, green = 1.0f, blue = 1.0f, alpha = 1.0f, increment = 1.0f;
+			float red = 1.0f, green = 1.0f, blue = 1.0f, alpha = 1.0f;
 
 			float Clamp(float var, float min, float max);
-			unsigned int namjasTexture, shrekTexture, monkeyTexture;
 	};
 }

@@ -1,6 +1,6 @@
 ﻿cl : command line  warning D9025: overriding '/MTd' with '/MDd'
   Renderer.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(94,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(127,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(136,109): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(108,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(152,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(154,109): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   OpenGL.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin\Debug-windows-x86\OpenGL\OpenGL.exe

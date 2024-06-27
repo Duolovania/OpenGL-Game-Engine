@@ -8,9 +8,6 @@
 
 glm::vec2 inputVector, namVector, namPos;
 
-int index = 2;
-float vertex = 50.0f;
-float upVertex = vertex * 3;
 float sprintSpeed;
 
 namespace testSpace
@@ -51,21 +48,7 @@ namespace testSpace
 	void TestTexture2D::OnRender()
 	{
 		GLCall(glClearColor(0.05f, 0.05f, 0.05f, 1.0f));
-		GLCall(glClear(GL_COLOR_BUFFER_BIT));
-
-		renderer.ClearVertices();
-
-		//// Creates a grid of quads.
-		//for (int y = 0; y < 5; y++)
-		//{
-		//	for (int x = 0; x < 5; x++)
-		//	{
-		//		renderer.CreateQuad(x * 100, y * 100, (x + y) % 2, { 1.0f, 0.93f, 0.24f, 1.0f });
-		//	}
-		//}
-
-		//renderer.CreateQuad(-upVertex - 150, -vertex, 0, { 0.18f, 0.6f, 0.96f, 1.0f }); // Creates single quad.
-		//renderer.CreateQuad(-upVertex, -vertex, 2, { 1.0f, 1.0f, 1.0f, 1.0f }); // Creates single quad.
+		renderer.Clear();
 
 		view = glm::translate(glm::mat4(1.0f), glm::vec3(-camPos.x, -camPos.y, 0)); // Camera translation.
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(namPos.x, namPos.y, 0)); // Model translation.
@@ -73,8 +56,6 @@ namespace testSpace
 		mvp = proj * view * model;
 
 		//playerAnimator.Play("Test");
-
-		//renderer.ChangeTexture(index);
 		renderer.Draw(mvp, glm::vec4(red, green, blue, alpha));
 	}
 
@@ -88,8 +69,6 @@ namespace testSpace
 		ImGui::SliderFloat("G:", &green, 0.0f, 1.0f, "%.1f");
 		ImGui::SliderFloat("B:", &blue, 0.0f, 1.0f, "%.1f");
 		ImGui::SliderFloat("A:", &alpha, 0.0f, 1.0f, "%.1f");
-
-		ImGui::SliderInt("Texture Index:", &index, 2, 3);
 	}
 
 	// Simple float clamping function.

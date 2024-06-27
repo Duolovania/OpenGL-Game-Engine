@@ -21,13 +21,16 @@ void Texture::Gen()
 	GLCall(glCreateTextures(GL_TEXTURE_2D, 1, &bufferID));
 	GLCall(glBindTexture(GL_TEXTURE_2D, bufferID));
 
-	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)); // GL_LINEAR = smooth. GL_NEAREST = pixelated.
 	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+
+	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE)); // GL_CLAMP_TO_EDGE = extends image to size. GL_REPEAT = repeats the image to fit the size.
 	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
 
-	GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, localBuffer));
-	GLCall(glBindTexture(GL_TEXTURE_2D, 0));
+	GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, localBuffer));
+
+	GLCall(glGenerateMipmap(GL_TEXTURE_2D));
+	GLCall(glBindTexture(GL_TEXTURE_2D, 0)); // Unbinds the texture.
 
 	if (localBuffer)
 		stbi_image_free(localBuffer);

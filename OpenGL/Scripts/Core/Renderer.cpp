@@ -1,6 +1,6 @@
 #pragma once
-#include "Core/renderer.h"
 #include <iostream>
+#include "Core/renderer.h"
 #include "Core/character.h"
 
 std::vector<Character> objectsToRender;
@@ -30,7 +30,7 @@ Renderer::~Renderer()
 {
 	m_va->Unbind();
 	m_shader->UnBind();
-	objectsToRender[0].m_text->UnBind();
+	m_texture->UnBind();
 	m_vb->Unbind();
 	m_ib->Unbind();
 }
@@ -83,24 +83,42 @@ void Renderer::Init()
 	Character character1 = Character("namjas.JPG");
 	Character character2 = Character("B happy.png");
 	Character character3 = Character("shronk.jpg");
+	Character character4 = Character("ForestE.png");
+	Character character5 = Character("ForestE.png");
+	Character character6 = Character("ForestE.png");
 
 	objectsToRender.push_back(character1);
-	objectsToRender.push_back(character2);
+	objectsToRender.push_back(character2); 
 	objectsToRender.push_back(character3);
+	objectsToRender.push_back(character4);
+	objectsToRender.push_back(character5);
+	//objectsToRender.push_back(character6);
 
-	int samplers[100] = {0, 1, 2}; // How many texture slots.
+	m_texture = std::make_unique<Texture>("Res/Textures/namjas.JPG");
+	m_texture->Gen();
+
+	int samplers[100] = { 0, 1, 2 }; // How many texture slots.
 	
 	// Prepares necessary amount of slots and binds each character texture to a slot.
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
 		samplers[i] = i;
+		m_texture->Bind(i);
+
+		objectsToRender[i].texture = m_texture->Load(objectsToRender[i].m_imagePath);
 		m_shader->BindTexture(i, objectsToRender[i].texture);
 	}
 
 	m_shader->SetUniform1iv("u_Textures", sizeof(samplers), samplers); // Sets the shader texture slots to samplers.
 
+	objectsToRender[0].transform.position.y = 0;
+	objectsToRender[1].transform.position.y = 100;
+	objectsToRender[2].transform.position.y = 200;
+	objectsToRender[3].transform.position.y = 300;
+	objectsToRender[4].transform.position.y = 400;
+
 	m_va->Unbind();
-	objectsToRender[0].m_text->UnBind();
+	m_texture->UnBind();
 	m_shader->UnBind();
 	m_vb->Unbind();
 	m_ib->Unbind();
@@ -124,25 +142,12 @@ void Renderer::Draw() const
 // Outputs the data onto the viewport.
 void Renderer::Draw(glm::mat4 projection, glm::vec4 colorFilter) 
 {
-	/*for (int i = 0; i < objectsToRender.size(); i++)
+	ClearVertices();
+
+	for (int i = 0; i < objectsToRender.size(); i++)
 	{
-		objectsToRender[i].m_text->Bind();
 		CreateQuad(-150 + objectsToRender[i].transform.position.x, -50 + objectsToRender[i].transform.position.y, i, {1.0f, 1.0f, 1.0f, 1.0f});
-	}*/
-
-	objectsToRender[0].m_text->Bind();
-	CreateQuad(-150 + objectsToRender[0].transform.position.x, -50 + objectsToRender[0].transform.position.y, 0, { 1.0f, 1.0f, 1.0f, 1.0f });
-
-	objectsToRender[1].m_text->Bind();
-	CreateQuad(-150 + objectsToRender[1].transform.position.x, -50 + objectsToRender[1].transform.position.y, 1, { 1.0f, 1.0f, 1.0f, 1.0f });
-
-	objectsToRender[2].m_text->Bind();
-	CreateQuad(-150 + objectsToRender[2].transform.position.x, -50 + objectsToRender[2].transform.position.y, 2, { 1.0f, 1.0f, 1.0f, 1.0f });
-
-
-	objectsToRender[1].transform.position.y = 100;
-	objectsToRender[0].transform.position.y = -100;
-
+	}
 
 	m_shader->Bind();
 	m_shader->SetUniform4f("u_Color", colorFilter);
@@ -158,26 +163,10 @@ void Renderer::Draw(glm::mat4 projection, glm::vec4 colorFilter)
 	GLCall(glDrawElements(GL_TRIANGLES, m_ib->GetCount(), GL_UNSIGNED_INT, nullptr));
 }
 
-void Renderer::Gen(glm::mat4 projection, glm::vec4 colorFilter)
-{
-	m_shader->Bind();
-	m_shader->SetUniform4f("u_Color", colorFilter);
-
-	m_vb->Bind();
-	m_vb->ModifyData(vertices.size() * sizeof(Vertex), vertices.data());
-
-	m_shader->SetUniformMat4f("u_MVP", projection);
-}
-
 // Resets the viewport.
 void Renderer::Clear() const
 {
     GLCall(glClear(GL_COLOR_BUFFER_BIT));
-}
-
-void Renderer::ChangeTexture(int value)
-{
-	m_shader->BindTexture(0, value);
 }
 
 void Renderer::CreateQuad(float x, float y, float texID, Vector4 color)

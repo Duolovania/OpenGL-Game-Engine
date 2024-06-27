@@ -1,5 +1,4 @@
 #pragma once
-#include "Math/vector.h"
 #include <iostream>
 
 class Texture
@@ -16,7 +15,6 @@ class Texture
 		unsigned int Load(const std::string& path);
 		unsigned int GetBufferID();
 
-		Vector2 position;
 		inline int GetWidth() { return w; }
 		inline int GetHeight() { return h; }
 	private:
