@@ -4,6 +4,7 @@
 #include "Rendering/indexbuffer.h"
 #include "Rendering/vertexbuffer.h"
 #include "Rendering/vertexbufferlayout.h"
+#include "Core/character.h"
 
 #include "Rendering/texture.h"
 #include <array>
@@ -32,6 +33,8 @@ class Renderer
 
         void Draw() const;
         void Draw(glm::mat4 projection, glm::vec4 colorFilter);
+
+        int texturesLoaded = 0, newTextures = 0, hiddenImage = -1;
     private:
         std::unique_ptr<VertexArray> m_va;
         std::unique_ptr<IndexBuffer> m_ib;
@@ -43,8 +46,6 @@ class Renderer
         Vertex* buffer;
         std::array<Vertex, 200> vertices;
 
-        unsigned int namjasTexture, shrekTexture, monkeyTexture;
-
         void CreateQuad(float x, float y, float texID, Vector4 color);
-        void ClearVertices();
+        unsigned int GetCachedTexture(Character character, unsigned int index);
 };

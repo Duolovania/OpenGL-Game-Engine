@@ -55,14 +55,18 @@ namespace testSpace
 
 		mvp = proj * view * model;
 
-		//playerAnimator.Play("Test");
+		if (camPos.x > 40 || camPos.x < -40) renderer.hiddenImage = 1;
+		else renderer.hiddenImage = -1;
+
 		renderer.Draw(mvp, glm::vec4(red, green, blue, alpha));
 	}
 
 	// Frame-by-frame GUI logic.
 	void TestTexture2D::OnImGuiRender()
 	{
-		ImGui::Text("FPS %.1f FPS", double(ImGui::GetIO().Framerate));
+		ImGui::Text("FPS: %.1f", double(ImGui::GetIO().Framerate));
+		ImGui::Text("Textures Loaded: %.0f", double(renderer.texturesLoaded));
+		ImGui::Text("New Textures Created: %.0f", double(renderer.newTextures));
 
 		ImGui::Text("Control RGB values of shader");
 		ImGui::SliderFloat("R:", &red, 0.0f, 1.0f, "%.1f");

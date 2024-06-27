@@ -84,15 +84,17 @@ void Renderer::Init()
 	Character character2 = Character("B happy.png");
 	Character character3 = Character("shronk.jpg");
 	Character character4 = Character("ForestE.png");
-	Character character5 = Character("ForestE.png");
-	Character character6 = Character("ForestE.png");
+	Character character5 = Character("yoza2.jpg");
+	Character character6 = Character("hronyman.gif");
+	Character character7 = Character("johndinner.png");
 
 	objectsToRender.push_back(character1);
 	objectsToRender.push_back(character2); 
 	objectsToRender.push_back(character3);
 	objectsToRender.push_back(character4);
 	objectsToRender.push_back(character5);
-	//objectsToRender.push_back(character6);
+	objectsToRender.push_back(character6);
+	objectsToRender.push_back(character7);
 
 	m_texture = std::make_unique<Texture>("Res/Textures/namjas.JPG");
 	m_texture->Gen();
@@ -103,30 +105,33 @@ void Renderer::Init()
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
 		samplers[i] = i;
-		m_texture->Bind(i);
+		m_texture->Bind(i + 1);
 
-		objectsToRender[i].texture = m_texture->Load(objectsToRender[i].m_imagePath);
+		objectsToRender[i].texture = GetCachedTexture(objectsToRender[i], i);
 		m_shader->BindTexture(i, objectsToRender[i].texture);
+		texturesLoaded++;
 	}
 
 	m_shader->SetUniform1iv("u_Textures", sizeof(samplers), samplers); // Sets the shader texture slots to samplers.
 
-	objectsToRender[0].transform.position.y = 0;
-	objectsToRender[1].transform.position.y = 100;
-	objectsToRender[2].transform.position.y = 200;
-	objectsToRender[3].transform.position.y = 300;
-	objectsToRender[4].transform.position.y = 400;
+	objectsToRender[0].transform.position.x = 0;
+	objectsToRender[1].transform.position.x = 100;
+	objectsToRender[2].transform.position.x = 200;
+	objectsToRender[3].transform.position.x = 300;
+	objectsToRender[4].transform.position.x = 400;
+	objectsToRender[5].transform.position.x = 500;
+	objectsToRender[6].transform.position.x = -100;
+
+	/*for (int i = 0; i < objectsToRender.size() - 6; i++)
+	{
+		objectsToRender[i + 6].transform.position.x = i * -100;
+	}*/
 
 	m_va->Unbind();
 	m_texture->UnBind();
 	m_shader->UnBind();
 	m_vb->Unbind();
 	m_ib->Unbind();
-}
-
-void Renderer::ClearVertices()
-{
-	buffer = vertices.data();
 }
 
 // Outputs the data onto the viewport.
@@ -142,11 +147,11 @@ void Renderer::Draw() const
 // Outputs the data onto the viewport.
 void Renderer::Draw(glm::mat4 projection, glm::vec4 colorFilter) 
 {
-	ClearVertices();
+	buffer = vertices.data(); // Clears all vertices generated.
 
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
-		CreateQuad(-150 + objectsToRender[i].transform.position.x, -50 + objectsToRender[i].transform.position.y, i, {1.0f, 1.0f, 1.0f, 1.0f});
+		if (i != hiddenImage) CreateQuad(-150 + objectsToRender[i].transform.position.x, -50 + objectsToRender[i].transform.position.y, i, { 1.0f, 1.0f, 1.0f, 1.0f });
 	}
 
 	m_shader->Bind();
@@ -196,4 +201,20 @@ void Renderer::CreateQuad(float x, float y, float texID, Vector4 color)
 	buffer->TextureCoords = { 0.0f, 1.0f };
 	buffer->TextureID = texID;
 	buffer++;
+}
+
+// Retrieves an existing texture if it already exists.
+unsigned int Renderer::GetCachedTexture(Character character, unsigned int index)
+{
+	// Searches for a texture with the same file path.
+	for (int i = 0; i < index; i++)
+	{
+		if (character.m_imagePath == objectsToRender[i].m_imagePath)
+		{
+			return objectsToRender[i].texture;
+		}
+	}
+
+	newTextures++;
+	return m_texture->Load(character.m_imagePath); // Returns a new texture if none was found.
 }
