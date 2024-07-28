@@ -32,7 +32,7 @@ class Renderer
         void Clear() const;
 
         void Draw() const;
-        void Draw(glm::mat4 projection, glm::vec2 cameraPosition, float imageScale, glm::vec4 colorFilter);
+        void Draw(glm::mat4 projection, glm::vec2 cameraPosition, glm::vec4 colorFilter);
         std::vector<Character> objectsToRender;
 
 
@@ -48,6 +48,7 @@ class Renderer
         Vertex* buffer;
         std::array<Vertex, 200> vertices;
 
-        void CreateQuad(float x, float y, float size, float texID, Vector4 color);
+        void CreateQuad(float x, float y, Vector3 size, float texID, Vector4 color);
+
         unsigned int GetCachedTexture(Character character, unsigned int index);
 };

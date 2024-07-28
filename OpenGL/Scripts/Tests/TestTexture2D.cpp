@@ -53,7 +53,7 @@ namespace testSpace
 
 		mvp = proj * view * model;
 
-		renderer.Draw(mvp, camPos, imageScale, glm::vec4(red, green, blue, alpha));
+		renderer.Draw(mvp, camPos, glm::vec4(red, green, blue, alpha));
 	}
 
 	// Frame-by-frame GUI logic.
@@ -74,7 +74,6 @@ namespace testSpace
 		ImGui::SameLine();
 
 		ImGui::SliderFloat("A:", &alpha, 0.0f, 1.0f, "%.1f");
-		ImGui::SliderFloat("Image Scale:", &imageScale, 0.0f, 2.0f, "%.1f");
 
 		ImGui::Begin("Inspector");
 
@@ -82,10 +81,15 @@ namespace testSpace
 		{
 			if (selectedObject > -1)
 			{
-				ImGui::InputFloat("X:", &renderer.objectsToRender[selectedObject].transform.position.x, 0.0f, 0.0f, "%.f");
+				ImGui::InputFloat("PX:", &renderer.objectsToRender[selectedObject].transform.position.x, 0.0f, 0.0f, "%.f");
 				ImGui::SameLine();
 				
-				ImGui::InputFloat("Y:", &renderer.objectsToRender[selectedObject].transform.position.y, 0.0f, 0.0f, "%.f");
+				ImGui::InputFloat("PY:", &renderer.objectsToRender[selectedObject].transform.position.y, 0.0f, 0.0f, "%.f");
+
+				ImGui::InputFloat("SX:", &renderer.objectsToRender[selectedObject].transform.scale.x, 0.0f, 0.0f, "%.f");
+				ImGui::SameLine();
+
+				ImGui::InputFloat("SY:", &renderer.objectsToRender[selectedObject].transform.scale.y, 0.0f, 0.0f, "%.f");
 			}
 
 			ImGui::ListBoxFooter();

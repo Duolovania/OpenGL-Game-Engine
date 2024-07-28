@@ -139,13 +139,13 @@ void Renderer::Draw() const
 }
 
 // Outputs the data onto the viewport.
-void Renderer::Draw(glm::mat4 projection, glm::vec2 cameraPosition, float imageScale, glm::vec4 colorFilter) 
+void Renderer::Draw(glm::mat4 projection, glm::vec2 cameraPosition, glm::vec4 colorFilter) 
 {
 	buffer = vertices.data(); // Clears all vertices generated.
 
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
-		if (objectsToRender[i].CheckVisibility(cameraPosition)) CreateQuad(-150 + objectsToRender[i].transform.position.x, -50 + objectsToRender[i].transform.position.y, objectsToRender[i].transform.scale.z * imageScale, i, {1.0f, 1.0f, 1.0f, 1.0f});
+		if (objectsToRender[i].CheckVisibility(cameraPosition)) CreateQuad(-150 + objectsToRender[i].transform.position.x, -50 + objectsToRender[i].transform.position.y, Vector3(objectsToRender[i].transform.scale.x, objectsToRender[i].transform.scale.y, objectsToRender[i].transform.scale.z), i, {1.0f, 1.0f, 1.0f, 1.0f});
 	}
 
 	m_shader->Bind();
@@ -168,29 +168,27 @@ void Renderer::Clear() const
     GLCall(glClear(GL_COLOR_BUFFER_BIT));
 }
 
-void Renderer::CreateQuad(float x, float y, float size, float texID, Vector4 color)
+void Renderer::CreateQuad(float x, float y, Vector3 size, float texID, Vector4 color)
 {
-	//float size = 100.0f;
-
 	buffer->Position = { x, y, 0.0f };
 	buffer->Color = color;
 	buffer->TextureCoords = { 0.0f, 0.0f };
 	buffer->TextureID = texID;
 	buffer++;
 
-	buffer->Position = { x + size, y, 0.0f };
+	buffer->Position = { x + size.x, y, 0.0f };
 	buffer->Color = color;
 	buffer->TextureCoords = { 1.0f, 0.0f };
 	buffer->TextureID = texID;
 	buffer++;
 
-	buffer->Position = { x + size, y + size, 0.0f };
+	buffer->Position = { x + size.x, y + size.y, 0.0f };
 	buffer->Color = color;
 	buffer->TextureCoords = { 1.0f, 1.0f };
 	buffer->TextureID = texID;
 	buffer++;
 
-	buffer->Position = { x, y + size, 0.0f };
+	buffer->Position = { x, y + size.y, 0.0f };
 	buffer->Color = color;
 	buffer->TextureCoords = { 0.0f, 1.0f };
 	buffer->TextureID = texID;
