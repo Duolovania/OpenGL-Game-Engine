@@ -3,12 +3,12 @@
 Character::Character(const std::string& imagePath)
 	:m_imagePath("Res/Textures/" + imagePath)
 {
-	/*m_text = std::make_unique<Texture>("Res/Textures/" + imagePath);
-	objectName = imagePath;
+	transform.scale.z = 100;
+}
 
-	m_text->Bind();
-	m_text->Gen();
-
-	texture = m_text->GetBufferID();
-	m_text->UnBind();*/
+// Checks if the image is within the screen space.
+bool Character::CheckVisibility(glm::vec2 cameraPosition)
+{
+	if ((transform.position.x >= cameraPosition.x - 50 && transform.position.x <= cameraPosition.x + 250)) return true;
+	return false;
 }

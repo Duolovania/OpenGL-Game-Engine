@@ -24,7 +24,6 @@ namespace testSpace
 			void OnRender() override;
 		private:
 			glm::vec2 camPos = glm::vec2(0, 0);
-			glm::vec3 translationB;
 
 			Renderer renderer;
 			AnimationPlayer playerAnimator;
@@ -32,7 +31,7 @@ namespace testSpace
 			glm::mat4 proj, view, model, mvp;  // Proj = Orthrographic projection.
 			
 			float deltaTime;
-			float red = 1.0f, green = 1.0f, blue = 1.0f, alpha = 1.0f;
+			float red = 1.0f, green = 1.0f, blue = 1.0f, alpha = 1.0f, imageScale = 1.0f;
 
 			float Clamp(float var, float min, float max);
 	};

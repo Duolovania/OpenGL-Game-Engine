@@ -3,7 +3,6 @@
 #include "Core/renderer.h"
 #include "Core/character.h"
 
-std::vector<Character> objectsToRender;
 
 void GLClearError()
 {
@@ -122,11 +121,6 @@ void Renderer::Init()
 	objectsToRender[5].transform.position.x = 500;
 	objectsToRender[6].transform.position.x = -100;
 
-	/*for (int i = 0; i < objectsToRender.size() - 6; i++)
-	{
-		objectsToRender[i + 6].transform.position.x = i * -100;
-	}*/
-
 	m_va->Unbind();
 	m_texture->UnBind();
 	m_shader->UnBind();
@@ -145,13 +139,13 @@ void Renderer::Draw() const
 }
 
 // Outputs the data onto the viewport.
-void Renderer::Draw(glm::mat4 projection, glm::vec4 colorFilter) 
+void Renderer::Draw(glm::mat4 projection, glm::vec2 cameraPosition, float imageScale, glm::vec4 colorFilter) 
 {
 	buffer = vertices.data(); // Clears all vertices generated.
 
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
-		if (i != hiddenImage) CreateQuad(-150 + objectsToRender[i].transform.position.x, -50 + objectsToRender[i].transform.position.y, i, { 1.0f, 1.0f, 1.0f, 1.0f });
+		if (objectsToRender[i].CheckVisibility(cameraPosition)) CreateQuad(-150 + objectsToRender[i].transform.position.x, -50 + objectsToRender[i].transform.position.y, objectsToRender[i].transform.scale.z * imageScale, i, {1.0f, 1.0f, 1.0f, 1.0f});
 	}
 
 	m_shader->Bind();
@@ -174,9 +168,9 @@ void Renderer::Clear() const
     GLCall(glClear(GL_COLOR_BUFFER_BIT));
 }
 
-void Renderer::CreateQuad(float x, float y, float texID, Vector4 color)
+void Renderer::CreateQuad(float x, float y, float size, float texID, Vector4 color)
 {
-	float size = 100.0f;
+	//float size = 100.0f;
 
 	buffer->Position = { x, y, 0.0f };
 	buffer->Color = color;

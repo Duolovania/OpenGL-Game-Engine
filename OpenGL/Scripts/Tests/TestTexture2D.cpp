@@ -3,18 +3,19 @@
 #include "gtc/matrix_transform.hpp"
 #include "Core/application.h"
 #include "Rendering/shader.h"
+#include <string>
 
 #include <array>
 
 glm::vec2 inputVector, namVector, namPos;
-
+int selectedObject = -1;
 float sprintSpeed;
 
 namespace testSpace
 {
 	// Scene initializer.
 	TestTexture2D::TestTexture2D()
-		: translationB(0, 50, 0), proj(glm::ortho(-100.0f, 100.0f, -75.0f, 75.0f, -1.0f, 1.0f))
+		: proj(glm::ortho(-100.0f, 100.0f, -75.0f, 75.0f, -1.0f, 1.0f))
 	{
 		renderer.Init();
 	}
@@ -27,9 +28,6 @@ namespace testSpace
 	// Frame-by-frame scene logic.
 	void TestTexture2D::OnUpdate(float deltaTime)
 	{
-		translationB.x = ((cos((deltaTime) * 1)) * 10);
-		translationB.y = ((sin((deltaTime) * 1)) * 10);
-
 		camPos += glm::vec2(inputVector.x * (100.0f + sprintSpeed) * deltaTime, inputVector.y * (100.0f + sprintSpeed) * deltaTime);
 		namPos += glm::vec2(namVector.x * 100.0f * deltaTime, namVector.y * 100.0f * deltaTime);
 
@@ -55,10 +53,7 @@ namespace testSpace
 
 		mvp = proj * view * model;
 
-		if (camPos.x > 40 || camPos.x < -40) renderer.hiddenImage = 1;
-		else renderer.hiddenImage = -1;
-
-		renderer.Draw(mvp, glm::vec4(red, green, blue, alpha));
+		renderer.Draw(mvp, camPos, imageScale, glm::vec4(red, green, blue, alpha));
 	}
 
 	// Frame-by-frame GUI logic.
@@ -70,9 +65,45 @@ namespace testSpace
 
 		ImGui::Text("Control RGB values of shader");
 		ImGui::SliderFloat("R:", &red, 0.0f, 1.0f, "%.1f");
+		ImGui::SameLine();
+
 		ImGui::SliderFloat("G:", &green, 0.0f, 1.0f, "%.1f");
+		ImGui::SameLine();
+
 		ImGui::SliderFloat("B:", &blue, 0.0f, 1.0f, "%.1f");
+		ImGui::SameLine();
+
 		ImGui::SliderFloat("A:", &alpha, 0.0f, 1.0f, "%.1f");
+		ImGui::SliderFloat("Image Scale:", &imageScale, 0.0f, 2.0f, "%.1f");
+
+		ImGui::Begin("Inspector");
+
+		if (ImGui::ListBoxHeader("Transform"))
+		{
+			if (selectedObject > -1)
+			{
+				ImGui::InputFloat("X:", &renderer.objectsToRender[selectedObject].transform.position.x, 0.0f, 0.0f, "%.f");
+				ImGui::SameLine();
+				
+				ImGui::InputFloat("Y:", &renderer.objectsToRender[selectedObject].transform.position.y, 0.0f, 0.0f, "%.f");
+			}
+
+			ImGui::ListBoxFooter();
+		}
+
+		ImGui::End();
+
+		ImGui::Begin("Hierarchy");
+
+		for (int i = 0; i < renderer.objectsToRender.size(); i++)
+		{
+			if (ImGui::Button(std::to_string(i).c_str()))
+			{
+				selectedObject = i;
+			}
+		}
+
+		ImGui::End();
 	}
 
 	// Simple float clamping function.
