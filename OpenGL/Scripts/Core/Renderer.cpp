@@ -112,16 +112,16 @@ void Renderer::Init()
 	m_shader->SetUniform1iv("u_Textures", sizeof(samplers), samplers); // Sets the shader texture slots to samplers.
 
 	objectsToRender[0].transform.position.x = 0;
-	objectsToRender[1].transform.position.x = 1;
-	objectsToRender[2].transform.position.x = 2;
-	objectsToRender[3].transform.position.x = 3;
-	objectsToRender[4].transform.position.x = 4;
-	objectsToRender[5].transform.position.x = 5;
-	objectsToRender[6].transform.position.x = -1;
+	objectsToRender[1].transform.position.x = 100;
+	objectsToRender[2].transform.position.x = 200;
+	objectsToRender[3].transform.position.x = 300;
+	objectsToRender[4].transform.position.x = 400;
+	objectsToRender[5].transform.position.x = 500;
+	objectsToRender[6].transform.position.x = -100;
 
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
-		objectsToRender[i].transform.scale = Vector3(10, 10, 10);
+		objectsToRender[i].transform.scale = Vector3(100, 100, 0);
 	}
 
 	m_va->Unbind();
@@ -149,22 +149,17 @@ void Renderer::Draw(glm::mat4 projection, glm::vec2 cameraPosition, glm::vec4 co
 
 		if (objectsToRender[i].CheckVisibility(cameraPosition))
 		{
-			glm::mat4 transform2 = glm::translate(glm::mat4(1.0f), glm::vec3(objectsToRender[i].transform.position.x, objectsToRender[i].transform.position.y, 0.0f))
-				* glm::scale(glm::mat4(1.0f), glm::vec3(objectsToRender[i].transform.scale.x, objectsToRender[i].transform.scale.y, 1.0f));
-
-			//CreateQuad(-150 + objectsToRender[i].transform.position.x, -50 + objectsToRender[i].transform.position.y, Vector3(objectsToRender[i].transform.scale.x, objectsToRender[i].transform.scale.y, objectsToRender[i].transform.rotation.z), i, { 1.0f, 1.0f, 1.0f, 1.0f });
-			
-			CreateQuad(transform2, i, { 1.0f, 1.0f, 1.0f, 1.0f });
-
-			m_shader->Bind();
-			m_shader->SetUniform4f("u_Color", colorFilter);
-
 			glm::mat4 transform = glm::translate(glm::mat4(1.0f), glm::vec3(objectsToRender[i].transform.position.x, objectsToRender[i].transform.position.y, 0.0f))
 				* glm::rotate(glm::mat4(1.0f), glm::radians(-objectsToRender[i].transform.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f))
 				* glm::scale(glm::mat4(1.0f), glm::vec3(objectsToRender[i].transform.scale.x, objectsToRender[i].transform.scale.y, 1.0f));
 
+			//CreateQuad(-150 + objectsToRender[i].transform.position.x, -50 + objectsToRender[i].transform.position.y, Vector3(objectsToRender[i].transform.scale.x, objectsToRender[i].transform.scale.y, objectsToRender[i].transform.rotation.z), i, { 1.0f, 1.0f, 1.0f, 1.0f });
+			
+			CreateQuad(transform, i, { 1.0f, 1.0f, 1.0f, 1.0f });
+
+			m_shader->Bind();
+			m_shader->SetUniform4f("u_Color", colorFilter);
 			m_shader->SetUniformMat4f("u_MVP", projection);
-			m_shader->SetUniformMat4f("u_Transform", transform);
 
 			m_vb->Bind();
 			m_vb->ModifyData(vertices.size() * sizeof(Vertex), vertices.data());
@@ -237,8 +232,6 @@ void Renderer::CreateQuad(glm::mat4 transform, float texID, Vector4 color)
 	buffer->TextureCoords = { 0.0f, 1.0f };
 	buffer->TextureID = texID;
 	buffer++;
-
-
 }
 
 // Retrieves an existing texture if it already exists.

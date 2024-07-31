@@ -18,6 +18,7 @@ namespace testSpace
 		: proj(glm::ortho(-100.0f, 100.0f, -75.0f, 75.0f, -1.0f, 1.0f))
 	{
 		renderer.Init();
+		proj = glm::ortho(((float) 1920 / (float) 1080) * -100, ((float)1920 / (float)1080) * 100, -100.0f, 100.0f, -1.0f, 1.0f);
 	}
 
 	TestTexture2D::~TestTexture2D()
@@ -28,7 +29,7 @@ namespace testSpace
 	// Frame-by-frame scene logic.
 	void TestTexture2D::OnUpdate(float deltaTime)
 	{
-		camPos += glm::vec2(inputVector.x * (10.0f + sprintSpeed) * deltaTime, inputVector.y * (10.0f + sprintSpeed) * deltaTime);
+		camPos += glm::vec2(inputVector.x * (100.0f + sprintSpeed) * deltaTime, inputVector.y * (100.0f + sprintSpeed) * deltaTime);
 		namPos += glm::vec2(namVector.x * 100.0f * deltaTime, namVector.y * 100.0f * deltaTime);
 
 		inputVector.x = Core.InputManager.GetActionStrength("right") - Core.InputManager.GetActionStrength("left");
@@ -37,7 +38,7 @@ namespace testSpace
 		namVector.x = Core.InputManager.GetActionStrength("arrowRight") - Core.InputManager.GetActionStrength("arrowLeft");
 		namVector.y = Core.InputManager.GetActionStrength("arrowUp") - Core.InputManager.GetActionStrength("arrowDown");
 
-		sprintSpeed = Core.InputManager.GetActionStrength("sprint") * 15;
+		sprintSpeed = Core.InputManager.GetActionStrength("sprint") * 150;
 
 		this->deltaTime = deltaTime;
 	}

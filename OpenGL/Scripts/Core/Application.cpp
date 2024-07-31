@@ -18,8 +18,8 @@
 #include <fstream>
 #include <sstream>
 
-#define SCREEN_WIDTH 1024
-#define SCREEN_HEIGHT 600
+#define SCREEN_WIDTH 1920
+#define SCREEN_HEIGHT 1080
 
 float timeTime = 0, oldTimeSinceStart = 0, timeSinceStart, deltaTime;
 int actionIndex = 0, keyBindIndex = 0;

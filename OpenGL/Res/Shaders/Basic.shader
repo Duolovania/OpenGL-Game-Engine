@@ -11,14 +11,14 @@ out float v_TexIndex;
 out vec4 v_Color;
 
 uniform mat4 u_MVP;
-uniform mat4 u_Transform;
 
 void main()
 {
-   gl_Position = u_Transform * u_MVP * vec4(position, 1.0); // u_MVP * position = ortho. position * u_MVP = perspective.
    v_TexCoord = texCoord;
    v_TexIndex = texIndex;
    v_Color = a_Color;
+
+   gl_Position = u_MVP * vec4(position, 1.0); // u_MVP * position = ortho. position * u_MVP = perspective.
 };
 
 #shader fragment
