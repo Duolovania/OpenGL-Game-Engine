@@ -125,11 +125,3 @@ struct Vector4
 		return result;
 	}
 };
-
-struct Vertex
-{
-	Vector3 Position;
-	Vector4 Color;
-	Vector2 TextureCoords;
-	float TextureID;
-};

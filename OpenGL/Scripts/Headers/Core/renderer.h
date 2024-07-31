@@ -1,16 +1,14 @@
 #pragma once
-#include <glew.h>
 #include "Rendering/vertexarray.h"
 #include "Rendering/indexbuffer.h"
-#include "Rendering/vertexbuffer.h"
-#include "Rendering/vertexbufferlayout.h"
-#include "Core/character.h"
 
 #include "Rendering/texture.h"
-#include <array>
-
 #include "Rendering/shader.h"
+
 #include "Math/vector.h"
+#include "Core/character.h"
+#include "Math/vertex.h"
+#include <array>
 
 #define GLCall(x) GLClearError();\
     x;\
@@ -49,6 +47,8 @@ class Renderer
         std::array<Vertex, 200> vertices;
 
         void CreateQuad(float x, float y, Vector3 size, float texID, Vector4 color);
+        void CreateQuad(glm::mat4 transform, float texID, Vector4 color);
+
 
         unsigned int GetCachedTexture(Character character, unsigned int index);
 };

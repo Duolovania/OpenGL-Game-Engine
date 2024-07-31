@@ -1,8 +1,6 @@
 #pragma once
 #include <iostream>
 #include "Core/renderer.h"
-#include "Core/character.h"
-
 
 void GLClearError()
 {
@@ -114,12 +112,17 @@ void Renderer::Init()
 	m_shader->SetUniform1iv("u_Textures", sizeof(samplers), samplers); // Sets the shader texture slots to samplers.
 
 	objectsToRender[0].transform.position.x = 0;
-	objectsToRender[1].transform.position.x = 100;
-	objectsToRender[2].transform.position.x = 200;
-	objectsToRender[3].transform.position.x = 300;
-	objectsToRender[4].transform.position.x = 400;
-	objectsToRender[5].transform.position.x = 500;
-	objectsToRender[6].transform.position.x = -100;
+	objectsToRender[1].transform.position.x = 1;
+	objectsToRender[2].transform.position.x = 2;
+	objectsToRender[3].transform.position.x = 3;
+	objectsToRender[4].transform.position.x = 4;
+	objectsToRender[5].transform.position.x = 5;
+	objectsToRender[6].transform.position.x = -1;
+
+	for (int i = 0; i < objectsToRender.size(); i++)
+	{
+		objectsToRender[i].transform.scale = Vector3(10, 10, 10);
+	}
 
 	m_va->Unbind();
 	m_texture->UnBind();
@@ -141,25 +144,37 @@ void Renderer::Draw() const
 // Outputs the data onto the viewport.
 void Renderer::Draw(glm::mat4 projection, glm::vec2 cameraPosition, glm::vec4 colorFilter) 
 {
-	buffer = vertices.data(); // Clears all vertices generated.
-
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
-		if (objectsToRender[i].CheckVisibility(cameraPosition)) CreateQuad(-150 + objectsToRender[i].transform.position.x, -50 + objectsToRender[i].transform.position.y, Vector3(objectsToRender[i].transform.scale.x, objectsToRender[i].transform.scale.y, objectsToRender[i].transform.scale.z), i, {1.0f, 1.0f, 1.0f, 1.0f});
+
+		if (objectsToRender[i].CheckVisibility(cameraPosition))
+		{
+			glm::mat4 transform2 = glm::translate(glm::mat4(1.0f), glm::vec3(objectsToRender[i].transform.position.x, objectsToRender[i].transform.position.y, 0.0f))
+				* glm::scale(glm::mat4(1.0f), glm::vec3(objectsToRender[i].transform.scale.x, objectsToRender[i].transform.scale.y, 1.0f));
+
+			//CreateQuad(-150 + objectsToRender[i].transform.position.x, -50 + objectsToRender[i].transform.position.y, Vector3(objectsToRender[i].transform.scale.x, objectsToRender[i].transform.scale.y, objectsToRender[i].transform.rotation.z), i, { 1.0f, 1.0f, 1.0f, 1.0f });
+			
+			CreateQuad(transform2, i, { 1.0f, 1.0f, 1.0f, 1.0f });
+
+			m_shader->Bind();
+			m_shader->SetUniform4f("u_Color", colorFilter);
+
+			glm::mat4 transform = glm::translate(glm::mat4(1.0f), glm::vec3(objectsToRender[i].transform.position.x, objectsToRender[i].transform.position.y, 0.0f))
+				* glm::rotate(glm::mat4(1.0f), glm::radians(-objectsToRender[i].transform.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f))
+				* glm::scale(glm::mat4(1.0f), glm::vec3(objectsToRender[i].transform.scale.x, objectsToRender[i].transform.scale.y, 1.0f));
+
+			m_shader->SetUniformMat4f("u_MVP", projection);
+			m_shader->SetUniformMat4f("u_Transform", transform);
+
+			m_vb->Bind();
+			m_vb->ModifyData(vertices.size() * sizeof(Vertex), vertices.data());
+
+			m_va->Bind();
+			m_ib->Bind();
+
+			GLCall(glDrawElements(GL_TRIANGLES, m_ib->GetCount(), GL_UNSIGNED_INT, nullptr));
+		}
 	}
-
-	m_shader->Bind();
-	m_shader->SetUniform4f("u_Color", colorFilter);
-
-	m_vb->Bind();
-	m_vb->ModifyData(vertices.size() * sizeof(Vertex), vertices.data());
-
-	m_shader->SetUniformMat4f("u_MVP", projection);
-
-	m_va->Bind();
-	m_ib->Bind();
-
-	GLCall(glDrawElements(GL_TRIANGLES, m_ib->GetCount(), GL_UNSIGNED_INT, nullptr));
 }
 
 // Resets the viewport.
@@ -170,29 +185,60 @@ void Renderer::Clear() const
 
 void Renderer::CreateQuad(float x, float y, Vector3 size, float texID, Vector4 color)
 {
-	buffer->Position = { x, y, 0.0f };
+		buffer->Position = { 0, 0, 0.0f };
+		buffer->Color = color;
+		buffer->TextureCoords = { 0.0f, 0.0f };
+		buffer->TextureID = texID;
+		buffer++;
+
+		buffer->Position = { size.x, 0, 0.0f };
+		buffer->Color = color;
+		buffer->TextureCoords = { 1.0f, 0.0f };
+		buffer->TextureID = texID;
+		buffer++;
+
+		buffer->Position = { size.x, size.y, 0.0f };
+		buffer->Color = color;
+		buffer->TextureCoords = { 1.0f, 1.0f };
+		buffer->TextureID = texID;
+		buffer++;
+
+		buffer->Position = { 0, size.y, 0.0f };
+		buffer->Color = color;
+		buffer->TextureCoords = { 0.0f, 1.0f };
+		buffer->TextureID = texID;
+		buffer++;
+}
+
+void Renderer::CreateQuad(glm::mat4 transform, float texID, Vector4 color)
+{
+	buffer = vertices.data(); // Clears all vertices generated.
+
+	buffer->Position = transform * glm::vec4(-0.5f, -0.5f, 0.0f, 1.0f);
 	buffer->Color = color;
 	buffer->TextureCoords = { 0.0f, 0.0f };
 	buffer->TextureID = texID;
 	buffer++;
 
-	buffer->Position = { x + size.x, y, 0.0f };
+	buffer->Position = transform * glm::vec4(0.5f, -0.5f, 0.0f, 1.0f);
 	buffer->Color = color;
 	buffer->TextureCoords = { 1.0f, 0.0f };
 	buffer->TextureID = texID;
 	buffer++;
 
-	buffer->Position = { x + size.x, y + size.y, 0.0f };
+	buffer->Position = transform * glm::vec4(0.5f, 0.5f, 0.0f, 1.0f);
 	buffer->Color = color;
 	buffer->TextureCoords = { 1.0f, 1.0f };
 	buffer->TextureID = texID;
 	buffer++;
 
-	buffer->Position = { x, y + size.y, 0.0f };
+	buffer->Position = transform * glm::vec4(-0.5f, 0.5f, 0.0f, 1.0f);
 	buffer->Color = color;
 	buffer->TextureCoords = { 0.0f, 1.0f };
 	buffer->TextureID = texID;
 	buffer++;
+
+
 }
 
 // Retrieves an existing texture if it already exists.

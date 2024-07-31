@@ -1,7 +1,7 @@
 #shader vertex
 #version 330 core
 
-layout(location = 0) in vec4 position;
+layout(location = 0) in vec3 position;
 layout(location = 1) in vec4 a_Color;
 layout(location = 2) in vec2 texCoord;
 layout(location = 3) in float texIndex;
@@ -11,10 +11,11 @@ out float v_TexIndex;
 out vec4 v_Color;
 
 uniform mat4 u_MVP;
+uniform mat4 u_Transform;
 
 void main()
 {
-   gl_Position = u_MVP * position; // u_MVP * position = ortho. position * u_MVP = perspective.
+   gl_Position = u_Transform * u_MVP * vec4(position, 1.0); // u_MVP * position = ortho. position * u_MVP = perspective.
    v_TexCoord = texCoord;
    v_TexIndex = texIndex;
    v_Color = a_Color;

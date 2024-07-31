@@ -28,7 +28,7 @@ namespace testSpace
 	// Frame-by-frame scene logic.
 	void TestTexture2D::OnUpdate(float deltaTime)
 	{
-		camPos += glm::vec2(inputVector.x * (100.0f + sprintSpeed) * deltaTime, inputVector.y * (100.0f + sprintSpeed) * deltaTime);
+		camPos += glm::vec2(inputVector.x * (10.0f + sprintSpeed) * deltaTime, inputVector.y * (10.0f + sprintSpeed) * deltaTime);
 		namPos += glm::vec2(namVector.x * 100.0f * deltaTime, namVector.y * 100.0f * deltaTime);
 
 		inputVector.x = Core.InputManager.GetActionStrength("right") - Core.InputManager.GetActionStrength("left");
@@ -37,7 +37,7 @@ namespace testSpace
 		namVector.x = Core.InputManager.GetActionStrength("arrowRight") - Core.InputManager.GetActionStrength("arrowLeft");
 		namVector.y = Core.InputManager.GetActionStrength("arrowUp") - Core.InputManager.GetActionStrength("arrowDown");
 
-		sprintSpeed = Core.InputManager.GetActionStrength("sprint") * 150;
+		sprintSpeed = Core.InputManager.GetActionStrength("sprint") * 15;
 
 		this->deltaTime = deltaTime;
 	}
@@ -62,6 +62,11 @@ namespace testSpace
 		ImGui::Text("FPS: %.1f", double(ImGui::GetIO().Framerate));
 		ImGui::Text("Textures Loaded: %.0f", double(renderer.texturesLoaded));
 		ImGui::Text("New Textures Created: %.0f", double(renderer.newTextures));
+
+		ImGui::Text("Position X: %.0f", double(camPos.x));
+		ImGui::SameLine();
+		ImGui::Text("Y: %.0f", double(camPos.y));
+
 
 		ImGui::Text("Control RGB values of shader");
 		ImGui::SliderFloat("R:", &red, 0.0f, 1.0f, "%.1f");
@@ -90,6 +95,8 @@ namespace testSpace
 				ImGui::SameLine();
 
 				ImGui::InputFloat("SY:", &renderer.objectsToRender[selectedObject].transform.scale.y, 0.0f, 0.0f, "%.f");
+
+				ImGui::InputFloat("RZ:", &renderer.objectsToRender[selectedObject].transform.rotation.z, 0.0f, 0.0f, "%.f");
 			}
 
 			ImGui::ListBoxFooter();

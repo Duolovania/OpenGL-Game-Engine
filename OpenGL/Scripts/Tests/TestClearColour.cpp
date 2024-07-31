@@ -1,5 +1,5 @@
 #include "testclearcolour.h"
-#include "Headers/renderer.h"
+#include "Headers/Core/renderer.h"
 
 float tria[] = {
 			-0.5f, -0.5f, 0.0f,

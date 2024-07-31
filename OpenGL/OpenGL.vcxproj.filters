@@ -10,6 +10,9 @@
     <Filter Include="Headers\Core">
       <UniqueIdentifier>{B91B6850-A57E-F7F4-4E04-30AB3A46C377}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headers\Math">
+      <UniqueIdentifier>{3A5C6D50-26BF-FCF4-CF44-35ABBB86C877}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Headers\Rendering">
       <UniqueIdentifier>{4E8519E6-BA9B-177C-0313-A39D6F68E803}</UniqueIdentifier>
     </Filter>
@@ -42,10 +45,19 @@
     <ClInclude Include="Scripts\Headers\Core\animation.h">
       <Filter>Headers\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\animationframe.h">
+      <Filter>Headers\Core</Filter>
+    </ClInclude>
     <ClInclude Include="Scripts\Headers\Core\animationplayer.h">
       <Filter>Headers\Core</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Headers\Core\application.h">
+      <Filter>Headers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\character.h">
+      <Filter>Headers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\gameobject.h">
       <Filter>Headers\Core</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Headers\Core\input.h">
@@ -54,8 +66,11 @@
     <ClInclude Include="Scripts\Headers\Core\renderer.h">
       <Filter>Headers\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\Headers\Math\transform.h">
+      <Filter>Headers\Math</Filter>
+    </ClInclude>
     <ClInclude Include="Scripts\Headers\Math\vector.h">
-      <Filter>Headers\Core</Filter>
+      <Filter>Headers\Math</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Headers\Rendering\indexbuffer.h">
       <Filter>Headers\Rendering</Filter>
@@ -75,18 +90,7 @@
     <ClInclude Include="Scripts\Headers\Rendering\vertexbufferlayout.h">
       <Filter>Headers\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\Core\animationframe.h">
-      <Filter>Headers\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Core\character.h">
-      <Filter>Headers\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Core\gameobject.h">
-      <Filter>Headers\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Math\transform.h">
-      <Filter>Headers\Core</Filter>
-    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Math\vertex.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scripts\Core\Action.cpp">
@@ -95,10 +99,16 @@
     <ClCompile Include="Scripts\Core\Animation.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Core\AnimationFrame.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
     <ClCompile Include="Scripts\Core\AnimationPlayer.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Scripts\Core\Application.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Core\Character.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Scripts\Core\Input.cpp">
@@ -159,9 +169,5 @@
     <ClCompile Include="Scripts\Vendor\stb_image\STB_Image.cpp">
       <Filter>Vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Core\AnimationFrame.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Core\Character.cpp" />
   </ItemGroup>
 </Project>

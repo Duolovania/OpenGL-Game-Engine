@@ -139,7 +139,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLEW_STATIC;GL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts;Scripts\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts\Headers;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -159,7 +159,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLEW_STATIC;GL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts;Scripts\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts\Headers;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -179,7 +179,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLEW_STATIC;GL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts;Scripts\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts\Headers;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -202,7 +202,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLEW_STATIC;GL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts;Scripts\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts\Headers;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -225,7 +225,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLEW_STATIC;GL_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts;Scripts\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts\Headers;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -248,7 +248,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLEW_STATIC;GL_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts;Scripts\Headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\GLEW\include\GL;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts\Headers;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -267,9 +267,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Scripts\Headers\Core\animationframe.h" />
     <ClInclude Include="Scripts\Headers\Core\action.h" />
     <ClInclude Include="Scripts\Headers\Core\animation.h" />
+    <ClInclude Include="Scripts\Headers\Core\animationframe.h" />
     <ClInclude Include="Scripts\Headers\Core\animationplayer.h" />
     <ClInclude Include="Scripts\Headers\Core\application.h" />
     <ClInclude Include="Scripts\Headers\Core\character.h" />
@@ -278,6 +278,7 @@
     <ClInclude Include="Scripts\Headers\Core\renderer.h" />
     <ClInclude Include="Scripts\Headers\Math\transform.h" />
     <ClInclude Include="Scripts\Headers\Math\vector.h" />
+    <ClInclude Include="Scripts\Headers\Math\vertex.h" />
     <ClInclude Include="Scripts\Headers\Rendering\indexbuffer.h" />
     <ClInclude Include="Scripts\Headers\Rendering\shader.h" />
     <ClInclude Include="Scripts\Headers\Rendering\texture.h" />
@@ -287,13 +288,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scripts\Core\Action.cpp" />
-    <ClCompile Include="Scripts\Core\Animation.cpp">
-      <ObjectFileName>$(IntDir)\Animation1.obj</ObjectFileName>
-    </ClCompile>
+    <ClCompile Include="Scripts\Core\Animation.cpp" />
     <ClCompile Include="Scripts\Core\AnimationFrame.cpp" />
-    <ClCompile Include="Scripts\Core\AnimationPlayer.cpp">
-      <ObjectFileName>$(IntDir)\AnimationPlayer1.obj</ObjectFileName>
-    </ClCompile>
+    <ClCompile Include="Scripts\Core\AnimationPlayer.cpp" />
     <ClCompile Include="Scripts\Core\Application.cpp" />
     <ClCompile Include="Scripts\Core\Character.cpp" />
     <ClCompile Include="Scripts\Core\Input.cpp" />
