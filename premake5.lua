@@ -50,6 +50,7 @@ project "OpenGL"
         "%{prj.name}/Scripts/Tests",
 
         "%{prj.name}/Scripts/Vendor",
+        "%{prj.name}/Scripts/Vendor/openal-soft-master/include",
         "%{prj.name}/Scripts/Vendor/imgui",
         "%{prj.name}/Scripts/Vendor/stb_image",
         "%{prj.name}/Scripts/Vendor/glm",

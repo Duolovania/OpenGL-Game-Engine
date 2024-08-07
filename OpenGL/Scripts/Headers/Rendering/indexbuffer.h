@@ -2,8 +2,6 @@
 
 class IndexBuffer
 {
-	private:
-		unsigned int rendererID, count;
 	public:
 		IndexBuffer(unsigned int count);
 		~IndexBuffer();
@@ -14,4 +12,6 @@ class IndexBuffer
 		void Unbind() const;
 
 		inline unsigned int GetCount() const { return count; }
+	private:
+		unsigned int rendererID, count;
 };

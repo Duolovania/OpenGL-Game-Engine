@@ -30,7 +30,7 @@ class Renderer
         void Clear() const;
 
         void Draw() const;
-        void Draw(glm::mat4 projection, glm::vec2 cameraPosition, glm::vec4 colorFilter);
+        void Draw(glm::mat4 projection, glm::vec2 cameraPosition);
         std::vector<Character> objectsToRender;
 
 
@@ -46,7 +46,6 @@ class Renderer
         Vertex* buffer;
         std::array<Vertex, 200> vertices;
 
-        void CreateQuad(float x, float y, Vector3 size, float texID, Vector4 color);
         void CreateQuad(glm::mat4 transform, float texID, Vector4 color);
 
 

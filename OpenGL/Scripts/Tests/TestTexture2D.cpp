@@ -54,7 +54,7 @@ namespace testSpace
 
 		mvp = proj * view * model;
 
-		renderer.Draw(mvp, camPos, glm::vec4(red, green, blue, alpha));
+		renderer.Draw(mvp, camPos);
 	}
 
 	// Frame-by-frame GUI logic.
@@ -68,28 +68,15 @@ namespace testSpace
 		ImGui::SameLine();
 		ImGui::Text("Y: %.0f", double(camPos.y));
 
-
-		ImGui::Text("Control RGB values of shader");
-		ImGui::SliderFloat("R:", &red, 0.0f, 1.0f, "%.1f");
-		ImGui::SameLine();
-
-		ImGui::SliderFloat("G:", &green, 0.0f, 1.0f, "%.1f");
-		ImGui::SameLine();
-
-		ImGui::SliderFloat("B:", &blue, 0.0f, 1.0f, "%.1f");
-		ImGui::SameLine();
-
-		ImGui::SliderFloat("A:", &alpha, 0.0f, 1.0f, "%.1f");
-
-		ImGui::Begin("Inspector");
-
-		if (ImGui::ListBoxHeader("Transform"))
+		if (selectedObject > -1)
 		{
-			if (selectedObject > -1)
+			ImGui::Begin("Inspector");
+
+			if (ImGui::CollapsingHeader("Transform"))
 			{
 				ImGui::InputFloat("PX:", &renderer.objectsToRender[selectedObject].transform.position.x, 0.0f, 0.0f, "%.f");
 				ImGui::SameLine();
-				
+
 				ImGui::InputFloat("PY:", &renderer.objectsToRender[selectedObject].transform.position.y, 0.0f, 0.0f, "%.f");
 
 				ImGui::InputFloat("SX:", &renderer.objectsToRender[selectedObject].transform.scale.x, 0.0f, 0.0f, "%.f");
@@ -100,16 +87,31 @@ namespace testSpace
 				ImGui::InputFloat("RZ:", &renderer.objectsToRender[selectedObject].transform.rotation.z, 0.0f, 0.0f, "%.f");
 			}
 
-			ImGui::ListBoxFooter();
-		}
+			if (ImGui::CollapsingHeader("Sprite Renderer"))
+			{
+				ImGui::Image((void*)renderer.objectsToRender[selectedObject].texture, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
 
-		ImGui::End();
+				ImGui::Text("Shader Control:");
+				ImGui::SliderFloat("R:", &renderer.objectsToRender[selectedObject].color.x, 0.0f, 1.0f, "%.1f");
+				ImGui::SameLine();
+
+				ImGui::SliderFloat("G:", &renderer.objectsToRender[selectedObject].color.y, 0.0f, 1.0f, "%.1f");
+				ImGui::SameLine();
+
+				ImGui::SliderFloat("B:", &renderer.objectsToRender[selectedObject].color.z, 0.0f, 1.0f, "%.1f");
+				ImGui::SameLine();
+
+				ImGui::SliderFloat("A:", &renderer.objectsToRender[selectedObject].color.w, 0.0f, 1.0f, "%.1f");
+			}
+
+			ImGui::End();
+		}
 
 		ImGui::Begin("Hierarchy");
 
 		for (int i = 0; i < renderer.objectsToRender.size(); i++)
 		{
-			if (ImGui::Button(std::to_string(i).c_str()))
+			if (ImGui::Button((renderer.objectsToRender[i].objectName).c_str()))
 			{
 				selectedObject = i;
 			}

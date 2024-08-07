@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{9718D90C-032D-01BE-CCAE-A41D3882FDEE}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Core">
       <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headers">
       <UniqueIdentifier>{C196CD9C-2D76-4C38-368E-D70EA2ECB299}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Audio">
+      <UniqueIdentifier>{82714A5D-EE31-C693-B76C-0F1123EC0A70}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headers\Core">
       <UniqueIdentifier>{B91B6850-A57E-F7F4-4E04-30AB3A46C377}</UniqueIdentifier>
@@ -34,11 +40,71 @@
     <Filter Include="Vendor\imgui">
       <UniqueIdentifier>{3D8F64D2-29F2-F376-D277-2C2DBEB9BFF9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Vendor\openal-soft-master">
+      <UniqueIdentifier>{4394F33B-AF56-27C6-F806-B652640800A4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\al">
+      <UniqueIdentifier>{3FA660EC-2B61-5098-D418-C9E2C0B29A28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\al\eax">
+      <UniqueIdentifier>{2C2ED3DC-187F-BE1E-41E3-ACE02D935188}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\al\effects">
+      <UniqueIdentifier>{0E8D735C-FA73-3554-A3C4-9B718F8AAEBA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\alc">
+      <UniqueIdentifier>{826E7578-EE86-5CA2-B733-EC3B230BF13B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\alc\backends">
+      <UniqueIdentifier>{EC5A6451-D8AC-3B41-C1CB-7851ADBC542A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\alc\effects">
+      <UniqueIdentifier>{51E86171-BDAC-6061-8612-912BF295FC96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\common">
+      <UniqueIdentifier>{3BECD5E1-273D-C123-50A1-AFE53C51548D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\core">
+      <UniqueIdentifier>{9B662487-878C-EEED-70D2-73B95C9713BA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\core\filters">
+      <UniqueIdentifier>{03751E90-EFC6-F57F-D8E5-3290C4D60E69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\core\mixer">
+      <UniqueIdentifier>{0F336E17-FB19-300F-A46A-962C9030A975}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\examples">
+      <UniqueIdentifier>{515D5420-3D99-578A-A6AB-6F81920600A5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\router">
+      <UniqueIdentifier>{33CDD704-1F1E-C346-4882-B108343256B0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\tests">
+      <UniqueIdentifier>{6565DF6C-D148-EEAC-DA4B-1CE946AEB4FD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\utils">
+      <UniqueIdentifier>{038CF96C-6F6F-08AD-7872-36E9E4D4CEFD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\utils\alsoft-config">
+      <UniqueIdentifier>{1E54B358-8AC4-B5D1-53E3-2F5ABF12EED2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\utils\makemhr">
+      <UniqueIdentifier>{37B5EAD1-A344-ACBC-AC40-8DD4184FE7C8}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Vendor\stb_image">
       <UniqueIdentifier>{EDE315D3-D9DC-3425-020F-1AAAEE661431}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scripts\Headers\Audio\audiobuffer.h">
+      <Filter>Headers\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Audio\audiolistener.h">
+      <Filter>Headers\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Audio\audiosource.h">
+      <Filter>Headers\Audio</Filter>
+    </ClInclude>
     <ClInclude Include="Scripts\Headers\Core\action.h">
       <Filter>Headers\Core</Filter>
     </ClInclude>
@@ -72,6 +138,9 @@
     <ClInclude Include="Scripts\Headers\Math\vector.h">
       <Filter>Headers\Math</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\Headers\Math\vertex.h">
+      <Filter>Headers\Math</Filter>
+    </ClInclude>
     <ClInclude Include="Scripts\Headers\Rendering\indexbuffer.h">
       <Filter>Headers\Rendering</Filter>
     </ClInclude>
@@ -90,9 +159,17 @@
     <ClInclude Include="Scripts\Headers\Rendering\vertexbufferlayout.h">
       <Filter>Headers\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\Math\vertex.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Scripts\Audio\AudioBuffer.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Audio\AudioListener.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Audio\AudioSource.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
     <ClCompile Include="Scripts\Core\Action.cpp">
       <Filter>Core</Filter>
     </ClCompile>

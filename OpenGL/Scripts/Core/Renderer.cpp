@@ -73,9 +73,9 @@ void Renderer::Init()
 
 	m_va->AddBuffer(*m_vb, layout);
 
-	m_shader = std::make_unique<Shader>("Res/Shaders/Basic.shader");
+	/*m_shader = std::make_unique<Shader>("Res/Shaders/Basic.shader");
 	m_shader->CreateShader();
-	m_shader->Bind();
+	m_shader->Bind();*/
 
 	Character character1 = Character("namjas.JPG");
 	Character character2 = Character("B happy.png");
@@ -101,15 +101,30 @@ void Renderer::Init()
 	// Prepares necessary amount of slots and binds each character texture to a slot.
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
+		if (i == 1)
+		{
+			objectsToRender[i].m_shader = std::make_unique<Shader>("Res/Shaders/Basic2.shader");
+		}
+		else
+		{
+			objectsToRender[i].m_shader = std::make_unique<Shader>("Res/Shaders/Basic.shader");
+		}
+
+		objectsToRender[i].m_shader->CreateShader();
+		objectsToRender[i].m_shader->Bind();
+
 		samplers[i] = i;
 		m_texture->Bind(i + 1);
 
 		objectsToRender[i].texture = GetCachedTexture(objectsToRender[i], i);
-		m_shader->BindTexture(i, objectsToRender[i].texture);
+		//m_shader->BindTexture(i, objectsToRender[i].texture);
+		objectsToRender[i].m_shader->BindTexture(i, objectsToRender[i].texture);
+		objectsToRender[i].m_shader->SetUniform1iv("u_Textures", sizeof(samplers), samplers); // Sets the shader texture slots to samplers.
+
 		texturesLoaded++;
 	}
 
-	m_shader->SetUniform1iv("u_Textures", sizeof(samplers), samplers); // Sets the shader texture slots to samplers.
+	//m_shader->SetUniform1iv("u_Textures", sizeof(samplers), samplers); // Sets the shader texture slots to samplers.
 
 	objectsToRender[0].transform.position.x = 0;
 	objectsToRender[1].transform.position.x = 100;
@@ -126,7 +141,7 @@ void Renderer::Init()
 
 	m_va->Unbind();
 	m_texture->UnBind();
-	m_shader->UnBind();
+	//m_shader->UnBind();
 	m_vb->Unbind();
 	m_ib->Unbind();
 }
@@ -142,24 +157,21 @@ void Renderer::Draw() const
 }
 
 // Outputs the data onto the viewport.
-void Renderer::Draw(glm::mat4 projection, glm::vec2 cameraPosition, glm::vec4 colorFilter) 
+void Renderer::Draw(glm::mat4 projection, glm::vec2 cameraPosition) 
 {
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
-
 		if (objectsToRender[i].CheckVisibility(cameraPosition))
 		{
 			glm::mat4 transform = glm::translate(glm::mat4(1.0f), glm::vec3(objectsToRender[i].transform.position.x, objectsToRender[i].transform.position.y, 0.0f))
 				* glm::rotate(glm::mat4(1.0f), glm::radians(-objectsToRender[i].transform.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f))
 				* glm::scale(glm::mat4(1.0f), glm::vec3(objectsToRender[i].transform.scale.x, objectsToRender[i].transform.scale.y, 1.0f));
-
-			//CreateQuad(-150 + objectsToRender[i].transform.position.x, -50 + objectsToRender[i].transform.position.y, Vector3(objectsToRender[i].transform.scale.x, objectsToRender[i].transform.scale.y, objectsToRender[i].transform.rotation.z), i, { 1.0f, 1.0f, 1.0f, 1.0f });
 			
 			CreateQuad(transform, i, { 1.0f, 1.0f, 1.0f, 1.0f });
 
-			m_shader->Bind();
-			m_shader->SetUniform4f("u_Color", colorFilter);
-			m_shader->SetUniformMat4f("u_MVP", projection);
+			objectsToRender[i].m_shader->Bind();
+			objectsToRender[i].m_shader->SetUniform4f("u_Color", objectsToRender[i].color);
+			objectsToRender[i].m_shader->SetUniformMat4f("u_MVP", projection);
 
 			m_vb->Bind();
 			m_vb->ModifyData(vertices.size() * sizeof(Vertex), vertices.data());
@@ -176,33 +188,6 @@ void Renderer::Draw(glm::mat4 projection, glm::vec2 cameraPosition, glm::vec4 co
 void Renderer::Clear() const
 {
     GLCall(glClear(GL_COLOR_BUFFER_BIT));
-}
-
-void Renderer::CreateQuad(float x, float y, Vector3 size, float texID, Vector4 color)
-{
-		buffer->Position = { 0, 0, 0.0f };
-		buffer->Color = color;
-		buffer->TextureCoords = { 0.0f, 0.0f };
-		buffer->TextureID = texID;
-		buffer++;
-
-		buffer->Position = { size.x, 0, 0.0f };
-		buffer->Color = color;
-		buffer->TextureCoords = { 1.0f, 0.0f };
-		buffer->TextureID = texID;
-		buffer++;
-
-		buffer->Position = { size.x, size.y, 0.0f };
-		buffer->Color = color;
-		buffer->TextureCoords = { 1.0f, 1.0f };
-		buffer->TextureID = texID;
-		buffer++;
-
-		buffer->Position = { 0, size.y, 0.0f };
-		buffer->Color = color;
-		buffer->TextureCoords = { 0.0f, 1.0f };
-		buffer->TextureID = texID;
-		buffer++;
 }
 
 void Renderer::CreateQuad(glm::mat4 transform, float texID, Vector4 color)
