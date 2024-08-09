@@ -2,6 +2,12 @@
 #include "Rendering/texture.h"
 #include "Core/renderer.h"
 
+Texture::Texture()
+	: bufferID(0)
+{
+
+}
+
 Texture::Texture(const std::string& path)
 	: bufferID(0), filePath{path}, localBuffer(nullptr), w(0), h(0), bpp(0)
 {

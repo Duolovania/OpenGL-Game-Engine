@@ -101,14 +101,7 @@ void Renderer::Init()
 	// Prepares necessary amount of slots and binds each character texture to a slot.
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
-		if (i == 1)
-		{
-			objectsToRender[i].m_shader = std::make_unique<Shader>("Res/Shaders/Basic2.shader");
-		}
-		else
-		{
-			objectsToRender[i].m_shader = std::make_unique<Shader>("Res/Shaders/Basic.shader");
-		}
+		objectsToRender[i].m_shader = std::make_unique<Shader>("Res/Shaders/Basic.shader");
 
 		objectsToRender[i].m_shader->CreateShader();
 		objectsToRender[i].m_shader->Bind();
@@ -187,7 +180,7 @@ void Renderer::Draw(glm::mat4 projection, glm::vec2 cameraPosition)
 // Resets the viewport.
 void Renderer::Clear() const
 {
-    GLCall(glClear(GL_COLOR_BUFFER_BIT));
+    GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 }
 
 void Renderer::CreateQuad(glm::mat4 transform, float texID, Vector4 color)

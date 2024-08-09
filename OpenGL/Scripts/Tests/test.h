@@ -5,6 +5,7 @@
 #include <iostream>
 #include <functional>
 #include "imgui/imgui.h"
+#include "gtc/matrix_transform.hpp"
 
 namespace testSpace
 {
@@ -15,7 +16,7 @@ namespace testSpace
 			virtual ~Test() {};
 
 			virtual void OnUpdate(float deltaTime) {};
-			virtual void OnRender() {};
+			virtual void OnRender(glm::mat4 proj) {};
 			virtual void OnImGuiRender() {};
 	};
 

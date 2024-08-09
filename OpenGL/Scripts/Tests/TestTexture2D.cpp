@@ -7,19 +7,19 @@
 
 #include <array>
 #include "imgui_stdlib.h"
+#include "Rendering/framebuffer.h"
 
 glm::vec2 inputVector, namVector, namPos;
-int selectedObject = -1;
+std::string cameraName = "Camera";
+int selectedObject = -2;
 float sprintSpeed;
 
 namespace testSpace
 {
 	// Scene initializer.
 	TestTexture2D::TestTexture2D()
-		: proj(glm::ortho(-100.0f, 100.0f, -75.0f, 75.0f, -1.0f, 1.0f))
 	{
 		renderer.Init();
-		proj = glm::ortho(((float) 1920 / (float) 1080) * -100, ((float)1920 / (float)1080) * 100, -100.0f, 100.0f, -1.0f, 1.0f);
 	}
 
 	TestTexture2D::~TestTexture2D()
@@ -45,7 +45,7 @@ namespace testSpace
 	}
 
 	// Frame-by-frame rendering logic.
-	void TestTexture2D::OnRender()
+	void TestTexture2D::OnRender(glm::mat4 proj)
 	{
 		GLCall(glClearColor(0.05f, 0.05f, 0.05f, 1.0f));
 		renderer.Clear();
@@ -65,14 +65,10 @@ namespace testSpace
 		ImGui::Text("Textures Loaded: %.0f", double(renderer.texturesLoaded));
 		ImGui::Text("New Textures Created: %.0f", double(renderer.newTextures));
 
-		ImGui::Text("Position X: %.0f", double(camPos.x));
-		ImGui::SameLine();
-		ImGui::Text("Y: %.0f", double(camPos.y));
+		ImGui::Begin("Inspector");
 
 		if (selectedObject > -1)
 		{
-			ImGui::Begin("Inspector");
-
 			ImGui::InputText("Object Name:", &renderer.objectsToRender[selectedObject].objectName); // new change.
 
 			if (ImGui::CollapsingHeader("Transform"))
@@ -107,10 +103,28 @@ namespace testSpace
 				ImGui::SliderFloat("A:", &renderer.objectsToRender[selectedObject].color.w, 0.0f, 1.0f, "%.1f");
 			}
 
-			ImGui::End();
+		}
+		else if (selectedObject == -1)
+		{
+			ImGui::InputText("Object Name:", &cameraName); // new change.
+
+			if (ImGui::CollapsingHeader("Transform"))
+			{
+				ImGui::InputFloat("PX:", &camPos.x, 0.0f, 0.0f, "%.f");
+				ImGui::SameLine();
+
+				ImGui::InputFloat("PY:", &camPos.y, 0.0f, 0.0f, "%.f");
+			}
 		}
 
+		ImGui::End();
+
 		ImGui::Begin("Hierarchy");
+
+		if (ImGui::Button((cameraName).c_str()))
+		{
+			selectedObject = -1;
+		}
 
 		for (int i = 0; i < renderer.objectsToRender.size(); i++)
 		{

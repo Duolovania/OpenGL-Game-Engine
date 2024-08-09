@@ -9,6 +9,8 @@
 #include "Rendering/vertexarray.h"
 #include "Rendering/vertexbufferlayout.h"
 
+#include "Rendering/framebuffer.h"
+
 #include "Rendering/shader.h"
 #include "gtc/matrix_transform.hpp"
 
@@ -33,6 +35,11 @@ testSpace::Test* currentTest = nullptr;
 testSpace::TestMenu* testMenu = new testSpace::TestMenu(currentTest);
 Engine Engine::instance;
 
+std::unique_ptr<FrameBuffer> framebuffer;
+std::unique_ptr<Shader> fbShader;
+
+ImVec2 viewportSize;
+
 enum UISelect
 {
     None,
@@ -46,6 +53,12 @@ UISelect uiSelect = UISelect::None;
 void Application::Run()
 {
     Init(SCREEN_WIDTH, SCREEN_HEIGHT, "Engine");
+
+    fbShader = std::make_unique<Shader>("Res/Shaders/Framebuffer.shader");
+    fbShader->CreateShader();
+
+    framebuffer = std::make_unique<FrameBuffer>(SCREEN_WIDTH, SCREEN_HEIGHT);
+    framebuffer->Gen();
 
     // Loop until the user closes the window
     while (!glfwWindowShouldClose(window) && !applicationQuit)
@@ -115,7 +128,22 @@ void Application::Loop()
     if (currentTest)
     {
         currentTest->OnUpdate(deltaTime);
-        currentTest->OnRender();
+        
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+        ImGui::Begin("Viewport");
+
+        viewportSize = ImGui::GetContentRegionAvail();
+        framebuffer->Resize(glm::vec2(viewportSize.x, viewportSize.y));
+
+        ImGui::Image((void*)framebuffer->GetTexture(), viewportSize, ImVec2(0, 1), ImVec2(1, 0));
+        ImGui::End();
+        ImGui::PopStyleVar();
+
+
+        framebuffer->Bind();
+        currentTest->OnRender(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f));
+        framebuffer->UnBind();
+
 
         ImGui::Begin("Main");
 
@@ -131,12 +159,6 @@ void Application::Loop()
         {
             ImGui::OpenPopup("Input");
         }
-
-
-
-
-
-
 
         if (ImGui::BeginPopupModal("Input", NULL))
         {
@@ -206,15 +228,12 @@ void Application::Loop()
             ImGui::EndPopup();
         }
 
-
-
-
-
-
-
         if (ImGui::Button("Quit to Desktop")) applicationQuit = true;
 
         ImGui::End();
+
+        
+
     }
 
     ImGui::Render();
@@ -230,6 +249,7 @@ void Application::Loop()
     // Poll for and process events 
     glfwPollEvents();
     timeTime += (float) 0.1;
+
 }
 
 // Terminates program.

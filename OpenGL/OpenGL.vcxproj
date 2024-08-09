@@ -286,6 +286,7 @@
     <ClInclude Include="Scripts\Headers\Math\transform.h" />
     <ClInclude Include="Scripts\Headers\Math\vector.h" />
     <ClInclude Include="Scripts\Headers\Math\vertex.h" />
+    <ClInclude Include="Scripts\Headers\Rendering\framebuffer.h" />
     <ClInclude Include="Scripts\Headers\Rendering\indexbuffer.h" />
     <ClInclude Include="Scripts\Headers\Rendering\shader.h" />
     <ClInclude Include="Scripts\Headers\Rendering\texture.h" />
@@ -362,6 +363,7 @@
     <ClCompile Include="Scripts\Core\Character.cpp" />
     <ClCompile Include="Scripts\Core\Input.cpp" />
     <ClCompile Include="Scripts\Core\Renderer.cpp" />
+    <ClCompile Include="Scripts\Rendering\FrameBuffer.cpp" />
     <ClCompile Include="Scripts\Rendering\IndexBuffer.cpp" />
     <ClCompile Include="Scripts\Rendering\Shader.cpp" />
     <ClCompile Include="Scripts\Rendering\Texture.cpp" />
@@ -381,6 +383,9 @@
     <ClCompile Include="Scripts\Vendor\imgui\imgui_tables.cpp" />
     <ClCompile Include="Scripts\Vendor\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Scripts\Vendor\stb_image\STB_Image.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\Shaders\Framebuffer.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

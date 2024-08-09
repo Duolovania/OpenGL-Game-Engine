@@ -27,7 +27,7 @@ namespace testSpace
 		
 	}
 
-	void TestClearColour::OnRender()
+	void TestClearColour::OnRender(glm::mat4 proj)
 	{
 		GLCall(glClearColor(clearColour[0], clearColour[1], clearColour[2], clearColour[3]));
 		GLCall(glClear(GL_COLOR_BUFFER_BIT));

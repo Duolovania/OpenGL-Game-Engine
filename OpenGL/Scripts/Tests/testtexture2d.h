@@ -21,14 +21,14 @@ namespace testSpace
 
 			void OnUpdate(float deltaTime) override;
 			void OnImGuiRender() override;
-			void OnRender() override;
+			void OnRender(glm::mat4 proj) override;
 		private:
 			glm::vec2 camPos = glm::vec2(0, 0);
 
 			Renderer renderer;
 			AnimationPlayer playerAnimator;
 			
-			glm::mat4 proj, view, model, mvp;  // Proj = Orthrographic projection.
+			glm::mat4 view, model, mvp;  // Proj = Orthrographic projection.
 			
 			float deltaTime;
 			float red = 1.0f, green = 1.0f, blue = 1.0f, alpha = 1.0f;

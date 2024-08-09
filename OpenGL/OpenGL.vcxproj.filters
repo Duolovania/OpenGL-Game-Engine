@@ -306,6 +306,7 @@
     <ClInclude Include="Scripts\Vendor\stb_image\stb_image.h">
       <Filter>Vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\Headers\Rendering\framebuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scripts\Audio\AudioBuffer.cpp">
@@ -396,5 +397,9 @@
     <ClCompile Include="Scripts\Vendor\stb_image\STB_Image.cpp">
       <Filter>Vendor\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Rendering\FrameBuffer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\Shaders\Framebuffer.shader" />
   </ItemGroup>
 </Project>
