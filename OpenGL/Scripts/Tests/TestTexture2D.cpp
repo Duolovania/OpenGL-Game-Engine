@@ -6,7 +6,7 @@
 #include <string>
 
 #include <array>
-#include "imgui/imgui_stdlib.h"
+#include "imgui_stdlib.h"
 
 glm::vec2 inputVector, namVector, namPos;
 int selectedObject = -1;
@@ -61,7 +61,7 @@ namespace testSpace
 	// Frame-by-frame GUI logic.
 	void TestTexture2D::OnImGuiRender()
 	{
-		ImGui::Text("FPS: %.1f", double(ImGui::GetIO().Framerate));
+		ImGui::Text("FPS: %.1f", double(1.0f / ImGui::GetIO().DeltaTime));
 		ImGui::Text("Textures Loaded: %.0f", double(renderer.texturesLoaded));
 		ImGui::Text("New Textures Created: %.0f", double(renderer.newTextures));
 

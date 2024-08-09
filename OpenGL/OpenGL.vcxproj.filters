@@ -291,6 +291,9 @@
     <ClInclude Include="Scripts\Vendor\imgui\imgui_internal.h">
       <Filter>Vendor\imgui</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\Vendor\imgui\imgui_stdlib.h">
+      <Filter>Vendor\imgui</Filter>
+    </ClInclude>
     <ClInclude Include="Scripts\Vendor\imgui\imstb_rectpack.h">
       <Filter>Vendor\imgui</Filter>
     </ClInclude>
@@ -303,7 +306,6 @@
     <ClInclude Include="Scripts\Vendor\stb_image\stb_image.h">
       <Filter>Vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Vendor\imgui\imgui_stdlib.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scripts\Audio\AudioBuffer.cpp">
@@ -382,6 +384,9 @@
     <ClCompile Include="Scripts\Vendor\imgui\imgui_impl_opengl3.cpp">
       <Filter>Vendor\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Vendor\imgui\imgui_stdlib.cpp">
+      <Filter>Vendor\imgui</Filter>
+    </ClCompile>
     <ClCompile Include="Scripts\Vendor\imgui\imgui_tables.cpp">
       <Filter>Vendor\imgui</Filter>
     </ClCompile>
@@ -391,6 +396,5 @@
     <ClCompile Include="Scripts\Vendor\stb_image\STB_Image.cpp">
       <Filter>Vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Vendor\imgui\imgui_stdlib.cpp" />
   </ItemGroup>
 </Project>

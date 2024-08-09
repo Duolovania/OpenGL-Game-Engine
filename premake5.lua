@@ -43,8 +43,6 @@ project "OpenGL"
     -- Includes dependencies and include paths.
     includedirs 
     {
-        -- "Dependencies/GLFW/Win32/include/GLFW",
-        -- "Dependencies/GLFW/x64/include/GLFW",
         "%{prj.name}/Scripts/Vendor/glfw-master-cherno/include/GLFW",
         "Dependencies/GLEW/include/GL",
 
@@ -59,15 +57,6 @@ project "OpenGL"
         "%{prj.name}/Scripts"
     }
 
-    libdirs
-    {
-        "Dependencies/GLFW/Win32/lib-vc2022",
-        "Dependencies/GLFW/x64/lib-vc2022",
-
-        "Dependencies/GLEW/lib/Release/Win32",
-        "Dependencies/GLEW/lib/Release/x64"
-    }
-
     links
     {
         "glfw3",
@@ -77,6 +66,20 @@ project "OpenGL"
         "Shell32",
         "glew32s"
     }
+
+    filter { "platforms:Win32" }
+        libdirs
+        {
+            "Dependencies/GLFW/Win32/lib-vc2022",
+            "Dependencies/GLEW/lib/Release/Win32"
+        }
+
+    filter { "platforms:x64" }
+        libdirs
+        {
+            "Dependencies/GLFW/x64/lib-vc2022",
+            "Dependencies/GLEW/lib/Release/x64"
+        }
 
     filter "system:windows"
         cppdialect "C++20"
@@ -103,10 +106,12 @@ project "OpenGL"
     filter "configurations:Release"
         defines "GL_RELEASE"
         optimize "On"
+        buildoptions "/MD"
 
     filter "configurations:Dist"
         defines "GL_DIST"
         optimize "On"
+        buildoptions "/MD"
 
 -- project "Sandbox"
 --     location "Sandbox"
