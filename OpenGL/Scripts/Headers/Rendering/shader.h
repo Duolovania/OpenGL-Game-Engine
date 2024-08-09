@@ -2,7 +2,8 @@
 #include <iostream>
 #include <unordered_map>
 #include "glm/glm.hpp"
-#include <glew.h>
+//#include <glew.h>
+#include <glad/glad.h>
 
 // Struct contains Vertex and Fragment data.
 struct ShaderProgramSource

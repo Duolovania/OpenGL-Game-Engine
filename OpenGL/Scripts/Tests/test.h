@@ -1,5 +1,7 @@
 #pragma once
-#include <glew.h>
+//#include <glew.h>
+#include <glad/glad.h>
+
 #include <glfw3.h>
 #include <vector>
 #include <iostream>

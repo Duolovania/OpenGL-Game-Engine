@@ -15,12 +15,14 @@ void main()
 #shader fragment
 #version 330 core
 
-layout(location = 0) out vec4 color;
+out vec4 color;
 
 in vec2 v_TexCoord;
 uniform sampler2D screenTexture;
 
 void main()
 {
-    color = vec4(1.0f) - texture(screenTexture, v_TexCoord);
+    vec3 frag = texture(screenTexture, v_TexCoord).rgb;
+    float grayscale = dot(frag, vec3(0.299, 0.587, 0.114));
+    color = vec4(vec3(grayscale), 1.0);
 };

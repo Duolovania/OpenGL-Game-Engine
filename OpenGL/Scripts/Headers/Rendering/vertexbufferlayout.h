@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
-#include <glew.h>
+#include <glad/glad.h>
+//#include <glew.h>
 //#include "Core/renderer.h"
 #include <stdexcept>
 

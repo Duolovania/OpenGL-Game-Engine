@@ -56,9 +56,11 @@ void Application::Run()
 
     fbShader = std::make_unique<Shader>("Res/Shaders/Framebuffer.shader");
     fbShader->CreateShader();
+    fbShader->Bind();
 
     framebuffer = std::make_unique<FrameBuffer>(SCREEN_WIDTH, SCREEN_HEIGHT);
     framebuffer->Gen();
+
 
     // Loop until the user closes the window
     while (!glfwWindowShouldClose(window) && !applicationQuit)
@@ -75,8 +77,8 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     if (!glfwInit())
         std::cout << "Error: glfwInit non-operational";
 
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     //glfwWindowHint(GLFW_DECORATED, false);
 
@@ -89,10 +91,14 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
 
     // Make the window's context current
     glfwMakeContextCurrent(window);
+
+    int status = gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
+    if (!status)
+        std::cout << "Error: gladInit non-operational";
+
     glfwSwapInterval(1);
 
-    if (glewInit() != GLEW_OK)
-        std::cout << "Error: glewInit non-operational";
+    std::cout << glGetString(GL_VERSION) << std::endl;
 
     GLCall(glEnable(GL_BLEND));
     GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
@@ -139,8 +145,8 @@ void Application::Loop()
         ImGui::End();
         ImGui::PopStyleVar();
 
-
         framebuffer->Bind();
+
         currentTest->OnRender(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f));
         framebuffer->UnBind();
 

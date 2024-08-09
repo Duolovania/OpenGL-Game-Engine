@@ -24,6 +24,11 @@ workspace "OpenGLEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["Glad"] = "Dependencies/Glad/include"
+
+include "Dependencies/Glad"
+
 project "OpenGL"
     location "OpenGL"
     kind "ConsoleApp"
@@ -44,7 +49,7 @@ project "OpenGL"
     includedirs 
     {
         "%{prj.name}/Scripts/Vendor/glfw-master-cherno/include/GLFW",
-        "Dependencies/GLEW/include/GL",
+        "%{IncludeDir.Glad}",
 
         "%{prj.name}/Scripts/Tests",
 
@@ -64,21 +69,19 @@ project "OpenGL"
         "Gdi32",
         "User32",
         "Shell32",
-        "glew32s"
+        "Glad"
     }
 
     filter { "platforms:Win32" }
         libdirs
         {
             "Dependencies/GLFW/Win32/lib-vc2022",
-            "Dependencies/GLEW/lib/Release/Win32"
         }
 
     filter { "platforms:x64" }
         libdirs
         {
             "Dependencies/GLFW/x64/lib-vc2022",
-            "Dependencies/GLEW/lib/Release/x64"
         }
 
     filter "system:windows"
@@ -89,7 +92,7 @@ project "OpenGL"
         defines
         {
             "WIN32",
-            "GLEW_STATIC"
+            "GLFW_INCLUDE_NONE"
         }
 
         ---- Copies engine project DLL into sandbox project.

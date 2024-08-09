@@ -23,8 +23,8 @@ Texture::~Texture()
 // Generates texture data.
 void Texture::Gen()
 {
-	//GLCall(glGenTextures(1, &bufferID));
-	GLCall(glCreateTextures(GL_TEXTURE_2D, 1, &bufferID));
+	GLCall(glGenTextures(1, &bufferID));
+	//GLCall(glGenTextures(GL_TEXTURE_2D, 1, &bufferID));
 	GLCall(glBindTexture(GL_TEXTURE_2D, bufferID));
 
 	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)); // GL_LINEAR = smooth. GL_NEAREST = pixelated.

@@ -15,7 +15,7 @@ VertexBuffer::~VertexBuffer()
 // Generates vertex buffer data.
 void VertexBuffer::Gen(const void* data)
 {
-    GLCall(glCreateBuffers(1, &rendererID)); // How many buffers and the ID
+    GLCall(glGenBuffers(1, &rendererID)); // How many buffers and the ID
     GLCall(glBindBuffer(GL_ARRAY_BUFFER, rendererID)); // Selects buffer
     GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW)); // Generates buffer data
 }

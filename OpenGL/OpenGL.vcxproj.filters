@@ -117,6 +117,9 @@
     <ClInclude Include="Scripts\Headers\Math\vertex.h">
       <Filter>Headers\Math</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\Headers\Rendering\framebuffer.h">
+      <Filter>Headers\Rendering</Filter>
+    </ClInclude>
     <ClInclude Include="Scripts\Headers\Rendering\indexbuffer.h">
       <Filter>Headers\Rendering</Filter>
     </ClInclude>
@@ -306,7 +309,6 @@
     <ClInclude Include="Scripts\Vendor\stb_image\stb_image.h">
       <Filter>Vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\Rendering\framebuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scripts\Audio\AudioBuffer.cpp">
@@ -341,6 +343,9 @@
     </ClCompile>
     <ClCompile Include="Scripts\Core\Renderer.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Rendering\FrameBuffer.cpp">
+      <Filter>Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Scripts\Rendering\IndexBuffer.cpp">
       <Filter>Rendering</Filter>
@@ -397,9 +402,5 @@
     <ClCompile Include="Scripts\Vendor\stb_image\STB_Image.cpp">
       <Filter>Vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Rendering\FrameBuffer.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Res\Shaders\Framebuffer.shader" />
   </ItemGroup>
 </Project>
