@@ -6,6 +6,7 @@
 #include <string>
 
 #include <array>
+#include "imgui/imgui_stdlib.h"
 
 glm::vec2 inputVector, namVector, namPos;
 int selectedObject = -1;
@@ -72,6 +73,8 @@ namespace testSpace
 		{
 			ImGui::Begin("Inspector");
 
+			ImGui::InputText("Object Name:", &renderer.objectsToRender[selectedObject].objectName); // new change.
+
 			if (ImGui::CollapsingHeader("Transform"))
 			{
 				ImGui::InputFloat("PX:", &renderer.objectsToRender[selectedObject].transform.position.x, 0.0f, 0.0f, "%.f");
@@ -91,7 +94,7 @@ namespace testSpace
 			{
 				ImGui::Image((void*)renderer.objectsToRender[selectedObject].texture, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
 
-				ImGui::Text("Shader Control:");
+				ImGui::Text("Colour Control:");
 				ImGui::SliderFloat("R:", &renderer.objectsToRender[selectedObject].color.x, 0.0f, 1.0f, "%.1f");
 				ImGui::SameLine();
 

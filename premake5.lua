@@ -36,6 +36,7 @@ project "OpenGL"
     files
     {
         "%{prj.name}/Scripts/Headers/**.h",
+        "%{prj.name}/Scripts/**.h",
         "%{prj.name}/Scripts/**.cpp"
     }
 

@@ -176,7 +176,7 @@ void Application::Loop()
                 ImGui::Text("Listening...");
             }
 
-            if (ImGui::ListBoxHeader("Actions"))
+            if (ImGui::BeginListBox("Actions"))
             {
                 for (int i = 0; i < Core.InputManager.actionList.size(); i++)
                 {
@@ -199,7 +199,7 @@ void Application::Loop()
                     }
                 }
 
-                ImGui::ListBoxFooter();
+                ImGui::EndListBox();
             }
 
             if (ImGui::Button("Save and Close")) ImGui::CloseCurrentPopup();

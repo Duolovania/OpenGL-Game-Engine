@@ -1,0 +1,111 @@
+﻿  AudioBuffer.cpp
+  AudioListener.cpp
+  AudioSource.cpp
+  Action.cpp
+  Animation.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Animation.cpp(6,20): warning C4018: '<': signed/unsigned mismatch
+  AnimationFrame.cpp
+  AnimationPlayer.cpp
+  Application.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Application.cpp(181,35): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Application.cpp(190,39): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Application.cpp(251,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Application.cpp(253,27): warning C4018: '<': signed/unsigned mismatch
+  Character.cpp
+  Input.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Input.cpp(23,20): warning C4018: '<': signed/unsigned mismatch
+  Renderer.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(102,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(137,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(162,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(170,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(226,20): warning C4018: '<': signed/unsigned mismatch
+  IndexBuffer.cpp
+  Shader.cpp
+  Texture.cpp
+  VertexArray.cpp
+  VertexBuffer.cpp
+  Source.cpp
+  Test.cpp
+  TestClearColour.cpp
+  TestTexture2D.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(35,64): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(35,64): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(35,64): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(35,64): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(35,64): warning C4244:         ]
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(36,61): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(36,61): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(36,61): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(36,61): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(36,61): warning C4244:         ]
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(38,67): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(38,67): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(38,67): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(38,67): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(38,67): warning C4244:         ]
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(39,64): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(39,64): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(39,64): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(39,64): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(39,64): warning C4244:         ]
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(41,63): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(113,21): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Animation.cpp(24,1): warning C4715: 'Animation::Start': not all control paths return a value
+  Compiling...
+  glm.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_glfw.cpp
+  imgui_impl_opengl3.cpp
+  imgui_tables.cpp
+  imgui_widgets.cpp
+  STB_Image.cpp
+  Generating Code...
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4217: symbol '_strcspn' defined in 'libucrt.lib(strcspn.obj)' is imported by 'glfw3.lib(input.obj)' in function '_glfwUpdateGamepadMappings'
+LINK : warning LNK4217: symbol '_strncmp' defined in 'libucrt.lib(strncmp.obj)' is imported by 'glfw3.lib(input.obj)' in function '_parseMapping'
+LINK : warning LNK4286: symbol '_strncmp' defined in 'libucrt.lib(strncmp.obj)' is imported by 'glfw3.lib(context.obj)'
+LINK : warning LNK4286: symbol '_strncmp' defined in 'libucrt.lib(strncmp.obj)' is imported by 'glfw3.lib(egl_context.obj)'
+LINK : warning LNK4217: symbol '_strncpy' defined in 'libucrt.lib(strncpy.obj)' is imported by 'glfw3.lib(input.obj)' in function '__glfwAllocJoystick'
+LINK : warning LNK4286: symbol '_strncpy' defined in 'libucrt.lib(strncpy.obj)' is imported by 'glfw3.lib(window.obj)'
+LINK : warning LNK4286: symbol '_strncpy' defined in 'libucrt.lib(strncpy.obj)' is imported by 'glfw3.lib(monitor.obj)'
+LINK : warning LNK4286: symbol '_strncpy' defined in 'libucrt.lib(strncpy.obj)' is imported by 'glfw3.lib(win32_joystick.obj)'
+LINK : warning LNK4286: symbol '_calloc' defined in 'libucrt.lib(calloc.obj)' is imported by 'glfw3.lib(vulkan.obj)'
+LINK : warning LNK4286: symbol '_calloc' defined in 'libucrt.lib(calloc.obj)' is imported by 'glfw3.lib(wgl_context.obj)'
+LINK : warning LNK4286: symbol '_calloc' defined in 'libucrt.lib(calloc.obj)' is imported by 'glfw3.lib(egl_context.obj)'
+LINK : warning LNK4286: symbol '_calloc' defined in 'libucrt.lib(calloc.obj)' is imported by 'glfw3.lib(osmesa_context.obj)'
+LINK : warning LNK4286: symbol '_calloc' defined in 'libucrt.lib(calloc.obj)' is imported by 'glfw3.lib(win32_window.obj)'
+LINK : warning LNK4286: symbol '_calloc' defined in 'libucrt.lib(calloc.obj)' is imported by 'glfw3.lib(win32_joystick.obj)'
+LINK : warning LNK4286: symbol '_calloc' defined in 'libucrt.lib(calloc.obj)' is imported by 'glfw3.lib(win32_init.obj)'
+LINK : warning LNK4286: symbol '_calloc' defined in 'libucrt.lib(calloc.obj)' is imported by 'glfw3.lib(win32_monitor.obj)'
+LINK : warning LNK4217: symbol '_calloc' defined in 'libucrt.lib(calloc.obj)' is imported by 'glfw3.lib(input.obj)' in function '__glfwAllocJoystick'
+LINK : warning LNK4286: symbol '_calloc' defined in 'libucrt.lib(calloc.obj)' is imported by 'glfw3.lib(init.obj)'
+LINK : warning LNK4286: symbol '_calloc' defined in 'libucrt.lib(calloc.obj)' is imported by 'glfw3.lib(window.obj)'
+LINK : warning LNK4286: symbol '_calloc' defined in 'libucrt.lib(calloc.obj)' is imported by 'glfw3.lib(monitor.obj)'
+LINK : warning LNK4286: symbol '_free' defined in 'libucrt.lib(free.obj)' is imported by 'glfw3.lib(vulkan.obj)'
+LINK : warning LNK4286: symbol '_free' defined in 'libucrt.lib(free.obj)' is imported by 'glfw3.lib(wgl_context.obj)'
+LINK : warning LNK4286: symbol '_free' defined in 'libucrt.lib(free.obj)' is imported by 'glfw3.lib(egl_context.obj)'
+LINK : warning LNK4286: symbol '_free' defined in 'libucrt.lib(free.obj)' is imported by 'glfw3.lib(osmesa_context.obj)'
+LINK : warning LNK4286: symbol '_free' defined in 'libucrt.lib(free.obj)' is imported by 'glfw3.lib(win32_window.obj)'
+LINK : warning LNK4286: symbol '_free' defined in 'libucrt.lib(free.obj)' is imported by 'glfw3.lib(win32_joystick.obj)'
+LINK : warning LNK4286: symbol '_free' defined in 'libucrt.lib(free.obj)' is imported by 'glfw3.lib(win32_init.obj)'
+LINK : warning LNK4286: symbol '_free' defined in 'libucrt.lib(free.obj)' is imported by 'glfw3.lib(win32_monitor.obj)'
+LINK : warning LNK4217: symbol '_free' defined in 'libucrt.lib(free.obj)' is imported by 'glfw3.lib(input.obj)' in function '__glfwFreeJoystick'
+LINK : warning LNK4286: symbol '_free' defined in 'libucrt.lib(free.obj)' is imported by 'glfw3.lib(init.obj)'
+LINK : warning LNK4286: symbol '_free' defined in 'libucrt.lib(free.obj)' is imported by 'glfw3.lib(window.obj)'
+LINK : warning LNK4286: symbol '_free' defined in 'libucrt.lib(free.obj)' is imported by 'glfw3.lib(monitor.obj)'
+LINK : warning LNK4217: symbol '_realloc' defined in 'libucrt.lib(realloc.obj)' is imported by 'glfw3.lib(input.obj)' in function '_glfwUpdateGamepadMappings'
+LINK : warning LNK4286: symbol '_realloc' defined in 'libucrt.lib(realloc.obj)' is imported by 'glfw3.lib(monitor.obj)'
+LINK : warning LNK4286: symbol '_realloc' defined in 'libucrt.lib(realloc.obj)' is imported by 'glfw3.lib(win32_monitor.obj)'
+LINK : warning LNK4217: symbol '_strtoul' defined in 'libucrt.lib(strtox.obj)' is imported by 'glfw3.lib(input.obj)' in function '_parseMapping'
+LINK : warning LNK4217: symbol '___stdio_common_vsprintf' defined in 'libucrt.lib(output.obj)' is imported by 'glfw3.lib(init.obj)' in function '__glfwInputError'
+LINK : warning LNK4217: symbol '___stdio_common_vsprintf' defined in 'libucrt.lib(output.obj)' is imported by 'glfw3.lib(win32_joystick.obj)' in function '_deviceCallback@8'
+LINK : warning LNK4217: symbol '___stdio_common_vsscanf' defined in 'libucrt.lib(input.obj)' is imported by 'glfw3.lib(context.obj)' in function '_sscanf'
+LINK : warning LNK4217: symbol '_qsort' defined in 'libucrt.lib(qsort.obj)' is imported by 'glfw3.lib(monitor.obj)' in function '_refreshVideoModes'
+LINK : warning LNK4217: symbol '_qsort' defined in 'libucrt.lib(qsort.obj)' is imported by 'glfw3.lib(win32_joystick.obj)' in function '__glfwDetectJoystickConnectionWin32'
+glfw3.lib(input.obj) : error LNK2019: unresolved external symbol __imp__strspn referenced in function _glfwUpdateGamepadMappings
+MSVCRT.lib(chandler4gs.obj) : error LNK2019: unresolved external symbol __except_handler4_common referenced in function __except_handler4
+..\bin\Release-windows-x86\OpenGL\OpenGL.exe : fatal error LNK1120: 2 unresolved externals
