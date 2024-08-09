@@ -156,7 +156,7 @@ void Renderer::Draw(glm::mat4 projection, glm::vec2 cameraPosition)
 			CreateQuad(transform, i, { 1.0f, 1.0f, 1.0f, 1.0f });
 
 			m_shader->Bind();
-			m_shader->SetUniform4f("u_Color", objectsToRender[i].color);
+			m_shader->SetUniform4f("u_Color", { objectsToRender[i].color[0], objectsToRender[i].color[1], objectsToRender[i].color[2], objectsToRender[i].color[3] });
 			m_shader->SetUniformMat4f("u_MVP", projection);
 
 			m_vb->Bind();

@@ -18,5 +18,5 @@ class Character
 		AnimationPlayer animator;
 
 		std::shared_ptr<Shader> m_shader;
-		glm::vec4 color;
+		float color[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 };

@@ -4,7 +4,6 @@ Character::Character(const std::string& imagePath)
 	:m_imagePath("Res/Textures/" + imagePath)
 {
 	objectName = imagePath;
-	color = glm::vec4(1.0, 1.0, 1.0, 1.0);
 }
 
 // Checks if the image is within the screen space.

@@ -73,34 +73,27 @@ namespace testSpace
 
 			if (ImGui::CollapsingHeader("Transform"))
 			{
-				ImGui::InputFloat("PX:", &renderer.objectsToRender[selectedObject].transform.position.x, 0.0f, 0.0f, "%.f");
+
+				float pos[2] = { renderer.objectsToRender[selectedObject].transform.position.x, renderer.objectsToRender[selectedObject].transform.position.y };
+				ImGui::Text("Position:");
 				ImGui::SameLine();
+				ImGui::InputFloat2("##label", pos, "%.f");
 
-				ImGui::InputFloat("PY:", &renderer.objectsToRender[selectedObject].transform.position.y, 0.0f, 0.0f, "%.f");
-
-				ImGui::InputFloat("SX:", &renderer.objectsToRender[selectedObject].transform.scale.x, 0.0f, 0.0f, "%.f");
+				float scale[2] = { renderer.objectsToRender[selectedObject].transform.scale.x, renderer.objectsToRender[selectedObject].transform.scale.y };
+				ImGui::Text("Scale:");
 				ImGui::SameLine();
+				ImGui::InputFloat2("##label", scale, "%.f");
 
-				ImGui::InputFloat("SY:", &renderer.objectsToRender[selectedObject].transform.scale.y, 0.0f, 0.0f, "%.f");
-
-				ImGui::InputFloat("RZ:", &renderer.objectsToRender[selectedObject].transform.rotation.z, 0.0f, 0.0f, "%.f");
+				ImGui::Text("Rotation:");
+				ImGui::SameLine();
+				ImGui::InputFloat("##label", &renderer.objectsToRender[selectedObject].transform.rotation.z, 0.0f, 0.0f, "%.f");
 			}
 
 			if (ImGui::CollapsingHeader("Sprite Renderer"))
 			{
 				ImGui::Image((void*)renderer.objectsToRender[selectedObject].texture, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
 
-				ImGui::Text("Colour Control:");
-				ImGui::SliderFloat("R:", &renderer.objectsToRender[selectedObject].color.x, 0.0f, 1.0f, "%.1f");
-				ImGui::SameLine();
-
-				ImGui::SliderFloat("G:", &renderer.objectsToRender[selectedObject].color.y, 0.0f, 1.0f, "%.1f");
-				ImGui::SameLine();
-
-				ImGui::SliderFloat("B:", &renderer.objectsToRender[selectedObject].color.z, 0.0f, 1.0f, "%.1f");
-				ImGui::SameLine();
-
-				ImGui::SliderFloat("A:", &renderer.objectsToRender[selectedObject].color.w, 0.0f, 1.0f, "%.1f");
+				ImGui::ColorEdit4("Clear Color", renderer.objectsToRender[selectedObject].color);
 			}
 
 		}
@@ -110,10 +103,10 @@ namespace testSpace
 
 			if (ImGui::CollapsingHeader("Transform"))
 			{
-				ImGui::InputFloat("PX:", &camPos.x, 0.0f, 0.0f, "%.f");
+				float pos[2] = { camPos.x, camPos.y };
+				ImGui::Text("Position:");
 				ImGui::SameLine();
-
-				ImGui::InputFloat("PY:", &camPos.y, 0.0f, 0.0f, "%.f");
+				ImGui::InputFloat2("##label", pos, "%.f");
 			}
 		}
 
