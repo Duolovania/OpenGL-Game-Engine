@@ -19,4 +19,6 @@ class Character
 
 		std::shared_ptr<Shader> m_shader;
 		float color[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+		void SetColor(glm::vec4 newColor);
 };

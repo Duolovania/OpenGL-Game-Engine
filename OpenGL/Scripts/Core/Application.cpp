@@ -17,6 +17,8 @@
 #include "testclearcolour.h"
 #include "testtexture2d.h"
 
+#include <vector>
+
 #include <fstream>
 #include <sstream>
 
@@ -32,6 +34,7 @@ static char inputString[10];
 Renderer renderer;
 
 testSpace::Test* currentTest = nullptr;
+
 testSpace::TestMenu* testMenu = new testSpace::TestMenu(currentTest);
 Engine Engine::instance;
 
@@ -111,12 +114,52 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     ImGui::CreateContext();
 
     ImGuiIO& io = ImGui::GetIO(); (void)io;
-    io.FontDefault = io.Fonts->AddFontFromFileTTF("Assets/Fonts/Chivo/Chivo-Light.ttf", 16.0f);
+    io.FontDefault = io.Fonts->AddFontFromFileTTF("Assets/Fonts/scada/Scada-Regular.ttf", 18.0f);
 
-    ImGui::StyleColorsDark();
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
     ImGui_ImplGlfw_InitForOpenGL(window, true);
-    ImGui_ImplOpenGL3_Init("#version 330");
+    ImGui_ImplOpenGL3_Init("#version 460");
+
+    ImGuiStyle& style = ImGui::GetStyle();
+
+    style.WindowRounding = 3.5f;
+    style.Colors[ImGuiCol_WindowBg] = ImVec4(0.1f, 0.1f, 0.1f, 1.0f);
+    style.Colors[ImGuiCol_MenuBarBg] = ImVec4(0.1f, 0.1f, 0.1f, 1.0f);
+
+    style.Colors[ImGuiCol_TitleBg] = ImVec4(0.075f, 0.075f, 0.075f, 1.0f);
+    style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.055f, 0.055f, 0.055f, 1.0f);
+
+    style.Colors[ImGuiCol_FrameBg] = ImVec4(0.075f, 0.075f, 0.075f, 1.0f);
+    style.Colors[ImGuiCol_FrameBgHovered] = ImVec4(0.118f, 0.118f, 0.118f, 1.0f);
+    style.Colors[ImGuiCol_FrameBgActive] = ImVec4(0.055f, 0.055f, 0.055f, 1.0f);
+
+    style.Colors[ImGuiCol_Button] = ImVec4(0.075f, 0.075f, 0.075f, 1.0f);
+    style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.2f, 0.2f, 0.2f, 1.0f);
+    style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.135f, 0.28f, 0.135f, 1.0f);
+
+    style.Colors[ImGuiCol_Header] = ImVec4(0.075f, 0.075f, 0.075f, 1.0f);
+    style.Colors[ImGuiCol_HeaderHovered] = ImVec4(0.2f, 0.2f, 0.2f, 1.0f);
+    style.Colors[ImGuiCol_HeaderActive] = ImVec4(0.055f, 0.055f, 0.055f, 1.0f);
+
+    style.Colors[ImGuiCol_DockingPreview] = ImVec4(0.141f, 0.729f, 0.38f, 1.0f);
+
+    style.Colors[ImGuiCol_TabDimmedSelected] = ImVec4(0.1f, 0.1f, 0.1f, 1.0f);
+    style.Colors[ImGuiCol_TabHovered] = ImVec4(0.2f, 0.2f, 0.2f, 1.0f);
+
+    style.Colors[ImGuiCol_Tab] = ImVec4(0.57f, 0.57f, 0.57f, 1.0f);
+    style.Colors[ImGuiCol_TabSelected] = ImVec4(0.1f, 0.1f, 0.1f, 1.0f);
+    style.Colors[ImGuiCol_TabSelectedOverline] = ImVec4(0.135f, 0.28f, 0.135f, 1.0f);
+    style.Colors[ImGuiCol_TabDimmedSelectedOverline] = ImVec4(0.075f, 0.075f, 0.075f, 1.0f);
+
+    style.Colors[ImGuiCol_SliderGrab] = ImVec4(0.135f, 0.28f, 0.135f, 1.0f);
+    style.Colors[ImGuiCol_SliderGrabActive] = ImVec4(0.177f, 0.479f, 0.177f, 1.0f);
+
+    style.Colors[ImGuiCol_CheckMark] = ImVec4(0.135f, 0.28f, 0.135f, 1.0f);
+
+    style.Colors[ImGuiCol_ResizeGrip] = ImVec4(0.318f, 0.318f, 0.318f, 1.0f);
+    style.Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.697f, 0.0f, 0.0f, 1.0f);
+    style.Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.469f, 0.469f, 0.469f, 1.0f);
 }
 
 // Application loop.
@@ -131,33 +174,187 @@ void Application::Loop()
     ImGui_ImplOpenGL3_NewFrame();
     ImGui::NewFrame();
 
+    ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport(), ImGuiDockNodeFlags_None);
+
+    if (ImGui::BeginMainMenuBar())
+    {
+        if (ImGui::BeginMenu("File"))
+        {
+            if (ImGui::MenuItem("New Scene"))
+            {
+
+            }
+
+            if (ImGui::MenuItem("Open Scene"))
+            {
+
+            }
+
+            if (ImGui::MenuItem("Open Recent"))
+            {
+                
+            }
+
+            if (ImGui::MenuItem("Save"))
+            {
+
+            }
+
+            if (ImGui::MenuItem("Save As"))
+            {
+
+            }
+
+            if (currentTest != testMenu)
+            {
+                if (ImGui::MenuItem("Close Scene"))
+                {
+                    if (currentTest != testMenu)
+                    {
+                        delete currentTest;
+                        currentTest = testMenu;
+                    }
+                }
+            }
+
+            if (ImGui::MenuItem("Exit Editor"))
+            {
+                applicationQuit = true;
+            }
+
+            ImGui::EndMenu();
+        }
+
+        if (ImGui::BeginMenu("Project"))
+        {
+            if (ImGui::MenuItem("Project Settings"))
+            {
+
+                ImGui::Begin("Project Settings");
+                ImGui::OpenPopup("Input"); 
+
+                if (ImGui::BeginPopupModal("Input", NULL))
+                {
+                    ImGui::InputText("Enter Action Name:", inputString, IM_ARRAYSIZE(inputString));
+
+                    if (ImGui::Button("Add"))
+                    {
+                        Core.InputManager.AddAction(Action(inputString));
+                    }
+
+                    ImGui::SameLine();
+
+                    if (ImGui::Button("Delete"))
+                    {
+                        switch (uiSelect)
+                        {
+                        case UISelect::ActionButton:
+                            LOG(actionIndex);
+                            Core.InputManager.DeleteAction(actionIndex);
+                            break;
+                        case UISelect::KeybindButton:
+                            LOG(keyBindIndex);
+                            Core.InputManager.actionList[actionIndex].DeleteKeyBind(keyBindIndex);
+                            break;
+                        default:
+                            break;
+                        }
+                    }
+
+                    ImGui::SameLine();
+
+                    if (ImGui::Button("Listen to Input")) listenToInput = true;
+
+                    if (listenToInput)
+                    {
+                        ImGui::SameLine();
+                        ImGui::Text("Listening...");
+                    }
+
+                    if (ImGui::BeginListBox("Actions"))
+                    {
+                        for (int i = 0; i < Core.InputManager.actionList.size(); i++)
+                        {
+                            if (ImGui::Selectable(("Name: " + Core.InputManager.actionList[i].GetActionName()).c_str()), actionIndex == i)
+                            {
+                                actionIndex = i;
+
+                                uiSelect = UISelect::ActionButton;
+                            }
+
+                            for (int j = 0; j < Core.InputManager.actionList[i].GetKeyBinds().size(); j++)
+                            {
+                                if (ImGui::Selectable(Core.InputManager.actionList[i].GetKeyName(j)), keyBindIndex == j)
+                                {
+                                    actionIndex = i;
+                                    keyBindIndex = j;
+
+                                    uiSelect = UISelect::KeybindButton;
+                                }
+                            }
+                        }
+
+                        ImGui::EndListBox();
+                    }
+
+                    if (ImGui::Button("Save and Close")) ImGui::CloseCurrentPopup();
+                    ImGui::EndPopup();
+                }
+                ImGui::End();
+            }
+            
+            ImGui::EndMenu();
+        }
+
+        if (ImGui::BeginMenu("Editor"))
+        {
+            if (ImGui::MenuItem("Editor Settings"))
+            {
+
+            }
+
+            ImGui::EndMenu();
+        }
+
+        if (ImGui::BeginMenu("Help"))
+        {
+            if (ImGui::MenuItem("Documentation"))
+            {
+
+            }
+
+            ImGui::EndMenu();
+        }
+
+        ImGui::EndMainMenuBar();
+    }
+
+    ImGui::Begin("Assets Folder");
+
+    ImGui::End();
+
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+    ImGui::Begin("Viewport");
+
+    viewportSize = ImGui::GetContentRegionAvail();
+    framebuffer->Resize(glm::vec2(viewportSize.x, viewportSize.y));
+
+    ImGui::Text("FPS: %.1f", double(1.0f / ImGui::GetIO().DeltaTime));
+    ImGui::Image((void*)framebuffer->GetTexture(), viewportSize, ImVec2(0, 1), ImVec2(1, 0));
+
+    ImGui::End();
+    ImGui::PopStyleVar();
+
     if (currentTest)
     {
         currentTest->OnUpdate(deltaTime);
-        
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
-        ImGui::Begin("Viewport");
-
-        viewportSize = ImGui::GetContentRegionAvail();
-        framebuffer->Resize(glm::vec2(viewportSize.x, viewportSize.y));
-
-        ImGui::Image((void*)framebuffer->GetTexture(), viewportSize, ImVec2(0, 1), ImVec2(1, 0));
-        ImGui::End();
-        ImGui::PopStyleVar();
 
         framebuffer->Bind();
-
         currentTest->OnRender(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f));
         framebuffer->UnBind();
 
 
-        ImGui::Begin("Main");
-
-        if (currentTest != testMenu && ImGui::Button("<-"))
-        {
-            delete currentTest;
-            currentTest = testMenu;
-        }
+        ImGui::Begin("Debug Log");
 
         currentTest->OnImGuiRender();
 
@@ -166,79 +363,10 @@ void Application::Loop()
             ImGui::OpenPopup("Input");
         }
 
-        if (ImGui::BeginPopupModal("Input", NULL))
-        {
-            ImGui::InputText("Enter Action Name:", inputString, IM_ARRAYSIZE(inputString));
-
-            if (ImGui::Button("Add"))
-            {
-                Core.InputManager.AddAction(Action(inputString));
-            }
-
-            ImGui::SameLine();
-
-            if (ImGui::Button("Delete"))
-            {
-                switch (uiSelect)
-                {
-                    case UISelect::ActionButton:
-                        LOG(actionIndex);
-                        Core.InputManager.DeleteAction(actionIndex);
-                        break;
-                    case UISelect::KeybindButton:
-                        LOG(keyBindIndex);
-                        Core.InputManager.actionList[actionIndex].DeleteKeyBind(keyBindIndex);
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            ImGui::SameLine();
-
-            if (ImGui::Button("Listen to Input")) listenToInput = true;
-
-            if (listenToInput)
-            {
-                ImGui::SameLine();
-                ImGui::Text("Listening...");
-            }
-
-            if (ImGui::BeginListBox("Actions"))
-            {
-                for (int i = 0; i < Core.InputManager.actionList.size(); i++)
-                {
-                    if (ImGui::Selectable(("Name: " + Core.InputManager.actionList[i].GetActionName()).c_str()), actionIndex == i)
-                    {
-                        actionIndex = i;
-
-                        uiSelect = UISelect::ActionButton;
-                    }
-
-                    for (int j = 0; j < Core.InputManager.actionList[i].GetKeyBinds().size(); j++)
-                    {
-                        if (ImGui::Selectable(Core.InputManager.actionList[i].GetKeyName(j)), keyBindIndex == j)
-                        {
-                            actionIndex = i;
-                            keyBindIndex = j;
-
-                            uiSelect = UISelect::KeybindButton;
-                        }
-                    }
-                }
-
-                ImGui::EndListBox();
-            }
-
-            if (ImGui::Button("Save and Close")) ImGui::CloseCurrentPopup();
-            ImGui::EndPopup();
-        }
-
-        if (ImGui::Button("Quit to Desktop")) applicationQuit = true;
-
-        ImGui::End();
 
         
+        ImGui::End();
+
 
     }
 

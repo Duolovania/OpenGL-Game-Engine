@@ -35,7 +35,6 @@ namespace testSpace
 				std::cout << "Registering Test" << name << std::endl;
 				tests.push_back(std::make_pair(name, []() { return new T(); }));
 			};
-
 		private:
 			Test*& currentTest;
 			std::vector<std::pair<std::string, std::function<Test*()>>> tests;

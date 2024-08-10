@@ -14,3 +14,11 @@ bool Character::CheckVisibility(glm::vec2 cameraPosition)
 
 	return true;
 }
+
+void Character::SetColor(glm::vec4 newColor)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		color[i] = newColor[i];
+	}
+}

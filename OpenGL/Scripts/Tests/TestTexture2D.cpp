@@ -51,7 +51,7 @@ namespace testSpace
 		renderer.Clear();
 
 		view = glm::translate(glm::mat4(1.0f), glm::vec3(-camPos.x, -camPos.y, 0)); // Camera translation.
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(namPos.x, namPos.y, 0)); // Model translation.
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)); // Model translation.
 
 		mvp = proj * view * model;
 
@@ -61,7 +61,6 @@ namespace testSpace
 	// Frame-by-frame GUI logic.
 	void TestTexture2D::OnImGuiRender()
 	{
-		ImGui::Text("FPS: %.1f", double(1.0f / ImGui::GetIO().DeltaTime));
 		ImGui::Text("Textures Loaded: %.0f", double(renderer.texturesLoaded));
 		ImGui::Text("New Textures Created: %.0f", double(renderer.newTextures));
 
@@ -69,44 +68,52 @@ namespace testSpace
 
 		if (selectedObject > -1)
 		{
-			ImGui::InputText("Object Name:", &renderer.objectsToRender[selectedObject].objectName); // new change.
+			ImGui::Text("Object Name:");
+			ImGui::SameLine();
+			ImGui::InputText("##label0", &renderer.objectsToRender[selectedObject].objectName);
 
 			if (ImGui::CollapsingHeader("Transform"))
 			{
-
-				float pos[2] = { renderer.objectsToRender[selectedObject].transform.position.x, renderer.objectsToRender[selectedObject].transform.position.y };
 				ImGui::Text("Position:");
 				ImGui::SameLine();
-				ImGui::InputFloat2("##label", pos, "%.f");
+				ImGui::InputFloat2("##label1", (float*) &renderer.objectsToRender[selectedObject].transform.position, "%.f");
 
-				float scale[2] = { renderer.objectsToRender[selectedObject].transform.scale.x, renderer.objectsToRender[selectedObject].transform.scale.y };
 				ImGui::Text("Scale:");
 				ImGui::SameLine();
-				ImGui::InputFloat2("##label", scale, "%.f");
+				ImGui::InputFloat2("##label2", (float*) &renderer.objectsToRender[selectedObject].transform.scale.x, "%.f");
 
 				ImGui::Text("Rotation:");
 				ImGui::SameLine();
-				ImGui::InputFloat("##label", &renderer.objectsToRender[selectedObject].transform.rotation.z, 0.0f, 0.0f, "%.f");
+				ImGui::InputFloat("##label3", &renderer.objectsToRender[selectedObject].transform.rotation.z, 0.0f, 0.0f, "%.f");
 			}
 
 			if (ImGui::CollapsingHeader("Sprite Renderer"))
 			{
 				ImGui::Image((void*)renderer.objectsToRender[selectedObject].texture, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
 
-				ImGui::ColorEdit4("Clear Color", renderer.objectsToRender[selectedObject].color);
+				ImGui::Text("Colour:");
+				ImGui::SameLine();
+				ImGui::ColorEdit4("##label4", renderer.objectsToRender[selectedObject].color);
+
+				ImGui::SameLine();
+				if (ImGui::Button("Reset"))
+				{
+					renderer.objectsToRender[selectedObject].SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
+				}
 			}
 
 		}
 		else if (selectedObject == -1)
 		{
-			ImGui::InputText("Object Name:", &cameraName); // new change.
+			ImGui::Text("Object Name:");
+			ImGui::SameLine();
+			ImGui::InputText("##label0", &cameraName);
 
 			if (ImGui::CollapsingHeader("Transform"))
 			{
-				float pos[2] = { camPos.x, camPos.y };
 				ImGui::Text("Position:");
 				ImGui::SameLine();
-				ImGui::InputFloat2("##label", pos, "%.f");
+				ImGui::InputFloat2("##label1", (float*) &camPos, "%.f");
 			}
 		}
 
@@ -114,14 +121,14 @@ namespace testSpace
 
 		ImGui::Begin("Hierarchy");
 
-		if (ImGui::Button((cameraName).c_str()))
+		if (ImGui::Button((cameraName).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)))
 		{
 			selectedObject = -1;
 		}
 
 		for (int i = 0; i < renderer.objectsToRender.size(); i++)
 		{
-			if (ImGui::Button((renderer.objectsToRender[i].objectName).c_str()))
+			if (ImGui::Button((renderer.objectsToRender[i].objectName).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)))
 			{
 				selectedObject = i;
 			}
