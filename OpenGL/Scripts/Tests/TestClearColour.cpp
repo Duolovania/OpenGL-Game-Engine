@@ -55,4 +55,10 @@ namespace testSpace
 	{
 		ImGui::ColorEdit4("Clear Color", clearColour);
 	}
+
+	int* TestClearColour::GetStats() const
+	{
+		int tempArr[2] = { 0, 0 };
+		return tempArr;
+	}
 }

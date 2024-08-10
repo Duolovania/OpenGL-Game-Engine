@@ -31,6 +31,7 @@ int actionIndex = 0, keyBindIndex = 0;
 bool applicationQuit = false, listenToInput = false;
 static char inputString[10];
 
+bool wireframeMode = false, showStats = false;
 Renderer renderer;
 
 testSpace::Test* currentTest = nullptr;
@@ -56,10 +57,6 @@ UISelect uiSelect = UISelect::None;
 void Application::Run()
 {
     Init(SCREEN_WIDTH, SCREEN_HEIGHT, "Engine");
-
-    fbShader = std::make_unique<Shader>("Res/Shaders/Framebuffer.shader");
-    fbShader->CreateShader();
-    fbShader->Bind();
 
     framebuffer = std::make_unique<FrameBuffer>(SCREEN_WIDTH, SCREEN_HEIGHT);
     framebuffer->Gen();
@@ -125,7 +122,7 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
 
     style.WindowRounding = 3.5f;
     style.Colors[ImGuiCol_WindowBg] = ImVec4(0.1f, 0.1f, 0.1f, 1.0f);
-    style.Colors[ImGuiCol_MenuBarBg] = ImVec4(0.1f, 0.1f, 0.1f, 1.0f);
+    style.Colors[ImGuiCol_MenuBarBg] = ImVec4(0.055f, 0.055f, 0.055f, 1.0f);
 
     style.Colors[ImGuiCol_TitleBg] = ImVec4(0.075f, 0.075f, 0.075f, 1.0f);
     style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.055f, 0.055f, 0.055f, 1.0f);
@@ -147,7 +144,7 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     style.Colors[ImGuiCol_TabDimmedSelected] = ImVec4(0.1f, 0.1f, 0.1f, 1.0f);
     style.Colors[ImGuiCol_TabHovered] = ImVec4(0.2f, 0.2f, 0.2f, 1.0f);
 
-    style.Colors[ImGuiCol_Tab] = ImVec4(0.57f, 0.57f, 0.57f, 1.0f);
+    style.Colors[ImGuiCol_Tab] = ImVec4(0.075f, 0.075f, 0.075f, 1.0f);
     style.Colors[ImGuiCol_TabSelected] = ImVec4(0.1f, 0.1f, 0.1f, 1.0f);
     style.Colors[ImGuiCol_TabSelectedOverline] = ImVec4(0.135f, 0.28f, 0.135f, 1.0f);
     style.Colors[ImGuiCol_TabDimmedSelectedOverline] = ImVec4(0.075f, 0.075f, 0.075f, 1.0f);
@@ -166,9 +163,6 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
 void Application::Loop()
 {
     GLCall(glClearColor(0.05f, 0.05f, 0.05f, 1.0f));
-
-    // Render here 
-    renderer.Clear();
 
     ImGui_ImplGlfw_NewFrame();
     ImGui_ImplOpenGL3_NewFrame();
@@ -308,9 +302,35 @@ void Application::Loop()
 
         if (ImGui::BeginMenu("Editor"))
         {
+            if (ImGui::MenuItem("Toggle Wireframe Mode"))
+            {
+                wireframeMode = !wireframeMode;
+
+                if (wireframeMode)
+                {
+                    GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));
+                }
+                else
+                {
+                    GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
+                }
+            }
+
             if (ImGui::MenuItem("Editor Settings"))
             {
+                
+            }
 
+            ImGui::EndMenu();
+        }
+
+        if (ImGui::BeginMenu("Window"))
+        {
+            if (ImGui::MenuItem("Rendering Stats Window"))
+            {
+                showStats = !showStats;
+
+                
             }
 
             ImGui::EndMenu();
@@ -336,20 +356,33 @@ void Application::Loop()
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
     ImGui::Begin("Viewport");
 
+
     viewportSize = ImGui::GetContentRegionAvail();
     framebuffer->Resize(glm::vec2(viewportSize.x, viewportSize.y));
 
-    ImGui::Text("FPS: %.1f", double(1.0f / ImGui::GetIO().DeltaTime));
     ImGui::Image((void*)framebuffer->GetTexture(), viewportSize, ImVec2(0, 1), ImVec2(1, 0));
+    ImVec2 imagePos = ImGui::GetCursorScreenPos();
+
+    ImVec2 position = ImVec2(imagePos.x + 20, imagePos.y - 625);
+    ImGui::SetCursorScreenPos(position);
+
+    if (currentTest != testMenu)
+    {
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.988f, 0.659f, 0.176f, 1.0f));
+        ImGui::Text("FPS: %.1f", double(1.0f / ImGui::GetIO().DeltaTime));
+        ImGui::PopStyleColor();
+    }
 
     ImGui::End();
     ImGui::PopStyleVar();
+
+    framebuffer->Bind();
+    renderer.Clear();
 
     if (currentTest)
     {
         currentTest->OnUpdate(deltaTime);
 
-        framebuffer->Bind();
         currentTest->OnRender(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f));
         framebuffer->UnBind();
 
@@ -363,11 +396,17 @@ void Application::Loop()
             ImGui::OpenPopup("Input");
         }
 
-
-        
         ImGui::End();
 
+        if (showStats)
+        {
+            ImGui::Begin("Rendering Stats");
 
+            ImGui::Text("Textures Loaded: %.0f", double(currentTest->GetStats()[1]));
+            ImGui::Text("New Textures Created: %.0f", double(currentTest->GetStats()[0]));
+
+            ImGui::End();
+        }
     }
 
     ImGui::Render();

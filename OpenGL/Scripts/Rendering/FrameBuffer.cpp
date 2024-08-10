@@ -27,13 +27,13 @@ void FrameBuffer::Gen()
 	}
 
 	GLCall(glGenFramebuffers(1, &bufferID));
-	Bind();
+	GLCall(glBindFramebuffer(GL_FRAMEBUFFER, bufferID));
 
-	// Texture attachment.
+	// Colour attachment.
 	GLCall(glGenTextures(1, &colourAttachment));
 	GLCall(glBindTexture(GL_TEXTURE_2D, colourAttachment));
 
-	GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_width, m_height, 0, GL_RGB, GL_UNSIGNED_BYTE, nullptr));
+	GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr));
 
 	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
 	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
@@ -41,19 +41,21 @@ void FrameBuffer::Gen()
 	GLCall(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colourAttachment, 0)); // Attach texture to framebuffer.
 	GLCall(glBindTexture(GL_TEXTURE_2D, 0)); // Unbind the texture.
 
-	// Renderbuffer attachment.
+	// Depth and stencils attachment.
 	GLCall(glGenRenderbuffers(1, &depthAttachment));
 	GLCall(glBindRenderbuffer(GL_RENDERBUFFER, depthAttachment));
 
 	GLCall(glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, m_width, m_height)); // Create depth and stencil.
 	GLCall(glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, depthAttachment)); // Attach renderbuffer to framebuffer.
 
+	GLCall(glBindRenderbuffer(GL_RENDERBUFFER, 0)); // Unbind the renderbuffer.
+
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 	{
 		std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
 	}
 
-	UnBind();
+	GLCall(glBindFramebuffer(GL_FRAMEBUFFER, 0)); // Unbind the framebuffer.
 }
 
 void FrameBuffer::Bind() const

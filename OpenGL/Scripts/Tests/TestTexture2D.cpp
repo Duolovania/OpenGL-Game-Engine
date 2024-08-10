@@ -61,9 +61,6 @@ namespace testSpace
 	// Frame-by-frame GUI logic.
 	void TestTexture2D::OnImGuiRender()
 	{
-		ImGui::Text("Textures Loaded: %.0f", double(renderer.texturesLoaded));
-		ImGui::Text("New Textures Created: %.0f", double(renderer.newTextures));
-
 		ImGui::Begin("Inspector");
 
 		if (selectedObject > -1)
@@ -142,5 +139,11 @@ namespace testSpace
 	{
 		const float tempVar = (var > min) ? var : min;
 		return (tempVar < max) ? tempVar : max;
+	}
+
+	int* TestTexture2D::GetStats() const
+	{
+		int tempArr[2] = {renderer.newTextures, renderer.texturesLoaded};
+		return tempArr;
 	}
 }

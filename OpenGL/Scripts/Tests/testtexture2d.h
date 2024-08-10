@@ -22,6 +22,8 @@ namespace testSpace
 			void OnUpdate(float deltaTime) override;
 			void OnImGuiRender() override;
 			void OnRender(glm::mat4 proj) override;
+
+			int* GetStats() const;
 		private:
 			glm::vec2 camPos = glm::vec2(0, 0);
 

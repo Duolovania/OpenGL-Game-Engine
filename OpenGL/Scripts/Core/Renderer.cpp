@@ -93,7 +93,7 @@ void Renderer::Init()
 	objectsToRender.push_back(character6);
 	objectsToRender.push_back(character7);
 
-	m_texture = std::make_unique<Texture>("Res/Textures/namjas.JPG");
+	m_texture = std::make_unique<Texture>("Res/Textures/R1.png");
 	m_texture->Gen();
 
 	int samplers[100] = { 0, 1, 2 }; // How many texture slots.
@@ -106,7 +106,9 @@ void Renderer::Init()
 
 		objectsToRender[i].texture = GetCachedTexture(objectsToRender[i], i);
 		m_shader->BindTexture(i, objectsToRender[i].texture);
+
 		texturesLoaded++;
+		std::cout << i << std::endl;
 	}
 
 	m_shader->SetUniform1iv("u_Textures", sizeof(samplers), samplers); // Sets the shader texture slots to samplers.
@@ -168,6 +170,8 @@ void Renderer::Draw(glm::mat4 projection, glm::vec2 cameraPosition)
 			GLCall(glDrawElements(GL_TRIANGLES, m_ib->GetCount(), GL_UNSIGNED_INT, nullptr));
 
 			m_shader->UnBind();
+			m_vb->Unbind();
+			m_ib->Unbind();
 		}
 	}
 }
