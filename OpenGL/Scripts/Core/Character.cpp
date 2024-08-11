@@ -1,7 +1,7 @@
 #include "Core/character.h"
 
 Character::Character(const std::string& imagePath)
-	:m_imagePath("Res/Textures/" + imagePath)
+	:m_imagePath("Assets/Sprites/" + imagePath)
 {
 	objectName = imagePath;
 }

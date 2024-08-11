@@ -4,7 +4,11 @@
 #include "Core/application.h"
 #include "imgui/imgui_stdlib.h"
 
-std::string inputString;
+#include <fstream>
+#include <filesystem>
+
+std::string inputString, searchTerm, rootPath;
+std::string currentPath = "C:/Users/Ryhan Khan/Downloads/GitHub/OpenGL-Engine/OpenGL/OpenGL/Assets";
 
 enum UISelect
 {
@@ -24,6 +28,8 @@ void EditorUI::Init(GLFWwindow* window)
 	ImGui_ImplOpenGL3_Init("#version 460");
 
     StylesConfig();
+
+    rootPath = currentPath;
 }
 
 bool EditorUI::Begin()
@@ -212,6 +218,33 @@ bool EditorUI::Begin()
     }
 
     ImGui::Begin("Assets Folder");
+
+    ImGui::Text("Search");
+    ImGui::SameLine();
+    ImGui::InputText("##label8", &searchTerm);
+    
+    ImGui::SameLine();
+    if (ImGui::Button("Back"))
+    {
+        currentPath = rootPath;
+    }
+
+    namespace fs = std::filesystem;
+
+    for (const auto& entry : fs::directory_iterator(currentPath)) 
+    {
+        if (entry.is_directory()) 
+        {
+            if (ImGui::Selectable(entry.path().filename().string().c_str())) 
+            {
+                currentPath = std::string(entry.path().string());
+            }
+        }
+        else 
+        {
+            if (strstr(entry.path().filename().string().c_str(), searchTerm.c_str()) != nullptr) ImGui::Selectable(entry.path().filename().string().c_str());
+        }
+    }
 
     ImGui::End();
 

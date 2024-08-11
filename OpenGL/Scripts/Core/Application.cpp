@@ -9,10 +9,6 @@
 #include "testclearcolour.h"
 #include "testtexture2d.h"
 
-#include <fstream>
-#include <sstream>
-
-
 float timeTime = 0, oldTimeSinceStart = 0, timeSinceStart, deltaTime;
 int actionIndex = 0, keyBindIndex = 0;
 

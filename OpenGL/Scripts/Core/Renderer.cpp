@@ -93,7 +93,7 @@ void Renderer::Init()
 	objectsToRender.push_back(character6);
 	objectsToRender.push_back(character7);
 
-	m_texture = std::make_unique<Texture>("Res/Textures/R1.png");
+	m_texture = std::make_unique<Texture>("Assets/Sprites/R1.png");
 	m_texture->Gen();
 
 	int samplers[100] = { 0, 1, 2 }; // How many texture slots.
