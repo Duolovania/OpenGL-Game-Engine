@@ -1,12 +1,6 @@
 #pragma once
-#include "imgui.h"
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
-
-//#include <glew.h>
 #include <glad/glad.h>
 #include <glfw3.h>
-#include <iostream>
 #include "Core/input.h"
 
 class Application
@@ -18,6 +12,8 @@ class Application
 		void Close();
 
 		GLFWwindow* window;
+	private:
+		int m_screenWidth = 1920, m_screenHeight = 1080;
 };
 
 class Engine

@@ -61,77 +61,7 @@ namespace testSpace
 	// Frame-by-frame GUI logic.
 	void TestTexture2D::OnImGuiRender()
 	{
-		ImGui::Begin("Inspector");
-
-		if (selectedObject > -1)
-		{
-			ImGui::Text("Object Name:");
-			ImGui::SameLine();
-			ImGui::InputText("##label0", &renderer.objectsToRender[selectedObject].objectName);
-
-			if (ImGui::CollapsingHeader("Transform"))
-			{
-				ImGui::Text("Position:");
-				ImGui::SameLine();
-				ImGui::InputFloat2("##label1", (float*) &renderer.objectsToRender[selectedObject].transform.position, "%.f");
-
-				ImGui::Text("Scale:");
-				ImGui::SameLine();
-				ImGui::InputFloat2("##label2", (float*) &renderer.objectsToRender[selectedObject].transform.scale.x, "%.f");
-
-				ImGui::Text("Rotation:");
-				ImGui::SameLine();
-				ImGui::InputFloat("##label3", &renderer.objectsToRender[selectedObject].transform.rotation.z, 0.0f, 0.0f, "%.f");
-			}
-
-			if (ImGui::CollapsingHeader("Sprite Renderer"))
-			{
-				ImGui::Image((void*)renderer.objectsToRender[selectedObject].texture, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
-
-				ImGui::Text("Colour:");
-				ImGui::SameLine();
-				ImGui::ColorEdit4("##label4", renderer.objectsToRender[selectedObject].color);
-
-				ImGui::SameLine();
-				if (ImGui::Button("Reset"))
-				{
-					renderer.objectsToRender[selectedObject].SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
-				}
-			}
-
-		}
-		else if (selectedObject == -1)
-		{
-			ImGui::Text("Object Name:");
-			ImGui::SameLine();
-			ImGui::InputText("##label0", &cameraName);
-
-			if (ImGui::CollapsingHeader("Transform"))
-			{
-				ImGui::Text("Position:");
-				ImGui::SameLine();
-				ImGui::InputFloat2("##label1", (float*) &camPos, "%.f");
-			}
-		}
-
-		ImGui::End();
-
-		ImGui::Begin("Hierarchy");
-
-		if (ImGui::Button((cameraName).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)))
-		{
-			selectedObject = -1;
-		}
-
-		for (int i = 0; i < renderer.objectsToRender.size(); i++)
-		{
-			if (ImGui::Button((renderer.objectsToRender[i].objectName).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)))
-			{
-				selectedObject = i;
-			}
-		}
-
-		ImGui::End();
+		
 	}
 
 	// Simple float clamping function.

@@ -280,6 +280,7 @@
     <ClInclude Include="Scripts\Headers\Core\animationplayer.h" />
     <ClInclude Include="Scripts\Headers\Core\application.h" />
     <ClInclude Include="Scripts\Headers\Core\character.h" />
+    <ClInclude Include="Scripts\Headers\Core\editorui.h" />
     <ClInclude Include="Scripts\Headers\Core\gameobject.h" />
     <ClInclude Include="Scripts\Headers\Core\input.h" />
     <ClInclude Include="Scripts\Headers\Core\renderer.h" />
@@ -361,6 +362,7 @@
     <ClCompile Include="Scripts\Core\AnimationPlayer.cpp" />
     <ClCompile Include="Scripts\Core\Application.cpp" />
     <ClCompile Include="Scripts\Core\Character.cpp" />
+    <ClCompile Include="Scripts\Core\EditorUI.cpp" />
     <ClCompile Include="Scripts\Core\Input.cpp" />
     <ClCompile Include="Scripts\Core\Renderer.cpp" />
     <ClCompile Include="Scripts\Rendering\FrameBuffer.cpp" />

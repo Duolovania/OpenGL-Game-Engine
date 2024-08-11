@@ -1,8 +1,6 @@
 #pragma once
 #include <vector>
 #include <glad/glad.h>
-//#include <glew.h>
-//#include "Core/renderer.h"
 #include <stdexcept>
 
 #define ASSERT(x) if (!(x)) __debugbreak();

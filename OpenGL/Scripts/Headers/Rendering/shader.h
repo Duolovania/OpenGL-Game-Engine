@@ -2,7 +2,6 @@
 #include <iostream>
 #include <unordered_map>
 #include "glm/glm.hpp"
-//#include <glew.h>
 #include <glad/glad.h>
 
 // Struct contains Vertex and Fragment data.
@@ -24,7 +23,6 @@ class Shader
 		GLint GetUniformLocation(const std::string& name) const;
 		ShaderProgramSource ParseShader(const std::string& filePath); // Searches .shader files for vertex and fragment data.
 
-		//unsigned int CreateShader(const std::string& vertexShader, const std::string& fragmentShader);
 		unsigned int CompileShader(unsigned int type, const std::string& source);
 
 	public:
@@ -48,5 +46,4 @@ class Shader
 		void BindTexture(unsigned int index, unsigned int value);
 
 		unsigned int GetRendererID();
-
 };
