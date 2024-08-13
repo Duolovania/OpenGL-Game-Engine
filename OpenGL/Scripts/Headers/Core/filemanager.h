@@ -7,5 +7,5 @@ class FileManager
 {
 	public:
 		void CreateFile(std::string fileName, std::string fileExtension);
-		void LoadFile();
+		void LoadFile(std::string fileName, std::string fileExtension);
 };

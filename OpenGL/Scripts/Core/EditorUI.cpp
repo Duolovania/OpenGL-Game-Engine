@@ -3,10 +3,12 @@
 #include "gtc/matrix_transform.hpp"
 #include "Core/application.h"
 #include "imgui/imgui_stdlib.h"
+#include "Core/filemanager.h"
 
-#include <fstream>
 #include <filesystem>
 
+
+FileManager fileManager;
 std::string inputString, searchTerm, rootPath;
 std::string currentPath = "C:/Users/Ryhan Khan/Downloads/GitHub/OpenGL-Engine/OpenGL/OpenGL/Assets";
 
@@ -254,6 +256,16 @@ bool EditorUI::Begin()
     ImGui::End();
 
     ImGui::Begin("Inspector");
+
+    if (ImGui::Button("New file"))
+    {
+        fileManager.CreateFile("Assets/Scenes/bazinga", ".froggie");
+    }
+
+    if (ImGui::Button("Print file"))
+    {
+        fileManager.LoadFile("Assets/Scenes/bazinga", ".froggie");
+    }
 
     /*if (selectedObject > -1)
     {
