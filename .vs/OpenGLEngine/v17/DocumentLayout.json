@@ -65,7 +65,7 @@
               "RelativeDocumentMoniker": "OpenGL\\Scripts\\Core\\Application.cpp",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Core\\Application.cpp",
               "RelativeToolTip": "OpenGL\\Scripts\\Core\\Application.cpp",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAB0AAAA1AAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADwAAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-08-13T14:38:48.671Z",
               "EditorCaption": ""
@@ -92,8 +92,7 @@
               "RelativeToolTip": "OpenGL\\Scripts\\Core\\FileManager.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-08-13T13:41:38.387Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-13T13:41:38.387Z"
             },
             {
               "$type": "Document",
@@ -105,8 +104,7 @@
               "RelativeToolTip": "OpenGL\\Scripts\\Core\\EditorUI.cpp",
               "ViewState": "AQIAAD8BAAAAAAAAAAAAAHMBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-08-13T13:17:20.389Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-13T13:17:20.389Z"
             }
           ]
         }

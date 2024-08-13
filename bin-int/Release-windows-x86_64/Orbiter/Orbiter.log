@@ -1,0 +1,5 @@
+﻿cl : command line  warning D9025: overriding '/MT' with '/MD'
+  EditorUI.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\Orbiter\Scripts\Core\EditorUI.cpp(341,1): warning C4715: 'EditorUI::Begin': not all control paths return a value
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Orbiter.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin\Release-windows-x86_64\Orbiter\Orbiter.exe

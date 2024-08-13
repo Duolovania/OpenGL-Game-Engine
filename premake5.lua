@@ -1,4 +1,4 @@
-workspace "OpenGLEngine"
+workspace "OrbiterEngine"
     architecture "x64"
 
     configurations
@@ -26,13 +26,13 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["Glad"] = "Dependencies/Glad/include"
-IncludeDir["OpenALSoft"] = "OpenGL/Scripts/Vendor/openal-soft-master"
+IncludeDir["OpenALSoft"] = "Orbiter/Scripts/Vendor/openal-soft-master"
 
 include "Dependencies/Glad"
-include "OpenGL/Scripts/Vendor/openal-soft-master"
+include "Orbiter/Scripts/Vendor/openal-soft-master"
 
-project "OpenGL"
-    location "OpenGL"
+project "Orbiter"
+    location "Orbiter"
     kind "ConsoleApp"
     language "C++"
 
@@ -118,17 +118,17 @@ project "OpenGL"
         --}
 
     filter "configurations:Debug"
-        defines "GL_DEBUG"
+        defines "OB_DEBUG"
         symbols "On"
         buildoptions "/MDd"
 
     filter "configurations:Release"
-        defines "GL_RELEASE"
+        defines "OB_RELEASE"
         optimize "On"
         buildoptions "/MD"
 
     filter "configurations:Dist"
-        defines "GL_DIST"
+        defines "OB_DIST"
         optimize "On"
         buildoptions "/MD"
 

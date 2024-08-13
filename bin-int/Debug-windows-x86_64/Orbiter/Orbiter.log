@@ -1,0 +1,4 @@
+﻿cl : command line  warning D9025: overriding '/MTd' with '/MDd'
+  Application.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\Orbiter\Scripts\Core\Application.cpp(110,18): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+  Orbiter.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin\Debug-windows-x86_64\Orbiter\Orbiter.exe
