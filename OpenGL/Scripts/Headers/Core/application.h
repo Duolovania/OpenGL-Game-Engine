@@ -2,6 +2,7 @@
 #include <glad/glad.h>
 #include <glfw3.h>
 #include "Core/input.h"
+#include "Audio/audiomanager.h"
 
 class Application
 {
@@ -27,6 +28,7 @@ class Engine
 		}
 
 		Input InputManager;
+		std::unique_ptr<AudioManager> audioManager;
 		static void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods);
 
 

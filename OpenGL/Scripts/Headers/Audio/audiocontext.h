@@ -8,6 +8,7 @@ class AudioContext
 		~AudioContext();
 
 		void KillContext();
+		ALCdevice* GetDevice();
 	private:
 		ALCcontext* context;
 		ALCdevice* device;

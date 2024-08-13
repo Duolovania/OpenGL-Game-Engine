@@ -3,28 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Core\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|solutionrelative:OpenGL\\Scripts\\Core\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Headers\\Audio\\audiomanager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|solutionrelative:OpenGL\\Scripts\\Headers\\Audio\\audiomanager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Audio\\AudioSource.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|solutionrelative:OpenGL\\Scripts\\Audio\\AudioSource.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Audio\\AudioManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|solutionrelative:OpenGL\\Scripts\\Audio\\AudioManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Audio\\AudioSource.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|solutionrelative:OpenGL\\Scripts\\Audio\\AudioSource.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Core\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|solutionrelative:OpenGL\\Scripts\\Core\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Headers\\Core\\renderer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|solutionrelative:OpenGL\\Scripts\\Headers\\Core\\renderer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Headers\\Core\\application.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|solutionrelative:OpenGL\\Scripts\\Headers\\Core\\application.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Headers\\Audio\\audiomanager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|solutionrelative:OpenGL\\Scripts\\Headers\\Audio\\audiomanager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Audio\\AudioContext.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|solutionrelative:OpenGL\\Scripts\\Audio\\AudioContext.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Headers\\Audio\\audiocontext.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|solutionrelative:OpenGL\\Scripts\\Headers\\Audio\\audiocontext.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Headers\\Audio\\audiosource.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|solutionrelative:OpenGL\\Scripts\\Headers\\Audio\\audiosource.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Headers\\Core\\renderer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8A864AC8-7628-759E-5FE3-88F24B24FCEE}|OpenGL\\OpenGL.vcxproj|solutionrelative:OpenGL\\Scripts\\Headers\\Core\\renderer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,11 +46,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "renderer.h",
               "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Headers\\Core\\renderer.h",
               "RelativeDocumentMoniker": "OpenGL\\Scripts\\Headers\\Core\\renderer.h",
@@ -47,8 +59,7 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-06-27T18:29:48.573Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -64,65 +75,104 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
+              "Title": "audiocontext.h",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Headers\\Audio\\audiocontext.h",
+              "RelativeDocumentMoniker": "OpenGL\\Scripts\\Headers\\Audio\\audiocontext.h",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Headers\\Audio\\audiocontext.h",
+              "RelativeToolTip": "OpenGL\\Scripts\\Headers\\Audio\\audiocontext.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-08-13T12:40:58.937Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "audiomanager.h",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Headers\\Audio\\audiomanager.h",
+              "RelativeDocumentMoniker": "OpenGL\\Scripts\\Headers\\Audio\\audiomanager.h",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Headers\\Audio\\audiomanager.h",
+              "RelativeToolTip": "OpenGL\\Scripts\\Headers\\Audio\\audiomanager.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-08-13T12:31:46.361Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AudioContext.cpp",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Audio\\AudioContext.cpp",
+              "RelativeDocumentMoniker": "OpenGL\\Scripts\\Audio\\AudioContext.cpp",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Audio\\AudioContext.cpp",
+              "RelativeToolTip": "OpenGL\\Scripts\\Audio\\AudioContext.cpp",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAEwBMAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-08-13T12:23:25.981Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "application.h",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Headers\\Core\\application.h",
+              "RelativeDocumentMoniker": "OpenGL\\Scripts\\Headers\\Core\\application.h",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Headers\\Core\\application.h",
+              "RelativeToolTip": "OpenGL\\Scripts\\Headers\\Core\\application.h",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAB4AAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-08-13T12:21:30.37Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "AudioManager.cpp",
               "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Audio\\AudioManager.cpp",
               "RelativeDocumentMoniker": "OpenGL\\Scripts\\Audio\\AudioManager.cpp",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Audio\\AudioManager.cpp",
               "RelativeToolTip": "OpenGL\\Scripts\\Audio\\AudioManager.cpp",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABIAAAABAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAFYAAABPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-08-13T11:34:37.681Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "audiomanager.h",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Headers\\Audio\\audiomanager.h",
-              "RelativeDocumentMoniker": "OpenGL\\Scripts\\Headers\\Audio\\audiomanager.h",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Headers\\Audio\\audiomanager.h",
-              "RelativeToolTip": "OpenGL\\Scripts\\Headers\\Audio\\audiomanager.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-08-13T11:34:15.621Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "audiosource.h",
               "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Headers\\Audio\\audiosource.h",
               "RelativeDocumentMoniker": "OpenGL\\Scripts\\Headers\\Audio\\audiosource.h",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Headers\\Audio\\audiosource.h",
               "RelativeToolTip": "OpenGL\\Scripts\\Headers\\Audio\\audiosource.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAABSAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-08-11T17:41:01.05Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "AudioSource.cpp",
               "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Audio\\AudioSource.cpp",
               "RelativeDocumentMoniker": "OpenGL\\Scripts\\Audio\\AudioSource.cpp",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Audio\\AudioSource.cpp",
               "RelativeToolTip": "OpenGL\\Scripts\\Audio\\AudioSource.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAABAAAA",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAABkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-08-13T11:46:49.189Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Application.cpp",
               "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Core\\Application.cpp",
               "RelativeDocumentMoniker": "OpenGL\\Scripts\\Core\\Application.cpp",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OpenGL\\Scripts\\Core\\Application.cpp",
               "RelativeToolTip": "OpenGL\\Scripts\\Core\\Application.cpp",
-              "ViewState": "AQIAAEsAAAAAAAAAAAAAAFcAAAArAAAA",
+              "ViewState": "AQIAAH4AAAAAAAAAAAAAAJEAAABWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-08-13T11:30:29.484Z",
               "EditorCaption": ""

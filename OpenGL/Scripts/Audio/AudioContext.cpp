@@ -21,3 +21,8 @@ void AudioContext::KillContext()
 	alcDestroyContext(context);
 	alcCloseDevice(device);
 }
+
+ALCdevice* AudioContext::GetDevice()
+{
+	return device;
+}
