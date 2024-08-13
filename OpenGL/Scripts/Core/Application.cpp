@@ -8,9 +8,9 @@
 
 #include "testclearcolour.h"
 #include "testtexture2d.h"
-#include "Audio/audiosource.h"
+#include "Audio/audiomanager.h"
 
-std::unique_ptr<AudioSource> aSource;
+std::unique_ptr<AudioManager> audioManager;
 
 float timeTime = 0, oldTimeSinceStart = 0, timeSinceStart, deltaTime;
 int actionIndex = 0, keyBindIndex = 0;
@@ -80,8 +80,15 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     testMenu->RegisterTest<testSpace::TestTexture2D>("Texture 2D");
 
     editor.Init(window);
-    aSource = std::make_unique<AudioSource>();
-    aSource->Gen();
+
+    audioManager = std::make_unique<AudioManager>();
+
+    Sound newSound;
+    newSound.soundName = "Test";
+    newSound.filePath = "Assets/SFX/Derezz2.wav";
+
+    audioManager->sounds.push_back(newSound);
+    audioManager->GenSounds();
 }
 
 // Application loop.
@@ -138,7 +145,7 @@ void Application::Loop()
             ImGui::End();
         }
 
-        if (Core.InputManager.GetActionStrength("arrowUp")) aSource->Play();
+        if (Core.InputManager.GetActionStrength("arrowUp")) audioManager->Play("Test");
     }
 
     editor.End();
@@ -163,6 +170,7 @@ void Application::Close()
     ImGui::DestroyContext();
 
     glfwTerminate();
+    audioManager->KillAudioManager();
 
     delete currentTest;
     if (currentTest != testMenu) delete testMenu;

@@ -272,8 +272,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Scripts\Headers\Audio\audiobuffer.h" />
+    <ClInclude Include="Scripts\Headers\Audio\audiocontext.h" />
     <ClInclude Include="Scripts\Headers\Audio\audiolistener.h" />
+    <ClInclude Include="Scripts\Headers\Audio\audiomanager.h" />
     <ClInclude Include="Scripts\Headers\Audio\audiosource.h" />
+    <ClInclude Include="Scripts\Headers\Audio\sound.h" />
     <ClInclude Include="Scripts\Headers\Core\action.h" />
     <ClInclude Include="Scripts\Headers\Core\animation.h" />
     <ClInclude Include="Scripts\Headers\Core\animationframe.h" />
@@ -355,7 +358,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scripts\Audio\AudioBuffer.cpp" />
+    <ClCompile Include="Scripts\Audio\AudioContext.cpp" />
     <ClCompile Include="Scripts\Audio\AudioListener.cpp" />
+    <ClCompile Include="Scripts\Audio\AudioManager.cpp" />
     <ClCompile Include="Scripts\Audio\AudioSource.cpp" />
     <ClCompile Include="Scripts\Core\Action.cpp" />
     <ClCompile Include="Scripts\Core\Animation.cpp" />

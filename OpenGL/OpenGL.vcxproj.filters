@@ -348,6 +348,9 @@
     <ClInclude Include="Scripts\Vendor\stb_image\stb_image.h">
       <Filter>Vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\Headers\Audio\audiocontext.h" />
+    <ClInclude Include="Scripts\Headers\Audio\audiomanager.h" />
+    <ClInclude Include="Scripts\Headers\Audio\sound.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scripts\Audio\AudioBuffer.cpp">
@@ -447,5 +450,7 @@
     <ClCompile Include="Scripts\Vendor\stb_image\STB_Image.cpp">
       <Filter>Vendor\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\Audio\AudioContext.cpp" />
+    <ClCompile Include="Scripts\Audio\AudioManager.cpp" />
   </ItemGroup>
 </Project>

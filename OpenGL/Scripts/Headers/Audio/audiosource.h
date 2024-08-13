@@ -1,25 +1,18 @@
 #pragma once
 #include "Audio/audiobuffer.h"
+#include "glm/glm.hpp"
 #include <iostream>
-#include <bit>
-#include <fstream>
-#include <vector>
 
 class AudioSource
 {
 	public:
-		AudioSource();
+		AudioSource(const std::string name);
 		~AudioSource();
 
-		void Gen();
-		bool LoadWAVFile(const std::string& filename, ALuint& buffer, ALenum& format, ALsizei& freq, std::vector<char>& data);
-
+		void SetProperties(float pitch = 1.0f, float volume = 1.0f, bool looping = false, glm::vec3 position = glm::vec3(0, 0, 0), glm::vec3 velocity = glm::vec3(0, 0, 0));
 		void Play();
-
-		ALuint source, buffer;
-		ALint state;
-		ALCdevice* device;
-		ALCcontext* context;
+		void KillSource();
 	private:
-		unsigned int sourceID;
+		ALuint sourceID;
+		std::unique_ptr<AudioBuffer> audioBuffer;
 };
