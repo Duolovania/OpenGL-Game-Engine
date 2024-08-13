@@ -7,25 +7,27 @@
   AnimationFrame.cpp
   AnimationPlayer.cpp
   Application.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Application.cpp(359,18): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Application.cpp(95,18): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
   Character.cpp
+  EditorUI.cpp
+  FileManager.cpp
   Input.cpp
   Renderer.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(157,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(164,37): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(219,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(158,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(165,37): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(218,20): warning C4018: '<': signed/unsigned mismatch
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\memory(3595,56): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
   FrameBuffer.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(72,16): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(72,16): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(72,16): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(72,16): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(72,16): warning C4244:         ]
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(73,17): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(73,17): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(73,17): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(73,17): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(73,17): warning C4244:         ]
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244:         ]
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244:         ]
   IndexBuffer.cpp
   Shader.cpp
   Texture.cpp
@@ -33,11 +35,12 @@ C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Renderi
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\VertexArray.cpp(42,3): warning C4312: 'type cast': conversion from 'unsigned int' to 'const void *' of greater size
   VertexBuffer.cpp
   Source.cpp
-  Test.cpp
-  TestClearColour.cpp
   Generating Code...
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\EditorUI.cpp(324,1): warning C4715: 'EditorUI::Begin': not all control paths return a value
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Animation.cpp(24,1): warning C4715: 'Animation::Start': not all control paths return a value
   Compiling...
+  Test.cpp
+  TestClearColour.cpp
   TestTexture2D.cpp
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(36,64): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(36,64): warning C4244:         with
@@ -60,7 +63,6 @@ C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\T
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(40,64): warning C4244:             T=float
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(40,64): warning C4244:         ]
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(42,63): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(92,18): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
   glm.cpp
   imgui.cpp
   imgui_demo.cpp
@@ -72,5 +74,10 @@ C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\T
   imgui_widgets.cpp
   STB_Image.cpp
   Generating Code...
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(77,1): warning C4172: returning address of local variable or temporary: tempArr
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\test.h(27,1): warning C4172: returning address of local variable or temporary: tempArr
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestClearColour.cpp(62,1): warning C4172: returning address of local variable or temporary: tempArr
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\test.h(27,1): warning C4172: returning address of local variable or temporary: tempArr
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\test.h(27,1): warning C4172: returning address of local variable or temporary: tempArr
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
   OpenGL.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin\Release-windows-x86_64\OpenGL\OpenGL.exe

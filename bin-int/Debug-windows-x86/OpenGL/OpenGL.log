@@ -8,41 +8,44 @@ C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\An
   AnimationFrame.cpp
   AnimationPlayer.cpp
   Application.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Application.cpp(277,43): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Application.cpp(286,47): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Application.cpp(422,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Application.cpp(424,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Application.cpp(167,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Application.cpp(169,27): warning C4018: '<': signed/unsigned mismatch
   Character.cpp
+  EditorUI.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\EditorUI.cpp(140,43): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\EditorUI.cpp(149,47): warning C4018: '<': signed/unsigned mismatch
+  FileManager.cpp
   Input.cpp
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Input.cpp(23,20): warning C4018: '<': signed/unsigned mismatch
   Renderer.cpp
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(102,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(123,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(148,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(157,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(219,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(124,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(149,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(158,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Renderer.cpp(218,20): warning C4018: '<': signed/unsigned mismatch
   FrameBuffer.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(72,16): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(72,16): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(72,16): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(72,16): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(72,16): warning C4244:         ]
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(73,17): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(73,17): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(73,17): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(73,17): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(73,17): warning C4244:         ]
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244:         ]
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244:         ]
   IndexBuffer.cpp
   Shader.cpp
   Texture.cpp
   VertexArray.cpp
   VertexBuffer.cpp
   Source.cpp
-  Test.cpp
-  TestClearColour.cpp
   Generating Code...
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\EditorUI.cpp(324,1): warning C4715: 'EditorUI::Begin': not all control paths return a value
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Animation.cpp(24,1): warning C4715: 'Animation::Start': not all control paths return a value
   Compiling...
+  Test.cpp
+  TestClearColour.cpp
   TestTexture2D.cpp
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(36,64): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(36,64): warning C4244:         with
@@ -65,7 +68,6 @@ C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\T
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(40,64): warning C4244:             T=float
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(40,64): warning C4244:         ]
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(42,63): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(129,21): warning C4018: '<': signed/unsigned mismatch
   glm.cpp
   imgui.cpp
   imgui_demo.cpp
@@ -75,8 +77,724 @@ C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\T
   imgui_stdlib.cpp
   imgui_tables.cpp
   imgui_widgets.cpp
+  auxeffectslot.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\effects\base.h(131,6): warning C5030: attribute [[gnu::format]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\auxeffectslot.cpp(292,17): error C3861: 'alDeleteAuxiliaryEffectSlots': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\auxeffectslot.cpp(464,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\auxeffectslot.cpp(519,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\auxeffectslot.cpp(579,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\auxeffectslot.cpp(629,5): warning C4065: switch statement contains 'default' but no 'case' labels
+  buffer.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alu.h(148,2): warning C5030: attribute [[gnu::format]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(489,8): warning C4003: not enough arguments for function-like macro invocation 'max'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(489,8): error C2589: '(': illegal token on right side of '::'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(489,8): error C2062: type 'unknown-type' unexpected
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(489,8): error C2059: syntax error: ')'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(490,9): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(499,8): warning C4003: not enough arguments for function-like macro invocation 'max'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(499,8): error C2589: '(': illegal token on right side of '::'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(499,8): error C2062: type 'unknown-type' unexpected
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(499,8): error C2059: syntax error: ')'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(500,9): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(808,3): error C3861: 'alBufferStorageSOFT': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(1099,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(1119,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(1140,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(1222,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(1296,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(1317,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(1345,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(1423,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(1547,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\buffer.cpp(1575,5): warning C4065: switch statement contains 'default' but no 'case' labels
+  effect.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\effects\base.h(131,6): warning C5030: attribute [[gnu::format]] is not recognized
+  error.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): warning C4003: not enough arguments for function-like macro invocation 'max'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): error C2589: '(': illegal token on right side of '::'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): error C3878: syntax error: unexpected token '(' following 'expression'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): message : error recovery skipped: '( ('
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): error C2760: syntax error: '>' was unexpected here; expected 'statement'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): message : error recovery skipped: '>'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): error C2760: syntax error: ')' was unexpected here; expected 'expression'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): error C2760: syntax error: ')' was unexpected here; expected ';'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): error C3878: syntax error: unexpected token ')' following 'expression_statement'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): error C3878: syntax error: unexpected token ')' following 'statement'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): error C3878: syntax error: unexpected token ')' following 'selection_statement'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): message : error recovery skipped: ') ) ?'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): message : error recovery skipped: ') :'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): message : error recovery skipped: ') ) /'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,65): error C2760: syntax error: ')' was unexpected here; expected ';'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,65): error C3878: syntax error: unexpected token ')' following 'expression_statement'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,65): message : error recovery skipped: ')'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alu.h(148,2): warning C5030: attribute [[gnu::format]] is not recognized
+  event.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alu.h(148,2): warning C5030: attribute [[gnu::format]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\event.cpp(189,36): warning C4858: discarding return value: A lock should be stored in a variable to protect the scope. If you're intentionally constructing a temporary to protect the rest of the current expression using the comma operator, you can cast the temporary to void or define _SILENCE_NODISCARD_LOCK_WARNINGS to suppress this warning.
+  extension.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alu.h(148,2): warning C5030: attribute [[gnu::format]] is not recognized
+  filter.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alu.h(148,2): warning C5030: attribute [[gnu::format]] is not recognized
+  listener.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alu.h(148,2): warning C5030: attribute [[gnu::format]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\listener.cpp(170,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\listener.cpp(193,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\listener.cpp(232,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\listener.cpp(348,5): warning C4065: switch statement contains 'default' but no 'case' labels
+  Generating Code...
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestTexture2D.cpp(77,1): warning C4172: returning address of local variable or temporary: tempArr
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\test.h(27,1): warning C4172: returning address of local variable or temporary: tempArr
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\TestClearColour.cpp(62,1): warning C4172: returning address of local variable or temporary: tempArr
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\test.h(27,1): warning C4172: returning address of local variable or temporary: tempArr
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Tests\test.h(27,1): warning C4172: returning address of local variable or temporary: tempArr
+  Compiling...
+  state.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alu.h(148,2): warning C5030: attribute [[gnu::format]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\state.cpp(497,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\state.cpp(530,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\state.cpp(563,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\state.cpp(596,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\state.cpp(629,5): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\state.cpp(656,5): warning C4065: switch statement contains 'default' but no 'case' labels
+  alc.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\effects\base.h(131,6): warning C5030: attribute [[gnu::format]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(47,51): warning C4003: not enough arguments for function-like macro invocation 'max'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(47,51): error C2589: '(': illegal token on right side of '::'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(47,23): error C2062: type 'unknown-type' unexpected
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(47,51): error C2059: syntax error: ')'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(47,56): error C2143: syntax error: missing ';' before '}'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(47,56): error C2059: syntax error: '}'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(48,11): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(48,24): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(48,24): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(49,25): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(49,33): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(49,33): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(50,25): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(50,33): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(50,33): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(51,25): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(51,34): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(51,34): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(52,25): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(52,33): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(52,33): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(53,25): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(53,33): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(53,33): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(54,10): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(54,22): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(54,22): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(55,10): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(55,17): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(55,17): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(56,19): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(56,33): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(56,33): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(57,15): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(57,25): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(57,25): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(58,16): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(58,30): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(58,30): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(59,20): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(59,31): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(59,31): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(61,10): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(61,23): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(61,23): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(62,10): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(62,21): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(62,21): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(63,10): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(63,23): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(63,23): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(64,11): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(64,22): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(64,22): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(66,11): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(66,30): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(66,30): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(67,11): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(67,28): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(67,28): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(68,11): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(68,24): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(68,24): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(73,25): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(73,34): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(73,34): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(75,11): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(75,17): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(75,17): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(99,12): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(99,18): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(99,18): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(100,12): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(100,22): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(100,22): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(103,12): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(103,22): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(103,22): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(106,12): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(106,17): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(106,17): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(109,28): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(109,28): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(109,28): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(116,12): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(116,20): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(116,20): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(119,12): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(119,14): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(119,14): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(129,1): error C2059: syntax error: '<L_GRAMMAR_end_class>'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\fpu_ctrl.h(17,33): error C2352: 'FPUCtl::leave': a call of a non-static member function requires an object
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\mastering.h(67,52): error C2440: 'static_cast': cannot convert from 'unknown' to 'ALsizei'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\ringbuffer.h(64,24): error C2597: illegal reference to non-static member 'RingBuffer::mSizeMask'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\ringbuffer.h(64,24): error C3867: 'RingBuffer::mSizeMask': non-standard syntax; use '&' to create a pointer to member
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\ringbuffer.h(64,24): error C2568: '&': unable to resolve function overload
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\ringbuffer.h(88,26): error C2597: illegal reference to non-static member 'RingBuffer::mSizeMask'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\ringbuffer.h(88,26): error C3867: 'RingBuffer::mSizeMask': non-standard syntax; use '&' to create a pointer to member
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\ringbuffer.h(88,26): error C2568: '&': unable to resolve function overload
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\ringbuffer.h(88,26): error C1003: error count exceeds 100; stopping compilation
+  alconfig.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\logging.h(11,2): warning C5030: attribute [[gnu::format]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alconfig.cpp(227,28): error C2589: '(': illegal token on right side of '::'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alconfig.cpp(227,23): error C2062: type 'unknown-type' unexpected
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alconfig.cpp(227,28): error C2059: syntax error: ')'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alconfig.cpp(228,15): error C3536: 'cmtpos': cannot be used before it is initialized
+  alu.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alu.h(148,2): warning C5030: attribute [[gnu::format]] is not recognized
+  ambdec.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\logging.h(11,2): warning C5030: attribute [[gnu::format]] is not recognized
+  base.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\base.h(87,6): warning C5030: attribute [[gnu::format]] is not recognized
+  dsound.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\base.h(87,6): warning C5030: attribute [[gnu::format]] is not recognized
+  loopback.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\base.h(87,6): warning C5030: attribute [[gnu::format]] is not recognized
+  null.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\base.h(87,6): warning C5030: attribute [[gnu::format]] is not recognized
+  wasapi.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\base.h(87,6): warning C5030: attribute [[gnu::format]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1450,21): error C2589: '(': illegal token on right side of '::'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1450,16): error C2062: type 'unknown-type' unexpected
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1450,21): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1450,21): error C2143: syntax error: missing ')' before ';'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1450,21): error C2143: syntax error: missing ';' before '}'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1450,21): error C2059: syntax error: ')'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1450,21): error C2059: syntax error: '?'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1453,5): error C3927: '->': trailing return type is not allowed after a non-function declarator
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1453,15): error C3484: syntax error: expected '->' before the return type
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1453,16): error C3613: missing return type after '->' ('int' assumed)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1453,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1453,5): error C2371: 'OutputType': redefinition; different basic types
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1453,16): error C2146: syntax error: missing ';' before identifier 'Format'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1454,5): error C2059: syntax error: 'switch'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1455,5): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1455,5): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1488,5): error C2059: syntax error: 'switch'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1489,5): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1489,5): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1511,5): error C3927: '->': trailing return type is not allowed after a non-function declarator
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1511,15): error C3484: syntax error: expected '->' before the return type
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1511,16): error C3613: missing return type after '->' ('int' assumed)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1511,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1511,5): error C2371: 'OutputType': redefinition; different basic types
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1511,16): error C2146: syntax error: missing ';' before identifier 'Samples'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1512,5): error C3927: '->': trailing return type is not allowed after a non-function declarator
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1512,15): error C3484: syntax error: expected '->' before the return type
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1512,16): error C3613: missing return type after '->' ('int' assumed)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1512,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1512,5): error C2371: 'OutputType': redefinition; different basic types
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1512,16): error C2146: syntax error: missing ';' before identifier 'Format'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1514,5): error C3927: '->': trailing return type is not allowed after a non-function declarator
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1514,15): error C3484: syntax error: expected '->' before the return type
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1514,16): error C3613: missing return type after '->' ('int' assumed)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1514,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1514,5): error C2371: 'OutputType': redefinition; different basic types
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1514,16): error C2146: syntax error: missing ';' before identifier 'Format'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1516,5): error C3927: '->': trailing return type is not allowed after a non-function declarator
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1516,15): error C3484: syntax error: expected '->' before the return type
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1516,16): error C3613: missing return type after '->' ('int' assumed)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1516,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1516,5): error C2371: 'OutputType': redefinition; different basic types
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1516,16): error C2146: syntax error: missing ';' before identifier 'Format'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1518,5): error C3927: '->': trailing return type is not allowed after a non-function declarator
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1518,15): error C3484: syntax error: expected '->' before the return type
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1518,16): error C3613: missing return type after '->' ('int' assumed)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1518,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1518,5): error C2371: 'OutputType': redefinition; different basic types
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1518,16): error C2146: syntax error: missing ';' before identifier 'Format'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1520,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1520,16): error C2440: 'initializing': cannot convert from 'const char [26]' to 'int'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1522,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1522,10): error C2065: 'mClient': undeclared identifier
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1523,5): error C2059: syntax error: 'if'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1524,5): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1524,5): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1529,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1529,17): error C2440: 'initializing': cannot convert from 'nullptr' to 'int'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1530,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1532,5): error C2059: syntax error: 'if'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1533,5): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1533,5): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1557,5): error C2059: syntax error: 'if'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1558,5): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1558,5): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1571,5): error C2059: syntax error: 'else'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1572,5): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1572,5): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1581,5): error C2059: syntax error: 'else'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1582,5): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1582,5): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1587,5): error C2059: syntax error: 'if'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1588,5): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1588,5): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1596,5): error C2059: syntax error: 'else'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1597,5): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1597,5): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1603,5): error C2059: syntax error: 'if'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1604,5): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1604,5): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1619,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1619,5): error C2374: 'hr': redefinition; multiple initialization
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1619,10): error C2065: 'mClient': undeclared identifier
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1620,9): error C2065: 'buf_time': undeclared identifier
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1621,5): error C2059: syntax error: 'if'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1622,5): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1622,5): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1629,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1629,5): error C2374: 'hr': redefinition; multiple initialization
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1629,10): error C2065: 'mClient': undeclared identifier
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1630,5): error C2059: syntax error: 'if'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1632,5): error C2059: syntax error: 'if'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1633,5): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1633,5): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1637,5): error C3927: '->': trailing return type is not allowed after a non-function declarator
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1637,14): error C3613: missing return type after '->' ('int' assumed)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1637,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1637,14): error C2146: syntax error: missing ';' before identifier 'UpdateSize'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1638,5): error C3927: '->': trailing return type is not allowed after a non-function declarator
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1638,14): error C3613: missing return type after '->' ('int' assumed)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1638,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1638,5): error C2086: 'int mDevice': redefinition
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1638,14): error C2146: syntax error: missing ';' before identifier 'BufferSize'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1640,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1640,25): error C2660: 'RingBuffer::Create': function does not take 2 arguments
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1640,11): error C2440: 'initializing': cannot convert from 'std::unique_ptr<RingBuffer,std::default_delete<RingBuffer>>' to 'int'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1642,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1642,5): error C2374: 'hr': redefinition; multiple initialization
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1642,10): error C2065: 'mClient': undeclared identifier
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1642,34): error C2065: 'mNotifyEvent': undeclared identifier
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1643,5): error C2059: syntax error: 'if'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1644,5): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1644,5): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\wasapi.cpp(1644,5): error C1003: error count exceeds 100; stopping compilation
+  wave.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\base.h(87,6): warning C5030: attribute [[gnu::format]] is not recognized
+  winmm.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\backends\base.h(87,6): warning C5030: attribute [[gnu::format]] is not recognized
+  bformatdec.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alu.h(148,2): warning C5030: attribute [[gnu::format]] is not recognized
+  bs2b.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+  converter.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alu.h(148,2): warning C5030: attribute [[gnu::format]] is not recognized
+  cpu_caps.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\logging.h(11,2): warning C5030: attribute [[gnu::format]] is not recognized
+  autowah.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\effects\base.h(131,6): warning C5030: attribute [[gnu::format]] is not recognized
+  chorus.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\effects\base.h(131,6): warning C5030: attribute [[gnu::format]] is not recognized
+  compressor.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\effects\base.h(131,6): warning C5030: attribute [[gnu::format]] is not recognized
+  dedicated.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\effects\base.h(131,6): warning C5030: attribute [[gnu::format]] is not recognized
+  Generating Code...
+  Compiling...
+  distortion.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\effects\base.h(131,6): warning C5030: attribute [[gnu::format]] is not recognized
+  echo.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\effects\base.h(131,6): warning C5030: attribute [[gnu::format]] is not recognized
+  equalizer.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\effects\base.h(131,6): warning C5030: attribute [[gnu::format]] is not recognized
+  fshifter.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\effects\base.h(131,6): warning C5030: attribute [[gnu::format]] is not recognized
+  modulator.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\effects\base.h(131,6): warning C5030: attribute [[gnu::format]] is not recognized
+  pshifter.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\effects\base.h(131,6): warning C5030: attribute [[gnu::format]] is not recognized
+  reverb.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\effects\base.h(131,6): warning C5030: attribute [[gnu::format]] is not recognized
+  vmorpher.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\effects\base.h(131,6): warning C5030: attribute [[gnu::format]] is not recognized
+  biquad.cpp
+  nfc.cpp
+  splitter.cpp
+  fpu_ctrl.cpp
+  helpers.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\logging.h(11,2): warning C5030: attribute [[gnu::format]] is not recognized
+  hrtf.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\logging.h(11,2): warning C5030: attribute [[gnu::format]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\hrtf.cpp(974,24): warning C4834: discarding return value of function with [[nodiscard]] attribute
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\hrtf.cpp(1009,24): warning C4834: discarding return value of function with [[nodiscard]] attribute
+  mastering.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alu.h(148,2): warning C5030: attribute [[gnu::format]] is not recognized
+  mixer_c.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alu.h(148,2): warning C5030: attribute [[gnu::format]] is not recognized
+  mixer_neon.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\arm_neon.h(21,1): error C1189: #error:  This header is specific to ARM targets
+  mixer_sse.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alu.h(148,2): warning C5030: attribute [[gnu::format]] is not recognized
+  mixer_sse2.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alu.h(148,2): warning C5030: attribute [[gnu::format]] is not recognized
+  mixer_sse3.cpp
+  Generating Code...
+  Compiling...
+  mixer_sse41.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alu.h(148,2): warning C5030: attribute [[gnu::format]] is not recognized
+  panning.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\effects\base.h(131,6): warning C5030: attribute [[gnu::format]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\panning.cpp(811,14): warning C4834: discarding return value of function with [[nodiscard]] attribute
+  ringbuffer.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+  uhjfilter.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+  uiddefs.cpp
+  voice.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\alnumeric.h(147,5): error C3861: '_BitScanForward64': identifier not found
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\alu.h(148,2): warning C5030: attribute [[gnu::format]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(47,51): warning C4003: not enough arguments for function-like macro invocation 'max'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(47,51): error C2589: '(': illegal token on right side of '::'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(47,23): error C2062: type 'unknown-type' unexpected
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(47,51): error C2059: syntax error: ')'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(47,56): error C2143: syntax error: missing ';' before '}'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(47,56): error C2059: syntax error: '}'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(48,11): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(48,24): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(48,24): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(49,25): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(49,33): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(49,33): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(50,25): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(50,33): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(50,33): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(51,25): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(51,34): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(51,34): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(52,25): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(52,33): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(52,33): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(53,25): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(53,33): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(53,33): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(54,10): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(54,22): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(54,22): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(55,10): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(55,17): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(55,17): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(56,19): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(56,33): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(56,33): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(57,15): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(57,25): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(57,25): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(58,16): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(58,30): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(58,30): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(59,20): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(59,31): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(59,31): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(61,10): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(61,23): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(61,23): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(62,10): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(62,21): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(62,21): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(63,10): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(63,23): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(63,23): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(64,11): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(64,22): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(64,22): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(66,11): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(66,30): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(66,30): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(67,11): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(67,28): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(67,28): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(68,11): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(68,24): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(68,24): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(73,25): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(73,34): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(73,34): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(75,11): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(75,17): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(75,17): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(99,12): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(99,18): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(99,18): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(100,12): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(100,22): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(100,22): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(103,12): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(103,22): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(103,22): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(106,12): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(106,17): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(106,17): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(109,28): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(109,28): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(109,28): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(116,12): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(116,20): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(116,20): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(119,12): error C2059: syntax error: 'member initializer'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(119,14): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(119,14): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\al\source.h(129,1): error C2059: syntax error: '<L_GRAMMAR_end_class>'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\ringbuffer.h(64,24): error C2597: illegal reference to non-static member 'RingBuffer::mSizeMask'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\ringbuffer.h(64,24): error C3867: 'RingBuffer::mSizeMask': non-standard syntax; use '&' to create a pointer to member
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\ringbuffer.h(64,24): error C2568: '&': unable to resolve function overload
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\ringbuffer.h(88,26): error C2597: illegal reference to non-static member 'RingBuffer::mSizeMask'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\ringbuffer.h(88,26): error C3867: 'RingBuffer::mSizeMask': non-standard syntax; use '&' to create a pointer to member
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\ringbuffer.h(88,26): error C2568: '&': unable to resolve function overload
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\voice.cpp(580,29): error C2597: illegal reference to non-static member 'Voice::mSampleSize'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\voice.cpp(580,28): error C2440: 'initializing': cannot convert from 'unknown' to 'ALuint'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\alc\voice.cpp(580,28): error C1003: error count exceeds 100; stopping compilation
+  alcomplex.cpp
+  alexcpt.cpp
+  alfstream.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): warning C4003: not enough arguments for function-like macro invocation 'max'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): error C2589: '(': illegal token on right side of '::'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): error C3878: syntax error: unexpected token '(' following 'expression'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): message : error recovery skipped: '( ('
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): error C2760: syntax error: '>' was unexpected here; expected 'statement'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): message : error recovery skipped: '>'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): error C2760: syntax error: ')' was unexpected here; expected 'expression'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): error C2760: syntax error: ')' was unexpected here; expected ';'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): error C3878: syntax error: unexpected token ')' following 'expression_statement'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): error C3878: syntax error: unexpected token ')' following 'statement'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): error C3878: syntax error: unexpected token ')' following 'selection_statement'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): message : error recovery skipped: ') ) ?'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): message : error recovery skipped: ') :'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,50): message : error recovery skipped: ') ) /'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,65): error C2760: syntax error: ')' was unexpected here; expected ';'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,65): error C3878: syntax error: unexpected token ')' following 'expression_statement'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(90,65): message : error recovery skipped: ')'
+  almalloc.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+  alstring.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+  bsinc_tables.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+  dynload.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+  polyphase_resampler.cpp
+  strutils.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_align]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(16,2): warning C5030: attribute [[gnu::alloc_size]] is not recognized
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\almalloc.h(88,6): warning C5030: attribute [[gnu::assume_aligned]] is not recognized
+  threads.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\threads.cpp(64,70): warning C4003: not enough arguments for function-like macro invocation 'max'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\threads.cpp(64,70): error C2589: '(': illegal token on right side of '::'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\threads.cpp(64,44): error C2062: type 'unknown-type' unexpected
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\threads.cpp(64,44): error C2144: syntax error: 'unknown-type' should be preceded by '('
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\threads.cpp(64,76): error C2059: syntax error: ')'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\threads.cpp(66,72): warning C4003: not enough arguments for function-like macro invocation 'max'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\threads.cpp(66,72): error C2589: '(': illegal token on right side of '::'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\threads.cpp(66,46): error C2062: type 'unknown-type' unexpected
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Vendor\openal-soft-master\src\common\threads.cpp(66,86): error C2059: syntax error: ')'
   STB_Image.cpp
   Generating Code...
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-LINK : warning LNK4098: defaultlib 'LIBCMTD' conflicts with use of other libs; use /NODEFAULTLIB:library
-  OpenGL.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin\Debug-windows-x86\OpenGL\OpenGL.exe

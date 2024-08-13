@@ -67,6 +67,39 @@
     <Filter Include="Vendor\imgui">
       <UniqueIdentifier>{3D8F64D2-29F2-F376-D277-2C2DBEB9BFF9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Vendor\openal-soft-master">
+      <UniqueIdentifier>{4394F33B-AF56-27C6-F806-B652640800A4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\include">
+      <UniqueIdentifier>{B64E66E7-22BD-BB66-6BA6-7666D753B102}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\include\AL">
+      <UniqueIdentifier>{922BD0A0-7E12-9298-2763-F8B513290BFF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\src">
+      <UniqueIdentifier>{DABB7578-46D4-5CA2-0F81-EC3B7B58F13B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\src\al">
+      <UniqueIdentifier>{763A5807-628B-4349-8BEF-310B779FD6B2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\src\alc">
+      <UniqueIdentifier>{99895FF2-05F8-B471-4EE1-6F71BA8EAA0D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\src\alc\backends">
+      <UniqueIdentifier>{E3DFCF0C-CF47-96DA-38B3-AAF0243AADC6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\src\alc\effects">
+      <UniqueIdentifier>{682A65CC-D444-C86D-1D67-D80189C0EF74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\src\alc\filters">
+      <UniqueIdentifier>{01B6D320-6DD0-36C2-B6F2-4656224C5EC9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\src\alc\mixer">
+      <UniqueIdentifier>{8D1C435F-F9AB-044A-02A8-E5616EB63F56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\openal-soft-master\src\common">
+      <UniqueIdentifier>{F2C35A1A-DEAA-1C12-87FB-822F73C19578}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Vendor\stb_image">
       <UniqueIdentifier>{EDE315D3-D9DC-3425-020F-1AAAEE661431}</UniqueIdentifier>
     </Filter>
@@ -97,6 +130,12 @@
       <Filter>Headers\Core</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Headers\Core\character.h">
+      <Filter>Headers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\editorui.h">
+      <Filter>Headers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\filemanager.h">
       <Filter>Headers\Core</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Headers\Core\gameobject.h">
@@ -309,7 +348,6 @@
     <ClInclude Include="Scripts\Vendor\stb_image\stb_image.h">
       <Filter>Vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\Core\editorui.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scripts\Audio\AudioBuffer.cpp">
@@ -337,6 +375,12 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Scripts\Core\Character.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Core\EditorUI.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Core\FileManager.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Scripts\Core\Input.cpp">
@@ -403,6 +447,5 @@
     <ClCompile Include="Scripts\Vendor\stb_image\STB_Image.cpp">
       <Filter>Vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\Core\EditorUI.cpp" />
   </ItemGroup>
 </Project>

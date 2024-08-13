@@ -33,7 +33,6 @@ class Renderer
         void Draw(glm::mat4 projection, glm::vec2 cameraPosition);
         std::vector<Character> objectsToRender;
 
-
         int texturesLoaded = 0, newTextures = 0;
     private:
         std::unique_ptr<VertexArray> m_va;

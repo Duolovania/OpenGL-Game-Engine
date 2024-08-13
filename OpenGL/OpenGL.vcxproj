@@ -138,8 +138,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;GL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\openal-soft-master\include;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts\Headers;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;GL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Scripts\Vendor\openal-soft-master;Scripts\Vendor\openal-soft-master\include;Scripts\Vendor\openal-soft-master\include\AL;Scripts\Vendor\openal-soft-master\src;Scripts\Vendor\openal-soft-master\src\alc;Scripts\Vendor\openal-soft-master\src\al;Scripts\Vendor\openal-soft-master\src\common;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts\Headers;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -158,8 +158,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;GL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\openal-soft-master\include;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts\Headers;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;GL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Scripts\Vendor\openal-soft-master;Scripts\Vendor\openal-soft-master\include;Scripts\Vendor\openal-soft-master\include\AL;Scripts\Vendor\openal-soft-master\src;Scripts\Vendor\openal-soft-master\src\alc;Scripts\Vendor\openal-soft-master\src\al;Scripts\Vendor\openal-soft-master\src\common;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts\Headers;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -178,8 +178,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;GL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\openal-soft-master\include;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts\Headers;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;GL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Scripts\Vendor\openal-soft-master;Scripts\Vendor\openal-soft-master\include;Scripts\Vendor\openal-soft-master\include\AL;Scripts\Vendor\openal-soft-master\src;Scripts\Vendor\openal-soft-master\src\alc;Scripts\Vendor\openal-soft-master\src\al;Scripts\Vendor\openal-soft-master\src\common;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts\Headers;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -202,8 +202,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;GL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\openal-soft-master\include;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts\Headers;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;GL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Scripts\Vendor\openal-soft-master;Scripts\Vendor\openal-soft-master\include;Scripts\Vendor\openal-soft-master\include\AL;Scripts\Vendor\openal-soft-master\src;Scripts\Vendor\openal-soft-master\src\alc;Scripts\Vendor\openal-soft-master\src\al;Scripts\Vendor\openal-soft-master\src\common;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts\Headers;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -226,8 +226,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;GL_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\openal-soft-master\include;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts\Headers;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;GL_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Scripts\Vendor\openal-soft-master;Scripts\Vendor\openal-soft-master\include;Scripts\Vendor\openal-soft-master\include\AL;Scripts\Vendor\openal-soft-master\src;Scripts\Vendor\openal-soft-master\src\alc;Scripts\Vendor\openal-soft-master\src\al;Scripts\Vendor\openal-soft-master\src\common;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts\Headers;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -250,8 +250,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;GL_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\openal-soft-master\include;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts\Headers;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;GL_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Scripts\Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Scripts\Vendor\openal-soft-master;Scripts\Vendor\openal-soft-master\include;Scripts\Vendor\openal-soft-master\include\AL;Scripts\Vendor\openal-soft-master\src;Scripts\Vendor\openal-soft-master\src\alc;Scripts\Vendor\openal-soft-master\src\al;Scripts\Vendor\openal-soft-master\src\common;Scripts\Tests;Scripts\Vendor;Scripts\Vendor\imgui;Scripts\Vendor\stb_image;Scripts\Vendor\glm;Scripts\Headers;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -281,6 +281,7 @@
     <ClInclude Include="Scripts\Headers\Core\application.h" />
     <ClInclude Include="Scripts\Headers\Core\character.h" />
     <ClInclude Include="Scripts\Headers\Core\editorui.h" />
+    <ClInclude Include="Scripts\Headers\Core\filemanager.h" />
     <ClInclude Include="Scripts\Headers\Core\gameobject.h" />
     <ClInclude Include="Scripts\Headers\Core\input.h" />
     <ClInclude Include="Scripts\Headers\Core\renderer.h" />
@@ -363,6 +364,7 @@
     <ClCompile Include="Scripts\Core\Application.cpp" />
     <ClCompile Include="Scripts\Core\Character.cpp" />
     <ClCompile Include="Scripts\Core\EditorUI.cpp" />
+    <ClCompile Include="Scripts\Core\FileManager.cpp" />
     <ClCompile Include="Scripts\Core\Input.cpp" />
     <ClCompile Include="Scripts\Core\Renderer.cpp" />
     <ClCompile Include="Scripts\Rendering\FrameBuffer.cpp" />
@@ -389,6 +391,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Dependencies\Glad\Glad.vcxproj">
       <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="Scripts\Vendor\openal-soft-master\OpenALSoft.vcxproj">
+      <Project>{00310F52-ECE8-509F-55F0-29FB41C7EB8F}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -26,8 +26,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["Glad"] = "Dependencies/Glad/include"
+IncludeDir["OpenALSoft"] = "OpenGL/Scripts/Vendor/openal-soft-master"
 
 include "Dependencies/Glad"
+include "OpenGL/Scripts/Vendor/openal-soft-master"
 
 project "OpenGL"
     location "OpenGL"
@@ -50,17 +52,27 @@ project "OpenGL"
     {
         "%{prj.name}/Scripts/Vendor/glfw-master-cherno/include/GLFW",
         "%{IncludeDir.Glad}",
+        "%{IncludeDir.OpenALSoft}",
+        "%{IncludeDir.OpenALSoft}/include",
+        "%{IncludeDir.OpenALSoft}/include/AL",
+        "%{IncludeDir.OpenALSoft}/src",
+        "%{IncludeDir.OpenALSoft}/src/alc",
+        "%{IncludeDir.OpenALSoft}/src/al",
+        "%{IncludeDir.OpenALSoft}/src/common",
 
         "%{prj.name}/Scripts/Tests",
-
         "%{prj.name}/Scripts/Vendor",
-        "%{prj.name}/Scripts/Vendor/openal-soft-master/include",
         "%{prj.name}/Scripts/Vendor/imgui",
         "%{prj.name}/Scripts/Vendor/stb_image",
         "%{prj.name}/Scripts/Vendor/glm",
         "%{prj.name}/Scripts/Headers",
         "%{prj.name}/Scripts"
     }
+
+    excludes
+	{
+		"%{IncludeDir.OpenALSoft}/src/alc/mixer/mixer_neon.cpp"
+	}
 
     links
     {
@@ -69,7 +81,8 @@ project "OpenGL"
         "Gdi32",
         "User32",
         "Shell32",
-        "Glad"
+        "Glad",
+        "OpenALSoft"
     }
 
     filter { "platforms:Win32" }
@@ -92,7 +105,10 @@ project "OpenGL"
         defines
         {
             "WIN32",
-            "GLFW_INCLUDE_NONE"
+            "GLFW_INCLUDE_NONE",
+            "_CRT_SECURE_NO_WARNINGS",
+            "NOMINMAX",
+            "AL_LIBTYPE_STATIC"
         }
 
         ---- Copies engine project DLL into sandbox project.
