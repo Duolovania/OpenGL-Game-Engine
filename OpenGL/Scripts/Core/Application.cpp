@@ -5,6 +5,7 @@
 
 #include "Rendering/shader.h"
 #include "Core/editorui.h"
+#include "stb_image.h"
 
 #include "testclearcolour.h"
 #include "testtexture2d.h"
@@ -26,7 +27,7 @@ EditorUI editor;
 // Application starting point.
 void Application::Run()
 {
-    Init(m_screenWidth, m_screenHeight, "Engine");
+    Init(m_screenWidth, m_screenHeight, "Orbit Editor");
 
     framebuffer = std::make_unique<FrameBuffer>(m_screenWidth, m_screenHeight);
     framebuffer->Gen();
@@ -53,6 +54,10 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
 
     // Create a windowed mode window and its OpenGL context 
     window = glfwCreateWindow(screenWidth, screenHeight, windowTitle, NULL, NULL);
+
+    GLFWimage images[1];
+    images[0].pixels = stbi_load("Res/orbitlogo.png", &images[0].width, &images[0].height, 0, 4);
+    glfwSetWindowIcon(window, 1, images);
     glfwSetKeyCallback(window, Engine::HandleInput);
 
     if (!window)

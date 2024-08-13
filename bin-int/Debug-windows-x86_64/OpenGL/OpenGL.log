@@ -1,3 +1,4 @@
 ﻿cl : command line  warning D9025: overriding '/MTd' with '/MDd'
-  FileManager.cpp
+  Application.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OpenGL\Scripts\Core\Application.cpp(109,18): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
   OpenGL.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin\Debug-windows-x86_64\OpenGL\OpenGL.exe
