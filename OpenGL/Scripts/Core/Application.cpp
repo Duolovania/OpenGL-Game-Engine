@@ -8,6 +8,9 @@
 
 #include "testclearcolour.h"
 #include "testtexture2d.h"
+#include "Audio/audiosource.h"
+
+std::unique_ptr<AudioSource> aSource;
 
 float timeTime = 0, oldTimeSinceStart = 0, timeSinceStart, deltaTime;
 int actionIndex = 0, keyBindIndex = 0;
@@ -77,6 +80,8 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     testMenu->RegisterTest<testSpace::TestTexture2D>("Texture 2D");
 
     editor.Init(window);
+    aSource = std::make_unique<AudioSource>();
+    aSource->Gen();
 }
 
 // Application loop.
@@ -132,6 +137,8 @@ void Application::Loop()
 
             ImGui::End();
         }
+
+        if (Core.InputManager.GetActionStrength("arrowUp")) aSource->Play();
     }
 
     editor.End();

@@ -13,12 +13,13 @@ class AudioSource
 
 		void Gen();
 		bool LoadWAVFile(const std::string& filename, ALuint& buffer, ALenum& format, ALsizei& freq, std::vector<char>& data);
-		//char* LoadWav(const std::string& filename, std::uint8_t& channels, std::int32_t& sampleRate, std::uint8_t& bitsPerSample, std::vector<char>& size);
+
+		void Play();
+
+		ALuint source, buffer;
+		ALint state;
+		ALCdevice* device;
+		ALCcontext* context;
 	private:
 		unsigned int sourceID;
-
-		/*bool LoadWavHeader(std::ifstream& file, std::uint8_t& channels, std::int32_t& sampleRate, std::uint8_t& bitsPerSample, std::vector<char>& size);
-		std::int32_t ConvertToInt32(char* buffer, std::size_t length);*/
-
-
 };
