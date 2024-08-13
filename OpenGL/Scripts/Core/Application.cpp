@@ -104,10 +104,10 @@ void Application::Loop()
     ImGui::Image((void*)framebuffer->GetTexture(), viewportSize, ImVec2(0, 1), ImVec2(1, 0));
     ImVec2 imagePos = ImGui::GetCursorScreenPos();
 
-    ImVec2 position = ImVec2(imagePos.x + 20, imagePos.y - 625);
+    ImVec2 position = ImVec2(imagePos.x * 1.15f, imagePos.y / 10.15f);
     ImGui::SetCursorScreenPos(position);
 
-    if (currentTest != testMenu)
+    if (editor.showFPS)
     {
         ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.988f, 0.659f, 0.176f, 1.0f));
         ImGui::Text("FPS: %.1f", double(1.0f / ImGui::GetIO().DeltaTime));

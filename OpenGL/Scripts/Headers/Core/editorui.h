@@ -11,6 +11,7 @@ class EditorUI
 		bool Begin();
 
 		void End();
+		bool showFPS = false;
 	private:
 		void StylesConfig();
 		bool showStats, wireframeMode, listenToInput;

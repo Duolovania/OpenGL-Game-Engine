@@ -172,6 +172,11 @@ bool EditorUI::Begin()
 
         if (ImGui::BeginMenu("Editor"))
         {
+            if (ImGui::MenuItem("Toggle FPS"))
+            {
+                showFPS = !showFPS;
+            }
+
             if (ImGui::MenuItem("Toggle Wireframe Mode"))
             {
                 wireframeMode = !wireframeMode;
