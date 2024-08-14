@@ -1,0 +1,69 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BC640DD6-2844-8C71-315C-17489DBAF2D2}|Orbiter\\Orbiter.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\Orbiter\\Scripts\\Core\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BC640DD6-2844-8C71-315C-17489DBAF2D2}|Orbiter\\Orbiter.vcxproj|solutionrelative:Orbiter\\Scripts\\Core\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC640DD6-2844-8C71-315C-17489DBAF2D2}|Orbiter\\Orbiter.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\Orbiter\\Scripts\\Core\\EditorUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BC640DD6-2844-8C71-315C-17489DBAF2D2}|Orbiter\\Orbiter.vcxproj|solutionrelative:Orbiter\\Scripts\\Core\\EditorUI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Application.cpp",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\Orbiter\\Scripts\\Core\\Application.cpp",
+              "RelativeDocumentMoniker": "Orbiter\\Scripts\\Core\\Application.cpp",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\Orbiter\\Scripts\\Core\\Application.cpp",
+              "RelativeToolTip": "Orbiter\\Scripts\\Core\\Application.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-08-13T15:32:54.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EditorUI.cpp",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\Orbiter\\Scripts\\Core\\EditorUI.cpp",
+              "RelativeDocumentMoniker": "Orbiter\\Scripts\\Core\\EditorUI.cpp",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\Orbiter\\Scripts\\Core\\EditorUI.cpp",
+              "RelativeToolTip": "Orbiter\\Scripts\\Core\\EditorUI.cpp",
+              "ViewState": "AQIAAK0AAAAAAAAAAAAUwNYAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-08-13T15:25:50.691Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

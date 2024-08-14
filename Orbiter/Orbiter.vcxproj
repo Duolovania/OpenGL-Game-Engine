@@ -276,6 +276,7 @@
     <ClInclude Include="Scripts\Headers\Audio\audiolistener.h" />
     <ClInclude Include="Scripts\Headers\Audio\audiomanager.h" />
     <ClInclude Include="Scripts\Headers\Audio\audiosource.h" />
+    <ClInclude Include="Scripts\Headers\Audio\orbiteraudio.h" />
     <ClInclude Include="Scripts\Headers\Audio\sound.h" />
     <ClInclude Include="Scripts\Headers\Core\action.h" />
     <ClInclude Include="Scripts\Headers\Core\animation.h" />
@@ -287,10 +288,12 @@
     <ClInclude Include="Scripts\Headers\Core\filemanager.h" />
     <ClInclude Include="Scripts\Headers\Core\gameobject.h" />
     <ClInclude Include="Scripts\Headers\Core\input.h" />
+    <ClInclude Include="Scripts\Headers\Core\orbitercore.h" />
     <ClInclude Include="Scripts\Headers\Core\renderer.h" />
     <ClInclude Include="Scripts\Headers\Math\transform.h" />
     <ClInclude Include="Scripts\Headers\Math\vector.h" />
     <ClInclude Include="Scripts\Headers\Math\vertex.h" />
+    <ClInclude Include="Scripts\Headers\orbiter.h" />
     <ClInclude Include="Scripts\Headers\Rendering\framebuffer.h" />
     <ClInclude Include="Scripts\Headers\Rendering\indexbuffer.h" />
     <ClInclude Include="Scripts\Headers\Rendering\shader.h" />

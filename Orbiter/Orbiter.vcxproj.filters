@@ -357,6 +357,9 @@
     <ClInclude Include="Scripts\Vendor\stb_image\stb_image.h">
       <Filter>Vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\Headers\Audio\orbiteraudio.h" />
+    <ClInclude Include="Scripts\Headers\Core\orbitercore.h" />
+    <ClInclude Include="Scripts\Headers\orbiter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scripts\Audio\AudioBuffer.cpp">
