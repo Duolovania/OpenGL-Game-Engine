@@ -259,7 +259,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Scripts\EditorUI.cpp" />
+    <ClCompile Include="Scripts\Editor.cpp" />
     <ClCompile Include="Scripts\Source.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -268,7 +268,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Scripts\Headers\editorui.h" />
+    <ClInclude Include="Scripts\Headers\editor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -90,7 +90,7 @@
     <ClInclude Include="Scripts\Headers\Core\character.h">
       <Filter>Scripts\Headers\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\Core\editorui.h">
+    <ClInclude Include="Scripts\Headers\Core\renderinglayer.h">
       <Filter>Scripts\Headers\Core</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Headers\Core\filemanager.h">
@@ -247,9 +247,6 @@
       <Filter>Scripts\Core</Filter>
     </ClCompile>
     <ClCompile Include="Scripts\Core\Character.cpp">
-      <Filter>Scripts\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Core\EditorUI.cpp">
       <Filter>Scripts\Core</Filter>
     </ClCompile>
     <ClCompile Include="Scripts\Core\FileManager.cpp">

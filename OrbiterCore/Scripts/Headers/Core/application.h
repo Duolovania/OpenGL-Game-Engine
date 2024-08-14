@@ -3,6 +3,7 @@
 #include <glfw3.h>
 #include "Core/input.h"
 #include "Audio/audiomanager.h"
+#include "Core/renderinglayer.h"
 
 class Application
 {
@@ -28,9 +29,9 @@ class Engine
 		}
 
 		Input InputManager;
+		RenderingLayer* renderingLayer;
 		std::unique_ptr<AudioManager> audioManager;
 		static void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods);
-
 
 	private:
 		Engine() {}

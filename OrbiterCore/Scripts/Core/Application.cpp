@@ -4,33 +4,25 @@
 #include "Rendering/vertexarray.h"
 
 #include "Rendering/shader.h"
-#include "Core/editorui.h"
 #include "stb_image.h"
-
-#include "testclearcolour.h"
-#include "testtexture2d.h"
 
 float timeTime = 0, oldTimeSinceStart = 0, timeSinceStart, deltaTime;
 int actionIndex = 0, keyBindIndex = 0;
 
 bool applicationQuit = false, listenToInput = false, showStats = false;
 
-testSpace::Test* currentTest = nullptr;
-testSpace::TestMenu* testMenu = new testSpace::TestMenu(currentTest);
-
 std::unique_ptr<FrameBuffer> framebuffer;
 std::unique_ptr<Shader> fbShader;
 
 Engine Engine::instance;
-EditorUI editor;
 
 // Application starting point.
 void Application::Run()
 {
     Init(m_screenWidth, m_screenHeight, "Orbiter Editor");
 
-    framebuffer = std::make_unique<FrameBuffer>(m_screenWidth, m_screenHeight);
-    framebuffer->Gen();
+    Core.renderingLayer->framebuffer = std::make_unique<FrameBuffer>(m_screenWidth, m_screenHeight);
+    Core.renderingLayer->framebuffer->Gen();
 
     // Loop until the user closes the window
     while (!glfwWindowShouldClose(window) && !applicationQuit)
@@ -50,7 +42,6 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    //glfwWindowHint(GLFW_DECORATED, false);
 
     // Create a windowed mode window and its OpenGL context 
     window = glfwCreateWindow(screenWidth, screenHeight, windowTitle, NULL, NULL);
@@ -78,12 +69,7 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     GLCall(glEnable(GL_BLEND));
     GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
-    currentTest = testMenu;
-    testMenu->RegisterTest<testSpace::TestClearColour>("Clear Colour");
-    testMenu->RegisterTest<testSpace::TestTexture2D>("Texture 2D");
-
-    editor.Init(window);
-
+    Core.renderingLayer->Init(window);
     Core.audioManager = std::make_unique<AudioManager>();
 
     Sound newSound;
@@ -96,63 +82,15 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
 
 // Application loop.
 void Application::Loop()
-{
-    GLCall(glClearColor(0.05f, 0.05f, 0.05f, 1.0f));
-    
-    applicationQuit = !editor.Begin();
+{   
+    /*applicationQuit = !Core.renderingLayer.Begin();
 
-    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
-    ImGui::Begin("Viewport");
+    Core.renderingLayer.End();*/
 
-    ImVec2 viewportSize = ImGui::GetContentRegionAvail();
-    framebuffer->Resize(glm::vec2(viewportSize.x, viewportSize.y));
+    Core.renderingLayer->OnUpdate(deltaTime);
 
-    ImGui::Image((void*)framebuffer->GetTexture(), viewportSize, ImVec2(0, 1), ImVec2(1, 0));
-    ImVec2 imagePos = ImGui::GetCursorScreenPos();
-
-    ImVec2 position = ImVec2(imagePos.x * 1.15f, imagePos.y / 10.15f);
-    ImGui::SetCursorScreenPos(position);
-
-    if (editor.showFPS)
-    {
-        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.988f, 0.659f, 0.176f, 1.0f));
-        ImGui::Text("FPS: %.1f", double(1.0f / ImGui::GetIO().DeltaTime));
-        ImGui::PopStyleColor();
-    }
-
-    ImGui::End();
-    ImGui::PopStyleVar();
-
-    framebuffer->Bind();
-
-    GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
-
-    if (currentTest)
-    {
-        currentTest->OnUpdate(deltaTime);
-        currentTest->OnRender(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f));
-        
-        framebuffer->UnBind();
-
-        ImGui::Begin("Debug Log");
-        currentTest->OnImGuiRender();
-        ImGui::End();
-
-        if (showStats)
-        {
-            ImGui::Begin("Rendering Stats");
-
-            ImGui::Text("Textures Loaded: %.0f", double(currentTest->GetStats()[1]));
-            ImGui::Text("New Textures Created: %.0f", double(currentTest->GetStats()[0]));
-
-            ImGui::End();
-        }
-
-        if (Core.InputManager.GetActionStrength("arrowUp")) Core.audioManager->Play("Test");
-        if (Core.InputManager.GetActionStrength("arrowDown")) Core.audioManager->Pause("Test");
-    }
-
-    editor.End();
+    if (Core.InputManager.GetActionStrength("arrowUp")) Core.audioManager->Play("Test");
+    if (Core.InputManager.GetActionStrength("arrowDown")) Core.audioManager->Pause("Test");
 
     timeSinceStart = static_cast<float>(glfwGetTime());
     deltaTime = timeSinceStart - oldTimeSinceStart;
@@ -170,14 +108,11 @@ void Application::Loop()
 void Application::Close()
 {
     Core.audioManager->KillAudioManager();
-    ImGui_ImplGlfw_Shutdown();
-    ImGui_ImplOpenGL3_Shutdown();
-    ImGui::DestroyContext();
+    Core.renderingLayer->Close();
 
     glfwTerminate();
 
-    delete currentTest;
-    if (currentTest != testMenu) delete testMenu;
+    Core.renderingLayer->CleanUp();
 }
 
 // Handles key input actions.
