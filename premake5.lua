@@ -26,14 +26,14 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["Glad"] = "Dependencies/Glad/include"
-IncludeDir["OpenALSoft"] = "Orbiter/Scripts/Vendor/openal-soft-master"
+IncludeDir["OpenALSoft"] = "OrbiterCore/Vendor/openal-soft-master"
 
 include "Dependencies/Glad"
-include "Orbiter/Scripts/Vendor/openal-soft-master"
+include "OrbiterCore/Vendor/openal-soft-master"
 
-project "Orbiter"
-    location "Orbiter"
-    kind "ConsoleApp"
+project "OrbiterCore"
+    location "OrbiterCore"
+    kind "StaticLib"
     language "C++"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -42,15 +42,23 @@ project "Orbiter"
     -- Targets all cpp and header files.
     files
     {
-        "%{prj.name}/Scripts/Headers/**.h",
         "%{prj.name}/Scripts/**.h",
-        "%{prj.name}/Scripts/**.cpp"
+        "%{prj.name}/Scripts/**.cpp",
+
+        "%{prj.name}/Vendor/stb_image/**cpp",
+        "%{prj.name}/Vendor/stb_image/**h",
+
+        "%{prj.name}/Vendor/glm/**cpp",
+        "%{prj.name}/Vendor/glm/**h",
+
+        "%{prj.name}/Vendor/imgui/**cpp",
+        "%{prj.name}/Vendor/imgui/**h",
     }
 
     -- Includes dependencies and include paths.
     includedirs 
     {
-        "%{prj.name}/Scripts/Vendor/glfw-master-cherno/include/GLFW",
+        "%{prj.name}/Vendor/glfw-master-cherno/include/GLFW",
         "%{IncludeDir.Glad}",
         "%{IncludeDir.OpenALSoft}",
         "%{IncludeDir.OpenALSoft}/include",
@@ -60,12 +68,13 @@ project "Orbiter"
         "%{IncludeDir.OpenALSoft}/src/al",
         "%{IncludeDir.OpenALSoft}/src/common",
 
-        "%{prj.name}/Scripts/Tests",
-        "%{prj.name}/Scripts/Vendor",
-        "%{prj.name}/Scripts/Vendor/imgui",
-        "%{prj.name}/Scripts/Vendor/stb_image",
-        "%{prj.name}/Scripts/Vendor/glm",
+        "%{prj.name}/Vendor",
+        "%{prj.name}/Vendor/imgui",
+        "%{prj.name}/Vendor/stb_image",
+        "%{prj.name}/Vendor/glm",
+
         "%{prj.name}/Scripts/Headers",
+        "%{prj.name}/Scripts/Tests",
         "%{prj.name}/Scripts"
     }
 
@@ -111,11 +120,11 @@ project "Orbiter"
             "AL_LIBTYPE_STATIC"
         }
 
-        ---- Copies engine project DLL into sandbox project.
-        --postbuildcommands
-        --{
-            --("{COPY} %{cfg.buildtarget.relpath} .. /bin/" .. outputdir .. "/Sandbox")
-        --}
+        -- -- Copies engine project DLL into editor project.
+        -- postbuildcommands
+        -- {
+        --     ("{COPY} %{cfg.buildtarget.relpath} .. /bin/" .. outputdir .. "/OrbiterEditor")
+        -- }
 
     filter "configurations:Debug"
         defines "OB_DEBUG"
@@ -132,53 +141,66 @@ project "Orbiter"
         optimize "On"
         buildoptions "/MD"
 
--- project "Sandbox"
---     location "Sandbox"
---     kind "ConsoleApp"
---     language "C++"
+project "OrbiterEditor"
+    location "OrbiterEditor"
+    kind "ConsoleApp"
+    language "C++"
 
---     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
---     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
---     -- Targets all cpp and header files.
---     files
---     {
---         "%{prj.name}/Scripts/Headers/**.h",
---         "%{prj.name}/Scripts/**.cpp"
---     }
+    dependson { "OrbiterCore" }
 
---     -- Includes dependencies and include paths.
---     include 
---     {
---         "Dependencies/GLFW/include/GLFW",
---         "Dependencies/GLEW/include/GL",
---         "Dependencies/GLFW/src",
---         "%{prj.name}/Scripts/Vendor"
---     }
+    -- Targets all cpp and header files.
+    files
+    {
+        "%{prj.name}/Scripts/**.h",
+        "%{prj.name}/Scripts/**.cpp"
+    }
 
---     links
---     {
---         "OpenGL"
---     }
+    -- Includes dependencies and include paths.
+    includedirs
+    {
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.OpenALSoft}",
+        "%{IncludeDir.OpenALSoft}/include",
 
---     filter "system:windows"
---         cppdialect "C++17"
---         staticruntime "On"
---         systemversion "latest"
+        "OrbiterCore/Vendor/glfw-master-cherno/include/GLFW",
+        "OrbiterCore/Vendor/glm",
+        "OrbiterCore/Vendor",
+        "OrbiterCore/Scripts"
+    }
 
---         defines
---         {
---             "WIN32"
---         }
+    links
+    {
+        "OrbiterCore"
+    }
 
---     filter "configurations:Debug"
---         defines "DEBUG"
---         symbols "On"
+    filter "system:windows"
+        cppdialect "C++20"
+        staticruntime "On"
+        systemversion "latest"
 
---     filter "configurations:Release"
---         defines "RELEASE"
---         optimize "On"
+        defines
+        {
+            "WIN32",
+            "_CRT_SECURE_NO_WARNINGS",
+            "NOMINMAX",
+            "AL_LIBTYPE_STATIC",
+            "GLFW_INCLUDE_NONE"
+        }
 
---     filter "configurations:Dist"
---         defines "DIST"
---         optimize "On"
+    filter "configurations:Debug"
+        defines "OB_DEBUG"
+        symbols "On"
+        buildoptions "/MDd"
+
+    filter "configurations:Release"
+        defines "OB_RELEASE"
+        optimize "On"
+        buildoptions "/MD"
+
+    filter "configurations:Dist"
+        defines "OB_DIST"
+        optimize "On"
+        buildoptions "/MD"

@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Scripts">
+      <UniqueIdentifier>{4D6F1AE8-B94E-9983-C266-245A2EC5FFE4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Audio">
+      <UniqueIdentifier>{0E83B22D-7A43-2E64-437E-77E1AFFD7240}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Core">
+      <UniqueIdentifier>{C52B0EAC-B18E-9D50-5A14-D606465669D3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Headers">
+      <UniqueIdentifier>{F87AAB59-6406-191E-6D17-9C12D921751E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Headers\Audio">
+      <UniqueIdentifier>{F962C6F3-65CF-81EE-2EC3-194C9AEEA356}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Headers\Core">
+      <UniqueIdentifier>{503AE0F7-3CC9-69C1-E5E7-7DBCD1557A67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Headers\Math">
+      <UniqueIdentifier>{D17AE5F7-BD09-6FC1-6628-83BC52967F67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Headers\Rendering">
+      <UniqueIdentifier>{455A8F53-B11C-C3DD-FACC-516A66CE9BBB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Rendering">
+      <UniqueIdentifier>{DA7C07E8-4693-057E-8F0A-919FFB5FD605}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Tests">
+      <UniqueIdentifier>{CFCF012F-3B90-7D65-04CB-C6E2704AC241}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor">
+      <UniqueIdentifier>{935FDCD7-7F01-07AE-68BC-1A0254FD8DFE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\glm">
+      <UniqueIdentifier>{627B7327-4E33-B574-B73A-8ED0A3115065}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\glm\detail">
+      <UniqueIdentifier>{E490280D-50A7-26A3-991E-B2C40574F72A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\glm\simd">
+      <UniqueIdentifier>{FE44059A-6AD0-725E-73E1-F552DFEBCE5E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\imgui">
+      <UniqueIdentifier>{3D8F64D2-29F2-F376-D277-2C2DBEB9BFF9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\stb_image">
+      <UniqueIdentifier>{EDE315D3-D9DC-3425-020F-1AAAEE661431}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Scripts\Headers\Audio\audiobuffer.h">
+      <Filter>Scripts\Headers\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Audio\audiocontext.h">
+      <Filter>Scripts\Headers\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Audio\audiolistener.h">
+      <Filter>Scripts\Headers\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Audio\audiomanager.h">
+      <Filter>Scripts\Headers\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Audio\audiosource.h">
+      <Filter>Scripts\Headers\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Audio\orbiteraudio.h">
+      <Filter>Scripts\Headers\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Audio\sound.h">
+      <Filter>Scripts\Headers\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\action.h">
+      <Filter>Scripts\Headers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\animation.h">
+      <Filter>Scripts\Headers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\animationframe.h">
+      <Filter>Scripts\Headers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\animationplayer.h">
+      <Filter>Scripts\Headers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\application.h">
+      <Filter>Scripts\Headers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\character.h">
+      <Filter>Scripts\Headers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\editorui.h">
+      <Filter>Scripts\Headers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\filemanager.h">
+      <Filter>Scripts\Headers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\gameobject.h">
+      <Filter>Scripts\Headers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\input.h">
+      <Filter>Scripts\Headers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\orbitercore.h">
+      <Filter>Scripts\Headers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Core\renderer.h">
+      <Filter>Scripts\Headers\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Math\transform.h">
+      <Filter>Scripts\Headers\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Math\vector.h">
+      <Filter>Scripts\Headers\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Math\vertex.h">
+      <Filter>Scripts\Headers\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Rendering\framebuffer.h">
+      <Filter>Scripts\Headers\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Rendering\indexbuffer.h">
+      <Filter>Scripts\Headers\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Rendering\shader.h">
+      <Filter>Scripts\Headers\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Rendering\texture.h">
+      <Filter>Scripts\Headers\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Rendering\vertexarray.h">
+      <Filter>Scripts\Headers\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Rendering\vertexbuffer.h">
+      <Filter>Scripts\Headers\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Rendering\vertexbufferlayout.h">
+      <Filter>Scripts\Headers\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\orbiter.h">
+      <Filter>Scripts\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Tests\test.h">
+      <Filter>Scripts\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Tests\testclearcolour.h">
+      <Filter>Scripts\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Tests\testtexture2d.h">
+      <Filter>Scripts\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\simd\common.h">
+      <Filter>Vendor\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\simd\exponential.h">
+      <Filter>Vendor\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\simd\geometric.h">
+      <Filter>Vendor\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\simd\integer.h">
+      <Filter>Vendor\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\simd\matrix.h">
+      <Filter>Vendor\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\simd\neon.h">
+      <Filter>Vendor\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\simd\packing.h">
+      <Filter>Vendor\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\simd\platform.h">
+      <Filter>Vendor\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\simd\trigonometric.h">
+      <Filter>Vendor\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\glm\simd\vector_relational.h">
+      <Filter>Vendor\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\imgui\imconfig.h">
+      <Filter>Vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\imgui\imgui.h">
+      <Filter>Vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\imgui\imgui_impl_glfw.h">
+      <Filter>Vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\imgui\imgui_impl_opengl3.h">
+      <Filter>Vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\imgui\imgui_impl_opengl3_loader.h">
+      <Filter>Vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\imgui\imgui_internal.h">
+      <Filter>Vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\imgui\imgui_stdlib.h">
+      <Filter>Vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\imgui\imstb_rectpack.h">
+      <Filter>Vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\imgui\imstb_textedit.h">
+      <Filter>Vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\imgui\imstb_truetype.h">
+      <Filter>Vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\stb_image\stb_image.h">
+      <Filter>Vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Headers\Rendering\orbiterrenderer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Scripts\Audio\AudioBuffer.cpp">
+      <Filter>Scripts\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Audio\AudioContext.cpp">
+      <Filter>Scripts\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Audio\AudioListener.cpp">
+      <Filter>Scripts\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Audio\AudioManager.cpp">
+      <Filter>Scripts\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Audio\AudioSource.cpp">
+      <Filter>Scripts\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Core\Action.cpp">
+      <Filter>Scripts\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Core\Animation.cpp">
+      <Filter>Scripts\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Core\AnimationFrame.cpp">
+      <Filter>Scripts\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Core\AnimationPlayer.cpp">
+      <Filter>Scripts\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Core\Application.cpp">
+      <Filter>Scripts\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Core\Character.cpp">
+      <Filter>Scripts\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Core\EditorUI.cpp">
+      <Filter>Scripts\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Core\FileManager.cpp">
+      <Filter>Scripts\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Core\Input.cpp">
+      <Filter>Scripts\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Core\Renderer.cpp">
+      <Filter>Scripts\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Rendering\FrameBuffer.cpp">
+      <Filter>Scripts\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Rendering\IndexBuffer.cpp">
+      <Filter>Scripts\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Rendering\Shader.cpp">
+      <Filter>Scripts\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Rendering\Texture.cpp">
+      <Filter>Scripts\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Rendering\VertexArray.cpp">
+      <Filter>Scripts\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Rendering\VertexBuffer.cpp">
+      <Filter>Scripts\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Tests\Test.cpp">
+      <Filter>Scripts\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Tests\TestClearColour.cpp">
+      <Filter>Scripts\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripts\Tests\TestTexture2D.cpp">
+      <Filter>Scripts\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\glm\detail\glm.cpp">
+      <Filter>Vendor\glm\detail</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\imgui\imgui.cpp">
+      <Filter>Vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\imgui\imgui_demo.cpp">
+      <Filter>Vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\imgui\imgui_draw.cpp">
+      <Filter>Vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\imgui\imgui_impl_glfw.cpp">
+      <Filter>Vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\imgui\imgui_impl_opengl3.cpp">
+      <Filter>Vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\imgui\imgui_stdlib.cpp">
+      <Filter>Vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\imgui\imgui_tables.cpp">
+      <Filter>Vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\imgui\imgui_widgets.cpp">
+      <Filter>Vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\stb_image\STB_Image.cpp">
+      <Filter>Vendor\stb_image</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,4 @@
+﻿cl : command line  warning D9025: overriding '/MT' with '/MD'
+  Source.cpp
+MSVCRT.lib(initializers.obj) : warning LNK4098: defaultlib 'libcmt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
+  OrbiterEditor.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin\Release-windows-x86_64\OrbiterEditor\OrbiterEditor.exe

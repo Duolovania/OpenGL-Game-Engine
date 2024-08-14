@@ -1,0 +1,92 @@
+﻿cl : command line  warning D9025: overriding '/MTd' with '/MDd'
+  AudioBuffer.cpp
+  AudioContext.cpp
+  AudioListener.cpp
+  AudioManager.cpp
+  AudioSource.cpp
+  Action.cpp
+  Animation.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\Animation.cpp(6,20): warning C4018: '<': signed/unsigned mismatch
+  AnimationFrame.cpp
+  AnimationPlayer.cpp
+  Application.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\Application.cpp(186,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\Application.cpp(188,27): warning C4018: '<': signed/unsigned mismatch
+  Character.cpp
+  EditorUI.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\EditorUI.cpp(141,43): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\EditorUI.cpp(150,47): warning C4018: '<': signed/unsigned mismatch
+  FileManager.cpp
+  Input.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\Input.cpp(23,20): warning C4018: '<': signed/unsigned mismatch
+  Renderer.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\Renderer.cpp(102,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\Renderer.cpp(124,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\Renderer.cpp(149,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\Renderer.cpp(158,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\Renderer.cpp(218,20): warning C4018: '<': signed/unsigned mismatch
+  FrameBuffer.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244:         ]
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244:         ]
+  IndexBuffer.cpp
+  Shader.cpp
+  Texture.cpp
+  VertexArray.cpp
+  Generating Code...
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\EditorUI.cpp(345,1): warning C4715: 'EditorUI::Begin': not all control paths return a value
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\Animation.cpp(24,1): warning C4715: 'Animation::Start': not all control paths return a value
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Audio\AudioManager.cpp(98,1): warning C4715: 'AudioManager::CheckDevice': not all control paths return a value
+  Compiling...
+  VertexBuffer.cpp
+  Test.cpp
+  TestClearColour.cpp
+  TestTexture2D.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(36,64): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(36,64): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(36,64): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(36,64): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(36,64): warning C4244:         ]
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(37,61): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(37,61): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(37,61): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(37,61): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(37,61): warning C4244:         ]
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(39,67): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(39,67): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(39,67): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(39,67): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(39,67): warning C4244:         ]
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(40,64): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(40,64): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(40,64): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(40,64): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(40,64): warning C4244:         ]
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(42,63): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  glm.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_glfw.cpp
+  imgui_impl_opengl3.cpp
+  imgui_stdlib.cpp
+  imgui_tables.cpp
+  imgui_widgets.cpp
+  STB_Image.cpp
+  Generating Code...
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(77,1): warning C4172: returning address of local variable or temporary : tempArr
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\test.h(27,1): warning C4172: returning address of local variable or temporary : tempArr
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestClearColour.cpp(62,1): warning C4172: returning address of local variable or temporary : tempArr
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\test.h(27,1): warning C4172: returning address of local variable or temporary : tempArr
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\test.h(27,1): warning C4172: returning address of local variable or temporary : tempArr
+Gdi32.lib(GDI32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
+User32.lib(USER32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
+Shell32.lib(SHELL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
+  OrbiterCore.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin\Debug-windows-x86\OrbiterCore\OrbiterCore.lib

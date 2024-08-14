@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Glad", "Dependencies\Glad\Glad.vcxproj", "{BDD6857C-A90D-870D-52FA-6C103E10030F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenALSoft", "Orbiter\Scripts\Vendor\openal-soft-master\OpenALSoft.vcxproj", "{00310F52-ECE8-509F-55F0-29FB41C7EB8F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenALSoft", "OrbiterCore\Vendor\openal-soft-master\OpenALSoft.vcxproj", "{00310F52-ECE8-509F-55F0-29FB41C7EB8F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Orbiter", "Orbiter\Orbiter.vcxproj", "{BC640DD6-2844-8C71-315C-17489DBAF2D2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrbiterCore", "OrbiterCore\OrbiterCore.vcxproj", "{65079033-D1BC-0829-5AB1-0200C665FF2C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrbiterEditor", "OrbiterEditor\OrbiterEditor.vcxproj", "{83178E5B-EFD7-0992-B812-530F24924E6E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{65079033-D1BC-0829-5AB1-0200C665FF2C} = {65079033-D1BC-0829-5AB1-0200C665FF2C}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,18 +46,30 @@ Global
 		{00310F52-ECE8-509F-55F0-29FB41C7EB8F}.Release|Win32.Build.0 = Release|Win32
 		{00310F52-ECE8-509F-55F0-29FB41C7EB8F}.Release|x64.ActiveCfg = Release|x64
 		{00310F52-ECE8-509F-55F0-29FB41C7EB8F}.Release|x64.Build.0 = Release|x64
-		{BC640DD6-2844-8C71-315C-17489DBAF2D2}.Debug|Win32.ActiveCfg = Debug|Win32
-		{BC640DD6-2844-8C71-315C-17489DBAF2D2}.Debug|Win32.Build.0 = Debug|Win32
-		{BC640DD6-2844-8C71-315C-17489DBAF2D2}.Debug|x64.ActiveCfg = Debug|x64
-		{BC640DD6-2844-8C71-315C-17489DBAF2D2}.Debug|x64.Build.0 = Debug|x64
-		{BC640DD6-2844-8C71-315C-17489DBAF2D2}.Dist|Win32.ActiveCfg = Dist|Win32
-		{BC640DD6-2844-8C71-315C-17489DBAF2D2}.Dist|Win32.Build.0 = Dist|Win32
-		{BC640DD6-2844-8C71-315C-17489DBAF2D2}.Dist|x64.ActiveCfg = Dist|x64
-		{BC640DD6-2844-8C71-315C-17489DBAF2D2}.Dist|x64.Build.0 = Dist|x64
-		{BC640DD6-2844-8C71-315C-17489DBAF2D2}.Release|Win32.ActiveCfg = Release|Win32
-		{BC640DD6-2844-8C71-315C-17489DBAF2D2}.Release|Win32.Build.0 = Release|Win32
-		{BC640DD6-2844-8C71-315C-17489DBAF2D2}.Release|x64.ActiveCfg = Release|x64
-		{BC640DD6-2844-8C71-315C-17489DBAF2D2}.Release|x64.Build.0 = Release|x64
+		{65079033-D1BC-0829-5AB1-0200C665FF2C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{65079033-D1BC-0829-5AB1-0200C665FF2C}.Debug|Win32.Build.0 = Debug|Win32
+		{65079033-D1BC-0829-5AB1-0200C665FF2C}.Debug|x64.ActiveCfg = Debug|x64
+		{65079033-D1BC-0829-5AB1-0200C665FF2C}.Debug|x64.Build.0 = Debug|x64
+		{65079033-D1BC-0829-5AB1-0200C665FF2C}.Dist|Win32.ActiveCfg = Dist|Win32
+		{65079033-D1BC-0829-5AB1-0200C665FF2C}.Dist|Win32.Build.0 = Dist|Win32
+		{65079033-D1BC-0829-5AB1-0200C665FF2C}.Dist|x64.ActiveCfg = Dist|x64
+		{65079033-D1BC-0829-5AB1-0200C665FF2C}.Dist|x64.Build.0 = Dist|x64
+		{65079033-D1BC-0829-5AB1-0200C665FF2C}.Release|Win32.ActiveCfg = Release|Win32
+		{65079033-D1BC-0829-5AB1-0200C665FF2C}.Release|Win32.Build.0 = Release|Win32
+		{65079033-D1BC-0829-5AB1-0200C665FF2C}.Release|x64.ActiveCfg = Release|x64
+		{65079033-D1BC-0829-5AB1-0200C665FF2C}.Release|x64.Build.0 = Release|x64
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Debug|Win32.Build.0 = Debug|Win32
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Debug|x64.ActiveCfg = Debug|x64
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Debug|x64.Build.0 = Debug|x64
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Dist|Win32.ActiveCfg = Dist|Win32
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Dist|Win32.Build.0 = Dist|Win32
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Dist|x64.ActiveCfg = Dist|x64
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Dist|x64.Build.0 = Dist|x64
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Release|Win32.ActiveCfg = Release|Win32
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Release|Win32.Build.0 = Release|Win32
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Release|x64.ActiveCfg = Release|x64
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
