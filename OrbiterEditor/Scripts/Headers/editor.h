@@ -9,10 +9,8 @@ class Editor : public RenderingLayer
 		void OnUpdate(float deltaTime) override;
 		void Close() override;
 		void CleanUp() override;
-
-		bool showFPS = false;
 	private:
 		void StylesConfig();
-		bool showStats, wireframeMode, listenToInput;
+		bool showStats = false, wireframeMode = false, listenToInput, showFPS = false;
 		int actionIndex = 0, keyBindIndex = 0;
 };

@@ -10,5 +10,6 @@ int main()
 	Core.renderingLayer = &editor;
 
 	a.Run();
+	delete Core.renderingLayer;
 	return 0;
 }
