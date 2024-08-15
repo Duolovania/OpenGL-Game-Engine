@@ -11,18 +11,12 @@ int actionIndex = 0, keyBindIndex = 0;
 
 bool applicationQuit = false, listenToInput = false, showStats = false;
 
-std::unique_ptr<FrameBuffer> framebuffer;
-std::unique_ptr<Shader> fbShader;
-
 Engine Engine::instance;
 
 // Application starting point.
 void Application::Run()
 {
     Init(m_screenWidth, m_screenHeight, "Orbiter Editor");
-
-    Core.renderingLayer->framebuffer = std::make_unique<FrameBuffer>(m_screenWidth, m_screenHeight);
-    Core.renderingLayer->framebuffer->Gen();
 
     // Loop until the user closes the window
     while (!glfwWindowShouldClose(window) && !applicationQuit)
@@ -62,12 +56,10 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     if (!status)
         std::cout << "Error: gladInit non-operational";
 
-    glfwSwapInterval(1);
-
     std::cout << glGetString(GL_VERSION) << std::endl;
 
-    GLCall(glEnable(GL_BLEND));
-    GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+    Core.renderingLayer->framebuffer = std::make_unique<FrameBuffer>(m_screenWidth, m_screenHeight);
+    Core.renderingLayer->framebuffer->Gen();
 
     Core.renderingLayer->Init(window);
     Core.audioManager = std::make_unique<AudioManager>();
@@ -83,11 +75,7 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
 // Application loop.
 void Application::Loop()
 {   
-    /*applicationQuit = !Core.renderingLayer.Begin();
-
-    Core.renderingLayer.End();*/
-
-    Core.renderingLayer->OnUpdate(deltaTime);
+    applicationQuit = !Core.renderingLayer->OnUpdate(deltaTime);
 
     if (Core.InputManager.GetActionStrength("arrowUp")) Core.audioManager->Play("Test");
     if (Core.InputManager.GetActionStrength("arrowDown")) Core.audioManager->Pause("Test");
@@ -98,6 +86,7 @@ void Application::Loop()
 
     // Swap front and back buffers 
     glfwSwapBuffers(window);
+    glfwSwapInterval(Core.renderingLayer->vsyncEnabled);
 
     // Poll for and process events 
     glfwPollEvents();

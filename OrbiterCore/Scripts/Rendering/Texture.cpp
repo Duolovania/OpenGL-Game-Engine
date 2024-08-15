@@ -44,7 +44,6 @@ void Texture::Gen()
 // Generates texture data and returns the buffer ID (returns the new texture data through the ID).
 unsigned int Texture::Load(const std::string& path)
 {
-	stbi_set_flip_vertically_on_load(1);
 	localBuffer = stbi_load(path.c_str(), &w, &h, &bpp, 4);
 
 	Gen();

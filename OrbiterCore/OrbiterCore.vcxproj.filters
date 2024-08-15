@@ -87,16 +87,13 @@
     <ClInclude Include="Scripts\Headers\Core\application.h">
       <Filter>Scripts\Headers\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\Core\character.h">
-      <Filter>Scripts\Headers\Core</Filter>
-    </ClInclude>
     <ClInclude Include="Scripts\Headers\Core\renderinglayer.h">
       <Filter>Scripts\Headers\Core</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Headers\Core\filemanager.h">
       <Filter>Scripts\Headers\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\Core\gameobject.h">
+    <ClInclude Include="Scripts\Headers\GameObjects\gameobject.h">
       <Filter>Scripts\Headers\Core</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Headers\Core\input.h">
@@ -214,6 +211,8 @@
       <Filter>Vendor\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\Headers\Rendering\orbiterrenderer.h" />
+    <ClInclude Include="Scripts\Headers\GameObjects\character.h" />
+    <ClInclude Include="Scripts\Headers\GameObjects\camera2d.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scripts\Audio\AudioBuffer.cpp">
@@ -244,9 +243,6 @@
       <Filter>Scripts\Core</Filter>
     </ClCompile>
     <ClCompile Include="Scripts\Core\Application.cpp">
-      <Filter>Scripts\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Core\Character.cpp">
       <Filter>Scripts\Core</Filter>
     </ClCompile>
     <ClCompile Include="Scripts\Core\FileManager.cpp">
@@ -315,5 +311,8 @@
     <ClCompile Include="Vendor\stb_image\STB_Image.cpp">
       <Filter>Vendor\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="Scripts\GameObjects\Character.cpp" />
+    <ClCompile Include="Scripts\GameObjects\Camera2D.cpp" />
+    <ClCompile Include="Scripts\Headers\Math\Vector.cpp" />
   </ItemGroup>
 </Project>

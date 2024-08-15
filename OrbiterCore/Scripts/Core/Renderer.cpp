@@ -103,12 +103,11 @@ void Renderer::Init()
 	{
 		samplers[i] = i;
 		m_texture->Bind(i + 1);
-
+		
 		objectsToRender[i].texture = GetCachedTexture(objectsToRender[i], i);
 		m_shader->BindTexture(i, objectsToRender[i].texture);
 
 		texturesLoaded++;
-		std::cout << i << std::endl;
 	}
 
 	m_shader->SetUniform1iv("u_Textures", sizeof(samplers), samplers); // Sets the shader texture slots to samplers.
@@ -121,11 +120,6 @@ void Renderer::Init()
 	objectsToRender[5].transform.position.x = 500;
 	objectsToRender[6].transform.position.x = -100;
 
-	for (int i = 0; i < objectsToRender.size(); i++)
-	{
-		objectsToRender[i].transform.scale = Vector3(100, 100, 0);
-	}
-
 	m_va->Unbind();
 	m_texture->UnBind();
 	m_shader->UnBind();
@@ -136,6 +130,8 @@ void Renderer::Init()
 // Outputs the data onto the viewport.
 void Renderer::Draw() const
 {
+	GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+
 	m_shader->Bind();
 	m_va->Bind();
 	m_ib->Bind();
@@ -144,71 +140,71 @@ void Renderer::Draw() const
 }
 
 // Outputs the data onto the viewport.
-void Renderer::Draw(glm::mat4 projection, glm::vec2 cameraPosition) 
+void Renderer::Draw(glm::mat4 projection, glm::mat4 view, glm::vec4 colourTint)
 {
+	GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+
+	buffer = vertices.data();
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
-		if (objectsToRender[i].CheckVisibility(cameraPosition))
+		if (objectsToRender[i].CheckVisibility(glm::vec2(view[3].x, view[3].y)))
 		{
-
 			glm::mat4 transform = glm::translate(glm::mat4(1.0f), glm::vec3(objectsToRender[i].transform.position.x, objectsToRender[i].transform.position.y, 0.0f))
 				* glm::rotate(glm::mat4(1.0f), glm::radians(-objectsToRender[i].transform.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f))
 				* glm::scale(glm::mat4(1.0f), glm::vec3(objectsToRender[i].transform.scale.x, objectsToRender[i].transform.scale.y, 1.0f));
 			
-			CreateQuad(transform, i, { 1.0f, 1.0f, 1.0f, 1.0f });
-
-			m_shader->Bind();
-			m_shader->SetUniform4f("u_Color", { objectsToRender[i].color[0], objectsToRender[i].color[1], objectsToRender[i].color[2], objectsToRender[i].color[3] });
-			m_shader->SetUniformMat4f("u_MVP", projection);
-
-			m_vb->Bind();
-			m_vb->ModifyData(vertices.size() * sizeof(Vertex), vertices.data());
-
-			m_va->Bind();
-			m_ib->Bind();
-
-			GLCall(glDrawElements(GL_TRIANGLES, m_ib->GetCount(), GL_UNSIGNED_INT, nullptr));
-
-			m_shader->UnBind();
-			m_vb->Unbind();
-			m_ib->Unbind();
+			buffer = CreateQuad(buffer, transform, i, { objectsToRender[i].color[0], objectsToRender[i].color[1], objectsToRender[i].color[2], objectsToRender[i].color[3] });
 		}
 	}
+
+	m_vb->Bind();
+	m_vb->ModifyData(vertices.size() * sizeof(Vertex), vertices.data());
+
+	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)); // Model translation.
+	glm::mat4 mvp = projection * view * model;
+
+	m_shader->Bind();
+	m_shader->SetUniformMat4f("u_MVP", mvp);
+	m_shader->SetUniform4f("u_Color", colourTint);
+
+	m_va->Bind();
+	m_ib->Bind();
+
+	GLCall(glDrawElements(GL_TRIANGLES, m_ib->GetCount(), GL_UNSIGNED_INT, nullptr));
+
+	m_shader->UnBind();
+	m_vb->Unbind();
+	m_ib->Unbind();
+	m_va->Unbind();
 }
 
-// Resets the viewport.
-void Renderer::Clear() const
+Vertex* Renderer::CreateQuad(Vertex* target, glm::mat4 transform, float texID, Vector4 color)
 {
-    GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
-}
+	target->Position = transform * glm::vec4(-0.5f, -0.5f, 0.0f, 1.0f);
+	target->Color = color;
+	target->TextureCoords = { 0.0f, 0.0f };
+	target->TextureID = texID;
+	target++;
 
-void Renderer::CreateQuad(glm::mat4 transform, float texID, Vector4 color)
-{
-	buffer = vertices.data(); // Clears all vertices generated.
+	target->Position = transform * glm::vec4(0.5f, -0.5f, 0.0f, 1.0f);
+	target->Color = color;
+	target->TextureCoords = { 1.0f, 0.0f };
+	target->TextureID = texID;
+	target++;
+	
+	target->Position = transform * glm::vec4(0.5f, 0.5f, 0.0f, 1.0f);
+	target->Color = color;
+	target->TextureCoords = { 1.0f, 1.0f };
+	target->TextureID = texID;
+	target++;
+	
+	target->Position = transform * glm::vec4(-0.5f, 0.5f, 0.0f, 1.0f);
+	target->Color = color;
+	target->TextureCoords = { 0.0f, 1.0f };
+	target->TextureID = texID;
+	target++;
 
-	buffer->Position = transform * glm::vec4(-0.5f, -0.5f, 0.0f, 1.0f);
-	buffer->Color = color;
-	buffer->TextureCoords = { 0.0f, 0.0f };
-	buffer->TextureID = texID;
-	buffer++;
-
-	buffer->Position = transform * glm::vec4(0.5f, -0.5f, 0.0f, 1.0f);
-	buffer->Color = color;
-	buffer->TextureCoords = { 1.0f, 0.0f };
-	buffer->TextureID = texID;
-	buffer++;
-
-	buffer->Position = transform * glm::vec4(0.5f, 0.5f, 0.0f, 1.0f);
-	buffer->Color = color;
-	buffer->TextureCoords = { 1.0f, 1.0f };
-	buffer->TextureID = texID;
-	buffer++;
-
-	buffer->Position = transform * glm::vec4(-0.5f, 0.5f, 0.0f, 1.0f);
-	buffer->Color = color;
-	buffer->TextureCoords = { 0.0f, 1.0f };
-	buffer->TextureID = texID;
-	buffer++;
+	return target;
 }
 
 // Retrieves an existing texture if it already exists.

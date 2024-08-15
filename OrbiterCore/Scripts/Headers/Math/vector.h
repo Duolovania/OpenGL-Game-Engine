@@ -16,6 +16,8 @@ struct Vector2
 
 	float x, y;
 
+	static const Vector2 zero;
+
 	Vector2& operator+(const Vector2& other)
 	{
 		Vector2 result = Vector2(this->x + other.x, this->y + other.y);
@@ -39,6 +41,14 @@ struct Vector2
 		Vector2 result = Vector2(this->x / other.x, this->y / other.y);
 		return result;
 	}
+
+	Vector2& operator+=(const Vector2& other)
+	{
+		this->x += other.x;
+		this->y += other.y;
+
+		return *this;
+	}
 };
 
 struct Vector3
@@ -57,6 +67,8 @@ struct Vector3
 	};
 
 	float x, y, z;
+
+	static const Vector3 zero;
 
 	Vector3& operator+(const Vector3& other)
 	{
@@ -80,6 +92,13 @@ struct Vector3
 	{
 		Vector3 result = Vector3(this->x / other.x, this->y / other.y, this->z / other.z);
 		return result;
+	}
+
+	Vector3& operator+=(const Vector2& other)
+	{
+		this->x += other.x;
+		this->y += other.y;
+		return *this;
 	}
 };
 

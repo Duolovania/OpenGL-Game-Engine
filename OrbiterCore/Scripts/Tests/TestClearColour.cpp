@@ -27,7 +27,7 @@ namespace testSpace
 		
 	}
 
-	void TestClearColour::OnRender(glm::mat4 proj)
+	void TestClearColour::OnRender()
 	{
 		GLCall(glClearColor(clearColour[0], clearColour[1], clearColour[2], clearColour[3]));
 		GLCall(glClear(GL_COLOR_BUFFER_BIT));
@@ -54,11 +54,5 @@ namespace testSpace
 	void TestClearColour::OnImGuiRender()
 	{
 		ImGui::ColorEdit4("Clear Color", clearColour);
-	}
-
-	int* TestClearColour::GetStats() const
-	{
-		int tempArr[2] = { 0, 0 };
-		return tempArr;
 	}
 }

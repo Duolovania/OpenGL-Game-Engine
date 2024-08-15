@@ -6,11 +6,18 @@ class Editor : public RenderingLayer
 	public:
 		void Init(GLFWwindow* window) override;
 
-		void OnUpdate(float deltaTime) override;
+		bool OnUpdate(float deltaTime) override;
 		void Close() override;
 		void CleanUp() override;
 	private:
 		void StylesConfig();
+		void CreateTransformColumn(const std::array<std::string, 3>& colNames, std::array<Vector3, 3> values);
+
 		bool showStats = false, wireframeMode = false, listenToInput, showFPS = false;
 		int actionIndex = 0, keyBindIndex = 0;
+
+		ImVec2 viewportSize;
+		glm::vec2 inputVector;
+		Renderer renderer;
+		Camera2D camera2D;
 };

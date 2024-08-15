@@ -8,8 +8,9 @@ class RenderingLayer
 {
 	public:
 		virtual void Init(GLFWwindow* window) {};
-		virtual void OnUpdate(float deltaTime) {};
+		virtual bool OnUpdate(float deltaTime) { return true; };
 		virtual void Close() {};
 		virtual void CleanUp() {};
 		std::shared_ptr<FrameBuffer> framebuffer;
+		int vsyncEnabled = 1;
 };

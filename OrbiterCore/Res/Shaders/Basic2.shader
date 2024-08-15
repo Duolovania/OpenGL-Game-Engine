@@ -36,6 +36,9 @@ uniform sampler2D u_Textures[100]; // how many textures.
 void main()
 {
     int index = int(v_TexIndex);
-    vec4 texColor = texture(u_Textures[index], v_TexCoord);
-    color = texColor * v_Color * u_Color; // output
+
+    vec3 texColor = texture(u_Textures[index], v_TexCoord).rgb;
+    float grayscale = dot(texColor, vec3(0.299, 0.587, 0.114));
+
+    color = vec4(vec3(grayscale), 1.0); // output
 };

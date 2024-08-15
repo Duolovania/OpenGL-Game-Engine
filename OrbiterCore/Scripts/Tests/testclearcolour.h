@@ -11,8 +11,7 @@ namespace testSpace
 
 			void OnUpdate(float deltaTime) override;
 			void OnImGuiRender() override;
-			void OnRender(glm::mat4 proj) override;
-			int* GetStats() const;
+			void OnRender() override;
 		private:
 			float clearColour[4];
 	};

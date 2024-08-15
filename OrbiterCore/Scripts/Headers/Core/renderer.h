@@ -6,7 +6,7 @@
 #include "Rendering/shader.h"
 
 #include "Math/vector.h"
-#include "Core/character.h"
+#include "GameObjects/character.h"
 #include "Math/vertex.h"
 #include <array>
 
@@ -27,10 +27,8 @@ class Renderer
 
         void Init();
 
-        void Clear() const;
-
         void Draw() const;
-        void Draw(glm::mat4 projection, glm::vec2 cameraPosition);
+        void Draw(glm::mat4 projection, glm::mat4 view, glm::vec4 colourTint);
         std::vector<Character> objectsToRender;
 
         int texturesLoaded = 0, newTextures = 0;
@@ -45,8 +43,6 @@ class Renderer
         Vertex* buffer;
         std::array<Vertex, 200> vertices;
 
-        void CreateQuad(glm::mat4 transform, float texID, Vector4 color);
-
-
+        Vertex* CreateQuad(Vertex* target, glm::mat4 transform, float texID, Vector4 color);
         unsigned int GetCachedTexture(Character character, unsigned int index);
 };

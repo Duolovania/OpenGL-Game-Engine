@@ -27,7 +27,12 @@ int Input::GetActionStrength(const std::string actionName)
 
 	std::cout << "Input action with name: " << actionName << " was not found." << std::endl;
 	return 0;
-};
+}
+
+glm::vec2 Input::BasicMovement()
+{
+	return glm::vec2(GetActionStrength("right") - GetActionStrength("left"), GetActionStrength("up") - GetActionStrength("down"));
+};	
 
 // Removes an action from the list.
 void Input::DeleteAction(int index)

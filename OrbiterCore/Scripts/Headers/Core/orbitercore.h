@@ -4,8 +4,11 @@
 #include "Core/animationframe.h"
 #include "Core/filemanager.h"
 #include "Core/renderer.h"
-#include "Core/gameobject.h"
 #include "Core/renderinglayer.h"
+
+#include "GameObjects/gameobject.h"
+#include "GameObjects/character.h"
+#include "GameObjects/camera2d.h"
 
 #include "Tests/test.h"
 #include "Tests/testtexture2d.h"

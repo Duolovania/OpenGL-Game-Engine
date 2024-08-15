@@ -18,14 +18,8 @@ namespace testSpace
 			virtual ~Test() {};
 
 			virtual void OnUpdate(float deltaTime) {};
-			virtual void OnRender(glm::mat4 proj) {};
+			virtual void OnRender() {};
 			virtual void OnImGuiRender() {};
-
-			virtual int* GetStats() const
-			{
-				int tempArr[2] = { 0, 0 };
-				return tempArr;
-			}
 	};
 
 	class TestMenu : public Test

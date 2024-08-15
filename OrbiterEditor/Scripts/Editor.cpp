@@ -3,11 +3,16 @@
 #include <filesystem>
 
 FileManager fileManager;
+int selectedObject = -2;
 std::string inputString, searchTerm, rootPath;
 std::string currentPath = "C:/Users/Ryhan Khan/Downloads/GitHub/OpenGL-Engine/OpenGL/OrbiterEditor/Assets";
 
 testSpace::Test* currentTest = nullptr;
 testSpace::TestMenu* testMenu = new testSpace::TestMenu(currentTest);
+
+std::unique_ptr<Shader> fbShader;
+
+float sprintSpeed;
 
 enum UISelect
 {
@@ -20,9 +25,18 @@ UISelect uiSelect = UISelect::None;
 
 void Editor::Init(GLFWwindow* window)
 {
+    GLCall(glEnable(GL_BLEND));
+    GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+
     currentTest = testMenu;
     testMenu->RegisterTest<testSpace::TestClearColour>("Clear Colour");
     testMenu->RegisterTest<testSpace::TestTexture2D>("Texture 2D");
+
+    renderer.Init();
+
+    fbShader = std::make_unique<Shader>("../OrbiterCore/Res/Shaders/Framebuffer.shader");
+    fbShader->CreateShader();
+    fbShader->Bind();
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -35,9 +49,8 @@ void Editor::Init(GLFWwindow* window)
     rootPath = currentPath;
 }
 
-void Editor::OnUpdate(float deltaTime)
+bool Editor::OnUpdate(float deltaTime)
 {
-    GLCall(glClearColor(0.05f, 0.05f, 0.05f, 1.0f));
 
     ImGui_ImplGlfw_NewFrame();
     ImGui_ImplOpenGL3_NewFrame();
@@ -82,13 +95,14 @@ void Editor::OnUpdate(float deltaTime)
                     {
                         delete currentTest;
                         currentTest = testMenu;
+                        selectedObject = -2;
                     }
                 }
             }
 
             if (ImGui::MenuItem("Exit Editor"))
             {
-                //return false;
+                return false;
             }
 
             ImGui::EndMenu();
@@ -182,6 +196,11 @@ void Editor::OnUpdate(float deltaTime)
                 showFPS = !showFPS;
             }
 
+            if (ImGui::MenuItem("Toggle VSync"))
+            {
+                vsyncEnabled = (vsyncEnabled == 0) ? 1 : 0;
+            }
+
             if (ImGui::MenuItem("Toggle Wireframe Mode"))
             {
                 wireframeMode = !wireframeMode;
@@ -196,7 +215,7 @@ void Editor::OnUpdate(float deltaTime)
                 }
             }
 
-            if (ImGui::MenuItem("Editor Settings"))
+            if (ImGui::MenuItem("Advanced Settings"))
             {
 
             }
@@ -265,44 +284,157 @@ void Editor::OnUpdate(float deltaTime)
 
     ImGui::Begin("Inspector");
 
-    if (ImGui::Button("New file"))
-    {
-        fileManager.CreateFile("Assets/Scenes/bazinga", ".froggie");
-    }
-
-    if (ImGui::Button("Print file"))
-    {
-        fileManager.LoadFile("Assets/Scenes/bazinga", ".froggie");
-    }
-
-    /*if (selectedObject > -1)
+    if (selectedObject > -1)
     {
         ImGui::Text("Object Name:");
         ImGui::SameLine();
         ImGui::InputText("##label0", &renderer.objectsToRender[selectedObject].objectName);
 
+        ImGui::SameLine();
+        if (ImGui::Button("Jump To"))
+        {
+            camera2D.transform.position = renderer.objectsToRender[selectedObject].transform.position;
+        }
+
         if (ImGui::CollapsingHeader("Transform"))
         {
-            ImGui::Text("Position:");
-            ImGui::SameLine();
-            ImGui::InputFloat2("##label1", (float*)&renderer.objectsToRender[selectedObject].transform.position, "%.f");
+            if (ImGui::BeginTable("TransformTable", 4))
+            {
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
 
-            ImGui::Text("Scale:");
-            ImGui::SameLine();
-            ImGui::InputFloat2("##label2", (float*)&renderer.objectsToRender[selectedObject].transform.scale.x, "%.f");
+                ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x / 4); // Set the width of each input field
+                ImGui::Text("Position:");
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
 
-            ImGui::Text("Rotation:");
-            ImGui::SameLine();
-            ImGui::InputFloat("##label3", &renderer.objectsToRender[selectedObject].transform.rotation.z, 0.0f, 0.0f, "%.f");
+                ImGui::TableSetColumnIndex(1);
+                ImGui::Text("X");
+
+                ImGui::SameLine();
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+
+                ImGui::InputFloat("##PX", &renderer.objectsToRender[selectedObject].transform.position.x, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::TableSetColumnIndex(2);
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
+
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                ImGui::Text("Y");
+
+                ImGui::SameLine();
+                ImGui::InputFloat("##PY", &renderer.objectsToRender[selectedObject].transform.position.y, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::TableSetColumnIndex(3);
+
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
+
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                ImGui::Text("Z");
+
+                ImGui::SameLine();
+                ImGui::InputFloat("##PZ", &renderer.objectsToRender[selectedObject].transform.position.z, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+
+                ImGui::Text("Rotation:");
+
+                ImGui::TableSetColumnIndex(1);
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
+
+                ImGui::Text("X");
+
+                ImGui::SameLine();
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+
+                ImGui::InputFloat("##RX", &renderer.objectsToRender[selectedObject].transform.rotation.x, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::TableSetColumnIndex(2);
+
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
+
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                ImGui::Text("Y");
+
+                ImGui::SameLine();
+                ImGui::InputFloat("##RY", &renderer.objectsToRender[selectedObject].transform.rotation.y, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::TableSetColumnIndex(3);
+
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
+
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                ImGui::Text("Z");
+
+                ImGui::SameLine();
+                ImGui::InputFloat("##RZ", &renderer.objectsToRender[selectedObject].transform.rotation.z, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+
+                ImGui::Text("Scale:");
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
+
+                ImGui::TableSetColumnIndex(1);
+
+                ImGui::Text("X");
+
+                ImGui::SameLine();
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+
+                ImGui::InputFloat("##SX", &renderer.objectsToRender[selectedObject].transform.scale.x, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::TableSetColumnIndex(2);
+
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
+                
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                ImGui::Text("Y");
+
+                ImGui::SameLine();
+                ImGui::InputFloat("##SY", &renderer.objectsToRender[selectedObject].transform.scale.y, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::TableSetColumnIndex(3);
+
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
+
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                ImGui::Text("Z");
+
+                ImGui::SameLine();
+                ImGui::InputFloat("##SZ", &renderer.objectsToRender[selectedObject].transform.scale.z, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::PopItemWidth(); // Reset item width
+                
+                /*std::array<Vector3, 3> thigny = { renderer.objectsToRender[selectedObject].transform.position, renderer.objectsToRender[selectedObject].transform.rotation, renderer.objectsToRender[selectedObject].transform.scale };
+                CreateTransformColumn({ "Position", "Rotation", "Scale" }, thigny);*/
+
+                ImGui::EndTable();
+            }
         }
 
         if (ImGui::CollapsingHeader("Sprite Renderer"))
         {
-            ImGui::Image((void*)renderer.objectsToRender[selectedObject].texture, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
+            ImGui::Image((void*) renderer.objectsToRender[selectedObject].texture, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
+
+            ImGui::SameLine();
+            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 0.5f));
+            ImGui::Text(renderer.objectsToRender[selectedObject].m_imagePath.c_str());
+            ImGui::PopStyleColor();
 
             ImGui::Text("Colour:");
             ImGui::SameLine();
-            ImGui::ColorEdit4("##label4", renderer.objectsToRender[selectedObject].color);
+            ImGui::ColorEdit4("##label4", (float*) &renderer.objectsToRender[selectedObject].color);
 
             ImGui::SameLine();
             if (ImGui::Button("Reset"))
@@ -316,41 +448,150 @@ void Editor::OnUpdate(float deltaTime)
     {
         ImGui::Text("Object Name:");
         ImGui::SameLine();
-        ImGui::InputText("##label0", &cameraName);
+        ImGui::InputText("##label0", &camera2D.objectName);
 
         if (ImGui::CollapsingHeader("Transform"))
         {
-            ImGui::Text("Position:");
-            ImGui::SameLine();
-            ImGui::InputFloat2("##label1", (float*)&camPos, "%.f");
+            if (ImGui::BeginTable("TransformTable", 4))
+            {
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+
+                ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x / 4); // Set the width of each input field
+                ImGui::Text("Position:");
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
+
+                ImGui::TableSetColumnIndex(1);
+                ImGui::Text("X");
+
+                ImGui::SameLine();
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+
+                ImGui::InputFloat("##PX", &camera2D.transform.position.x, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::TableSetColumnIndex(2);
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
+
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                ImGui::Text("Y");
+
+                ImGui::SameLine();
+                ImGui::InputFloat("##PY", &camera2D.transform.position.y, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::TableSetColumnIndex(3);
+
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
+
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                ImGui::Text("Z");
+
+                ImGui::SameLine();
+                ImGui::InputFloat("##PZ", &camera2D.transform.position.z, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+
+                ImGui::Text("Rotation:");
+
+                ImGui::TableSetColumnIndex(1);
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
+
+                ImGui::Text("X");
+
+                ImGui::SameLine();
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+
+                ImGui::InputFloat("##RX", &camera2D.transform.rotation.x, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::TableSetColumnIndex(2);
+
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
+
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                ImGui::Text("Y");
+
+                ImGui::SameLine();
+                ImGui::InputFloat("##RY", &camera2D.transform.rotation.y, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::TableSetColumnIndex(3);
+
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
+
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                ImGui::Text("Z");
+
+                ImGui::SameLine();
+                ImGui::InputFloat("##RZ", &camera2D.transform.rotation.z, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+                ImGui::PopItemWidth();
+
+                ImGui::EndTable();
+            }
         }
-    }*/
+
+        if (ImGui::CollapsingHeader("Camera Output"))
+        {
+            ImGui::Image((void*)framebuffer->GetTexture(), ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
+
+            ImGui::Text("Output Colour:");
+            ImGui::SameLine();
+            ImGui::ColorEdit4("##label7", (float*) &camera2D.outputColor);
+
+            ImGui::SameLine();
+            if (ImGui::Button("Reset##1"))
+            {
+                camera2D.SetColor(camera2D.outputColor, { 1.0f, 1.0f, 1.0f, 1.0f });
+            }
+
+            ImGui::Text("Background Colour:");
+            ImGui::SameLine();
+            ImGui::ColorEdit3("##label8", (float*) &camera2D.backgroundColor);
+
+            ImGui::SameLine();
+            if (ImGui::Button("Reset##2"))
+            {
+                camera2D.SetColor(camera2D.backgroundColor, { 0.05f, 0.05f, 0.05f, 1.0f });
+            }
+        }
+    }
 
     ImGui::End();
 
     ImGui::Begin("Hierarchy");
 
-    /*if (ImGui::Button((cameraName).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)))
+    if (currentTest != testMenu)
     {
-        selectedObject = -1;
-    }
-
-    for (int i = 0; i < renderer.objectsToRender.size(); i++)
-    {
-        if (ImGui::Button((renderer.objectsToRender[i].objectName).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)))
+        if (ImGui::Button((camera2D.objectName).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)))
         {
-            selectedObject = i;
+            selectedObject = -1;
         }
-    }*/
 
+        for (int i = 0; i < renderer.objectsToRender.size(); i++)
+        {
+            if (ImGui::Button((renderer.objectsToRender[i].objectName).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)))
+            {
+                selectedObject = i;
+            }
+        }
+    }
     ImGui::End();
 
+    GLCall(glClearColor(camera2D.backgroundColor[0], camera2D.backgroundColor[1], camera2D.backgroundColor[2], 1.0f));
     GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
     ImGui::Begin("Viewport");
 
-    ImVec2 viewportSize = ImGui::GetContentRegionAvail();
+    viewportSize = ImGui::GetContentRegionAvail();
     framebuffer->Resize(glm::vec2(viewportSize.x, viewportSize.y));
 
     ImGui::Image((void*)framebuffer->GetTexture(), viewportSize, ImVec2(0, 1), ImVec2(1, 0));
@@ -369,31 +610,50 @@ void Editor::OnUpdate(float deltaTime)
     ImGui::End();
     ImGui::PopStyleVar();
 
+    fbShader->Bind();
     framebuffer->Bind();
-
-    GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
     if (currentTest)
     {
         currentTest->OnUpdate(deltaTime);
-        currentTest->OnRender(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f));
+        currentTest->OnRender();
 
-        framebuffer->UnBind();
+        if (currentTest != testMenu)
+        {
+            sprintSpeed = Core.InputManager.GetActionStrength("sprint") * 150;
+            camera2D.transform.position += Vector2(Core.InputManager.BasicMovement().x * (100.0f + sprintSpeed) * deltaTime, Core.InputManager.BasicMovement().y * (100.0f + sprintSpeed) * deltaTime);
+
+            renderer.Draw(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f), camera2D.GetView(), {camera2D.outputColor[0], camera2D.outputColor[1], camera2D.outputColor[2], camera2D.outputColor[3]});
+        }
 
         ImGui::Begin("Debug Log");
         currentTest->OnImGuiRender();
+        
+        if (ImGui::Button("New file"))
+        {
+            fileManager.CreateFile("Assets/Scenes/bazinga", ".froggie");
+        }
+
+        if (ImGui::Button("Print file"))
+        {
+            fileManager.LoadFile("Assets/Scenes/bazinga", ".froggie");
+        }
+
         ImGui::End();
 
         if (showStats)
         {
             ImGui::Begin("Rendering Stats");
 
-            ImGui::Text("Textures Loaded: %.0f", double(currentTest->GetStats()[1]));
-            ImGui::Text("New Textures Created: %.0f", double(currentTest->GetStats()[0]));
+            ImGui::Text("Textures Loaded: %.0f", double(renderer.texturesLoaded));
+            ImGui::Text("New Textures Created: %.0f", double(renderer.newTextures));
 
             ImGui::End();
         }
     }
+
+    framebuffer->UnBind();
+    fbShader->UnBind();
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -458,4 +718,50 @@ void Editor::StylesConfig()
     style.Colors[ImGuiCol_ResizeGrip] = ImVec4(0.318f, 0.318f, 0.318f, 1.0f);
     style.Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.697f, 0.0f, 0.0f, 1.0f);
     style.Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.469f, 0.469f, 0.469f, 1.0f);
+}
+
+void Editor::CreateTransformColumn(const std::array<std::string, 3>& colNames, std::array<Vector3, 3> values)
+{
+    for (int i = 0; i < colNames.size(); i++)
+    {
+        ImGui::TableNextRow();
+        ImGui::TableSetColumnIndex(0);
+
+        ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x / 4); // Set the width of each input field
+        ImGui::Text((colNames[i]).c_str());
+
+        char colLetter = *(colNames[i]).c_str();
+
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
+
+        ImGui::TableSetColumnIndex(1);
+        ImGui::Text("X");
+
+        ImGui::SameLine();
+        ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+
+        ImGui::InputFloat("##" + colLetter + 'X', &values[i].x, 0.0f, 0.0f, " % .f");
+        ImGui::PopStyleColor();
+
+        ImGui::TableSetColumnIndex(2);
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
+
+        ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+        ImGui::Text("Y");
+
+        ImGui::SameLine();
+        ImGui::InputFloat("##" + colLetter + 'Y', &values[i].y, 0.0f, 0.0f, "%.f");
+        ImGui::PopStyleColor();
+
+        ImGui::TableSetColumnIndex(3);
+
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
+
+        ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+        ImGui::Text("Z");
+
+        ImGui::SameLine();
+        ImGui::InputFloat("##" + colLetter + 'Z', &values[i].z, 0.0f, 0.0f, "%.f");
+        ImGui::PopStyleColor();
+    }
 }

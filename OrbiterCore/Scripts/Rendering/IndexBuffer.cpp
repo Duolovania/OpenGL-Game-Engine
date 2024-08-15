@@ -20,7 +20,6 @@ void IndexBuffer::Gen(const unsigned int* data)
     GLCall(glGenBuffers(1, &rendererID)); // How many buffers and the ID
     GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, rendererID)); // Selects buffer
     GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, count, data, GL_STATIC_DRAW)); // Generates buffer data
-    //GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(data), data, GL_STATIC_DRAW)); // Generates buffer data
 }
 
 // Selects this as current buffer.
