@@ -16,9 +16,12 @@ class Texture
 
 		unsigned int Load(const std::string& path);
 		unsigned int GetBufferID();
+		void SetBuffer(unsigned int newBuffer);
 
 		inline int GetWidth() { return w; }
 		inline int GetHeight() { return h; }
+
+		std::string GetImagePath() const;
 	private:
 		std::string filePath;
 		unsigned int bufferID;

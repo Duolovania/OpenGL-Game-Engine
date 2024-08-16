@@ -14,8 +14,15 @@ class AudioSource
 		void Pause();
 		void Stop();
 		void KillSource();
+
+		void ChangeFile(const std::string name);
+
+		float m_pitch, m_volume;
+		bool m_looping;
+		glm::vec3 m_position, m_velocity;
 	private:
 		ALuint sourceID;
 		bool isPaused = false;
+		std::string fileName;
 		std::unique_ptr<AudioBuffer> audioBuffer;
 };

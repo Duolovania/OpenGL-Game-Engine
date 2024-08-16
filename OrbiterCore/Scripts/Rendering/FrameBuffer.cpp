@@ -33,6 +33,9 @@ void FrameBuffer::Gen()
 	GLCall(glGenTextures(1, &colourAttachment));
 	GLCall(glBindTexture(GL_TEXTURE_2D, colourAttachment));
 
+	if (m_width < 0) m_width = 0;
+	if (m_height < 0) m_height = 0;
+
 	GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr));
 
 	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
@@ -61,6 +64,10 @@ void FrameBuffer::Gen()
 void FrameBuffer::Bind() const
 {
 	GLCall(glBindFramebuffer(GL_FRAMEBUFFER, bufferID));
+	GLCall(glBindTexture(GL_TEXTURE_2D, colourAttachment));
+	GLCall(glBindRenderbuffer(GL_RENDERBUFFER, depthAttachment));
+
+
 	GLCall(glViewport(0, 0, m_width, m_height));
 }
 

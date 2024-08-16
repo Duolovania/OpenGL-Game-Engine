@@ -4,6 +4,7 @@
 Camera2D::Camera2D()
 {
 	objectName = "Camera2D";
+	transform.position = Vector3::zero;
 }
 
 void Camera2D::SetColor(float* targetColor, glm::vec4 newColor)

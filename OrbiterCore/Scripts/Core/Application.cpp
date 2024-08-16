@@ -12,6 +12,7 @@ int actionIndex = 0, keyBindIndex = 0;
 bool applicationQuit = false, listenToInput = false, showStats = false;
 
 Engine Engine::instance;
+Sound newSound;
 
 // Application starting point.
 void Application::Run()
@@ -41,7 +42,7 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     window = glfwCreateWindow(screenWidth, screenHeight, windowTitle, NULL, NULL);
 
     GLFWimage images[1];
-    images[0].pixels = stbi_load("../OrbiterCore/Res/orbitlogo.png", &images[0].width, &images[0].height, 0, 4);
+    images[0].pixels = stbi_load("../OrbiterCore/Res/Application Icons/orbitlogo.png", &images[0].width, &images[0].height, 0, 4);
     glfwSetWindowIcon(window, 1, images);
     glfwSetKeyCallback(window, Engine::HandleInput);
 
@@ -61,15 +62,15 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     Core.renderingLayer->framebuffer = std::make_unique<FrameBuffer>(m_screenWidth, m_screenHeight);
     Core.renderingLayer->framebuffer->Gen();
 
-    Core.renderingLayer->Init(window);
     Core.audioManager = std::make_unique<AudioManager>();
 
-    Sound newSound;
     newSound.soundName = "Test";
     newSound.filePath = "Assets/SFX/elf-singing-89296.wav";
 
     Core.audioManager->sounds.push_back(newSound);
     Core.audioManager->GenSounds();
+
+    Core.renderingLayer->Init(window);
 }
 
 // Application loop.

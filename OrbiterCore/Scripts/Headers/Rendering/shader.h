@@ -13,18 +13,6 @@ struct ShaderProgramSource
 
 class Shader
 {
-	private:
-		std::string filePath;
-		unsigned int rendererID;
-
-		mutable std::unordered_map<std::string, GLint> uniformLocationCache;
-		ShaderProgramSource source;
-
-		GLint GetUniformLocation(const std::string& name) const;
-		ShaderProgramSource ParseShader(const std::string& filePath); // Searches .shader files for vertex and fragment data.
-
-		unsigned int CompileShader(unsigned int type, const std::string& source);
-
 	public:
 		Shader(const std::string& filePath);
 		~Shader();
@@ -46,4 +34,15 @@ class Shader
 		void BindTexture(unsigned int index, unsigned int value);
 
 		unsigned int GetRendererID();
+	private:
+		std::string filePath;
+		unsigned int rendererID;
+
+		mutable std::unordered_map<std::string, GLint> uniformLocationCache;
+		ShaderProgramSource source;
+
+		GLint GetUniformLocation(const std::string& name) const;
+		ShaderProgramSource ParseShader(const std::string& filePath); // Searches .shader files for vertex and fragment data.
+
+		unsigned int CompileShader(unsigned int type, const std::string& source);
 };

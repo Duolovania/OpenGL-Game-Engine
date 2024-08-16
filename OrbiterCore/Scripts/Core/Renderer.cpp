@@ -96,17 +96,18 @@ void Renderer::Init()
 	m_texture = std::make_unique<Texture>("Assets/Sprites/R1.png");
 	m_texture->Gen();
 
-	int samplers[100] = { 0, 1, 2 }; // How many texture slots.
+	int samplers[32] = { 0, 1, 2 }; // How many texture slots.
 	
 	// Prepares necessary amount of slots and binds each character texture to a slot.
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
 		samplers[i] = i;
 		m_texture->Bind(i + 1);
-		
-		objectsToRender[i].texture = GetCachedTexture(objectsToRender[i], i);
-		m_shader->BindTexture(i, objectsToRender[i].texture);
 
+		objectsToRender[i].cTexture.textureBuffer = GetCachedTexture(objectsToRender[i], i);
+		//samplers[i] = objectsToRender[i].texture;
+
+		m_shader->BindTexture(i, objectsToRender[i].cTexture.textureBuffer);
 		texturesLoaded++;
 	}
 
@@ -145,6 +146,7 @@ void Renderer::Draw(glm::mat4 projection, glm::mat4 view, glm::vec4 colourTint)
 	GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
 	buffer = vertices.data();
+
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
 		if (objectsToRender[i].CheckVisibility(glm::vec2(view[3].x, view[3].y)))
@@ -153,7 +155,8 @@ void Renderer::Draw(glm::mat4 projection, glm::mat4 view, glm::vec4 colourTint)
 				* glm::rotate(glm::mat4(1.0f), glm::radians(-objectsToRender[i].transform.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f))
 				* glm::scale(glm::mat4(1.0f), glm::vec3(objectsToRender[i].transform.scale.x, objectsToRender[i].transform.scale.y, 1.0f));
 			
-			buffer = CreateQuad(buffer, transform, i, { objectsToRender[i].color[0], objectsToRender[i].color[1], objectsToRender[i].color[2], objectsToRender[i].color[3] });
+			m_shader->BindTexture(i, objectsToRender[i].cTexture.textureBuffer);
+			buffer = CreateQuad(buffer, transform, i, {objectsToRender[i].color[0], objectsToRender[i].color[1], objectsToRender[i].color[2], objectsToRender[i].color[3]});
 		}
 	}
 
@@ -213,12 +216,12 @@ unsigned int Renderer::GetCachedTexture(Character character, unsigned int index)
 	// Searches for a texture with the same file path.
 	for (int i = 0; i < index; i++)
 	{
-		if (character.m_imagePath == objectsToRender[i].m_imagePath)
+		if (character.cTexture.m_imagePath == objectsToRender[i].cTexture.m_imagePath)
 		{
-			return objectsToRender[i].texture;
+			return objectsToRender[i].cTexture.textureBuffer;
 		}
 	}
 
 	newTextures++;
-	return m_texture->Load(character.m_imagePath); // Returns a new texture if none was found.
+	return m_texture->Load(character.cTexture.m_imagePath); // Returns a new texture if none was found.
 }

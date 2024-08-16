@@ -8,5 +8,7 @@ struct Sound
 	std::shared_ptr<AudioSource> audioSource;
 
 	float pitch = 1.0f, volume = 1.0f;
-	bool isLooping = false;
+	bool isLooping = false, playOnStartUp = false, repeatDelay;
+	
+	glm::vec3 position, velocity;
 };

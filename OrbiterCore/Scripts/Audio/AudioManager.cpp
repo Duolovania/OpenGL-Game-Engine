@@ -65,6 +65,14 @@ void AudioManager::Stop(std::string soundName)
 	std::cout << "Warning: unable to stop sound with name '" << soundName << "'. Sound was not found." << std::endl;
 }
 
+void AudioManager::PlayOnStartUp() const
+{
+	for (auto& sound : sounds)
+	{
+		if (sound.playOnStartUp) sound.audioSource->Play();
+	}
+}
+
 void AudioManager::KillAudioManager()
 {
 	if (!CheckDevice()) return;
@@ -83,8 +91,8 @@ void AudioManager::GenSounds()
 
 	for (auto& sound : sounds)
 	{
-		sound.audioSource = std::make_unique<AudioSource>(sound.filePath);
-		sound.audioSource->SetProperties(sound.pitch, sound.volume, sound.isLooping);
+		if (sound.audioSource == nullptr) sound.audioSource = std::make_unique<AudioSource>(sound.filePath);
+		sound.audioSource->SetProperties(sound.pitch, sound.volume, sound.isLooping, sound.position, sound.velocity);
 	}
 }
 

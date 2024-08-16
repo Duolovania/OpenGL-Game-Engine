@@ -69,3 +69,13 @@ unsigned int Texture::GetBufferID()
 	return bufferID;
 }
 
+void Texture::SetBuffer(unsigned int newBuffer)
+{
+	bufferID = newBuffer;
+}
+
+std::string Texture::GetImagePath() const
+{
+	return filePath;
+}
+

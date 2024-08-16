@@ -7,44 +7,40 @@
       "RelativeMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|solutionrelative:OrbiterEditor\\Scripts\\Editor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\Scripts\\Headers\\editor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|solutionrelative:OrbiterEditor\\Scripts\\Headers\\editor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Audio\\AudioSource.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\Scripts\\Audio\\AudioSource.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\GameObjects\\camera2d.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\Scripts\\Headers\\GameObjects\\camera2d.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\GameObjects\\Character.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\Scripts\\GameObjects\\Character.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\GameObjects\\Camera2D.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\Scripts\\GameObjects\\Camera2D.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Audio\\AudioManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\Scripts\\Audio\\AudioManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Rendering\\Texture.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\Scripts\\Rendering\\Texture.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Audio\\AudioBuffer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\Scripts\\Audio\\AudioBuffer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\Core\\renderer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\Scripts\\Headers\\Core\\renderer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\Audio\\audiobuffer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\Scripts\\Headers\\Audio\\audiobuffer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Core\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\Scripts\\Core\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\Math\\Vector.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\Scripts\\Headers\\Math\\Vector.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\Audio\\audiosource.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\Scripts\\Headers\\Audio\\audiosource.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Res\\Shaders\\Framebuffer.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\Res\\Shaders\\Framebuffer.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\Audio\\audiomanager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\Scripts\\Headers\\Audio\\audiomanager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Res\\Shaders\\Basic2.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\Res\\Shaders\\Basic2.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Res\\Shaders\\Basic.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\Res\\Shaders\\Basic.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\Audio\\sound.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\Scripts\\Headers\\Audio\\sound.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,54 +66,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "camera2d.h",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\GameObjects\\camera2d.h",
-              "RelativeDocumentMoniker": "OrbiterCore\\Scripts\\Headers\\GameObjects\\camera2d.h",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\GameObjects\\camera2d.h",
-              "RelativeToolTip": "OrbiterCore\\Scripts\\Headers\\GameObjects\\camera2d.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-08-15T14:31:45.74Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Camera2D.cpp",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\GameObjects\\Camera2D.cpp",
-              "RelativeDocumentMoniker": "OrbiterCore\\Scripts\\GameObjects\\Camera2D.cpp",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\GameObjects\\Camera2D.cpp",
-              "RelativeToolTip": "OrbiterCore\\Scripts\\GameObjects\\Camera2D.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-08-15T12:29:33.484Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "renderer.h",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\Core\\renderer.h",
-              "RelativeDocumentMoniker": "OrbiterCore\\Scripts\\Headers\\Core\\renderer.h",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\Core\\renderer.h",
-              "RelativeToolTip": "OrbiterCore\\Scripts\\Headers\\Core\\renderer.h",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAAB4AAAA2AAAAAAAAAA==",
+              "Title": "audiobuffer.h",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\Audio\\audiobuffer.h",
+              "RelativeDocumentMoniker": "OrbiterCore\\Scripts\\Headers\\Audio\\audiobuffer.h",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\Audio\\audiobuffer.h",
+              "RelativeToolTip": "OrbiterCore\\Scripts\\Headers\\Audio\\audiobuffer.h",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAYwBkAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-08-15T13:47:03.777Z",
+              "WhenOpened": "2024-08-16T12:39:07.322Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AudioBuffer.cpp",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Audio\\AudioBuffer.cpp",
+              "RelativeDocumentMoniker": "OrbiterCore\\Scripts\\Audio\\AudioBuffer.cpp",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Audio\\AudioBuffer.cpp",
+              "RelativeToolTip": "OrbiterCore\\Scripts\\Audio\\AudioBuffer.cpp",
+              "ViewState": "AgIAABEAAAAAAAAAAAAYwB4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-08-16T12:29:16.188Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "audiosource.h",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\Audio\\audiosource.h",
+              "RelativeDocumentMoniker": "OrbiterCore\\Scripts\\Headers\\Audio\\audiosource.h",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\Audio\\audiosource.h",
+              "RelativeToolTip": "OrbiterCore\\Scripts\\Headers\\Audio\\audiosource.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-08-16T12:24:39.611Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "editor.h",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\Scripts\\Headers\\editor.h",
-              "RelativeDocumentMoniker": "OrbiterEditor\\Scripts\\Headers\\editor.h",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\Scripts\\Headers\\editor.h",
-              "RelativeToolTip": "OrbiterEditor\\Scripts\\Headers\\editor.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-08-15T13:35:27.017Z",
+              "Title": "AudioSource.cpp",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Audio\\AudioSource.cpp",
+              "RelativeDocumentMoniker": "OrbiterCore\\Scripts\\Audio\\AudioSource.cpp",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Audio\\AudioSource.cpp",
+              "RelativeToolTip": "OrbiterCore\\Scripts\\Audio\\AudioSource.cpp",
+              "ViewState": "AgIAADYAAAAAAAAAAAAowEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-08-16T12:15:15.631Z",
               "EditorCaption": ""
             },
             {
@@ -128,48 +124,61 @@
               "RelativeDocumentMoniker": "OrbiterCore\\Scripts\\Core\\Application.cpp",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Core\\Application.cpp",
               "RelativeToolTip": "OrbiterCore\\Scripts\\Core\\Application.cpp",
-              "ViewState": "AgIAADkAAAAAAAAAAAAAADAAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAACwAAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-08-15T13:27:57.916Z",
+              "WhenOpened": "2024-08-16T12:03:04.851Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AudioManager.cpp",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Audio\\AudioManager.cpp",
+              "RelativeDocumentMoniker": "OrbiterCore\\Scripts\\Audio\\AudioManager.cpp",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Audio\\AudioManager.cpp",
+              "RelativeToolTip": "OrbiterCore\\Scripts\\Audio\\AudioManager.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-08-16T10:48:59.262Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "Framebuffer.shader",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Res\\Shaders\\Framebuffer.shader",
-              "RelativeDocumentMoniker": "OrbiterCore\\Res\\Shaders\\Framebuffer.shader",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Res\\Shaders\\Framebuffer.shader",
-              "RelativeToolTip": "OrbiterCore\\Res\\Shaders\\Framebuffer.shader",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
-              "WhenOpened": "2024-08-15T13:17:01.539Z",
+              "Title": "audiomanager.h",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\Audio\\audiomanager.h",
+              "RelativeDocumentMoniker": "OrbiterCore\\Scripts\\Headers\\Audio\\audiomanager.h",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\Audio\\audiomanager.h",
+              "RelativeToolTip": "OrbiterCore\\Scripts\\Headers\\Audio\\audiomanager.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-08-16T10:48:36.857Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "Basic2.shader",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Res\\Shaders\\Basic2.shader",
-              "RelativeDocumentMoniker": "OrbiterCore\\Res\\Shaders\\Basic2.shader",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Res\\Shaders\\Basic2.shader",
-              "RelativeToolTip": "OrbiterCore\\Res\\Shaders\\Basic2.shader",
-              "ViewState": "AgIAABIAAAAAAAAAAAAuwCUAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
-              "WhenOpened": "2024-08-15T13:15:48.189Z",
+              "Title": "sound.h",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\Audio\\sound.h",
+              "RelativeDocumentMoniker": "OrbiterCore\\Scripts\\Headers\\Audio\\sound.h",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\Audio\\sound.h",
+              "RelativeToolTip": "OrbiterCore\\Scripts\\Headers\\Audio\\sound.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-08-16T10:47:01.292Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Basic.shader",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Res\\Shaders\\Basic.shader",
-              "RelativeDocumentMoniker": "OrbiterCore\\Res\\Shaders\\Basic.shader",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Res\\Shaders\\Basic.shader",
-              "RelativeToolTip": "OrbiterCore\\Res\\Shaders\\Basic.shader",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
-              "WhenOpened": "2024-08-15T13:15:43.8Z",
+              "DocumentIndex": 2,
+              "Title": "Character.cpp",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\GameObjects\\Character.cpp",
+              "RelativeDocumentMoniker": "OrbiterCore\\Scripts\\GameObjects\\Character.cpp",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\GameObjects\\Character.cpp",
+              "RelativeToolTip": "OrbiterCore\\Scripts\\GameObjects\\Character.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-08-16T10:08:51.764Z",
               "EditorCaption": ""
             },
             {
@@ -180,35 +189,9 @@
               "RelativeDocumentMoniker": "OrbiterEditor\\Scripts\\Editor.cpp",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\Scripts\\Editor.cpp",
               "RelativeToolTip": "OrbiterEditor\\Scripts\\Editor.cpp",
-              "ViewState": "AgIAAJYBAAAAAAAAAAAAAKMBAABVAAAAAAAAAA==",
+              "ViewState": "AgIAAGwCAAAAAAAAAAAYwHUCAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-08-14T13:58:53.836Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Texture.cpp",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Rendering\\Texture.cpp",
-              "RelativeDocumentMoniker": "OrbiterCore\\Scripts\\Rendering\\Texture.cpp",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Rendering\\Texture.cpp",
-              "RelativeToolTip": "OrbiterCore\\Scripts\\Rendering\\Texture.cpp",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAADgAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-08-15T14:40:45.779Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Vector.cpp",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\Math\\Vector.cpp",
-              "RelativeDocumentMoniker": "OrbiterCore\\Scripts\\Headers\\Math\\Vector.cpp",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Scripts\\Headers\\Math\\Vector.cpp",
-              "RelativeToolTip": "OrbiterCore\\Scripts\\Headers\\Math\\Vector.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-08-15T13:59:10.979Z",
+              "WhenOpened": "2024-08-16T09:21:44.483Z",
               "EditorCaption": ""
             }
           ]

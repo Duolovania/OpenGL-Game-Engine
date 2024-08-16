@@ -1,9 +1,12 @@
 #include "GameObjects/character.h"
 
 Character::Character(const std::string& imagePath)
-	:m_imagePath("Assets/Sprites/" + imagePath)
+	//:m_imagePath("Assets/Sprites/" + imagePath)
 {
 	objectName = imagePath;
+	cTexture.m_imagePath = "Assets/Sprites/" + imagePath;
+
+	transform.position = Vector3::zero;
 	transform.scale = Vector3(100, 100, 0);
 }
 
