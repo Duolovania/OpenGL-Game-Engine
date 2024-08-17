@@ -12,6 +12,7 @@ class FrameBuffer
 		void UnBind() const;
 
 		void Resize(glm::vec2 size);
+		glm::vec2 GetSize() const;
 
 		unsigned int GetTexture() const;
 	private:

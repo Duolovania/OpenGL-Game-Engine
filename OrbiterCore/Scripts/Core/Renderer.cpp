@@ -105,12 +105,12 @@ void Renderer::Init()
 		m_texture->Bind(i + 1);
 
 		objectsToRender[i].cTexture.textureBuffer = GetCachedTexture(objectsToRender[i], i);
-		//samplers[i] = objectsToRender[i].texture;
-
 		m_shader->BindTexture(i, objectsToRender[i].cTexture.textureBuffer);
+		
 		texturesLoaded++;
 	}
 
+	//m_shader->SetUniform3f("ambientLight", glm::vec3(0.05, 0.05, 0.05));
 	m_shader->SetUniform1iv("u_Textures", sizeof(samplers), samplers); // Sets the shader texture slots to samplers.
 
 	objectsToRender[0].transform.position.x = 0;
@@ -138,14 +138,17 @@ void Renderer::Draw() const
 	m_ib->Bind();
 
 	GLCall(glDrawElements(GL_TRIANGLES, m_ib->GetCount(), GL_UNSIGNED_INT, nullptr));
+
+	m_shader->UnBind();
+	m_va->Unbind();
+	m_ib->Unbind();
 }
 
 // Outputs the data onto the viewport.
 void Renderer::Draw(glm::mat4 projection, glm::mat4 view, glm::vec4 colourTint)
 {
-	GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
-
 	buffer = vertices.data();
+	m_shader->Bind();
 
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
@@ -156,6 +159,7 @@ void Renderer::Draw(glm::mat4 projection, glm::mat4 view, glm::vec4 colourTint)
 				* glm::scale(glm::mat4(1.0f), glm::vec3(objectsToRender[i].transform.scale.x, objectsToRender[i].transform.scale.y, 1.0f));
 			
 			m_shader->BindTexture(i, objectsToRender[i].cTexture.textureBuffer);
+
 			buffer = CreateQuad(buffer, transform, i, {objectsToRender[i].color[0], objectsToRender[i].color[1], objectsToRender[i].color[2], objectsToRender[i].color[3]});
 		}
 	}
@@ -166,9 +170,11 @@ void Renderer::Draw(glm::mat4 projection, glm::mat4 view, glm::vec4 colourTint)
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)); // Model translation.
 	glm::mat4 mvp = projection * view * model;
 
-	m_shader->Bind();
 	m_shader->SetUniformMat4f("u_MVP", mvp);
 	m_shader->SetUniform4f("u_Color", colourTint);
+
+	//m_shader->SetUniform2f("lightPosition", glm::vec2(view[3].x, view[3].y));
+	//m_shader->SetUniform2f("position", glm::vec2(view[3].x, view[3].y));
 
 	m_va->Bind();
 	m_ib->Bind();

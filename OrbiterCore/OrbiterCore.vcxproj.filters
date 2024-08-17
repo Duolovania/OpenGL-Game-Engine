@@ -315,4 +315,7 @@
     <ClCompile Include="Scripts\GameObjects\Camera2D.cpp" />
     <ClCompile Include="Scripts\Headers\Math\Vector.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\Shaders\light.shader" />
+  </ItemGroup>
 </Project>

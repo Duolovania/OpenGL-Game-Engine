@@ -379,6 +379,9 @@
       <Project>{00310F52-ECE8-509F-55F0-29FB41C7EB8F}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\Shaders\light.shader" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

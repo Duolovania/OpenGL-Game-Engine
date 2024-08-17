@@ -1,11 +1,17 @@
 ﻿cl : command line  warning D9025: overriding '/MTd' with '/MDd'
   Editor.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\Scripts\Editor.cpp(269,32): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\Scripts\Editor.cpp(275,32): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\Scripts\Editor.cpp(281,32): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\Scripts\Editor.cpp(463,26): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\Scripts\Editor.cpp(578,26): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\Scripts\Editor.cpp(815,18): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\Scripts\Editor.cpp(841,73): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\Scripts\Editor.cpp(879,1): warning C4715: 'Editor::OnUpdate': not all control paths return a value
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\Scripts\Editor.cpp(126,73): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\Scripts\Editor.cpp(237,18): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\Scripts\Editor.cpp(421,26): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\Scripts\Editor.cpp(536,26): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\Scripts\Editor.cpp(974,32): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\Scripts\Editor.cpp(980,32): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\Scripts\Editor.cpp(986,32): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(3597,56): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+  (compiling source file 'Scripts/Editor.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(3597,56):
+      the template instantiation context (the oldest one first) is
+          C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\Scripts\Editor.cpp(80,26):
+          see reference to function template instantiation 'std::unique_ptr<VertexBuffer,std::default_delete<VertexBuffer>> std::make_unique<VertexBuffer,size_t,0>(size_t &&)' being compiled
+  
   OrbiterEditor.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin\Debug-windows-x86_64\OrbiterEditor\OrbiterEditor.exe

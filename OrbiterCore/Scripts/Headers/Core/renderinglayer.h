@@ -12,5 +12,6 @@ class RenderingLayer
 		virtual void Close() {};
 		virtual void CleanUp() {};
 		std::shared_ptr<FrameBuffer> framebuffer;
+		std::shared_ptr<Shader> fbShader;
 		int vsyncEnabled = 1;
 };

@@ -16,8 +16,8 @@ void main()
 #version 330 core
 
 out vec4 color;
-
 in vec2 v_TexCoord;
+
 uniform sampler2D screenTexture;
 
 void main()
@@ -25,4 +25,5 @@ void main()
     vec3 frag = texture(screenTexture, v_TexCoord).rgb;
     float grayscale = dot(frag, vec3(0.299, 0.587, 0.114));
     color = vec4(vec3(grayscale), 1.0);
+    // color = vec4(0, 1, 0, 1);
 };

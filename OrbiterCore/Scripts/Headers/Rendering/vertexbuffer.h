@@ -15,4 +15,5 @@ class VertexBuffer
 		void ModifyData(const void* data);
 
 		void Gen(const void* data);
+		void GenStatic(const void* data);
 };

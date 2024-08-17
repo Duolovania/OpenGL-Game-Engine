@@ -20,6 +20,13 @@ void VertexBuffer::Gen(const void* data)
     GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW)); // Generates buffer data
 }
 
+void VertexBuffer::GenStatic(const void* data)
+{
+    GLCall(glGenBuffers(1, &rendererID)); // How many buffers and the ID
+    GLCall(glBindBuffer(GL_ARRAY_BUFFER, rendererID)); // Selects buffer
+    GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW)); // Generates buffer data
+}
+
 // Selects this as current vertex buffer.
 void VertexBuffer::Bind() const
 {

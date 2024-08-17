@@ -41,6 +41,9 @@ void FrameBuffer::Gen()
 	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
 	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
 
+	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+
 	GLCall(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colourAttachment, 0)); // Attach texture to framebuffer.
 	GLCall(glBindTexture(GL_TEXTURE_2D, 0)); // Unbind the texture.
 
@@ -67,7 +70,6 @@ void FrameBuffer::Bind() const
 	GLCall(glBindTexture(GL_TEXTURE_2D, colourAttachment));
 	GLCall(glBindRenderbuffer(GL_RENDERBUFFER, depthAttachment));
 
-
 	GLCall(glViewport(0, 0, m_width, m_height));
 }
 
@@ -82,6 +84,11 @@ void FrameBuffer::Resize(glm::vec2 size)
 	m_height = size.y;
 
 	Gen();
+}
+
+glm::vec2 FrameBuffer::GetSize() const
+{
+	return glm::vec2(m_width, m_height);
 }
 
 unsigned int FrameBuffer::GetTexture() const
