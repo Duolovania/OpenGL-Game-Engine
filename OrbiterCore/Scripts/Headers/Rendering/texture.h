@@ -12,9 +12,9 @@ class Texture
 		void Bind(unsigned int slot = 0) const;
 		void UnBind() const;
 
-		void Gen();
+		void Gen(bool isPixelated = false);
 
-		unsigned int Load(const std::string& path);
+		unsigned int Load(const std::string& path, bool isPixelated = false);
 		unsigned int GetBufferID();
 		void SetBuffer(unsigned int newBuffer);
 

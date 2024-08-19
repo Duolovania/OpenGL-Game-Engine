@@ -10,13 +10,9 @@ std::string currentPath = "C:/Users/Ryhan Khan/Downloads/GitHub/OpenGL-Engine/Op
 testSpace::Test* currentTest = nullptr;
 testSpace::TestMenu* testMenu = new testSpace::TestMenu(currentTest);
 
-
-
 float sprintSpeed;
 Sound tempSound;
 bool soundChanged = false, newSound = false;
-
-unsigned int rectVAO, rectVBO;
 
 float rectangleVertices[] =
 {
@@ -40,7 +36,7 @@ enum UISelect
 UISelect uiSelect = UISelect::None;
 
 std::unique_ptr<Texture> iconTextures;
-unsigned int playButton, pauseButton, stopButton;
+unsigned int playButton, pauseButton, stopButton, fileIcon, folderIcon;
 
 void Editor::Init(GLFWwindow* window)
 {
@@ -65,14 +61,6 @@ void Editor::Init(GLFWwindow* window)
     fbShader->Bind();
     fbShader->SetUniform1i("screenTexture", 0);
 
-    rootPath = currentPath;
-    iconTextures = std::make_unique<Texture>("../OrbiterCore/Res/Application Icons/playbutton.png");
-    iconTextures->Gen();
-
-    playButton = iconTextures->GetBufferID();
-    pauseButton = iconTextures->Load("../OrbiterCore/Res/Application Icons/pausebutton.png");
-    stopButton = iconTextures->Load("../OrbiterCore/Res/Application Icons/stopbutton.png");
-
     frameBufferVA = std::make_unique<VertexArray>();
     frameBufferVA->Gen();
     frameBufferVA->Bind();
@@ -85,6 +73,17 @@ void Editor::Init(GLFWwindow* window)
     layout.Push<float>(2);
 
     frameBufferVA->AddBuffer(*frameBufferVB, layout);
+
+    rootPath = currentPath;
+    iconTextures = std::make_unique<Texture>("../OrbiterCore/Res/Application Icons/playbutton.png");
+    iconTextures->Gen(true);
+
+    playButton = iconTextures->GetBufferID();
+    pauseButton = iconTextures->Load("../OrbiterCore/Res/Application Icons/pausebutton.png", true);
+    stopButton = iconTextures->Load("../OrbiterCore/Res/Application Icons/stopbutton.png", true);
+
+    folderIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/foldericon.png", true);
+    fileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/fileicon.png", true);
 }
 
 bool Editor::OnUpdate(float deltaTime)
@@ -92,8 +91,6 @@ bool Editor::OnUpdate(float deltaTime)
     ImGui_ImplGlfw_NewFrame();
     ImGui_ImplOpenGL3_NewFrame();
     ImGui::NewFrame();
-
-    
 
     ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport(), ImGuiDockNodeFlags_None);
 
@@ -749,29 +746,71 @@ void Editor::ContentBrowser()
 
     ImGui::Text("Search");
     ImGui::SameLine();
-    ImGui::InputText("##label8", &searchTerm);
-
-    ImGui::SameLine();
-    if (ImGui::Button("Back"))
-    {
-        currentPath = rootPath;
-    }
+    ImGui::InputText("##search", &searchTerm);
 
     namespace fs = std::filesystem;
 
+    if (currentPath != rootPath)
+    {
+        ImGui::SameLine();
+
+        if (ImGui::Button("Back"))
+        {
+            fs::path parentDir = currentPath;
+            currentPath = parentDir.parent_path().string();
+
+            if (currentPath.length() < rootPath.length()) currentPath = rootPath;
+        }
+    }
+
+    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0, 0.804, 0.137, 0.75f));
+    ImGui::Text(currentPath.c_str());
+    ImGui::PopStyleColor();
+
+    int counter = 0;
+    float padding = 1.075f;
+    ImVec2 originalPos = ImGui::GetCursorPos();
+
     for (const auto& entry : fs::directory_iterator(currentPath))
     {
+        ImVec2 buttonSize = ImVec2(200, 200);
+        ImVec2 buttonPos = ImVec2(counter * (buttonSize.x * padding), originalPos.y);
+
+        ImVec2 textPos = ImVec2((counter * (buttonSize.x * padding) + (((buttonSize.x / 2)) - (ImGui::CalcTextSize(entry.path().filename().string().c_str()).x) / 2)), originalPos.y + (buttonSize.y * padding));
+
         if (entry.is_directory())
         {
-            if (ImGui::Selectable(entry.path().filename().string().c_str()))
+            ImGui::SetCursorPos(buttonPos);
+
+            if (ImGui::ImageButton((void*)folderIcon, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0)))
             {
                 currentPath = std::string(entry.path().string());
-            }
+            };
+
+            ImGui::SetCursorPos(textPos);
+
+            ImGui::Text(entry.path().filename().string().c_str());
+            ImGui::SameLine();
         }
         else
         {
-            if (strstr(entry.path().filename().string().c_str(), searchTerm.c_str()) != nullptr) ImGui::Selectable(entry.path().filename().string().c_str());
+            if (strstr(entry.path().filename().string().c_str(), searchTerm.c_str()) != nullptr)
+            {
+                ImGui::SetCursorPos(buttonPos);
+
+                if (ImGui::ImageButton((void*)fileIcon, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0)))
+                {
+
+                };
+
+                ImGui::SetCursorPos(textPos);
+
+                ImGui::Text(entry.path().filename().string().c_str());
+                ImGui::SameLine();
+            }
         }
+
+        counter++;
     }
 
     ImGui::End();

@@ -21,13 +21,21 @@ Texture::~Texture()
 }
 
 // Generates texture data.
-void Texture::Gen()
+void Texture::Gen(bool isPixelated)
 {
 	GLCall(glGenTextures(1, &bufferID));
 	GLCall(glBindTexture(GL_TEXTURE_2D, bufferID));
 
-	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)); // GL_LINEAR = smooth. GL_NEAREST = pixelated.
-	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+	if (isPixelated)
+	{
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)); // GL_LINEAR = smooth. GL_NEAREST = pixelated.
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+	}
+	else
+	{
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)); // GL_LINEAR = smooth. GL_NEAREST = pixelated.
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+	}
 
 	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE)); // GL_CLAMP_TO_EDGE = extends image to size. GL_REPEAT = repeats the image to fit the size.
 	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
@@ -42,11 +50,11 @@ void Texture::Gen()
 }
 
 // Generates texture data and returns the buffer ID (returns the new texture data through the ID).
-unsigned int Texture::Load(const std::string& path)
+unsigned int Texture::Load(const std::string& path, bool isPixelated)
 {
 	localBuffer = stbi_load(path.c_str(), &w, &h, &bpp, 4);
 
-	Gen();
+	Gen(isPixelated);
 	return bufferID;
 }
 
