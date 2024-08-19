@@ -780,17 +780,19 @@ void Editor::ContentBrowser()
 
         if (entry.is_directory())
         {
+            ImGui::PushID(counter);
             ImGui::SetCursorPos(buttonPos);
 
             if (ImGui::ImageButton((void*)folderIcon, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0)))
             {
                 currentPath = std::string(entry.path().string());
-            };
+            }
 
             ImGui::SetCursorPos(textPos);
 
             ImGui::Text(entry.path().filename().string().c_str());
             ImGui::SameLine();
+            ImGui::PopID();
         }
         else
         {
@@ -800,7 +802,7 @@ void Editor::ContentBrowser()
 
                 if (ImGui::ImageButton((void*)fileIcon, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0)))
                 {
-
+                    
                 };
 
                 ImGui::SetCursorPos(textPos);
