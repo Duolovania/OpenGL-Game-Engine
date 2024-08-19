@@ -768,16 +768,27 @@ void Editor::ContentBrowser()
     ImGui::PopStyleColor();
 
     int counter = 0;
-    float padding = 1.075f;
-    ImVec2 originalPos = ImGui::GetCursorPos();
+    ImVec2 padding = ImVec2(1.075f, 1.075f);
+    ImVec2 originalPos = ImVec2(ImGui::GetCursorPos().x + padding.x, ImGui::GetCursorPos().y + padding.y);
 
     for (const auto& entry : fs::directory_iterator(currentPath))
     {
         ImVec2 buttonSize = ImVec2(200, 200);
-        ImVec2 buttonPos = ImVec2(counter * (buttonSize.x * padding), originalPos.y);
+        ImVec2 buttonPos = ImVec2(originalPos.x + (counter * (buttonSize.x * padding.x)), originalPos.y); // Calculates the x position based on how many items there are.
 
-        ImVec2 textPos = ImVec2((counter * (buttonSize.x * padding) + (((buttonSize.x / 2)) - (ImGui::CalcTextSize(entry.path().filename().string().c_str()).x) / 2)), originalPos.y + (buttonSize.y * padding));
+        // Sets the text position to the center of the thumbnail (sets the text origin position to the center of the thumbnail and subtracts it by the amount of characters. The subtraction is to ensure that the text is centered regardless of it's length).
+        ImVec2 textPos = ImVec2(originalPos.x + ((counter * (buttonSize.x * padding.x) + (((buttonSize.x / 2)) - (ImGui::CalcTextSize(entry.path().filename().string().c_str()).x) / 2))), originalPos.y + (buttonSize.y * padding.y)); 
 
+        // Checks if the thumbnail will exceed the window size.
+        if ((buttonPos.x + buttonSize.x > ImGui::GetContentRegionMax().x))
+        {
+            counter = 0; // Resets the x position.
+            originalPos = ImVec2(originalPos.x, ImGui::GetCursorPos().y + ((buttonSize.y / 4) * padding.y)); // Calculates the y position based on the button size and padding amount.
+
+            buttonPos = ImVec2(originalPos.x + (counter * (buttonSize.x * padding.x)), originalPos.y); // Recalculates the button position with the x position being reset.
+            textPos = ImVec2(originalPos.x + ((counter * (buttonSize.x * padding.x) + (((buttonSize.x / 2)) - (ImGui::CalcTextSize(entry.path().filename().string().c_str()).x) / 2))), originalPos.y + (buttonSize.y * padding.y)); // Recalculates the text position with the x position being reset.
+        }
+        
         if (entry.is_directory())
         {
             ImGui::PushID(counter);
