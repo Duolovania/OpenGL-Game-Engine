@@ -133,7 +133,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;OB_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;Scripts\Headers;Scripts\Tests;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -155,7 +155,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;OB_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;Scripts\Headers;Scripts\Tests;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -177,7 +177,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;OB_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;Scripts\Headers;Scripts\Tests;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -203,7 +203,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;OB_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;Scripts\Headers;Scripts\Tests;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -229,7 +229,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;OB_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;Scripts\Headers;Scripts\Tests;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -255,7 +255,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;OB_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;Scripts\Headers;Scripts\Tests;Scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -277,41 +277,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Scripts\Headers\Audio\audiobuffer.h" />
-    <ClInclude Include="Scripts\Headers\Audio\audiocontext.h" />
-    <ClInclude Include="Scripts\Headers\Audio\audiolistener.h" />
-    <ClInclude Include="Scripts\Headers\Audio\audiomanager.h" />
-    <ClInclude Include="Scripts\Headers\Audio\audiosource.h" />
-    <ClInclude Include="Scripts\Headers\Audio\orbiteraudio.h" />
-    <ClInclude Include="Scripts\Headers\Audio\sound.h" />
-    <ClInclude Include="Scripts\Headers\Core\action.h" />
-    <ClInclude Include="Scripts\Headers\Core\animation.h" />
-    <ClInclude Include="Scripts\Headers\Core\animationframe.h" />
-    <ClInclude Include="Scripts\Headers\Core\animationplayer.h" />
-    <ClInclude Include="Scripts\Headers\Core\application.h" />
-    <ClInclude Include="Scripts\Headers\Core\renderinglayer.h" />
-    <ClInclude Include="Scripts\Headers\Core\filemanager.h" />
-    <ClInclude Include="Scripts\Headers\GameObjects\camera2d.h" />
-    <ClInclude Include="Scripts\Headers\GameObjects\gameobject.h" />
-    <ClInclude Include="Scripts\Headers\Core\input.h" />
-    <ClInclude Include="Scripts\Headers\Core\orbitercore.h" />
-    <ClInclude Include="Scripts\Headers\Core\renderer.h" />
-    <ClInclude Include="Scripts\Headers\GameObjects\character.h" />
-    <ClInclude Include="Scripts\Headers\Math\transform.h" />
-    <ClInclude Include="Scripts\Headers\Math\vector.h" />
-    <ClInclude Include="Scripts\Headers\Math\vertex.h" />
-    <ClInclude Include="Scripts\Headers\Rendering\framebuffer.h" />
-    <ClInclude Include="Scripts\Headers\Rendering\indexbuffer.h" />
-    <ClInclude Include="Scripts\Headers\Rendering\orbiterrenderer.h" />
-    <ClInclude Include="Scripts\Headers\Rendering\shader.h" />
-    <ClInclude Include="Scripts\Headers\Rendering\texture.h" />
-    <ClInclude Include="Scripts\Headers\Rendering\vertexarray.h" />
-    <ClInclude Include="Scripts\Headers\Rendering\vertexbuffer.h" />
-    <ClInclude Include="Scripts\Headers\Rendering\vertexbufferlayout.h" />
-    <ClInclude Include="Scripts\Headers\orbiter.h" />
-    <ClInclude Include="Scripts\Tests\test.h" />
-    <ClInclude Include="Scripts\Tests\testclearcolour.h" />
-    <ClInclude Include="Scripts\Tests\testtexture2d.h" />
     <ClInclude Include="Vendor\glm\simd\common.h" />
     <ClInclude Include="Vendor\glm\simd\exponential.h" />
     <ClInclude Include="Vendor\glm\simd\geometric.h" />
@@ -333,33 +298,43 @@
     <ClInclude Include="Vendor\imgui\imstb_textedit.h" />
     <ClInclude Include="Vendor\imgui\imstb_truetype.h" />
     <ClInclude Include="Vendor\stb_image\stb_image.h" />
+    <ClInclude Include="src\Tests\test.h" />
+    <ClInclude Include="src\Tests\testclearcolour.h" />
+    <ClInclude Include="src\Tests\testtexture2d.h" />
+    <ClInclude Include="src\include\Audio\audiobuffer.h" />
+    <ClInclude Include="src\include\Audio\audiocontext.h" />
+    <ClInclude Include="src\include\Audio\audiolistener.h" />
+    <ClInclude Include="src\include\Audio\audiomanager.h" />
+    <ClInclude Include="src\include\Audio\audiosource.h" />
+    <ClInclude Include="src\include\Audio\orbiteraudio.h" />
+    <ClInclude Include="src\include\Audio\sound.h" />
+    <ClInclude Include="src\include\Core\action.h" />
+    <ClInclude Include="src\include\Core\animation.h" />
+    <ClInclude Include="src\include\Core\animationframe.h" />
+    <ClInclude Include="src\include\Core\animationplayer.h" />
+    <ClInclude Include="src\include\Core\application.h" />
+    <ClInclude Include="src\include\Core\filemanager.h" />
+    <ClInclude Include="src\include\Core\input.h" />
+    <ClInclude Include="src\include\Core\orbitercore.h" />
+    <ClInclude Include="src\include\Core\renderer.h" />
+    <ClInclude Include="src\include\Core\renderinglayer.h" />
+    <ClInclude Include="src\include\GameObjects\camera2d.h" />
+    <ClInclude Include="src\include\GameObjects\character.h" />
+    <ClInclude Include="src\include\GameObjects\gameobject.h" />
+    <ClInclude Include="src\include\Math\transform.h" />
+    <ClInclude Include="src\include\Math\vector.h" />
+    <ClInclude Include="src\include\Math\vertex.h" />
+    <ClInclude Include="src\include\Rendering\framebuffer.h" />
+    <ClInclude Include="src\include\Rendering\indexbuffer.h" />
+    <ClInclude Include="src\include\Rendering\orbiterrenderer.h" />
+    <ClInclude Include="src\include\Rendering\shader.h" />
+    <ClInclude Include="src\include\Rendering\texture.h" />
+    <ClInclude Include="src\include\Rendering\vertexarray.h" />
+    <ClInclude Include="src\include\Rendering\vertexbuffer.h" />
+    <ClInclude Include="src\include\Rendering\vertexbufferlayout.h" />
+    <ClInclude Include="src\include\orbiter.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Scripts\Audio\AudioBuffer.cpp" />
-    <ClCompile Include="Scripts\Audio\AudioContext.cpp" />
-    <ClCompile Include="Scripts\Audio\AudioListener.cpp" />
-    <ClCompile Include="Scripts\Audio\AudioManager.cpp" />
-    <ClCompile Include="Scripts\Audio\AudioSource.cpp" />
-    <ClCompile Include="Scripts\Core\Action.cpp" />
-    <ClCompile Include="Scripts\Core\Animation.cpp" />
-    <ClCompile Include="Scripts\Core\AnimationFrame.cpp" />
-    <ClCompile Include="Scripts\Core\AnimationPlayer.cpp" />
-    <ClCompile Include="Scripts\Core\Application.cpp" />
-    <ClCompile Include="Scripts\Core\FileManager.cpp" />
-    <ClCompile Include="Scripts\Core\Input.cpp" />
-    <ClCompile Include="Scripts\Core\Renderer.cpp" />
-    <ClCompile Include="Scripts\GameObjects\Camera2D.cpp" />
-    <ClCompile Include="Scripts\GameObjects\Character.cpp" />
-    <ClCompile Include="Scripts\Headers\Math\Vector.cpp" />
-    <ClCompile Include="Scripts\Rendering\FrameBuffer.cpp" />
-    <ClCompile Include="Scripts\Rendering\IndexBuffer.cpp" />
-    <ClCompile Include="Scripts\Rendering\Shader.cpp" />
-    <ClCompile Include="Scripts\Rendering\Texture.cpp" />
-    <ClCompile Include="Scripts\Rendering\VertexArray.cpp" />
-    <ClCompile Include="Scripts\Rendering\VertexBuffer.cpp" />
-    <ClCompile Include="Scripts\Tests\Test.cpp" />
-    <ClCompile Include="Scripts\Tests\TestClearColour.cpp" />
-    <ClCompile Include="Scripts\Tests\TestTexture2D.cpp" />
     <ClCompile Include="Vendor\glm\detail\glm.cpp" />
     <ClCompile Include="Vendor\imgui\imgui.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_demo.cpp" />
@@ -370,6 +345,31 @@
     <ClCompile Include="Vendor\imgui\imgui_tables.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Vendor\stb_image\STB_Image.cpp" />
+    <ClCompile Include="src\Audio\AudioBuffer.cpp" />
+    <ClCompile Include="src\Audio\AudioContext.cpp" />
+    <ClCompile Include="src\Audio\AudioListener.cpp" />
+    <ClCompile Include="src\Audio\AudioManager.cpp" />
+    <ClCompile Include="src\Audio\AudioSource.cpp" />
+    <ClCompile Include="src\Core\Action.cpp" />
+    <ClCompile Include="src\Core\Animation.cpp" />
+    <ClCompile Include="src\Core\AnimationFrame.cpp" />
+    <ClCompile Include="src\Core\AnimationPlayer.cpp" />
+    <ClCompile Include="src\Core\Application.cpp" />
+    <ClCompile Include="src\Core\FileManager.cpp" />
+    <ClCompile Include="src\Core\Input.cpp" />
+    <ClCompile Include="src\Core\Renderer.cpp" />
+    <ClCompile Include="src\GameObjects\Camera2D.cpp" />
+    <ClCompile Include="src\GameObjects\Character.cpp" />
+    <ClCompile Include="src\Rendering\FrameBuffer.cpp" />
+    <ClCompile Include="src\Rendering\IndexBuffer.cpp" />
+    <ClCompile Include="src\Rendering\Shader.cpp" />
+    <ClCompile Include="src\Rendering\Texture.cpp" />
+    <ClCompile Include="src\Rendering\VertexArray.cpp" />
+    <ClCompile Include="src\Rendering\VertexBuffer.cpp" />
+    <ClCompile Include="src\Tests\Test.cpp" />
+    <ClCompile Include="src\Tests\TestClearColour.cpp" />
+    <ClCompile Include="src\Tests\TestTexture2D.cpp" />
+    <ClCompile Include="src\include\Math\Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dependencies\Glad\Glad.vcxproj">
@@ -378,9 +378,6 @@
     <ProjectReference Include="Vendor\openal-soft-master\OpenALSoft.vcxproj">
       <Project>{00310F52-ECE8-509F-55F0-29FB41C7EB8F}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Res\Shaders\light.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

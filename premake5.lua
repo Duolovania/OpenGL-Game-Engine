@@ -42,8 +42,8 @@ project "OrbiterCore"
     -- Targets all cpp and header files.
     files
     {
-        "%{prj.name}/Scripts/**.h",
-        "%{prj.name}/Scripts/**.cpp",
+        "%{prj.name}/src/**.h",
+        "%{prj.name}/src/**.cpp",
 
         "%{prj.name}/Vendor/stb_image/**cpp",
         "%{prj.name}/Vendor/stb_image/**h",
@@ -73,9 +73,9 @@ project "OrbiterCore"
         "%{prj.name}/Vendor/stb_image",
         "%{prj.name}/Vendor/glm",
 
-        "%{prj.name}/Scripts/Headers",
-        "%{prj.name}/Scripts/Tests",
-        "%{prj.name}/Scripts"
+        "%{prj.name}/src/include",
+        "%{prj.name}/src/Tests",
+        "%{prj.name}/src"
     }
 
     excludes
@@ -154,8 +154,8 @@ project "OrbiterEditor"
     -- Targets all cpp and header files.
     files
     {
-        "%{prj.name}/Scripts/**.h",
-        "%{prj.name}/Scripts/**.cpp"
+        "%{prj.name}/src/**.h",
+        "%{prj.name}/src/**.cpp"
     }
 
     -- Includes dependencies and include paths.
@@ -168,7 +168,9 @@ project "OrbiterEditor"
         "OrbiterCore/Vendor/glfw-master-cherno/include/GLFW",
         "OrbiterCore/Vendor/glm",
         "OrbiterCore/Vendor",
-        "OrbiterCore/Scripts"
+        "OrbiterCore/src",
+        "OrbiterCore/src/include",
+        "%{prj.name}/src/include"
     }
 
     links

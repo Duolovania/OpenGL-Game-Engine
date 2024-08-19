@@ -1,36 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Scripts">
-      <UniqueIdentifier>{4D6F1AE8-B94E-9983-C266-245A2EC5FFE4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\Audio">
-      <UniqueIdentifier>{0E83B22D-7A43-2E64-437E-77E1AFFD7240}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\Core">
-      <UniqueIdentifier>{C52B0EAC-B18E-9D50-5A14-D606465669D3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\Headers">
-      <UniqueIdentifier>{F87AAB59-6406-191E-6D17-9C12D921751E}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\Headers\Audio">
-      <UniqueIdentifier>{F962C6F3-65CF-81EE-2EC3-194C9AEEA356}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\Headers\Core">
-      <UniqueIdentifier>{503AE0F7-3CC9-69C1-E5E7-7DBCD1557A67}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\Headers\Math">
-      <UniqueIdentifier>{D17AE5F7-BD09-6FC1-6628-83BC52967F67}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\Headers\Rendering">
-      <UniqueIdentifier>{455A8F53-B11C-C3DD-FACC-516A66CE9BBB}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\Rendering">
-      <UniqueIdentifier>{DA7C07E8-4693-057E-8F0A-919FFB5FD605}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\Tests">
-      <UniqueIdentifier>{CFCF012F-3B90-7D65-04CB-C6E2704AC241}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Vendor">
       <UniqueIdentifier>{935FDCD7-7F01-07AE-68BC-1A0254FD8DFE}</UniqueIdentifier>
     </Filter>
@@ -49,104 +19,44 @@
     <Filter Include="Vendor\stb_image">
       <UniqueIdentifier>{EDE315D3-D9DC-3425-020F-1AAAEE661431}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Audio">
+      <UniqueIdentifier>{EE2696B2-5A91-4A29-A3CF-FBCE0F79287E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Core">
+      <UniqueIdentifier>{A5D31CCF-91A0-77DA-BAB9-6582A6E5AC68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameObjects">
+      <UniqueIdentifier>{A0E17904-0C6D-E7C8-157E-6ABD818843C9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Rendering">
+      <UniqueIdentifier>{BA10DABB-26D1-55F2-EF0B-9F6F5B8B9ACE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Tests">
+      <UniqueIdentifier>{AF73E5B3-1BDE-992A-641C-4BD0D0C5777F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\include">
+      <UniqueIdentifier>{A0AF70A7-0C65-E99C-9559-E373010EE0A0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\include\Audio">
+      <UniqueIdentifier>{A175DA19-0D8C-D8AF-5603-64D1C258A937}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\include\Core">
+      <UniqueIdentifier>{F897E87C-E490-07CF-0DC3-EC53F91AE7DA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\include\GameObjects">
+      <UniqueIdentifier>{932A39E0-FF61-8177-086C-E59A7422A870}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\include\Math">
+      <UniqueIdentifier>{79D8ED7C-65D1-0CCF-8E03-F2537A5BECDA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\include\Rendering">
+      <UniqueIdentifier>{ED803CB5-59ED-F7AF-22E1-8F0D8E0C1A18}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Scripts\Headers\Audio\audiobuffer.h">
-      <Filter>Scripts\Headers\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Audio\audiocontext.h">
-      <Filter>Scripts\Headers\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Audio\audiolistener.h">
-      <Filter>Scripts\Headers\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Audio\audiomanager.h">
-      <Filter>Scripts\Headers\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Audio\audiosource.h">
-      <Filter>Scripts\Headers\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Audio\orbiteraudio.h">
-      <Filter>Scripts\Headers\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Audio\sound.h">
-      <Filter>Scripts\Headers\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Core\action.h">
-      <Filter>Scripts\Headers\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Core\animation.h">
-      <Filter>Scripts\Headers\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Core\animationframe.h">
-      <Filter>Scripts\Headers\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Core\animationplayer.h">
-      <Filter>Scripts\Headers\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Core\application.h">
-      <Filter>Scripts\Headers\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Core\renderinglayer.h">
-      <Filter>Scripts\Headers\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Core\filemanager.h">
-      <Filter>Scripts\Headers\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\GameObjects\gameobject.h">
-      <Filter>Scripts\Headers\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Core\input.h">
-      <Filter>Scripts\Headers\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Core\orbitercore.h">
-      <Filter>Scripts\Headers\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Core\renderer.h">
-      <Filter>Scripts\Headers\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Math\transform.h">
-      <Filter>Scripts\Headers\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Math\vector.h">
-      <Filter>Scripts\Headers\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Math\vertex.h">
-      <Filter>Scripts\Headers\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Rendering\framebuffer.h">
-      <Filter>Scripts\Headers\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Rendering\indexbuffer.h">
-      <Filter>Scripts\Headers\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Rendering\shader.h">
-      <Filter>Scripts\Headers\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Rendering\texture.h">
-      <Filter>Scripts\Headers\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Rendering\vertexarray.h">
-      <Filter>Scripts\Headers\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Rendering\vertexbuffer.h">
-      <Filter>Scripts\Headers\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\Rendering\vertexbufferlayout.h">
-      <Filter>Scripts\Headers\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Headers\orbiter.h">
-      <Filter>Scripts\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Tests\test.h">
-      <Filter>Scripts\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Tests\testclearcolour.h">
-      <Filter>Scripts\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Tests\testtexture2d.h">
-      <Filter>Scripts\Tests</Filter>
-    </ClInclude>
     <ClInclude Include="Vendor\glm\simd\common.h">
       <Filter>Vendor\glm\simd</Filter>
     </ClInclude>
@@ -210,77 +120,113 @@
     <ClInclude Include="Vendor\stb_image\stb_image.h">
       <Filter>Vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Headers\Rendering\orbiterrenderer.h" />
-    <ClInclude Include="Scripts\Headers\GameObjects\character.h" />
-    <ClInclude Include="Scripts\Headers\GameObjects\camera2d.h" />
+    <ClInclude Include="src\Tests\test.h">
+      <Filter>src\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tests\testclearcolour.h">
+      <Filter>src\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tests\testtexture2d.h">
+      <Filter>src\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Audio\audiobuffer.h">
+      <Filter>src\include\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Audio\audiocontext.h">
+      <Filter>src\include\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Audio\audiolistener.h">
+      <Filter>src\include\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Audio\audiomanager.h">
+      <Filter>src\include\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Audio\audiosource.h">
+      <Filter>src\include\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Audio\orbiteraudio.h">
+      <Filter>src\include\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Audio\sound.h">
+      <Filter>src\include\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Core\action.h">
+      <Filter>src\include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Core\animation.h">
+      <Filter>src\include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Core\animationframe.h">
+      <Filter>src\include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Core\animationplayer.h">
+      <Filter>src\include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Core\application.h">
+      <Filter>src\include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Core\filemanager.h">
+      <Filter>src\include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Core\input.h">
+      <Filter>src\include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Core\orbitercore.h">
+      <Filter>src\include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Core\renderer.h">
+      <Filter>src\include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Core\renderinglayer.h">
+      <Filter>src\include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\GameObjects\camera2d.h">
+      <Filter>src\include\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\GameObjects\character.h">
+      <Filter>src\include\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\GameObjects\gameobject.h">
+      <Filter>src\include\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Math\transform.h">
+      <Filter>src\include\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Math\vector.h">
+      <Filter>src\include\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Math\vertex.h">
+      <Filter>src\include\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Rendering\framebuffer.h">
+      <Filter>src\include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Rendering\indexbuffer.h">
+      <Filter>src\include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Rendering\orbiterrenderer.h">
+      <Filter>src\include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Rendering\shader.h">
+      <Filter>src\include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Rendering\texture.h">
+      <Filter>src\include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Rendering\vertexarray.h">
+      <Filter>src\include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Rendering\vertexbuffer.h">
+      <Filter>src\include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Rendering\vertexbufferlayout.h">
+      <Filter>src\include\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\orbiter.h">
+      <Filter>src\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Scripts\Audio\AudioBuffer.cpp">
-      <Filter>Scripts\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Audio\AudioContext.cpp">
-      <Filter>Scripts\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Audio\AudioListener.cpp">
-      <Filter>Scripts\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Audio\AudioManager.cpp">
-      <Filter>Scripts\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Audio\AudioSource.cpp">
-      <Filter>Scripts\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Core\Action.cpp">
-      <Filter>Scripts\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Core\Animation.cpp">
-      <Filter>Scripts\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Core\AnimationFrame.cpp">
-      <Filter>Scripts\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Core\AnimationPlayer.cpp">
-      <Filter>Scripts\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Core\Application.cpp">
-      <Filter>Scripts\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Core\FileManager.cpp">
-      <Filter>Scripts\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Core\Input.cpp">
-      <Filter>Scripts\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Core\Renderer.cpp">
-      <Filter>Scripts\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Rendering\FrameBuffer.cpp">
-      <Filter>Scripts\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Rendering\IndexBuffer.cpp">
-      <Filter>Scripts\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Rendering\Shader.cpp">
-      <Filter>Scripts\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Rendering\Texture.cpp">
-      <Filter>Scripts\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Rendering\VertexArray.cpp">
-      <Filter>Scripts\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Rendering\VertexBuffer.cpp">
-      <Filter>Scripts\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Tests\Test.cpp">
-      <Filter>Scripts\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Tests\TestClearColour.cpp">
-      <Filter>Scripts\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Scripts\Tests\TestTexture2D.cpp">
-      <Filter>Scripts\Tests</Filter>
-    </ClCompile>
     <ClCompile Include="Vendor\glm\detail\glm.cpp">
       <Filter>Vendor\glm\detail</Filter>
     </ClCompile>
@@ -311,11 +257,80 @@
     <ClCompile Include="Vendor\stb_image\STB_Image.cpp">
       <Filter>Vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="Scripts\GameObjects\Character.cpp" />
-    <ClCompile Include="Scripts\GameObjects\Camera2D.cpp" />
-    <ClCompile Include="Scripts\Headers\Math\Vector.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Res\Shaders\light.shader" />
+    <ClCompile Include="src\Audio\AudioBuffer.cpp">
+      <Filter>src\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Audio\AudioContext.cpp">
+      <Filter>src\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Audio\AudioListener.cpp">
+      <Filter>src\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Audio\AudioManager.cpp">
+      <Filter>src\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Audio\AudioSource.cpp">
+      <Filter>src\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Action.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Animation.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\AnimationFrame.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\AnimationPlayer.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Application.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\FileManager.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Input.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Renderer.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjects\Camera2D.cpp">
+      <Filter>src\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjects\Character.cpp">
+      <Filter>src\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rendering\FrameBuffer.cpp">
+      <Filter>src\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rendering\IndexBuffer.cpp">
+      <Filter>src\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rendering\Shader.cpp">
+      <Filter>src\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rendering\Texture.cpp">
+      <Filter>src\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rendering\VertexArray.cpp">
+      <Filter>src\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rendering\VertexBuffer.cpp">
+      <Filter>src\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tests\Test.cpp">
+      <Filter>src\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tests\TestClearColour.cpp">
+      <Filter>src\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tests\TestTexture2D.cpp">
+      <Filter>src\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="src\include\Math\Vector.cpp">
+      <Filter>src\include\Math</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
