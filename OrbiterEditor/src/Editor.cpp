@@ -12,7 +12,7 @@ testSpace::TestMenu* testMenu = new testSpace::TestMenu(currentTest);
 
 float sprintSpeed;
 Sound tempSound;
-bool soundChanged = false, newSound = false;
+bool soundChanged = false, newSound = false, showProjSettings = false;
 
 float rectangleVertices[] =
 {
@@ -36,7 +36,7 @@ enum UISelect
 UISelect uiSelect = UISelect::None;
 
 std::unique_ptr<Texture> iconTextures;
-unsigned int playButton, pauseButton, stopButton, fileIcon, folderIcon;
+unsigned int playButton, pauseButton, stopButton, fileIcon, folderIcon, wavFileIcon, fontFileIcon, sceneFileIcon, imageFileIcon;
 
 void Editor::Init(GLFWwindow* window)
 {
@@ -84,6 +84,11 @@ void Editor::Init(GLFWwindow* window)
 
     folderIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/foldericon.png", true);
     fileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/fileicon.png", true);
+
+    wavFileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/wavfileicon.png", true);
+    fontFileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/fontfileicon.png", true);
+    sceneFileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/scenefileicon.png", true);
+    imageFileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/imagefileicon.png", true);
 }
 
 bool Editor::OnUpdate(float deltaTime)
@@ -121,6 +126,8 @@ bool Editor::OnUpdate(float deltaTime)
         if (currentTest != testMenu)
         {
             sprintSpeed = Core.InputManager.GetActionStrength("sprint") * 150;
+
+            camera2D.transform.scale = Vector3(viewportSize.x, viewportSize.y, 0);
             camera2D.transform.position += Vector2(Core.InputManager.BasicMovement().x * (100.0f + sprintSpeed) * deltaTime, Core.InputManager.BasicMovement().y * (100.0f + sprintSpeed) * deltaTime);
             Core.audioManager->sounds[0].audioSource->SetProperties(1, 1, false, glm::vec3(renderer.objectsToRender[1].transform.position.x - camera2D.transform.position.x, renderer.objectsToRender[1].transform.position.y - camera2D.transform.position.y, 0.0f));
 
@@ -148,6 +155,73 @@ bool Editor::OnUpdate(float deltaTime)
 
             ImGui::Text("Textures Loaded: %.0f", double(renderer.texturesLoaded));
             ImGui::Text("New Textures Created: %.0f", double(renderer.newTextures));
+
+            ImGui::End();
+        }
+
+        if (showProjSettings)
+        {
+            ImGui::Begin("Project Settings");
+
+            ImGui::Text("Enter Action Name:");
+            ImGui::SameLine();
+
+            ImGui::InputText("##actionInput", &inputString);
+
+            if (ImGui::Button("Add"))
+            {
+                Core.InputManager.AddAction(Action(inputString));
+            }
+
+            ImGui::SameLine();
+
+            if (ImGui::Button("Listen to Input")) Core.InputManager.listenToInput = !Core.InputManager.listenToInput;
+
+            if (Core.InputManager.listenToInput)
+            {
+                ImGui::SameLine();
+                ImGui::Text("Listening...");
+            }
+
+            if (ImGui::BeginListBox("Actions"))
+            {
+                for (int i = 0; i < Core.InputManager.actionList.size(); i++)
+                {
+                    ImGui::PushID(i);
+                    if (ImGui::CollapsingHeader(("Name: " + Core.InputManager.actionList[i].GetActionName()).c_str()))
+                    {
+                        Core.InputManager.selectedAction = i;
+
+                        for (int j = 0; j < Core.InputManager.actionList[i].GetKeyBinds().size(); j++)
+                        {
+                            if (ImGui::Selectable(Core.InputManager.actionList[i].GetKeyName(j)), keyBindIndex == j)
+                            {
+
+                            }
+
+                            ImGui::SameLine();
+
+                            if (ImGui::Button("Delete##1"))
+                            {
+                                Core.InputManager.actionList[i].DeleteKeyBind(j);
+                            }
+                        }
+                    }
+
+                    ImGui::SetCursorPos(ImVec2(ImGui::GetContentRegionMax().x + 100, ImGui::GetCursorPos().y));
+
+                    ImGui::SameLine();
+
+                    if (ImGui::Button("Delete##2"))
+                    {
+                        Core.InputManager.DeleteAction(i);
+                    }
+
+                    ImGui::PopID();
+                }
+
+                ImGui::EndListBox();
+            }
 
             ImGui::End();
         }
@@ -276,8 +350,6 @@ void Editor::Inspector()
 
     if (selectedObject > -1)
     {
-        ImGui::Text("Object Name:");
-        ImGui::SameLine();
         ImGui::InputText("##label0", &renderer.objectsToRender[selectedObject].objectName);
 
         ImGui::SameLine();
@@ -436,8 +508,6 @@ void Editor::Inspector()
     }
     else if (selectedObject == -1)
     {
-        ImGui::Text("Object Name:");
-        ImGui::SameLine();
         ImGui::InputText("##label0", &camera2D.objectName);
 
         if (ImGui::CollapsingHeader("Transform"))
@@ -520,8 +590,44 @@ void Editor::Inspector()
                 ImGui::InputFloat("##RZ", &camera2D.transform.rotation.z, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
+
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
+
+                ImGui::Text("Scale:");
+
+                ImGui::TableSetColumnIndex(1);
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
+
+                ImGui::Text("X");
+
+                ImGui::SameLine();
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+
+                ImGui::InputFloat("##SX", &camera2D.transform.scale.x, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::TableSetColumnIndex(2);
+
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
+
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                ImGui::Text("Y");
+
+                ImGui::SameLine();
+                ImGui::InputFloat("##SY", &camera2D.transform.scale.y, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::TableSetColumnIndex(3);
+
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
+
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                ImGui::Text("Z");
+
+                ImGui::SameLine();
+                ImGui::InputFloat("##SZ", &camera2D.transform.scale.z, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
                 ImGui::PopItemWidth();
 
                 ImGui::EndTable();
@@ -611,6 +717,19 @@ void Editor::Inspector()
                     ImGui::Text("File:");
                     ImGui::SameLine();
                     ImGui::InputText("##path", &tempSound.filePath);
+
+                    if (ImGui::BeginDragDropTarget())
+                    {
+                        if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("ITEM_DRAG"))
+                        {
+                            // Process payload
+                            std::string* data = (std::string*)payload->Data;
+                            // Do something with the data
+                            tempSound.filePath = *data;
+                            std::cout << data << std::endl;
+                        }
+                        ImGui::EndDragDropTarget();
+                    }
 
                     ImGui::Text("Pitch:");
                     ImGui::SameLine();
@@ -809,17 +928,47 @@ void Editor::ContentBrowser()
         {
             if (strstr(entry.path().filename().string().c_str(), searchTerm.c_str()) != nullptr)
             {
+                ImGui::PushID(counter);
                 ImGui::SetCursorPos(buttonPos);
 
-                if (ImGui::ImageButton((void*)fileIcon, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0)))
+                unsigned int fileThumbnail = fileIcon;
+                int fileNameLength = entry.path().filename().string().find('.');
+
+                std::string tempFileName = entry.path().filename().string().substr(fileNameLength);
+
+                if (tempFileName == ".wav")
                 {
-                    
+                    fileThumbnail = wavFileIcon;
+                }
+                else if (tempFileName == ".ttf" || tempFileName == ".otf")
+                {
+                    fileThumbnail = fontFileIcon;
+                }
+                else if (tempFileName == ".froggie")
+                {
+                    fileThumbnail = sceneFileIcon;
+                }
+                else if (tempFileName == ".png" || tempFileName == ".jpg")
+                {
+                    fileThumbnail = imageFileIcon;
+                }
+
+                if (ImGui::ImageButton((void*)fileThumbnail, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0)))
+                {
+                    if (ImGui::BeginDragDropSource())
+                    {
+                        std::string path = entry.path().filename().string();
+                        ImGui::Text("Dragging");
+                        ImGui::SetDragDropPayload("ITEM_DRAG", &path, sizeof(path)); // Set payload
+                        ImGui::EndDragDropSource();
+                    }
                 };
 
                 ImGui::SetCursorPos(textPos);
 
                 ImGui::Text(entry.path().filename().string().c_str());
                 ImGui::SameLine();
+                ImGui::PopID();
             }
         }
 
@@ -885,78 +1034,7 @@ void Editor::MenuBar()
         {
             if (ImGui::MenuItem("Project Settings"))
             {
-
-                ImGui::Begin("Project Settings");
-                ImGui::OpenPopup("Input");
-
-                if (ImGui::BeginPopupModal("Input", NULL))
-                {
-                    ImGui::InputText("Enter Action Name:", &inputString);
-
-                    if (ImGui::Button("Add"))
-                    {
-                        Core.InputManager.AddAction(Action(inputString));
-                    }
-
-                    ImGui::SameLine();
-
-                    if (ImGui::Button("Delete"))
-                    {
-                        switch (uiSelect)
-                        {
-                        case UISelect::ActionButton:
-                            LOG(actionIndex);
-                            Core.InputManager.DeleteAction(actionIndex);
-                            break;
-                        case UISelect::KeybindButton:
-                            LOG(keyBindIndex);
-                            Core.InputManager.actionList[actionIndex].DeleteKeyBind(keyBindIndex);
-                            break;
-                        default:
-                            break;
-                        }
-                    }
-
-                    ImGui::SameLine();
-
-                    if (ImGui::Button("Listen to Input")) listenToInput = true;
-
-                    if (listenToInput)
-                    {
-                        ImGui::SameLine();
-                        ImGui::Text("Listening...");
-                    }
-
-                    if (ImGui::BeginListBox("Actions"))
-                    {
-                        for (int i = 0; i < Core.InputManager.actionList.size(); i++)
-                        {
-                            if (ImGui::Selectable(("Name: " + Core.InputManager.actionList[i].GetActionName()).c_str()), actionIndex == i)
-                            {
-                                actionIndex = i;
-
-                                uiSelect = UISelect::ActionButton;
-                            }
-
-                            for (int j = 0; j < Core.InputManager.actionList[i].GetKeyBinds().size(); j++)
-                            {
-                                if (ImGui::Selectable(Core.InputManager.actionList[i].GetKeyName(j)), keyBindIndex == j)
-                                {
-                                    actionIndex = i;
-                                    keyBindIndex = j;
-
-                                    uiSelect = UISelect::KeybindButton;
-                                }
-                            }
-                        }
-
-                        ImGui::EndListBox();
-                    }
-
-                    if (ImGui::Button("Save and Close")) ImGui::CloseCurrentPopup();
-                    ImGui::EndPopup();
-                }
-                ImGui::End();
+                showProjSettings = !showProjSettings;
             }
 
             ImGui::EndMenu();

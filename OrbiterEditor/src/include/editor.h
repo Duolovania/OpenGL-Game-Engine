@@ -20,7 +20,7 @@ class Editor : public RenderingLayer
 
 		void CreateTransformColumn(const std::array<std::string, 3>& colNames, std::array<Vector3, 3> values);
 
-		bool showStats = false, wireframeMode = false, listenToInput, showFPS = false, applicationRunning = true;
+		bool showStats = false, wireframeMode = false, showFPS = false, applicationRunning = true;
 		int actionIndex = 0, keyBindIndex = 0;
 
 		ImVec2 viewportSize;

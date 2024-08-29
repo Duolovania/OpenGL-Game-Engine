@@ -14,5 +14,8 @@ class Input
 
 		glm::vec2 BasicMovement();
 
+		bool listenToInput = false;
+		unsigned int selectedAction;
+
 		Input();
 };

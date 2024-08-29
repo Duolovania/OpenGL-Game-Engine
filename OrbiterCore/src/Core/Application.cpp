@@ -7,9 +7,8 @@
 #include "stb_image.h"
 
 float timeTime = 0, oldTimeSinceStart = 0, timeSinceStart, deltaTime;
-int actionIndex = 0, keyBindIndex = 0;
 
-bool applicationQuit = false, listenToInput = false, showStats = false;
+bool applicationQuit = false;
 
 Engine Engine::instance;
 Sound newSound;
@@ -44,7 +43,9 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     GLFWimage images[1];
     images[0].pixels = stbi_load("../OrbiterCore/Res/Application Icons/orbitlogo.png", &images[0].width, &images[0].height, 0, 4);
     glfwSetWindowIcon(window, 1, images);
+
     glfwSetKeyCallback(window, Engine::HandleInput);
+    glfwSetJoystickCallback(Engine::HandleGamePadInput);
 
     if (!window)
         glfwTerminate();
@@ -119,9 +120,39 @@ void Engine::HandleInput(GLFWwindow* window, int key, int scanCode, int action, 
         }
     }
 
-    if (listenToInput)
+    
+
+    if (Core.InputManager.listenToInput)
     {
-        Core.InputManager.actionList[actionIndex].AddKeyBind(key);
-        listenToInput = false;
+        Core.InputManager.actionList[Core.InputManager.selectedAction].AddKeyBind(key);
+        Core.InputManager.listenToInput = false;
+    }
+}
+
+void Engine::HandleGamePadInput(int jid, int event)
+{
+    int buttonCount, selectedButton;
+    const unsigned char* buttons = glfwGetJoystickButtons(jid, &buttonCount);
+
+    if (buttons)
+    {
+        for (int i = 0; i < Core.InputManager.actionList.size(); i++)
+        {
+            for (int j = 0; j < Core.InputManager.actionList[i].GetKeyBinds().size(); j++)
+            {
+                if (Core.InputManager.actionList[i].GetKeyBindIndex(j) && buttons[i])
+                {
+                    //int action = (buttons[i] == GLFW_PRESS) ? 1 : 0;
+                    Core.InputManager.actionList[i].SetStrength(buttons[i]);
+                    selectedButton = buttons[i];
+                }
+            }
+        }
+    }
+
+    if (Core.InputManager.listenToInput)
+    {
+        Core.InputManager.actionList[Core.InputManager.selectedAction].AddKeyBind(buttons[0]);
+        Core.InputManager.listenToInput = false;
     }
 }
