@@ -932,7 +932,7 @@ void Editor::ContentBrowser()
                 ImGui::SetCursorPos(buttonPos);
 
                 unsigned int fileThumbnail = fileIcon;
-                int fileNameLength = entry.path().filename().string().find('.');
+                int fileNameLength = entry.path().filename().string().find_last_of('.');
 
                 std::string tempFileName = entry.path().filename().string().substr(fileNameLength);
 
