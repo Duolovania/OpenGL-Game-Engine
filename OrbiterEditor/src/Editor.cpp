@@ -864,122 +864,102 @@ void Editor::Inspector()
     ImGui::End();
 }
 
+
+void ShowFolders(const std::filesystem::path& folderPath) 
+{
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath))
+    {
+        if (entry.is_directory()) 
+        {
+            if (ImGui::TreeNode(entry.path().filename().string().c_str())) 
+            {
+                currentPath = std::string(entry.path().string());
+
+                // Recursively display subfolders
+                ShowFolders(entry.path());
+                ImGui::TreePop();
+            }
+        }
+    }
+}
+
 void Editor::ContentBrowser()
 {
     ImGui::Begin("Assets Folder");
 
-    ImGui::Text("Search");
-    ImGui::SameLine();
-    ImGui::InputText("##search", &searchTerm);
+    ImGui::BeginChild("TableChild", ImVec2(0, ImGui::GetContentRegionAvail().y), true, ImGuiWindowFlags_HorizontalScrollbar);
 
-    namespace fs = std::filesystem;
-
-    if (currentPath != rootPath)
+    if (ImGui::BeginTable("FolderTable", 2, ImGuiTableFlags_BordersInner | ImGuiTableFlags_RowBg))
     {
+        ImGui::TableSetupColumn("List", ImGuiTableColumnFlags_WidthFixed, ImGui::GetWindowContentRegionMax().x * 0.2f); // Set width
+        ImGui::TableSetupColumn("Icon", ImGuiTableColumnFlags_WidthFixed, ImGui::GetContentRegionAvail().x);
+
+        ImGui::TableNextRow();
+        ImGui::TableSetColumnIndex(0);
+
+        ShowFolders(rootPath);
+
+        ImGui::TableSetColumnIndex(1);
+
+        ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 10, ImGui::GetCursorPos().y));
+
+        ImGui::Text("Search");
         ImGui::SameLine();
+        ImGui::InputText("##search", &searchTerm);
 
-        if (ImGui::Button("Back"))
+        if (currentPath != rootPath)
         {
-            fs::path parentDir = currentPath;
-            currentPath = parentDir.parent_path().string();
+            ImGui::SameLine();
 
-            if (currentPath.length() < rootPath.length()) currentPath = rootPath;
-        }
-    }
 
-    if (ImGui::Button("Reset"))
-    {
-        iconSize = 200;
-    }
-
-    ImGui::SameLine();
-    ImGui::SliderFloat("Icon Size: ", &iconSize, 100, 200, "%.f");
-
-    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0, 0.804, 0.137, 0.75f));
-    ImGui::Text(currentPath.c_str());
-    ImGui::PopStyleColor();
-
-    int counter = 0;
-    ImVec2 padding = ImVec2(iconSize * 0.125f, iconSize * 0.125f);
-    ImVec2 originalPos = ImVec2(ImGui::GetCursorPos().x + padding.x, ImGui::GetCursorPos().y + padding.y);
-
-    for (const auto& entry : fs::directory_iterator(currentPath))
-    {
-        ImVec2 buttonSize = ImVec2(iconSize, iconSize);
-        ImVec2 buttonPos = ImVec2(originalPos.x + (counter * (buttonSize.x + padding.x)), originalPos.y); // Calculates the x position based on how many items there are.
-
-        ImGui::SetWindowFontScale(buttonSize.x / 195.0f);
-
-        // Sets the text position to the center of the thumbnail (sets the text origin position to the center of the thumbnail and subtracts it by the amount of characters. The subtraction is to ensure that the text is centered regardless of it's length).
-        ImVec2 textPos = ImVec2(buttonPos.x + (buttonSize.x - ImGui::CalcTextSize(entry.path().filename().string().c_str()).x) / 2, originalPos.y + (buttonSize.y + padding.y));
-
-        // Checks if the thumbnail will exceed the window size.
-        if ((buttonPos.x + buttonSize.x > ImGui::GetContentRegionMax().x))
-        {
-            counter = 0; // Resets the x position.
-            originalPos = ImVec2(originalPos.x, ImGui::GetCursorPos().y + ((buttonSize.y / 4) + padding.y)); // Calculates the y position based on the button size and padding amount.
-
-            buttonPos = ImVec2(originalPos.x + (counter * (buttonSize.x + padding.x)), originalPos.y); // Recalculates the button position with the x position being reset.
-            textPos = ImVec2(buttonPos.x + (buttonSize.x - ImGui::CalcTextSize(entry.path().filename().string().c_str()).x) / 2, originalPos.y + (buttonSize.y + padding.y)); // Recalculates the text position with the x position being reset.
-        }
-        
-        if (entry.is_directory())
-        {
-            ImGui::PushID(counter);
-            ImGui::SetCursorPos(buttonPos);
-
-            if (ImGui::ImageButton((void*)folderIcon, buttonSize, ImVec2(0, 1), ImVec2(1, 0)))
+            if (ImGui::Button("Back"))
             {
-                currentPath = std::string(entry.path().string());
+                std::filesystem::path parentDir = currentPath;
+                currentPath = parentDir.parent_path().string();
+
+                if (currentPath.length() < rootPath.length()) currentPath = rootPath;
+            }
+        }
+
+        ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 10, ImGui::GetCursorPos().y));
+
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0, 0.804, 0.137, 0.75f));
+        ImGui::Text(currentPath.c_str());
+        ImGui::PopStyleColor();
+
+        int counter = 0;
+        ImVec2 padding = ImVec2(iconSize * 0.125f, iconSize * 0.125f);
+        ImVec2 originalPos = ImVec2(ImGui::GetCursorPos().x + padding.x, ImGui::GetCursorPos().y + padding.y);
+
+        for (const auto& entry : std::filesystem::directory_iterator(currentPath))
+        {
+            ImVec2 buttonSize = ImVec2(iconSize, iconSize);
+            ImVec2 buttonPos = ImVec2(originalPos.x + (counter * (buttonSize.x + padding.x)), originalPos.y); // Calculates the x position based on how many items there are.
+
+            ImGui::SetWindowFontScale(buttonSize.x / 195.0f);
+
+            // Sets the text position to the center of the thumbnail (sets the text origin position to the center of the thumbnail and subtracts it by the amount of characters. The subtraction is to ensure that the text is centered regardless of it's length).
+            ImVec2 textPos = ImVec2(buttonPos.x + (buttonSize.x - ImGui::CalcTextSize(entry.path().filename().string().c_str()).x) / 2, originalPos.y + (buttonSize.y + padding.y));
+
+            // Checks if the thumbnail will exceed the window size.
+            if ((buttonPos.x + buttonSize.x > ImGui::GetContentRegionMax().x))
+            {
+                counter = 0; // Resets the x position.
+                originalPos = ImVec2(originalPos.x, ImGui::GetCursorPos().y + ((buttonSize.y / 4) + padding.y)); // Calculates the y position based on the button size and padding amount.
+
+                buttonPos = ImVec2(originalPos.x + (counter * (buttonSize.x + padding.x)), originalPos.y); // Recalculates the button position with the x position being reset.
+                textPos = ImVec2(buttonPos.x + (buttonSize.x - ImGui::CalcTextSize(entry.path().filename().string().c_str()).x) / 2, originalPos.y + (buttonSize.y + padding.y)); // Recalculates the text position with the x position being reset.
             }
 
-            ImGui::SetCursorPos(textPos);
-
-            ImGui::Text(entry.path().filename().string().c_str());
-            ImGui::SameLine();
-            ImGui::PopID();
-
-            counter++;
-        }
-        else
-        {
-            if (strstr(entry.path().filename().string().c_str(), searchTerm.c_str()) != nullptr)
+            if (entry.is_directory())
             {
                 ImGui::PushID(counter);
                 ImGui::SetCursorPos(buttonPos);
 
-                unsigned int fileThumbnail = fileIcon;
-                int fileNameLength = entry.path().filename().string().find_last_of('.');
-
-                std::string tempFileName = entry.path().filename().string().substr(fileNameLength);
-
-                if (tempFileName == ".wav")
+                if (ImGui::ImageButton((void*)folderIcon, buttonSize, ImVec2(0, 1), ImVec2(1, 0)))
                 {
-                    fileThumbnail = wavFileIcon;
+                    currentPath = std::string(entry.path().string());
                 }
-                else if (tempFileName == ".ttf" || tempFileName == ".otf")
-                {
-                    fileThumbnail = fontFileIcon;
-                }
-                else if (tempFileName == ".froggie")
-                {
-                    fileThumbnail = sceneFileIcon;
-                }
-                else if (tempFileName == ".png" || tempFileName == ".jpg")
-                {
-                    fileThumbnail = imageFileIcon;
-                }
-
-                if (ImGui::ImageButton((void*)fileThumbnail, buttonSize, ImVec2(0, 1), ImVec2(1, 0)))
-                {
-                    if (ImGui::BeginDragDropSource())
-                    {
-                        std::string path = entry.path().filename().string();
-                        ImGui::Text("Dragging");
-                        ImGui::SetDragDropPayload("ITEM_DRAG", &path, sizeof(path)); // Set payload
-                        ImGui::EndDragDropSource();
-                    }
-                };
 
                 ImGui::SetCursorPos(textPos);
 
@@ -989,10 +969,63 @@ void Editor::ContentBrowser()
 
                 counter++;
             }
+            else
+            {
+                if (strstr(entry.path().filename().string().c_str(), searchTerm.c_str()) != nullptr)
+                {
+                    ImGui::PushID(counter);
+                    ImGui::SetCursorPos(buttonPos);
+
+                    unsigned int fileThumbnail = fileIcon;
+                    int fileNameLength = entry.path().filename().string().find_last_of('.');
+
+                    std::string tempFileName = entry.path().filename().string().substr(fileNameLength);
+
+                    if (tempFileName == ".wav")
+                    {
+                        fileThumbnail = wavFileIcon;
+                    }
+                    else if (tempFileName == ".ttf" || tempFileName == ".otf")
+                    {
+                        fileThumbnail = fontFileIcon;
+                    }
+                    else if (tempFileName == ".froggie")
+                    {
+                        fileThumbnail = sceneFileIcon;
+                    }
+                    else if (tempFileName == ".png" || tempFileName == ".jpg")
+                    {
+                        fileThumbnail = imageFileIcon;
+                    }
+
+                    if (ImGui::ImageButton((void*)fileThumbnail, buttonSize, ImVec2(0, 1), ImVec2(1, 0)))
+                    {
+                        if (ImGui::BeginDragDropSource())
+                        {
+                            std::string path = entry.path().filename().string();
+                            ImGui::Text("Dragging");
+                            ImGui::SetDragDropPayload("ITEM_DRAG", &path, sizeof(path)); // Set payload
+                            ImGui::EndDragDropSource();
+                        }
+                    };
+
+                    ImGui::SetCursorPos(textPos);
+
+                    ImGui::Text(entry.path().filename().string().c_str());
+                    ImGui::SameLine();
+                    ImGui::PopID();
+
+                    counter++;
+                }
+            }
         }
+
+        ImGui::SetWindowFontScale(1.0f);
+
+        ImGui::EndTable();
     }
 
-    ImGui::SetWindowFontScale(1.0f);
+    ImGui::EndChild();
     ImGui::End();
 }
 
