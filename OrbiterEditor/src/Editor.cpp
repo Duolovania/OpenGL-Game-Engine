@@ -4,8 +4,7 @@
 
 FileManager fileManager;
 int selectedObject = -2;
-std::string inputString, searchTerm, rootPath;
-std::string currentPath = "C:/Users/Ryhan Khan/Downloads/GitHub/OpenGL-Engine/OpenGL/OrbiterEditor/Assets";
+std::string inputString, searchTerm, rootPath, currentPath;
 
 testSpace::Test* currentTest = nullptr;
 testSpace::TestMenu* testMenu = new testSpace::TestMenu(currentTest);
@@ -14,7 +13,7 @@ float sprintSpeed;
 float iconSize = 200;
 
 Sound tempSound;
-bool soundChanged = false, newSound = false, showProjSettings = false;
+bool newSound = false, showProjSettings = false;
 
 float rectangleVertices[] =
 {
@@ -76,7 +75,9 @@ void Editor::Init(GLFWwindow* window)
 
     frameBufferVA->AddBuffer(*frameBufferVB, layout);
 
+    currentPath = std::filesystem::current_path().string() + "\\Assets";
     rootPath = currentPath;
+
     iconTextures = std::make_unique<Texture>("../OrbiterCore/Res/Application Icons/playbutton.png");
     iconTextures->Gen(true);
 
@@ -666,204 +667,12 @@ void Editor::Inspector()
 
         if (ImGui::CollapsingHeader("AudioManager"))
         {
-
-            ImGui::Text("Sounds: ");
-            ImGui::SameLine();
-
-            ImGui::Text(std::to_string(Core.audioManager->sounds.size()).c_str());
-            ImGui::SameLine();
-            if (ImGui::Button("+"))
-            {
-                Sound s;
-
-                s.soundName = "Enter sound name";
-                s.filePath = "Enter path to .wav files";
-                s.volume = 1;
-                s.pitch = 1;
-                s.position = glm::vec3(0);
-                s.velocity = glm::vec3(0);
-
-                Core.audioManager->sounds.push_back(s);
-
-                newSound = true;
-                soundChanged = false;
-            }
-
-            for (auto& sound : Core.audioManager->sounds)
-            {
-                ImGui::Indent();
-
-                if (ImGui::CollapsingHeader(sound.soundName.c_str()))
-                {
-                    if (!soundChanged)
-                    {
-                        tempSound = sound;
-                        soundChanged = true;
-                    }
-
-                    ImGui::Indent();
-                    ImGui::Text("Name:");
-                    ImGui::SameLine();
-                    ImGui::InputText("##name", &tempSound.soundName);
-
-                    ImGui::SameLine();
-                    if (ImGui::Button("Save"))
-                    {
-                        sound = tempSound;
-                        soundChanged = false;
-                    }
-
-                    ImGui::SameLine();
-                    if (ImGui::Button("Undo"))
-                    {
-                        soundChanged = false;
-                    }
-
-                    ImGui::Text("File:");
-                    ImGui::SameLine();
-                    ImGui::InputText("##path", &tempSound.filePath);
-
-                    if (ImGui::BeginDragDropTarget())
-                    {
-                        if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("ITEM_DRAG"))
-                        {
-                            // Process payload
-                            std::string* data = (std::string*)payload->Data;
-                            // Do something with the data
-                            tempSound.filePath = *data;
-                            std::cout << data << std::endl;
-                        }
-                        ImGui::EndDragDropTarget();
-                    }
-
-                    ImGui::Text("Pitch:");
-                    ImGui::SameLine();
-                    ImGui::SliderFloat("##pitch", &tempSound.pitch, 0.1f, 2, "%.2f");
-
-                    ImGui::Text("Volume:");
-                    ImGui::SameLine();
-                    ImGui::SliderFloat("##volume", &tempSound.volume, 0, 1, "%.2f");
-
-                    if (ImGui::BeginTable("TransformTable", 4))
-                    {
-                        ImGui::TableNextRow();
-                        ImGui::TableSetColumnIndex(0);
-
-                        ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x / 4); // Set the width of each input field
-                        ImGui::Text("Position:");
-                        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
-
-                        ImGui::TableSetColumnIndex(1);
-                        ImGui::Text("X");
-
-                        ImGui::SameLine();
-                        ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-
-                        ImGui::InputFloat("##PX", &tempSound.position.x, 0.0f, 0.0f, "%.f");
-                        ImGui::PopStyleColor();
-
-                        ImGui::TableSetColumnIndex(2);
-                        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
-
-                        ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-                        ImGui::Text("Y");
-
-                        ImGui::SameLine();
-                        ImGui::InputFloat("##PY", &tempSound.position.y, 0.0f, 0.0f, "%.f");
-                        ImGui::PopStyleColor();
-
-                        ImGui::TableSetColumnIndex(3);
-
-                        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
-
-                        ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-                        ImGui::Text("Z");
-
-                        ImGui::SameLine();
-                        ImGui::InputFloat("##PZ", &tempSound.position.z, 0.0f, 0.0f, "%.f");
-                        ImGui::PopStyleColor();
-
-
-                        ImGui::TableNextRow();
-                        ImGui::TableSetColumnIndex(0);
-
-                        ImGui::Text("Velocity:");
-
-                        ImGui::TableSetColumnIndex(1);
-                        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
-
-                        ImGui::Text("X");
-
-                        ImGui::SameLine();
-                        ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-
-                        ImGui::InputFloat("##VX", &tempSound.velocity.x, 0.0f, 0.0f, "%.f");
-                        ImGui::PopStyleColor();
-
-                        ImGui::TableSetColumnIndex(2);
-
-                        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
-
-                        ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-                        ImGui::Text("Y");
-
-                        ImGui::SameLine();
-                        ImGui::InputFloat("##VY", &tempSound.velocity.y, 0.0f, 0.0f, "%.f");
-                        ImGui::PopStyleColor();
-
-                        ImGui::TableSetColumnIndex(3);
-
-                        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
-
-                        ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-                        ImGui::Text("Z");
-
-                        ImGui::SameLine();
-                        ImGui::InputFloat("##VZ", &tempSound.velocity.z, 0.0f, 0.0f, "%.f");
-                        ImGui::PopStyleColor();
-
-                        ImGui::EndTable();
-                    }
-
-                    ImGui::Text("Play On Start-Up:");
-                    ImGui::SameLine();
-                    ImGui::Checkbox("##playStart", &tempSound.playOnStartUp);
-
-                    ImGui::Text("Repeat Delay:");
-                    ImGui::SameLine();
-                    ImGui::Checkbox("##repeat", &tempSound.repeatDelay);
-
-                    ImGui::Text("Looped:");
-                    ImGui::SameLine();
-                    ImGui::Checkbox("##loop", &tempSound.isLooping);
-
-                    if (ImGui::Button("Play"))
-                    {
-                        if (newSound) Core.audioManager->GenSounds();
-                        newSound = false;
-
-                        tempSound.audioSource->ChangeFile(tempSound.filePath);
-                        tempSound.audioSource->SetProperties(tempSound.pitch, tempSound.volume, tempSound.isLooping, tempSound.position, tempSound.velocity);
-                        tempSound.audioSource->Play();
-                    }
-
-                    ImGui::SameLine();
-                    if (ImGui::Button("Stop"))
-                    {
-                        tempSound.audioSource->Stop();
-                    }
-
-                    ImGui::Unindent();
-                }
-
-                ImGui::Unindent();
-            }
+            AudioManagerComponent();
         }
     }
 
     ImGui::End();
 }
-
 
 void ShowFolders(const std::filesystem::path& folderPath) 
 {
@@ -911,7 +720,6 @@ void Editor::ContentBrowser()
         {
             ImGui::SameLine();
 
-
             if (ImGui::Button("Back"))
             {
                 std::filesystem::path parentDir = currentPath;
@@ -924,7 +732,11 @@ void Editor::ContentBrowser()
         ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 10, ImGui::GetCursorPos().y));
 
         ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0, 0.804, 0.137, 0.75f));
-        ImGui::Text(currentPath.c_str());
+
+        std::string tempPath = currentPath;
+        std::string selectedPath = tempPath.erase(0, rootPath.length());
+
+        ImGui::Text(selectedPath.c_str());
         ImGui::PopStyleColor();
 
         int counter = 0;
@@ -1170,6 +982,197 @@ void Editor::MenuBar()
         }
 
         ImGui::EndMainMenuBar();
+    }
+}
+
+void Editor::AudioManagerComponent()
+{
+    ImGui::Text("Sounds: ");
+    ImGui::SameLine();
+
+    ImGui::Text(std::to_string(Core.audioManager->sounds.size()).c_str()); // Shows the number of sounds in the vector.
+
+    ImGui::SameLine();
+
+    // New sound button.
+    if (ImGui::Button("+"))
+    {
+        Sound s; // Creates a 'blank' sound.
+
+        // Template sound details.
+        s.soundName = "Enter sound name"; 
+        s.filePath = "Enter path to .wav files";
+        s.volume = 1;
+        s.pitch = 1;
+        s.position = glm::vec3(0);
+        s.velocity = glm::vec3(0);
+
+        Core.audioManager->sounds.push_back(s); // Adds a sound to the list.
+
+        newSound = true; // Specifies that a new sound is being created.
+    }
+
+    // Loops through every item in sounds vector.
+    for (int i = 0; i < Core.audioManager->sounds.size(); i++)
+    {
+        ImGui::Indent();
+
+        ImGui::PushID(i);
+        Sound sound = Core.audioManager->sounds[i]; // Gets a sound from the vector.
+
+        if (sound.soundName != Core.audioManager->sounds[i].soundName) ImGui::SetNextItemOpen(true);
+
+        // Collapsing header for selected sound.
+        if (ImGui::CollapsingHeader(sound.soundName.c_str(), ImGuiTreeNodeFlags_DefaultOpen))
+        {
+            ImGui::Indent();
+            ImGui::Text("Name:");
+            ImGui::SameLine();
+            ImGui::InputText("##name", &Core.audioManager->sounds[i].soundName);
+
+            ImGui::Text("File:");
+            ImGui::SameLine();
+            ImGui::InputText("##path", &Core.audioManager->sounds[i].filePath);
+
+            if (ImGui::BeginDragDropTarget())
+            {
+                if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("ITEM_DRAG"))
+                {
+                    // Process payload
+                    std::string* data = (std::string*)payload->Data;
+                    // Do something with the data
+                    tempSound.filePath = *data;
+                    std::cout << data << std::endl;
+                }
+                ImGui::EndDragDropTarget();
+            }
+
+            ImGui::Text("Pitch:");
+            ImGui::SameLine();
+            ImGui::SliderFloat("##pitch", &Core.audioManager->sounds[i].pitch, 0.1f, 2, "%.2f");
+
+            ImGui::Text("Volume:");
+            ImGui::SameLine();
+            ImGui::SliderFloat("##volume", &Core.audioManager->sounds[i].volume, 0, 1, "%.2f");
+            
+            // The XYZ view.
+            if (ImGui::BeginTable("TransformTable", 4))
+            {
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+
+                ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x / 4); // Set the width of each input field
+                ImGui::Text("Position:");
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
+
+                ImGui::TableSetColumnIndex(1);
+                ImGui::Text("X");
+
+                ImGui::SameLine();
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+
+                ImGui::InputFloat("##PX", &Core.audioManager->sounds[i].position.x, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::TableSetColumnIndex(2);
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
+
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                ImGui::Text("Y");
+
+                ImGui::SameLine();
+                ImGui::InputFloat("##PY", &Core.audioManager->sounds[i].position.y, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::TableSetColumnIndex(3);
+
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
+
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                ImGui::Text("Z");
+
+                ImGui::SameLine();
+                ImGui::InputFloat("##PZ", &Core.audioManager->sounds[i].position.z, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+
+                ImGui::Text("Velocity:");
+
+                ImGui::TableSetColumnIndex(1);
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
+
+                ImGui::Text("X");
+
+                ImGui::SameLine();
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+
+                ImGui::InputFloat("##VX", &Core.audioManager->sounds[i].velocity.x, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::TableSetColumnIndex(2);
+
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
+
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                ImGui::Text("Y");
+
+                ImGui::SameLine();
+                ImGui::InputFloat("##VY", &Core.audioManager->sounds[i].velocity.y, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::TableSetColumnIndex(3);
+
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
+
+                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                ImGui::Text("Z");
+
+                ImGui::SameLine();
+                ImGui::InputFloat("##VZ", &Core.audioManager->sounds[i].velocity.z, 0.0f, 0.0f, "%.f");
+                ImGui::PopStyleColor();
+
+                ImGui::EndTable();
+            }
+
+            ImGui::Text("Play On Start-Up:");
+            ImGui::SameLine();
+            ImGui::Checkbox("##playStart", &Core.audioManager->sounds[i].playOnStartUp);
+
+            ImGui::Text("Repeat Delay:");
+            ImGui::SameLine();
+            ImGui::Checkbox("##repeat", &Core.audioManager->sounds[i].repeatDelay);
+
+            ImGui::Text("Looped:");
+            ImGui::SameLine();
+            ImGui::Checkbox("##loop", &Core.audioManager->sounds[i].isLooping);
+
+            // The play button.
+            if (ImGui::Button("Play"))
+            {
+                if (newSound) Core.audioManager->GenSounds(); // If a new sound has been created, generate sources and buffers for audio to play.
+                newSound = false; // Specifies that no new sound has been created. This makes the new sound not new anymore.
+
+                Core.audioManager->sounds[i].audioSource->ChangeFile(tempSound.filePath); // Changes the file path for the audio source.
+                Core.audioManager->sounds[i].audioSource->SetProperties(tempSound.pitch, tempSound.volume, tempSound.isLooping, tempSound.position, tempSound.velocity); // Resets audio source properties.
+                Core.audioManager->sounds[i].audioSource->Play(); // Plays the sound.
+            }
+
+            ImGui::SameLine();
+
+            // The stop button.
+            if (ImGui::Button("Stop"))
+            {
+                Core.audioManager->sounds[i].audioSource->Stop(); // Stops the sound.
+            }
+
+            ImGui::Unindent();
+        }
+
+        ImGui::PopID();
+        ImGui::Unindent();
     }
 }
 

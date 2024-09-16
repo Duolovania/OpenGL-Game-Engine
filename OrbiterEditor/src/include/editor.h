@@ -18,6 +18,8 @@ class Editor : public RenderingLayer
 		void ContentBrowser();
 		void MenuBar();
 
+		void AudioManagerComponent();
+
 		void CreateTransformColumn(const std::array<std::string, 3>& colNames, std::array<Vector3, 3> values);
 
 		bool showStats = false, wireframeMode = false, showFPS = false, applicationRunning = true;

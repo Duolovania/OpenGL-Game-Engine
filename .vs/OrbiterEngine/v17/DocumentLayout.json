@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|solutionrelative:OrbiterEditor\\src\\Editor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\src\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|solutionrelative:OrbiterEditor\\src\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Core\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\src\\Core\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,14 +35,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Source.cpp",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\src\\Source.cpp",
-              "RelativeDocumentMoniker": "OrbiterEditor\\src\\Source.cpp",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\src\\Source.cpp",
-              "RelativeToolTip": "OrbiterEditor\\src\\Source.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAA==",
+              "Title": "Application.cpp",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Core\\Application.cpp",
+              "RelativeDocumentMoniker": "OrbiterCore\\src\\Core\\Application.cpp",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Core\\Application.cpp",
+              "RelativeToolTip": "OrbiterCore\\src\\Core\\Application.cpp",
+              "ViewState": "AgIAADwAAAAAAAAAAAAowE8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-15T15:59:14.296Z"
+              "WhenOpened": "2024-09-16T17:41:35.296Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -52,7 +53,7 @@
               "RelativeDocumentMoniker": "OrbiterEditor\\src\\Editor.cpp",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\src\\Editor.cpp",
               "RelativeToolTip": "OrbiterEditor\\src\\Editor.cpp",
-              "ViewState": "AgIAAGkDAAAAAAAAAAAAAH0DAAB4AAAAAAAAAA==",
+              "ViewState": "AgIAAOUAAAAAAAAAAAAAAP8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-08-19T11:41:50.536Z",
               "EditorCaption": ""

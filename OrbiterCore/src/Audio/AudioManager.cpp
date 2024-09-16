@@ -79,7 +79,7 @@ void AudioManager::KillAudioManager()
 
 	for (auto& sound : sounds)
 	{
-		sound.audioSource->KillSource();
+		if (sound.audioSource != nullptr) sound.audioSource->KillSource();
 	}
 
 	m_audioContext->KillContext();
