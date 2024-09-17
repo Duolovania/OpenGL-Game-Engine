@@ -132,7 +132,6 @@ bool Editor::OnUpdate(float deltaTime)
 
             camera2D.transform.scale = Vector3(viewportSize.x, viewportSize.y, 0);
             camera2D.transform.position += Vector2(Core.InputManager.BasicMovement().x * (100.0f + sprintSpeed) * deltaTime, Core.InputManager.BasicMovement().y * (100.0f + sprintSpeed) * deltaTime);
-            Core.audioManager->sounds[0].audioSource->SetProperties(Core.audioManager->sounds[0].pitch, Core.audioManager->sounds[0].volume, false, glm::vec3(renderer.objectsToRender[1].transform.position.x - camera2D.transform.position.x, renderer.objectsToRender[1].transform.position.y - camera2D.transform.position.y, 0.0f));
 
             renderer.Draw(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f), camera2D.GetView(), {camera2D.outputColor[0], camera2D.outputColor[1], camera2D.outputColor[2], camera2D.outputColor[3]});
         }
@@ -328,6 +327,32 @@ void Editor::Viewport()
     ImGui::PopStyleVar();
 }
 
+// Function to recursively display hierarchy
+void ShowHierarchy(const std::string& name, int index, bool isLeaf = false) 
+{
+    // Check if the node is a leaf node or can be expanded
+    if (isLeaf) 
+    {
+        if (ImGui::Selectable(name.c_str(), false)) 
+        {
+            selectedObject = index;
+
+        }
+    }
+    else 
+    {
+        if (ImGui::TreeNode(name.c_str())) 
+        {
+            selectedObject = index;
+
+            // Example of child nodes (these can be dynamic)
+            ShowHierarchy("Child 1", 0, true);
+
+            ImGui::TreePop();
+        }
+    }
+}
+
 void Editor::Hierarchy()
 {
     ImGui::Begin("Hierarchy");
@@ -341,10 +366,9 @@ void Editor::Hierarchy()
 
         for (int i = 0; i < renderer.objectsToRender.size(); i++)
         {
-            if (ImGui::Button((renderer.objectsToRender[i].objectName).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)))
-            {
-                selectedObject = i;
-            }
+            ImGui::PushID(i);
+            ShowHierarchy(renderer.objectsToRender[i].objectName, i, true);
+            ImGui::PopID();
         }
     }
     ImGui::End();
@@ -674,19 +698,54 @@ void Editor::Inspector()
     ImGui::End();
 }
 
-void ShowFolders(const std::filesystem::path& folderPath) 
+bool HasSubFolder(const std::filesystem::path& folderPath)
 {
     for (const auto& entry : std::filesystem::directory_iterator(folderPath))
     {
+        if (entry.is_directory())
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void ShowFolders(const std::filesystem::path& folderPath, bool isLeaf = false) 
+{
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath))
+    {
+        bool isFolderOpen = false;
+
         if (entry.is_directory()) 
         {
-            if (ImGui::TreeNode(entry.path().filename().string().c_str())) 
+            if (HasSubFolder(entry))
             {
-                currentPath = std::string(entry.path().string());
+                if (ImGui::TreeNode("##label"))
+                {
+                    isFolderOpen = true;
+                    ImGui::SameLine();
 
-                // Recursively display subfolders
-                ShowFolders(entry.path());
-                ImGui::TreePop();
+                    if (ImGui::Selectable(entry.path().filename().string().c_str(), false)) currentPath = std::string(entry.path().string());
+
+                    // Recursively display subfolders
+                    ShowFolders(entry.path(), true);
+                    ImGui::TreePop();
+                }
+
+                if (!isFolderOpen)
+                {
+                    ImGui::SameLine();
+
+                    if (ImGui::Selectable(entry.path().filename().string().c_str(), false)) currentPath = std::string(entry.path().string());
+                }
+            }
+            else
+            {
+                if (ImGui::Selectable(entry.path().filename().string().c_str(), false))
+                {
+                    currentPath = std::string(entry.path().string());
+                }
             }
         }
     }
