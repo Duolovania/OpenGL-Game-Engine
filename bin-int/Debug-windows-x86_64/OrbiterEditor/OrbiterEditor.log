@@ -12,6 +12,7 @@ C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Edit
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(967,32): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(973,32): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(979,32): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(1052,80): warning C4305: 'argument': truncation from 'double' to 'float'
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(3597,56): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
   (compiling source file 'src/Editor.cpp')
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(3597,56):

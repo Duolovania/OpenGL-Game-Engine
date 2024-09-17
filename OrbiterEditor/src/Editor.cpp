@@ -132,7 +132,7 @@ bool Editor::OnUpdate(float deltaTime)
 
             camera2D.transform.scale = Vector3(viewportSize.x, viewportSize.y, 0);
             camera2D.transform.position += Vector2(Core.InputManager.BasicMovement().x * (100.0f + sprintSpeed) * deltaTime, Core.InputManager.BasicMovement().y * (100.0f + sprintSpeed) * deltaTime);
-            Core.audioManager->sounds[0].audioSource->SetProperties(1, 1, false, glm::vec3(renderer.objectsToRender[1].transform.position.x - camera2D.transform.position.x, renderer.objectsToRender[1].transform.position.y - camera2D.transform.position.y, 0.0f));
+            Core.audioManager->sounds[0].audioSource->SetProperties(Core.audioManager->sounds[0].pitch, Core.audioManager->sounds[0].volume, false, glm::vec3(renderer.objectsToRender[1].transform.position.x - camera2D.transform.position.x, renderer.objectsToRender[1].transform.position.y - camera2D.transform.position.y, 0.0f));
 
             renderer.Draw(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f), camera2D.GetView(), {camera2D.outputColor[0], camera2D.outputColor[1], camera2D.outputColor[2], camera2D.outputColor[3]});
         }
@@ -1049,11 +1049,11 @@ void Editor::AudioManagerComponent()
 
             ImGui::Text("Pitch:");
             ImGui::SameLine();
-            ImGui::SliderFloat("##pitch", &Core.audioManager->sounds[i].pitch, 0.1f, 2, "%.2f");
+            ImGui::SliderFloat("##pitch", &Core.audioManager->sounds[i].pitch, 0.1, 2.0, "%.2f");
 
             ImGui::Text("Volume:");
             ImGui::SameLine();
-            ImGui::SliderFloat("##volume", &Core.audioManager->sounds[i].volume, 0, 1, "%.2f");
+            ImGui::SliderFloat("##volume", &Core.audioManager->sounds[i].volume, 0.0, 1.0, "%.2f");
             
             // The XYZ view.
             if (ImGui::BeginTable("TransformTable", 4))
@@ -1155,8 +1155,9 @@ void Editor::AudioManagerComponent()
                 if (newSound) Core.audioManager->GenSounds(); // If a new sound has been created, generate sources and buffers for audio to play.
                 newSound = false; // Specifies that no new sound has been created. This makes the new sound not new anymore.
 
-                Core.audioManager->sounds[i].audioSource->ChangeFile(tempSound.filePath); // Changes the file path for the audio source.
-                Core.audioManager->sounds[i].audioSource->SetProperties(tempSound.pitch, tempSound.volume, tempSound.isLooping, tempSound.position, tempSound.velocity); // Resets audio source properties.
+                Core.audioManager->sounds[i].audioSource->ChangeFile(Core.audioManager->sounds[i].filePath); // Changes the file path for the audio source.
+                Core.audioManager->sounds[i].audioSource->SetProperties(Core.audioManager->sounds[i].pitch, Core.audioManager->sounds[i].volume, Core.audioManager->sounds[i].isLooping, Core.audioManager->sounds[i].position, Core.audioManager->sounds[i].velocity); // Resets audio source properties.
+                
                 Core.audioManager->sounds[i].audioSource->Play(); // Plays the sound.
             }
 

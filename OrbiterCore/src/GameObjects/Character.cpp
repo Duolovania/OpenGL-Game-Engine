@@ -16,14 +16,21 @@ bool Character::CheckVisibility(glm::vec2 cameraPosition)
 	/*if ((transform.position.x >= cameraPosition.x - 50 && transform.position.x <= cameraPosition.x + 250)) return true;
 	return false;*/
 
-	bool checkX = (transform.position.x + transform.scale.x) <= cameraPosition.x + 100 && (transform.position.x + transform.scale.x) >= cameraPosition.x - 100;
+
+	////USE THIS
+	/*bool checkX = (transform.position.x + transform.scale.x) <= cameraPosition.x + 100 && (transform.position.x + transform.scale.x) >= cameraPosition.x - 100;
 	bool checkY = (transform.position.y + transform.scale.y) <= cameraPosition.y + 100 && (transform.position.y + transform.scale.y) >= cameraPosition.y - 100;
 
 	if (checkX && checkY) return true;
 
-	return false;
+	return false;*/
 
-	//return true;
+
+
+
+
+
+	return true;
 }
 
 void Character::SetColor(glm::vec4 newColor)
