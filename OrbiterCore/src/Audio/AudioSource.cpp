@@ -81,7 +81,6 @@ void AudioSource::ChangeFile(const std::string name)
 {
     if (name == fileName)
     {
-        std::cout << "The name is the same" << std::endl;
         return;
     }
 

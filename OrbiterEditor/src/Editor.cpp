@@ -731,7 +731,7 @@ void Editor::ContentBrowser()
 
         ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 10, ImGui::GetCursorPos().y));
 
-        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0, 0.804, 0.137, 0.75f));
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.224, 0.482, 0.267, 1.0f));
 
         std::string tempPath = currentPath;
         std::string selectedPath = tempPath.erase(0, rootPath.length());
@@ -1026,38 +1026,45 @@ void Editor::AudioManagerComponent()
         if (ImGui::CollapsingHeader(sound.soundName.c_str(), ImGuiTreeNodeFlags_DefaultOpen))
         {
             ImGui::Indent();
-            ImGui::Text("Name:");
-            ImGui::SameLine();
-            ImGui::InputText("##name", &Core.audioManager->sounds[i].soundName);
 
-            ImGui::Text("File:");
-            ImGui::SameLine();
-            ImGui::InputText("##path", &Core.audioManager->sounds[i].filePath);
-
-            if (ImGui::BeginDragDropTarget())
+            if (ImGui::BeginTable("SoundTable", 2))
             {
-                if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("ITEM_DRAG"))
-                {
-                    // Process payload
-                    std::string* data = (std::string*)payload->Data;
-                    // Do something with the data
-                    tempSound.filePath = *data;
-                    std::cout << data << std::endl;
-                }
-                ImGui::EndDragDropTarget();
-            }
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
 
-            ImGui::Text("Pitch:");
-            ImGui::SameLine();
-            ImGui::SliderFloat("##pitch", &Core.audioManager->sounds[i].pitch, 0.1, 2.0, "%.2f");
+                ImGui::Text("Name:");
 
-            ImGui::Text("Volume:");
-            ImGui::SameLine();
-            ImGui::SliderFloat("##volume", &Core.audioManager->sounds[i].volume, 0.0, 1.0, "%.2f");
-            
-            // The XYZ view.
-            if (ImGui::BeginTable("TransformTable", 4))
-            {
+                ImGui::TableSetColumnIndex(1);
+
+                ImGui::InputText("##name", &Core.audioManager->sounds[i].soundName);
+
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+
+                ImGui::Text("File:");
+
+                ImGui::TableSetColumnIndex(1);
+
+                ImGui::InputText("##path", &Core.audioManager->sounds[i].filePath);
+
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+
+                ImGui::Text("Pitch:");
+
+                ImGui::TableSetColumnIndex(1);
+
+                ImGui::SliderFloat("##pitch", &Core.audioManager->sounds[i].pitch, 0.1, 2.0, "%.2f");
+
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+
+                ImGui::Text("Volume:");
+
+                ImGui::TableSetColumnIndex(1);
+
+                ImGui::SliderFloat("##volume", &Core.audioManager->sounds[i].volume, 0.0, 1.0, "%.2f");
+
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
 
@@ -1066,35 +1073,44 @@ void Editor::AudioManagerComponent()
                 ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
 
                 ImGui::TableSetColumnIndex(1);
-                ImGui::Text("X");
 
-                ImGui::SameLine();
-                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                // The XYZ view.
+                if (ImGui::BeginTable("TransformTable", 4))
+                {
+                    ImGui::TableNextRow();
+                    ImGui::TableSetColumnIndex(0);
 
-                ImGui::InputFloat("##PX", &Core.audioManager->sounds[i].position.x, 0.0f, 0.0f, "%.f");
-                ImGui::PopStyleColor();
+                    ImGui::Text("X");
 
-                ImGui::TableSetColumnIndex(2);
-                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
+                    ImGui::SameLine();
+                    ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
 
-                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-                ImGui::Text("Y");
+                    ImGui::InputFloat("##PX", &Core.audioManager->sounds[i].position.x, 0.0f, 0.0f, "%.f");
+                    ImGui::PopStyleColor();
 
-                ImGui::SameLine();
-                ImGui::InputFloat("##PY", &Core.audioManager->sounds[i].position.y, 0.0f, 0.0f, "%.f");
-                ImGui::PopStyleColor();
+                    ImGui::TableSetColumnIndex(1);
+                    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
 
-                ImGui::TableSetColumnIndex(3);
+                    ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                    ImGui::Text("Y");
 
-                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
+                    ImGui::SameLine();
+                    ImGui::InputFloat("##PY", &Core.audioManager->sounds[i].position.y, 0.0f, 0.0f, "%.f");
+                    ImGui::PopStyleColor();
 
-                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-                ImGui::Text("Z");
+                    ImGui::TableSetColumnIndex(2);
 
-                ImGui::SameLine();
-                ImGui::InputFloat("##PZ", &Core.audioManager->sounds[i].position.z, 0.0f, 0.0f, "%.f");
-                ImGui::PopStyleColor();
+                    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
 
+                    ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                    ImGui::Text("Z");
+
+                    ImGui::SameLine();
+                    ImGui::InputFloat("##PZ", &Core.audioManager->sounds[i].position.z, 0.0f, 0.0f, "%.f");
+                    ImGui::PopStyleColor();
+
+                    ImGui::EndTable();
+                }
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
@@ -1102,71 +1118,105 @@ void Editor::AudioManagerComponent()
                 ImGui::Text("Velocity:");
 
                 ImGui::TableSetColumnIndex(1);
-                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
 
-                ImGui::Text("X");
+                // The XYZ view.
+                if (ImGui::BeginTable("TransformTable", 4))
+                {
+                    ImGui::TableNextRow();
+                    ImGui::TableSetColumnIndex(0);
+                    
+                    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
+                    ImGui::Text("X");
+
+                    ImGui::SameLine();
+                    ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+
+                    ImGui::InputFloat("##VX", &Core.audioManager->sounds[i].velocity.x, 0.0f, 0.0f, "%.f");
+                    ImGui::PopStyleColor();
+
+                    ImGui::TableSetColumnIndex(1);
+
+                    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
+
+                    ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                    ImGui::Text("Y");
+
+                    ImGui::SameLine();
+                    ImGui::InputFloat("##VY", &Core.audioManager->sounds[i].velocity.y, 0.0f, 0.0f, "%.f");
+                    ImGui::PopStyleColor();
+
+                    ImGui::TableSetColumnIndex(2);
+
+                    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
+
+                    ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                    ImGui::Text("Z");
+
+                    ImGui::SameLine();
+                    ImGui::InputFloat("##VZ", &Core.audioManager->sounds[i].velocity.z, 0.0f, 0.0f, "%.f");
+                    ImGui::PopStyleColor();
+
+                    ImGui::EndTable();
+                }
+
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+
+                ImGui::Text("Play On Start-Up:");
+
+                ImGui::TableSetColumnIndex(1);
+
+                ImGui::Checkbox("##playStart", &Core.audioManager->sounds[i].playOnStartUp);
+
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+
+                ImGui::Text("Repeat Delay:");
+
+                ImGui::TableSetColumnIndex(1);
+
+                ImGui::Checkbox("##repeat", &Core.audioManager->sounds[i].repeatDelay);
+
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+
+                ImGui::Text("Looped:");
+
+                ImGui::TableSetColumnIndex(1);
+
+                ImGui::Checkbox("##loop", &Core.audioManager->sounds[i].isLooping);
+
+                ImGui::NewLine();
+                ImGui::TableNextRow();
+
+                ImGui::TableSetColumnIndex(0);
+
+                ImGui::Text("Test:");
+
+                ImGui::TableSetColumnIndex(1);
+
+                // The play button.
+                if (ImGui::Button("Play"))
+                {
+                    if (newSound) Core.audioManager->GenSounds(); // If a new sound has been created, generate sources and buffers for audio to play.
+                    newSound = false; // Specifies that no new sound has been created. This makes the new sound not new anymore.
+
+                    Core.audioManager->sounds[i].audioSource->ChangeFile(Core.audioManager->sounds[i].filePath); // Changes the file path for the audio source.
+                    Core.audioManager->sounds[i].audioSource->SetProperties(Core.audioManager->sounds[i].pitch, Core.audioManager->sounds[i].volume, Core.audioManager->sounds[i].isLooping, Core.audioManager->sounds[i].position, Core.audioManager->sounds[i].velocity); // Resets audio source properties.
+                    
+                    Core.audioManager->sounds[i].audioSource->Play(); // Plays the sound.
+                }
 
                 ImGui::SameLine();
-                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
 
-                ImGui::InputFloat("##VX", &Core.audioManager->sounds[i].velocity.x, 0.0f, 0.0f, "%.f");
-                ImGui::PopStyleColor();
+                // The stop button.
+                if (ImGui::Button("Stop"))
+                {
+                    Core.audioManager->sounds[i].audioSource->Stop(); // Stops the sound.
+                }
 
-                ImGui::TableSetColumnIndex(2);
-
-                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
-
-                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-                ImGui::Text("Y");
-
-                ImGui::SameLine();
-                ImGui::InputFloat("##VY", &Core.audioManager->sounds[i].velocity.y, 0.0f, 0.0f, "%.f");
-                ImGui::PopStyleColor();
-
-                ImGui::TableSetColumnIndex(3);
-
-                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
-
-                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-                ImGui::Text("Z");
-
-                ImGui::SameLine();
-                ImGui::InputFloat("##VZ", &Core.audioManager->sounds[i].velocity.z, 0.0f, 0.0f, "%.f");
-                ImGui::PopStyleColor();
 
                 ImGui::EndTable();
-            }
-
-            ImGui::Text("Play On Start-Up:");
-            ImGui::SameLine();
-            ImGui::Checkbox("##playStart", &Core.audioManager->sounds[i].playOnStartUp);
-
-            ImGui::Text("Repeat Delay:");
-            ImGui::SameLine();
-            ImGui::Checkbox("##repeat", &Core.audioManager->sounds[i].repeatDelay);
-
-            ImGui::Text("Looped:");
-            ImGui::SameLine();
-            ImGui::Checkbox("##loop", &Core.audioManager->sounds[i].isLooping);
-
-            // The play button.
-            if (ImGui::Button("Play"))
-            {
-                if (newSound) Core.audioManager->GenSounds(); // If a new sound has been created, generate sources and buffers for audio to play.
-                newSound = false; // Specifies that no new sound has been created. This makes the new sound not new anymore.
-
-                Core.audioManager->sounds[i].audioSource->ChangeFile(Core.audioManager->sounds[i].filePath); // Changes the file path for the audio source.
-                Core.audioManager->sounds[i].audioSource->SetProperties(Core.audioManager->sounds[i].pitch, Core.audioManager->sounds[i].volume, Core.audioManager->sounds[i].isLooping, Core.audioManager->sounds[i].position, Core.audioManager->sounds[i].velocity); // Resets audio source properties.
-                
-                Core.audioManager->sounds[i].audioSource->Play(); // Plays the sound.
-            }
-
-            ImGui::SameLine();
-
-            // The stop button.
-            if (ImGui::Button("Stop"))
-            {
-                Core.audioManager->sounds[i].audioSource->Stop(); // Stops the sound.
             }
 
             ImGui::Unindent();
