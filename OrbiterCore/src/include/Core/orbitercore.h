@@ -6,6 +6,7 @@
 #include "Core/renderer.h"
 #include "Core/renderinglayer.h"
 #include "Core/debug.h"
+#include "Core/scene.h"
 
 #include "GameObjects/gameobject.h"
 #include "GameObjects/character.h"

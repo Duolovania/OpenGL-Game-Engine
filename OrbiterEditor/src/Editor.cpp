@@ -152,12 +152,15 @@ bool Editor::OnUpdate(float deltaTime)
         
         if (ImGui::Button("New file"))
         {
-            fileManager.CreateFile("Assets/Scenes/bazinga", ".froggie");
+            Scene test;
+            test.sceneName = "Test";
+            test.objectsToRender = renderer.objectsToRender;
+            fileManager.CreateFile(test, "Assets/Scenes/" + test.sceneName + ".worldOB");
         }
 
         if (ImGui::Button("Print file"))
         {
-            fileManager.LoadFile("Assets/Scenes/bazinga", ".froggie");
+            Scene loadedScene = fileManager.LoadFile("Assets/Scenes/Test.worldOB");
         }
 
         ImGui::End();
@@ -876,7 +879,7 @@ void Editor::ContentBrowser()
                         {
                             fileThumbnail = fontFileIcon;
                         }
-                        else if (tempFileName == ".froggie")
+                        else if (tempFileName == ".worldOB")
                         {
                             fileThumbnail = sceneFileIcon;
                         }

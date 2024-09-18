@@ -226,6 +226,7 @@
       <Filter>src\include</Filter>
     </ClInclude>
     <ClInclude Include="src\include\Core\debug.h" />
+    <ClInclude Include="src\include\Core\scene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vendor\glm\detail\glm.cpp">

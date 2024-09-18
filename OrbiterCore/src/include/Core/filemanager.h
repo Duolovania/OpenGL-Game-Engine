@@ -2,10 +2,11 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include "Core/scene.h"
 
 class FileManager
 {
 	public:
-		void CreateFile(std::string fileName, std::string fileExtension);
-		void LoadFile(std::string fileName, std::string fileExtension);
+		void CreateFile(Scene sceneData, std::string fileName);
+		Scene LoadFile(std::string fileName);
 };
