@@ -1,4 +1,5 @@
 #include "Audio/audiomanager.h"
+#include "Core/debug.h"
 
 AudioManager::AudioManager()
 {
@@ -30,7 +31,7 @@ void AudioManager::Play(std::string soundName)
 		}
 	}
 
-	std::cout << "Warning: sound with name '" << soundName << "' not found!" << std::endl;
+	DebugOB.Log("Warning: sound with name '" + soundName + "' not found!");
 }
 
 void AudioManager::Pause(std::string soundName)
@@ -46,7 +47,7 @@ void AudioManager::Pause(std::string soundName)
 		}
 	}
 
-	std::cout << "Warning: unable to pause sound with name '" << soundName << "'. Sound was not found." << std::endl;
+	DebugOB.Log("Warning: unable to pause sound with name '" + soundName + "'. Sound was not found.");
 }
 
 void AudioManager::Stop(std::string soundName)
@@ -62,7 +63,7 @@ void AudioManager::Stop(std::string soundName)
 		}
 	}
 
-	std::cout << "Warning: unable to stop sound with name '" << soundName << "'. Sound was not found." << std::endl;
+	DebugOB.Log( "Warning: unable to stop sound with name '" + soundName + "'. Sound was not found.");
 }
 
 void AudioManager::PlayOnStartUp() const
@@ -85,22 +86,33 @@ void AudioManager::KillAudioManager()
 	m_audioContext->KillContext();
 }
 
-void AudioManager::GenSounds()
+void AudioManager::GenAllSounds()
 {
 	if (!CheckDevice()) return;
 
-	for (auto& sound : sounds)
+	for (int i = 0; i < sounds.size(); i++)
 	{
-		if (sound.audioSource == nullptr) sound.audioSource = std::make_unique<AudioSource>(sound.filePath);
-		sound.audioSource->SetProperties(sound.pitch, sound.volume, sound.isLooping, sound.position, sound.velocity);
+		GenSound(i);
 	}
+}
+
+void AudioManager::GenSound(int index)
+{
+	if (!CheckDevice()) return;
+
+	if (sounds[index].audioSource == nullptr) sounds[index].audioSource = std::make_unique<AudioSource>(sounds[index].filePath);
+	else
+	{
+		if (!sounds[index].audioSource->ValidSource()) sounds[index].audioSource = std::make_unique<AudioSource>(sounds[index].filePath);
+	}
+	sounds[index].audioSource->SetProperties(sounds[index].pitch, sounds[index].volume, sounds[index].isLooping, sounds[index].position, sounds[index].velocity);
 }
 
 bool AudioManager::CheckDevice()
 {
 	if (m_audioContext->GetDevice() == nullptr)
 	{
-		std::cout << "Warning: cannot play audio -- invalid audio device." << std::endl;
+		DebugOB.Log("Warning: cannot play audio -- invalid audio device.");
 		return false;
 	}
 }

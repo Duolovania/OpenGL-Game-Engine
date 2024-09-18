@@ -29,16 +29,15 @@ class Engine
 		}
 
 		Input InputManager;
-		RenderingLayer* renderingLayer;
 		std::unique_ptr<AudioManager> audioManager;
+
+		RenderingLayer* renderingLayer;
 
 		static void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods);
 		static void HandleGamePadInput(int jid, int event);
-
 	private:
 		Engine() {}
 		static Engine instance;
 };
 
 #define Core Engine::Get()
-#define LOG(x) std::cout << x << std::endl;

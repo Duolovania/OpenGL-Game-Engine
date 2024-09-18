@@ -225,6 +225,7 @@
     <ClInclude Include="src\include\orbiter.h">
       <Filter>src\include</Filter>
     </ClInclude>
+    <ClInclude Include="src\include\Core\debug.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vendor\glm\detail\glm.cpp">
@@ -332,5 +333,6 @@
     <ClCompile Include="src\include\Math\Vector.cpp">
       <Filter>src\include\Math</Filter>
     </ClCompile>
+    <ClCompile Include="src\Core\Debug.cpp" />
   </ItemGroup>
 </Project>

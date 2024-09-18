@@ -1,5 +1,4 @@
 #include "editor.h"
-
 #include <filesystem>
 
 FileManager fileManager;
@@ -13,7 +12,7 @@ float sprintSpeed;
 float iconSize = 200;
 
 Sound tempSound;
-bool newSound = false, showProjSettings = false;
+bool showProjSettings = false;
 
 float rectangleVertices[] =
 {
@@ -137,6 +136,18 @@ bool Editor::OnUpdate(float deltaTime)
         }
 
         ImGui::Begin("Debug Log");
+
+        if (ImGui::Button("Clear")) DebugOB.ClearLog();
+
+        if (ImGui::BeginChild("ConsoleOutput", ImVec2(0, ImGui::GetContentRegionAvail().y / 2.5), true, ImGuiWindowFlags_AlwaysVerticalScrollbar))
+        {
+            ImGui::PushFont(pixelFont);
+            ImGui::TextUnformatted(Debug::Get().GetLogOutput().str().c_str());
+            ImGui::PopFont();
+
+            ImGui::EndChild();
+        }
+
         currentTest->OnImGuiRender();
         
         if (ImGui::Button("New file"))
@@ -257,7 +268,8 @@ void Editor::StylesConfig()
     //io.FontDefault = io.Fonts->AddFontFromFileTTF("../OrbiterCore/Res/Fonts/scada/Scada-Regular.ttf", 18.0f);
 
     io.FontDefault = io.Fonts->AddFontFromFileTTF("../OrbiterCore/Res/Fonts/open-sans/OpenSans-Semibold.ttf", 18.0f);
-
+    
+    pixelFont = io.Fonts->AddFontFromFileTTF("../OrbiterCore/Res/Fonts/joystix/joystix monospace.otf", 10.0f);
 
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
@@ -765,28 +777,30 @@ void Editor::ContentBrowser()
         ImGui::TableNextRow();
         ImGui::TableSetColumnIndex(0);
 
-        ShowFolders(rootPath);
+        if (ImGui::BeginChild("Folder List Items"))
+        {
+            ShowFolders(rootPath);
+
+            ImGui::EndChild();
+        }
 
         ImGui::TableSetColumnIndex(1);
 
         ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 10, ImGui::GetCursorPos().y));
 
+        if (ImGui::Button("<"))
+        {
+            std::filesystem::path parentDir = currentPath;
+            currentPath = parentDir.parent_path().string();
+
+            if (currentPath.length() < rootPath.length()) currentPath = rootPath;
+        }
+
+        ImGui::SameLine();
+
         ImGui::Text("Search");
         ImGui::SameLine();
         ImGui::InputText("##search", &searchTerm);
-
-        if (currentPath != rootPath)
-        {
-            ImGui::SameLine();
-
-            if (ImGui::Button("Back"))
-            {
-                std::filesystem::path parentDir = currentPath;
-                currentPath = parentDir.parent_path().string();
-
-                if (currentPath.length() < rootPath.length()) currentPath = rootPath;
-            }
-        }
 
         ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 10, ImGui::GetCursorPos().y));
 
@@ -798,87 +812,41 @@ void Editor::ContentBrowser()
         ImGui::Text(selectedPath.c_str());
         ImGui::PopStyleColor();
 
-        int counter = 0;
-        ImVec2 padding = ImVec2(iconSize * 0.125f, iconSize * 0.125f);
-        ImVec2 originalPos = ImVec2(ImGui::GetCursorPos().x + padding.x, ImGui::GetCursorPos().y + padding.y);
-
-        for (const auto& entry : std::filesystem::directory_iterator(currentPath))
+        if (ImGui::BeginChild("FolderItems"))
         {
-            ImVec2 buttonSize = ImVec2(iconSize, iconSize);
-            ImVec2 buttonPos = ImVec2(originalPos.x + (counter * (buttonSize.x + padding.x)), originalPos.y); // Calculates the x position based on how many items there are.
+            int counter = 0;
+            ImVec2 padding = ImVec2(iconSize * 0.125f, iconSize * 0.125f);
+            ImVec2 originalPos = ImVec2(ImGui::GetCursorPos().x + padding.x, ImGui::GetCursorPos().y + padding.y);
 
-            ImGui::SetWindowFontScale(buttonSize.x / 195.0f);
-
-            // Sets the text position to the center of the thumbnail (sets the text origin position to the center of the thumbnail and subtracts it by the amount of characters. The subtraction is to ensure that the text is centered regardless of it's length).
-            ImVec2 textPos = ImVec2(buttonPos.x + (buttonSize.x - ImGui::CalcTextSize(entry.path().filename().string().c_str()).x) / 2, originalPos.y + (buttonSize.y + padding.y));
-
-            // Checks if the thumbnail will exceed the window size.
-            if ((buttonPos.x + buttonSize.x > ImGui::GetContentRegionMax().x))
+            for (const auto& entry : std::filesystem::directory_iterator(currentPath))
             {
-                counter = 0; // Resets the x position.
-                originalPos = ImVec2(originalPos.x, ImGui::GetCursorPos().y + ((buttonSize.y / 4) + padding.y)); // Calculates the y position based on the button size and padding amount.
+                ImVec2 buttonSize = ImVec2(iconSize, iconSize);
+                ImVec2 buttonPos = ImVec2(originalPos.x + (counter * (buttonSize.x + padding.x)), originalPos.y); // Calculates the x position based on how many items there are.
 
-                buttonPos = ImVec2(originalPos.x + (counter * (buttonSize.x + padding.x)), originalPos.y); // Recalculates the button position with the x position being reset.
-                textPos = ImVec2(buttonPos.x + (buttonSize.x - ImGui::CalcTextSize(entry.path().filename().string().c_str()).x) / 2, originalPos.y + (buttonSize.y + padding.y)); // Recalculates the text position with the x position being reset.
-            }
+                ImGui::SetWindowFontScale(buttonSize.x / 195.0f);
 
-            if (entry.is_directory())
-            {
-                ImGui::PushID(counter);
-                ImGui::SetCursorPos(buttonPos);
+                // Sets the text position to the center of the thumbnail (sets the text origin position to the center of the thumbnail and subtracts it by the amount of characters. The subtraction is to ensure that the text is centered regardless of it's length).
+                ImVec2 textPos = ImVec2(buttonPos.x + (buttonSize.x - ImGui::CalcTextSize(entry.path().filename().string().c_str()).x) / 2, originalPos.y + (buttonSize.y + padding.y));
 
-                if (ImGui::ImageButton((void*)folderIcon, buttonSize, ImVec2(0, 1), ImVec2(1, 0)))
+                // Checks if the thumbnail will exceed the window size.
+                if ((buttonPos.x + buttonSize.x > ImGui::GetContentRegionMax().x))
                 {
-                    currentPath = std::string(entry.path().string());
+                    counter = 0; // Resets the x position.
+                    originalPos = ImVec2(originalPos.x, ImGui::GetCursorPos().y + ((buttonSize.y / 4) + padding.y)); // Calculates the y position based on the button size and padding amount.
+
+                    buttonPos = ImVec2(originalPos.x + (counter * (buttonSize.x + padding.x)), originalPos.y); // Recalculates the button position with the x position being reset.
+                    textPos = ImVec2(buttonPos.x + (buttonSize.x - ImGui::CalcTextSize(entry.path().filename().string().c_str()).x) / 2, originalPos.y + (buttonSize.y + padding.y)); // Recalculates the text position with the x position being reset.
                 }
 
-                ImGui::SetCursorPos(textPos);
-
-                ImGui::Text(entry.path().filename().string().c_str());
-                ImGui::SameLine();
-                ImGui::PopID();
-
-                counter++;
-            }
-            else
-            {
-                if (strstr(entry.path().filename().string().c_str(), searchTerm.c_str()) != nullptr)
+                if (entry.is_directory())
                 {
                     ImGui::PushID(counter);
                     ImGui::SetCursorPos(buttonPos);
 
-                    unsigned int fileThumbnail = fileIcon;
-                    int fileNameLength = entry.path().filename().string().find_last_of('.');
-
-                    std::string tempFileName = entry.path().filename().string().substr(fileNameLength);
-
-                    if (tempFileName == ".wav")
+                    if (ImGui::ImageButton((void*)folderIcon, buttonSize, ImVec2(0, 1), ImVec2(1, 0)))
                     {
-                        fileThumbnail = wavFileIcon;
+                        currentPath = std::string(entry.path().string());
                     }
-                    else if (tempFileName == ".ttf" || tempFileName == ".otf")
-                    {
-                        fileThumbnail = fontFileIcon;
-                    }
-                    else if (tempFileName == ".froggie")
-                    {
-                        fileThumbnail = sceneFileIcon;
-                    }
-                    else if (tempFileName == ".png" || tempFileName == ".jpg")
-                    {
-                        fileThumbnail = imageFileIcon;
-                    }
-
-                    if (ImGui::ImageButton((void*)fileThumbnail, buttonSize, ImVec2(0, 1), ImVec2(1, 0)))
-                    {
-                        if (ImGui::BeginDragDropSource())
-                        {
-                            std::string path = entry.path().filename().string();
-                            ImGui::Text("Dragging");
-                            ImGui::SetDragDropPayload("ITEM_DRAG", &path, sizeof(path)); // Set payload
-                            ImGui::EndDragDropSource();
-                        }
-                    };
 
                     ImGui::SetCursorPos(textPos);
 
@@ -888,8 +856,61 @@ void Editor::ContentBrowser()
 
                     counter++;
                 }
+                else
+                {
+                    if (strstr(entry.path().filename().string().c_str(), searchTerm.c_str()) != nullptr)
+                    {
+                        ImGui::PushID(counter);
+                        ImGui::SetCursorPos(buttonPos);
+
+                        unsigned int fileThumbnail = fileIcon;
+                        int fileNameLength = entry.path().filename().string().find_last_of('.');
+
+                        std::string tempFileName = entry.path().filename().string().substr(fileNameLength);
+
+                        if (tempFileName == ".wav")
+                        {
+                            fileThumbnail = wavFileIcon;
+                        }
+                        else if (tempFileName == ".ttf" || tempFileName == ".otf")
+                        {
+                            fileThumbnail = fontFileIcon;
+                        }
+                        else if (tempFileName == ".froggie")
+                        {
+                            fileThumbnail = sceneFileIcon;
+                        }
+                        else if (tempFileName == ".png" || tempFileName == ".jpg")
+                        {
+                            fileThumbnail = imageFileIcon;
+                        }
+
+                        if (ImGui::ImageButton((void*)fileThumbnail, buttonSize, ImVec2(0, 1), ImVec2(1, 0)))
+                        {
+                            if (ImGui::BeginDragDropSource())
+                            {
+                                std::string path = entry.path().filename().string();
+                                ImGui::Text("Dragging");
+                                ImGui::SetDragDropPayload("ITEM_DRAG", &path, sizeof(path)); // Set payload
+                                ImGui::EndDragDropSource();
+                            }
+                        };
+
+                        ImGui::SetCursorPos(textPos);
+
+                        ImGui::Text(entry.path().filename().string().c_str());
+                        ImGui::SameLine();
+                        ImGui::PopID();
+
+                        counter++;
+                    }
+                }
             }
+
+            ImGui::EndChild();
         }
+
+        
 
         ImGui::SetWindowFontScale(1.0f);
 
@@ -1023,17 +1044,20 @@ void Editor::MenuBar()
         ImGui::SameLine();
         ImGui::SetCursorPosX(ImGui::GetContentRegionMax().x / 1.2f);
 
+        // Play scene button.
         if (ImGui::ImageButton((void*)playButton, ImVec2(ImGui::GetContentRegionMax().x / 120, ImGui::GetContentRegionAvail().y)))
         {
 
         }
 
+        // Pause scene button.
         ImGui::SameLine();
         if (ImGui::ImageButton((void*)pauseButton, ImVec2(ImGui::GetContentRegionMax().x / 120, ImGui::GetContentRegionAvail().y)))
         {
 
         }
 
+        // Stop scene button.
         ImGui::SameLine();
         if (ImGui::ImageButton((void*)stopButton, ImVec2(ImGui::GetContentRegionMax().x / 120, ImGui::GetContentRegionAvail().y)))
         {
@@ -1067,8 +1091,6 @@ void Editor::AudioManagerComponent()
         s.velocity = glm::vec3(0);
 
         Core.audioManager->sounds.push_back(s); // Adds a sound to the list.
-
-        newSound = true; // Specifies that a new sound is being created.
     }
 
     // Loops through every item in sounds vector.
@@ -1257,8 +1279,7 @@ void Editor::AudioManagerComponent()
                 // The play button.
                 if (ImGui::Button("Play"))
                 {
-                    if (newSound) Core.audioManager->GenSounds(); // If a new sound has been created, generate sources and buffers for audio to play.
-                    newSound = false; // Specifies that no new sound has been created. This makes the new sound not new anymore.
+                    Core.audioManager->GenSound(i); // If a new sound has been created, generate sources and buffers for audio to play.
 
                     Core.audioManager->sounds[i].audioSource->ChangeFile(Core.audioManager->sounds[i].filePath); // Changes the file path for the audio source.
                     Core.audioManager->sounds[i].audioSource->SetProperties(Core.audioManager->sounds[i].pitch, Core.audioManager->sounds[i].volume, Core.audioManager->sounds[i].isLooping, Core.audioManager->sounds[i].position, Core.audioManager->sounds[i].velocity); // Resets audio source properties.
@@ -1273,7 +1294,6 @@ void Editor::AudioManagerComponent()
                 {
                     Core.audioManager->sounds[i].audioSource->Stop(); // Stops the sound.
                 }
-
 
                 ImGui::EndTable();
             }

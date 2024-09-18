@@ -277,6 +277,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\include\Core\debug.h" />
     <ClInclude Include="Vendor\glm\simd\common.h" />
     <ClInclude Include="Vendor\glm\simd\exponential.h" />
     <ClInclude Include="Vendor\glm\simd\geometric.h" />
@@ -335,6 +336,7 @@
     <ClInclude Include="src\include\orbiter.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\Debug.cpp" />
     <ClCompile Include="Vendor\glm\detail\glm.cpp" />
     <ClCompile Include="Vendor\imgui\imgui.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_demo.cpp" />

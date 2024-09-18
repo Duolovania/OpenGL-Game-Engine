@@ -1,4 +1,5 @@
 #include "Core/input.h"
+#include "Core/debug.h"
 
 Input::Input()
 {
@@ -25,7 +26,7 @@ int Input::GetActionStrength(const std::string actionName)
 		if (actionList[i].GetActionName() == actionName) return actionList[i].GetStrength();
 	}
 
-	std::cout << "Input action with name: " << actionName << " was not found." << std::endl;
+	DebugOB.Log("Input action with name: " + actionName + " was not found.");
 	return 0;
 }
 

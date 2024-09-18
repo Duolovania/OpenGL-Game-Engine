@@ -5,6 +5,7 @@
 #include "Core/filemanager.h"
 #include "Core/renderer.h"
 #include "Core/renderinglayer.h"
+#include "Core/debug.h"
 
 #include "GameObjects/gameobject.h"
 #include "GameObjects/character.h"

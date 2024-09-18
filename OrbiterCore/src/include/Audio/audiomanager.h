@@ -17,7 +17,9 @@ class AudioManager
 		void PlayOnStartUp() const;
 
 		void KillAudioManager();
-		void GenSounds();
+		void GenAllSounds();
+
+		void GenSound(int index);
 	private:
 		std::unique_ptr<AudioContext> m_audioContext;
 		bool CheckDevice();

@@ -11,7 +11,6 @@ float timeTime = 0, oldTimeSinceStart = 0, timeSinceStart, deltaTime;
 bool applicationQuit = false;
 
 Engine Engine::instance;
-Sound newSound;
 
 // Application starting point.
 void Application::Run()
@@ -65,11 +64,12 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
 
     Core.audioManager = std::make_unique<AudioManager>();
 
+    Sound newSound;
     newSound.soundName = "Test";
     newSound.filePath = "Assets/SFX/elf-singing-89296.wav";
 
     Core.audioManager->sounds.push_back(newSound);
-    Core.audioManager->GenSounds();
+    Core.audioManager->GenAllSounds();
 
     Core.renderingLayer->Init(window);
 }
@@ -78,9 +78,6 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
 void Application::Loop()
 {   
     applicationQuit = !Core.renderingLayer->OnUpdate(deltaTime);
-
-    if (Core.InputManager.GetActionStrength("arrowUp")) Core.audioManager->Play("Test");
-    if (Core.InputManager.GetActionStrength("arrowDown")) Core.audioManager->Pause("Test");
 
     timeSinceStart = static_cast<float>(glfwGetTime());
     deltaTime = timeSinceStart - oldTimeSinceStart;
@@ -119,8 +116,6 @@ void Engine::HandleInput(GLFWwindow* window, int key, int scanCode, int action, 
             }
         }
     }
-
-    
 
     if (Core.InputManager.listenToInput)
     {

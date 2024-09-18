@@ -17,6 +17,8 @@ class AudioSource
 
 		void ChangeFile(const std::string name);
 
+		bool ValidSource() const;
+
 		float m_pitch, m_volume;
 		bool m_looping;
 		glm::vec3 m_position, m_velocity;

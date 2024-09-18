@@ -32,4 +32,6 @@ class Editor : public RenderingLayer
 
 		std::unique_ptr<VertexBuffer> frameBufferVB;
 		std::unique_ptr<VertexArray> frameBufferVA;
+
+		ImFont* pixelFont;
 };

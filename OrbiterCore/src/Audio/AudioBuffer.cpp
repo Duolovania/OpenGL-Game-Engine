@@ -2,6 +2,7 @@
 #include <iostream>
 #include <bit>
 #include <fstream>
+#include "Core/debug.h"
 
 AudioBuffer::AudioBuffer(const std::string name)
 {
@@ -11,12 +12,17 @@ AudioBuffer::AudioBuffer(const std::string name)
 
     if (!LoadWAVFile(name, bufferID, format, freq, data))
     {
-        std::cerr << "Failed to locate file: '" << name << "'. Please check the file path." << std::endl;
+        DebugOB.Log("Failed to locate file: '" + name + "'. Please check the file path.");
     }
 }
 
 AudioBuffer::~AudioBuffer()
 {
+    if (alIsBuffer(bufferID) == AL_FALSE)
+    {
+        return;
+    }
+
     alDeleteBuffers(1, &bufferID);
 }
 
@@ -27,6 +33,11 @@ ALuint AudioBuffer::GetBufferID() const
 
 void AudioBuffer::KillBuffer()
 {
+    if (alIsBuffer(bufferID) == AL_FALSE)
+    {
+        return;
+    }
+
     alDeleteBuffers(1, &bufferID);
 }
 
@@ -35,15 +46,16 @@ bool AudioBuffer::LoadWAVFile(const std::string& filename, ALuint& buffer, ALenu
     std::ifstream file(filename, std::ios::binary);
     if (!file.is_open())
     {
-        std::cerr << "Failed to open WAV file: " << filename << std::endl;
+        DebugOB.Log("Failed to open WAV file: '" + filename + "'.");
         return false;
     }
 
     char chunkId[4];
     file.read(chunkId, 4); // Should be "RIFF"
 
-    if (strncmp(chunkId, "RIFF", 4) != 0) {
-        std::cerr << "Invalid WAV file: " << filename << std::endl;
+    if (strncmp(chunkId, "RIFF", 4) != 0) 
+    {
+        DebugOB.Log("Invalid WAV file: '" + filename + "'.");
         return false;
     }
 
@@ -54,7 +66,7 @@ bool AudioBuffer::LoadWAVFile(const std::string& filename, ALuint& buffer, ALenu
 
     if (audioFormat != 1)
     { // Only PCM format is supported
-        std::cerr << "Unsupported WAV format: " << audioFormat << std::endl;
+        DebugOB.Log("Unsupported WAV format: " + audioFormat);
         return false;
     }
 
