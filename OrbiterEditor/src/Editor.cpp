@@ -153,14 +153,9 @@ bool Editor::OnUpdate(float deltaTime)
         if (ImGui::Button("New file"))
         {
             Scene test;
-            test.sceneName = "Test";
+            test.sceneName = "Test2";
             test.objectsToRender = renderer.objectsToRender;
             fileManager.CreateFile(test, "Assets/Scenes/" + test.sceneName + ".worldOB");
-        }
-
-        if (ImGui::Button("Print file"))
-        {
-            Scene loadedScene = fileManager.LoadFile("Assets/Scenes/Test.worldOB");
         }
 
         ImGui::End();
@@ -896,6 +891,12 @@ void Editor::ContentBrowser()
                                 ImGui::Text("Dragging");
                                 ImGui::SetDragDropPayload("ITEM_DRAG", &path, sizeof(path)); // Set payload
                                 ImGui::EndDragDropSource();
+                            }
+
+                            if (tempFileName == ".worldOB")
+                            {
+                                Scene loadedScene = fileManager.LoadFile("Assets/Scenes/" + entry.path().filename().string());
+                                renderer.objectsToRender = loadedScene.objectsToRender;
                             }
                         };
 

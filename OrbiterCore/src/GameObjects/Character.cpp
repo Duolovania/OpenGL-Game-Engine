@@ -10,6 +10,11 @@ Character::Character(const std::string& imagePath)
 	transform.scale = Vector3(100, 100, 0);
 }
 
+Character::Character()
+{
+
+}
+
 // Checks if the image is within the screen space.
 bool Character::CheckVisibility(glm::vec2 cameraPosition)
 {
@@ -31,6 +36,12 @@ bool Character::CheckVisibility(glm::vec2 cameraPosition)
 
 
 	return true;
+}
+
+void Character::SetPath(const std::string& imagePath)
+{
+	objectName = imagePath;
+	cTexture.m_imagePath = "Assets/Sprites/" + imagePath;
 }
 
 void Character::SetColor(glm::vec4 newColor)

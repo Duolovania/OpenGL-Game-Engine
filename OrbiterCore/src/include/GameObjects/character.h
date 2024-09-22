@@ -16,7 +16,10 @@ class Character : public GameObject
 {
 	public:
 		Character(const std::string& imagePath);
+		Character();
+
 		bool CheckVisibility(glm::vec2 cameraPosition);
+		void SetPath(const std::string& imagePath);
 
 		LiteTexture cTexture;
 		AnimationPlayer animator;
