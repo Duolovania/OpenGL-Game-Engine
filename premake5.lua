@@ -53,6 +53,9 @@ project "OrbiterCore"
 
         "%{prj.name}/Vendor/imgui/**cpp",
         "%{prj.name}/Vendor/imgui/**h",
+
+        "%{prj.name}/Vendor/tinyfiledialogs/**c",
+        "%{prj.name}/Vendor/tinyfiledialogs/**h"
     }
 
     -- Includes dependencies and include paths.
@@ -72,6 +75,8 @@ project "OrbiterCore"
         "%{prj.name}/Vendor/imgui",
         "%{prj.name}/Vendor/stb_image",
         "%{prj.name}/Vendor/glm",
+        "%{prj.name}/Vendor/tinyfiledialogs",
+        "%{prj.name}/Vendor/tinyfiledialogs/more_dialogs",
 
         "%{prj.name}/src/include",
         "%{prj.name}/src/Tests",

@@ -1,0 +1,49 @@
+Name: namjas.JPG
+ImagePath: Assets/Sprites/namjas.JPG
+ImageColor: 1.000000 1.000000 1.000000 1.000000
+Position: 0.000000 0.000000 0.000000
+Rotation: 0.000000 0.000000 0.000000
+Scale: 100.000000 100.000000 0.000000
+
+Name: B happy.png
+ImagePath: Assets/Sprites/B happy.png
+ImageColor: 1.000000 1.000000 1.000000 1.000000
+Position: 100.000000 0.000000 0.000000
+Rotation: 0.000000 0.000000 0.000000
+Scale: 100.000000 100.000000 0.000000
+
+Name: shronk.jpg
+ImagePath: Assets/Sprites/shronk.jpg
+ImageColor: 1.000000 1.000000 1.000000 1.000000
+Position: 200.000000 0.000000 0.000000
+Rotation: 0.000000 0.000000 0.000000
+Scale: 100.000000 100.000000 0.000000
+
+Name: ForestE.png
+ImagePath: Assets/Sprites/ForestE.png
+ImageColor: 1.000000 1.000000 1.000000 1.000000
+Position: 300.000000 0.000000 0.000000
+Rotation: 0.000000 0.000000 0.000000
+Scale: 100.000000 100.000000 0.000000
+
+Name: yoza2.jpg
+ImagePath: Assets/Sprites/yoza2.jpg
+ImageColor: 1.000000 1.000000 1.000000 1.000000
+Position: 400.000000 0.000000 0.000000
+Rotation: 0.000000 0.000000 0.000000
+Scale: 100.000000 100.000000 0.000000
+
+Name: hronyman.gif
+ImagePath: Assets/Sprites/hronyman.gif
+ImageColor: 1.000000 1.000000 1.000000 1.000000
+Position: 500.000000 0.000000 0.000000
+Rotation: 0.000000 0.000000 0.000000
+Scale: 100.000000 100.000000 0.000000
+
+Name: johndinner.png
+ImagePath: Assets/Sprites/johndinner.png
+ImageColor: 1.000000 0.000000 0.000000 1.000000
+Position: -100.000000 0.000000 0.000000
+Rotation: 0.000000 0.000000 0.000000
+Scale: 100.000000 100.000000 0.000000
+

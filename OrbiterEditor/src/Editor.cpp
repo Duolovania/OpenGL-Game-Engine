@@ -1,4 +1,5 @@
 #include "editor.h"
+#include "tinyfiledialogs/tinyfiledialogs.h"
 #include <filesystem>
 
 FileManager fileManager;
@@ -149,14 +150,6 @@ bool Editor::OnUpdate(float deltaTime)
         }
 
         currentTest->OnImGuiRender();
-        
-        if (ImGui::Button("New file"))
-        {
-            Scene test;
-            test.sceneName = "Test";
-            test.objectsToRender = renderer.objectsToRender;
-            fileManager.CreateFile(test, "Assets/Scenes/" + test.sceneName + ".worldOB");
-        }
 
         ImGui::End();
 
@@ -934,12 +927,25 @@ void Editor::MenuBar()
         {
             if (ImGui::MenuItem("New Scene"))
             {
-
+                
             }
 
             if (ImGui::MenuItem("Open Scene"))
             {
+                const char* filterTypes[1] = { ".worldOB" };
+                const char* file_path = tinyfd_openFileDialog(
+                    "Open a scene",              // Title of the dialog
+                    (rootPath + "/Assets").c_str(),                         // Default path ("" means current directory)
+                    1,                          // Number of file filters
+                    filterTypes,                // File filters (e.g., ["*.txt"])
+                    NULL,                       // Filter description
+                    0                           // Allow multiple selections (0 for no)
+                );
 
+                if (file_path) 
+                {
+                    DebugOB.Log("File selected: %s\n" + std::string(file_path));
+                }
             }
 
             if (ImGui::MenuItem("Open Recent"))
@@ -954,7 +960,50 @@ void Editor::MenuBar()
 
             if (ImGui::MenuItem("Save As"))
             {
+                const char* filterTypes[1] = { ".worldOB" };
+                const char* savePath = tinyfd_saveFileDialog(
+                    "Save scene",              // Title of the dialog
+                    (rootPath + "/Assets/").c_str(),                        // Default name
+                    1,                         // Number of file filters
+                    filterTypes,               // File filters (e.g., ["*.txt"])
+                    NULL                       // Filter description
+                );
 
+                if (savePath) 
+                {
+                    const char* file_name = strrchr(savePath, '/');  // For Unix-based systems
+                    if (!file_name) 
+                    {
+                        file_name = strrchr(savePath, '\\');  // For Windows paths
+                    }
+
+                    if (file_name) 
+                    {
+                        file_name++;  // Move past the slash to get the file name
+                    }
+                    else 
+                    {
+                        file_name = savePath;  // If no slash was found, the entire string is the file name
+                    }
+
+                    // Now strip the extension by finding the last dot ('.')
+                    char file_name_no_ext[256];  // Buffer to store the file name without extension
+                    strcpy(file_name_no_ext, file_name);  // Copy file name
+                    char* dot = strrchr(file_name_no_ext, '.');
+
+                    if (dot) 
+                    {
+                        *dot = '\0';  // Truncate at the dot to remove the extension
+                    }
+
+                    Scene test;
+                    test.sceneName = file_name_no_ext;
+                    test.objectsToRender = renderer.objectsToRender;
+
+                    std::string tempPath = savePath;
+                    std::string newFileName = tempPath.erase(0, rootPath.length());
+                    fileManager.CreateFile(test, "Assets/" + newFileName);
+                }
             }
 
             if (currentTest != testMenu)

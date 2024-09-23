@@ -19,6 +19,15 @@
     <Filter Include="Vendor\stb_image">
       <UniqueIdentifier>{EDE315D3-D9DC-3425-020F-1AAAEE661431}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Vendor\tinyfiledialogs">
+      <UniqueIdentifier>{69E5AF36-55DF-D888-3E4C-6F992AE53EF5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\tinyfiledialogs\dll_cs_lua_R_fortran_pascal">
+      <UniqueIdentifier>{09936559-F526-5B01-5EEB-B4B54A9E95F3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\tinyfiledialogs\more_dialogs">
+      <UniqueIdentifier>{EDC238D5-597C-A37F-E2DB-BD594E9459EF}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src">
       <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
@@ -120,6 +129,12 @@
     <ClInclude Include="Vendor\stb_image\stb_image.h">
       <Filter>Vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="Vendor\tinyfiledialogs\more_dialogs\tinyfd_moredialogs.h">
+      <Filter>Vendor\tinyfiledialogs\more_dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\tinyfiledialogs\tinyfiledialogs.h">
+      <Filter>Vendor\tinyfiledialogs</Filter>
+    </ClInclude>
     <ClInclude Include="src\Tests\test.h">
       <Filter>src\Tests</Filter>
     </ClInclude>
@@ -165,6 +180,9 @@
     <ClInclude Include="src\include\Core\application.h">
       <Filter>src\include\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\include\Core\debug.h">
+      <Filter>src\include\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\include\Core\filemanager.h">
       <Filter>src\include\Core</Filter>
     </ClInclude>
@@ -178,6 +196,9 @@
       <Filter>src\include\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\include\Core\renderinglayer.h">
+      <Filter>src\include\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Core\scene.h">
       <Filter>src\include\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\include\GameObjects\camera2d.h">
@@ -225,8 +246,6 @@
     <ClInclude Include="src\include\orbiter.h">
       <Filter>src\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\Core\debug.h" />
-    <ClInclude Include="src\include\Core\scene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vendor\glm\detail\glm.cpp">
@@ -259,6 +278,18 @@
     <ClCompile Include="Vendor\stb_image\STB_Image.cpp">
       <Filter>Vendor\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="Vendor\tinyfiledialogs\hello.c">
+      <Filter>Vendor\tinyfiledialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\tinyfiledialogs\hello_wchar_t.c">
+      <Filter>Vendor\tinyfiledialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\tinyfiledialogs\more_dialogs\tinyfd_moredialogs.c">
+      <Filter>Vendor\tinyfiledialogs\more_dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\tinyfiledialogs\tinyfiledialogs.c">
+      <Filter>Vendor\tinyfiledialogs</Filter>
+    </ClCompile>
     <ClCompile Include="src\Audio\AudioBuffer.cpp">
       <Filter>src\Audio</Filter>
     </ClCompile>
@@ -287,6 +318,9 @@
       <Filter>src\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Core\Application.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Debug.cpp">
       <Filter>src\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Core\FileManager.cpp">
@@ -334,6 +368,13 @@
     <ClCompile Include="src\include\Math\Vector.cpp">
       <Filter>src\include\Math</Filter>
     </ClCompile>
-    <ClCompile Include="src\Core\Debug.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Vendor\tinyfiledialogs\dll_cs_lua_R_fortran_pascal\tinyfiledialogs_dylib.sh">
+      <Filter>Vendor\tinyfiledialogs\dll_cs_lua_R_fortran_pascal</Filter>
+    </None>
+    <None Include="Vendor\tinyfiledialogs\dll_cs_lua_R_fortran_pascal\tinyfiledialogs_so.sh">
+      <Filter>Vendor\tinyfiledialogs\dll_cs_lua_R_fortran_pascal</Filter>
+    </None>
   </ItemGroup>
 </Project>

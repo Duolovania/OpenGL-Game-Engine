@@ -133,7 +133,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;OB_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -155,7 +155,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;OB_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -177,7 +177,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;OB_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -203,7 +203,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;OB_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -229,7 +229,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;OB_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -255,7 +255,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;OB_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -277,8 +277,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\include\Core\debug.h" />
-    <ClInclude Include="src\include\Core\scene.h" />
     <ClInclude Include="Vendor\glm\simd\common.h" />
     <ClInclude Include="Vendor\glm\simd\exponential.h" />
     <ClInclude Include="Vendor\glm\simd\geometric.h" />
@@ -300,6 +298,8 @@
     <ClInclude Include="Vendor\imgui\imstb_textedit.h" />
     <ClInclude Include="Vendor\imgui\imstb_truetype.h" />
     <ClInclude Include="Vendor\stb_image\stb_image.h" />
+    <ClInclude Include="Vendor\tinyfiledialogs\more_dialogs\tinyfd_moredialogs.h" />
+    <ClInclude Include="Vendor\tinyfiledialogs\tinyfiledialogs.h" />
     <ClInclude Include="src\Tests\test.h" />
     <ClInclude Include="src\Tests\testclearcolour.h" />
     <ClInclude Include="src\Tests\testtexture2d.h" />
@@ -315,11 +315,13 @@
     <ClInclude Include="src\include\Core\animationframe.h" />
     <ClInclude Include="src\include\Core\animationplayer.h" />
     <ClInclude Include="src\include\Core\application.h" />
+    <ClInclude Include="src\include\Core\debug.h" />
     <ClInclude Include="src\include\Core\filemanager.h" />
     <ClInclude Include="src\include\Core\input.h" />
     <ClInclude Include="src\include\Core\orbitercore.h" />
     <ClInclude Include="src\include\Core\renderer.h" />
     <ClInclude Include="src\include\Core\renderinglayer.h" />
+    <ClInclude Include="src\include\Core\scene.h" />
     <ClInclude Include="src\include\GameObjects\camera2d.h" />
     <ClInclude Include="src\include\GameObjects\character.h" />
     <ClInclude Include="src\include\GameObjects\gameobject.h" />
@@ -337,7 +339,6 @@
     <ClInclude Include="src\include\orbiter.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Core\Debug.cpp" />
     <ClCompile Include="Vendor\glm\detail\glm.cpp" />
     <ClCompile Include="Vendor\imgui\imgui.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_demo.cpp" />
@@ -348,6 +349,10 @@
     <ClCompile Include="Vendor\imgui\imgui_tables.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Vendor\stb_image\STB_Image.cpp" />
+    <ClCompile Include="Vendor\tinyfiledialogs\hello.c" />
+    <ClCompile Include="Vendor\tinyfiledialogs\hello_wchar_t.c" />
+    <ClCompile Include="Vendor\tinyfiledialogs\more_dialogs\tinyfd_moredialogs.c" />
+    <ClCompile Include="Vendor\tinyfiledialogs\tinyfiledialogs.c" />
     <ClCompile Include="src\Audio\AudioBuffer.cpp" />
     <ClCompile Include="src\Audio\AudioContext.cpp" />
     <ClCompile Include="src\Audio\AudioListener.cpp" />
@@ -358,6 +363,7 @@
     <ClCompile Include="src\Core\AnimationFrame.cpp" />
     <ClCompile Include="src\Core\AnimationPlayer.cpp" />
     <ClCompile Include="src\Core\Application.cpp" />
+    <ClCompile Include="src\Core\Debug.cpp" />
     <ClCompile Include="src\Core\FileManager.cpp" />
     <ClCompile Include="src\Core\Input.cpp" />
     <ClCompile Include="src\Core\Renderer.cpp" />
@@ -373,6 +379,10 @@
     <ClCompile Include="src\Tests\TestClearColour.cpp" />
     <ClCompile Include="src\Tests\TestTexture2D.cpp" />
     <ClCompile Include="src\include\Math\Vector.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Vendor\tinyfiledialogs\dll_cs_lua_R_fortran_pascal\tinyfiledialogs_dylib.sh" />
+    <None Include="Vendor\tinyfiledialogs\dll_cs_lua_R_fortran_pascal\tinyfiledialogs_so.sh" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dependencies\Glad\Glad.vcxproj">

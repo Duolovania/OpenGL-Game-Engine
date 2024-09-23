@@ -70,8 +70,7 @@
               "RelativeToolTip": "OrbiterCore\\src\\include\\Core\\renderer.h",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAACAAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-23T10:55:18.913Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-23T10:55:18.913Z"
             },
             {
               "$type": "Document",
@@ -83,8 +82,7 @@
               "RelativeToolTip": "OrbiterCore\\src\\include\\GameObjects\\character.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-22T18:05:35.794Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-22T18:05:35.794Z"
             },
             {
               "$type": "Document",
@@ -96,8 +94,7 @@
               "RelativeToolTip": "OrbiterCore\\src\\GameObjects\\Character.cpp",
               "ViewState": "AgIAABUAAAAAAAAAAAAAAB0AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-22T17:41:52.699Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-22T17:41:52.699Z"
             },
             {
               "$type": "Document",
@@ -109,8 +106,7 @@
               "RelativeToolTip": "OrbiterCore\\src\\Core\\Renderer.cpp",
               "ViewState": "AgIAAJYAAAAAAAAAAAAAAJUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-18T17:07:37.96Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-18T17:07:37.96Z"
             },
             {
               "$type": "Document",
@@ -132,7 +128,7 @@
               "RelativeDocumentMoniker": "OrbiterEditor\\src\\Editor.cpp",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\src\\Editor.cpp",
               "RelativeToolTip": "OrbiterEditor\\src\\Editor.cpp",
-              "ViewState": "AgIAAJUAAAAAAAAAAAAAwKUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAO8DAAAAAAAAAAAAAKEDAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-09-18T16:44:25.93Z",
               "EditorCaption": ""
@@ -147,8 +143,7 @@
               "RelativeToolTip": "OrbiterCore\\src\\Core\\FileManager.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-18T16:42:00.033Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-18T16:42:00.033Z"
             },
             {
               "$type": "Document",
@@ -160,8 +155,7 @@
               "RelativeToolTip": "OrbiterCore\\src\\include\\Core\\filemanager.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-18T16:41:57.608Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-18T16:41:57.608Z"
             },
             {
               "$type": "Document",
