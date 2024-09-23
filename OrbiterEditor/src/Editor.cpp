@@ -153,7 +153,7 @@ bool Editor::OnUpdate(float deltaTime)
         if (ImGui::Button("New file"))
         {
             Scene test;
-            test.sceneName = "Test2";
+            test.sceneName = "Test";
             test.objectsToRender = renderer.objectsToRender;
             fileManager.CreateFile(test, "Assets/Scenes/" + test.sceneName + ".worldOB");
         }
@@ -897,6 +897,7 @@ void Editor::ContentBrowser()
                             {
                                 Scene loadedScene = fileManager.LoadFile("Assets/Scenes/" + entry.path().filename().string());
                                 renderer.objectsToRender = loadedScene.objectsToRender;
+                                renderer.RegenerateObjects();
                             }
                         };
 

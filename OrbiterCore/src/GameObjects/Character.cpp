@@ -1,7 +1,6 @@
 #include "GameObjects/character.h"
 
 Character::Character(const std::string& imagePath)
-	//:m_imagePath("Assets/Sprites/" + imagePath)
 {
 	objectName = imagePath;
 	cTexture.m_imagePath = "Assets/Sprites/" + imagePath;

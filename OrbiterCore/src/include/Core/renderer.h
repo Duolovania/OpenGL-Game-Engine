@@ -29,6 +29,8 @@ class Renderer
 
         void Draw() const;
         void Draw(glm::mat4 projection, glm::mat4 view, glm::vec4 colourTint);
+
+        void RegenerateObjects();
         std::vector<Character> objectsToRender;
 
         int texturesLoaded = 0, newTextures = 0;

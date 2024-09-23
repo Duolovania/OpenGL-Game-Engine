@@ -77,49 +77,8 @@ void Renderer::Init()
 	m_shader->CreateShader();
 	m_shader->Bind();
 
-	Character character1 = Character("namjas.JPG");
-	Character character2 = Character("B happy.png");
-	Character character3 = Character("shronk.jpg");
-	Character character4 = Character("ForestE.png");
-	Character character5 = Character("yoza2.jpg");
-	Character character6 = Character("hronyman.gif");
-	Character character7 = Character("johndinner.png");
-
-	objectsToRender.push_back(character1);
-	objectsToRender.push_back(character2); 
-	objectsToRender.push_back(character3);
-	objectsToRender.push_back(character4);
-	objectsToRender.push_back(character5);
-	objectsToRender.push_back(character6);
-	objectsToRender.push_back(character7);
-
 	m_texture = std::make_unique<Texture>("Assets/Sprites/R1.png");
 	m_texture->Gen();
-
-	int samplers[32] = { 0, 1, 2 }; // How many texture slots.
-	
-	// Prepares necessary amount of slots and binds each character texture to a slot.
-	for (int i = 0; i < objectsToRender.size(); i++)
-	{
-		samplers[i] = i;
-		m_texture->Bind(i + 1);
-
-		objectsToRender[i].cTexture.textureBuffer = GetCachedTexture(objectsToRender[i], i);
-		m_shader->BindTexture(i, objectsToRender[i].cTexture.textureBuffer);
-		
-		texturesLoaded++;
-	}
-
-	//m_shader->SetUniform3f("ambientLight", glm::vec3(0.05, 0.05, 0.05));
-	m_shader->SetUniform1iv("u_Textures", sizeof(samplers), samplers); // Sets the shader texture slots to samplers.
-
-	objectsToRender[0].transform.position.x = 0;
-	objectsToRender[1].transform.position.x = 100;
-	objectsToRender[2].transform.position.x = 200;
-	objectsToRender[3].transform.position.x = 300;
-	objectsToRender[4].transform.position.x = 400;
-	objectsToRender[5].transform.position.x = 500;
-	objectsToRender[6].transform.position.x = -100;
 
 	m_va->Unbind();
 	m_texture->UnBind();
@@ -185,6 +144,32 @@ void Renderer::Draw(glm::mat4 projection, glm::mat4 view, glm::vec4 colourTint)
 	m_vb->Unbind();
 	m_ib->Unbind();
 	m_va->Unbind();
+}
+
+void Renderer::RegenerateObjects()
+{
+	texturesLoaded = 0;
+	newTextures = 0;
+
+	m_shader->Bind();
+
+	int samplers[32] = { 0, 1, 2 }; // How many texture slots.
+
+	// Prepares necessary amount of slots and binds each character texture to a slot.
+	for (int i = 0; i < objectsToRender.size(); i++)
+	{
+		samplers[i] = i;
+		m_texture->Bind(i + 1);
+
+		objectsToRender[i].cTexture.textureBuffer = GetCachedTexture(objectsToRender[i], i);
+		m_shader->BindTexture(i, objectsToRender[i].cTexture.textureBuffer);
+
+		texturesLoaded++;
+	}
+
+	//m_shader->SetUniform3f("ambientLight", glm::vec3(0.05, 0.05, 0.05));
+	m_shader->SetUniform1iv("u_Textures", sizeof(samplers), samplers); // Sets the shader texture slots to samplers.
+	m_shader->UnBind();
 }
 
 Vertex* Renderer::CreateQuad(Vertex* target, glm::mat4 transform, float texID, Vector4 color)
