@@ -31,7 +31,8 @@ class Renderer
         void Draw(glm::mat4 projection, glm::mat4 view, glm::vec4 colourTint);
 
         void RegenerateObjects();
-        std::vector<Character> objectsToRender;
+        //std::vector<Character> objectsToRender;
+        std::vector<std::shared_ptr<GameObject>> objectsToRender;
 
         int texturesLoaded = 0, newTextures = 0;
     private:
@@ -44,6 +45,7 @@ class Renderer
 
         Vertex* buffer;
         std::array<Vertex, 200> vertices;
+        std::vector<LiteTexture> cachedTextures;
 
         Vertex* CreateQuad(Vertex* target, glm::mat4 transform, float texID, Vector4 color);
         unsigned int GetCachedTexture(Character character, unsigned int index);

@@ -111,15 +111,18 @@ void Renderer::Draw(glm::mat4 projection, glm::mat4 view, glm::vec4 colourTint)
 
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
-		if (objectsToRender[i].CheckVisibility(glm::vec2(view[3].x, view[3].y)))
+		if (std::shared_ptr<Character> character = dynamic_pointer_cast<Character>(objectsToRender[i]))
 		{
-			glm::mat4 transform = glm::translate(glm::mat4(1.0f), glm::vec3(objectsToRender[i].transform.position.x, objectsToRender[i].transform.position.y, 0.0f))
-				* glm::rotate(glm::mat4(1.0f), glm::radians(-objectsToRender[i].transform.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f))
-				* glm::scale(glm::mat4(1.0f), glm::vec3(objectsToRender[i].transform.scale.x, objectsToRender[i].transform.scale.y, 1.0f));
-			
-			m_shader->BindTexture(i, objectsToRender[i].cTexture.textureBuffer);
+			if (character->CheckVisibility(glm::vec2(view[3].x, view[3].y)))
+			{
+				glm::mat4 transform = glm::translate(glm::mat4(1.0f), glm::vec3(character->transform.position.x, character->transform.position.y, 0.0f))
+					* glm::rotate(glm::mat4(1.0f), glm::radians(-character->transform.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f))
+					* glm::scale(glm::mat4(1.0f), glm::vec3(character->transform.scale.x, character->transform.scale.y, 1.0f));
 
-			buffer = CreateQuad(buffer, transform, i, {objectsToRender[i].color[0], objectsToRender[i].color[1], objectsToRender[i].color[2], objectsToRender[i].color[3]});
+				m_shader->BindTexture(i, character->cTexture.textureBuffer);
+
+				buffer = CreateQuad(buffer, transform, i, { character->color[0], character->color[1], character->color[2], character->color[3] });
+			}
 		}
 	}
 
@@ -161,8 +164,11 @@ void Renderer::RegenerateObjects()
 		samplers[i] = i;
 		m_texture->Bind(i + 1);
 
-		objectsToRender[i].cTexture.textureBuffer = GetCachedTexture(objectsToRender[i], i);
-		m_shader->BindTexture(i, objectsToRender[i].cTexture.textureBuffer);
+		if (std::shared_ptr<Character> character = dynamic_pointer_cast<Character>(objectsToRender[i]))
+		{
+			character->cTexture.textureBuffer = GetCachedTexture(*character, i);
+			m_shader->BindTexture(i, character->cTexture.textureBuffer);
+		}
 
 		texturesLoaded++;
 	}
@@ -207,12 +213,18 @@ unsigned int Renderer::GetCachedTexture(Character character, unsigned int index)
 	// Searches for a texture with the same file path.
 	for (int i = 0; i < index; i++)
 	{
-		if (character.cTexture.m_imagePath == objectsToRender[i].cTexture.m_imagePath)
+		if (character.cTexture.m_imagePath == cachedTextures[i].m_imagePath)
 		{
-			return objectsToRender[i].cTexture.textureBuffer;
+			return cachedTextures[i].textureBuffer;
 		}
 	}
 
 	newTextures++;
-	return m_texture->Load(character.cTexture.m_imagePath); // Returns a new texture if none was found.
+
+	LiteTexture newTexture;
+	newTexture.m_imagePath = character.cTexture.m_imagePath;
+	newTexture.textureBuffer = m_texture->Load(character.cTexture.m_imagePath);
+	cachedTextures.push_back(newTexture);
+
+	return newTexture.textureBuffer; // Returns a new texture if none was found.
 }

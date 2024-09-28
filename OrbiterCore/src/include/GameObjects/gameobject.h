@@ -5,6 +5,8 @@
 class GameObject
 {
 	public:
+		virtual ~GameObject() = default;
+
 		Transform transform;
 		std::string objectName;
 };

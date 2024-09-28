@@ -12,7 +12,6 @@ testSpace::TestMenu* testMenu = new testSpace::TestMenu(currentTest);
 float sprintSpeed;
 float iconSize = 200;
 
-Sound tempSound;
 bool showProjSettings = false;
 
 float rectangleVertices[] =
@@ -92,6 +91,9 @@ void Editor::Init(GLFWwindow* window)
     fontFileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/fontfileicon.png", true);
     sceneFileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/scenefileicon.png", true);
     imageFileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/imagefileicon.png", true);
+
+    /*renderer.objectsToRender = fileManager.LoadFile("Assets/Scenes/becky.worldOB").objectsToRender;
+    renderer.RegenerateObjects();*/
 }
 
 bool Editor::OnUpdate(float deltaTime)
@@ -123,8 +125,8 @@ bool Editor::OnUpdate(float deltaTime)
 
     if (currentTest)
     {
-        currentTest->OnUpdate(deltaTime);
-        currentTest->OnRender();
+        //currentTest->OnUpdate(deltaTime);
+        //currentTest->OnRender();
 
         if (currentTest != testMenu)
         {
@@ -370,7 +372,7 @@ void Editor::Hierarchy()
         for (int i = 0; i < renderer.objectsToRender.size(); i++)
         {
             ImGui::PushID(i);
-            ShowHierarchy(renderer.objectsToRender[i].objectName, i, true);
+            ShowHierarchy(renderer.objectsToRender[i]->objectName, i, true);
             ImGui::PopID();
         }
     }
@@ -383,12 +385,12 @@ void Editor::Inspector()
 
     if (selectedObject > -1)
     {
-        ImGui::InputText("##label0", &renderer.objectsToRender[selectedObject].objectName);
+        ImGui::InputText("##label0", &renderer.objectsToRender[selectedObject]->objectName);
 
         ImGui::SameLine();
         if (ImGui::Button("Jump To"))
         {
-            camera2D.transform.position = renderer.objectsToRender[selectedObject].transform.position;
+            camera2D.transform.position = renderer.objectsToRender[selectedObject]->transform.position;
         }
 
         if (ImGui::CollapsingHeader("Transform"))
@@ -408,7 +410,7 @@ void Editor::Inspector()
                 ImGui::SameLine();
                 ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
 
-                ImGui::InputFloat("##PX", &renderer.objectsToRender[selectedObject].transform.position.x, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##PX", &renderer.objectsToRender[selectedObject]->transform.position.x, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableSetColumnIndex(2);
@@ -418,7 +420,7 @@ void Editor::Inspector()
                 ImGui::Text("Y");
 
                 ImGui::SameLine();
-                ImGui::InputFloat("##PY", &renderer.objectsToRender[selectedObject].transform.position.y, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##PY", &renderer.objectsToRender[selectedObject]->transform.position.y, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableSetColumnIndex(3);
@@ -429,7 +431,7 @@ void Editor::Inspector()
                 ImGui::Text("Z");
 
                 ImGui::SameLine();
-                ImGui::InputFloat("##PZ", &renderer.objectsToRender[selectedObject].transform.position.z, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##PZ", &renderer.objectsToRender[selectedObject]->transform.position.z, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
 
@@ -446,7 +448,7 @@ void Editor::Inspector()
                 ImGui::SameLine();
                 ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
 
-                ImGui::InputFloat("##RX", &renderer.objectsToRender[selectedObject].transform.rotation.x, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##RX", &renderer.objectsToRender[selectedObject]->transform.rotation.x, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableSetColumnIndex(2);
@@ -457,7 +459,7 @@ void Editor::Inspector()
                 ImGui::Text("Y");
 
                 ImGui::SameLine();
-                ImGui::InputFloat("##RY", &renderer.objectsToRender[selectedObject].transform.rotation.y, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##RY", &renderer.objectsToRender[selectedObject]->transform.rotation.y, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableSetColumnIndex(3);
@@ -468,7 +470,7 @@ void Editor::Inspector()
                 ImGui::Text("Z");
 
                 ImGui::SameLine();
-                ImGui::InputFloat("##RZ", &renderer.objectsToRender[selectedObject].transform.rotation.z, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##RZ", &renderer.objectsToRender[selectedObject]->transform.rotation.z, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableNextRow();
@@ -484,7 +486,7 @@ void Editor::Inspector()
                 ImGui::SameLine();
                 ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
 
-                ImGui::InputFloat("##SX", &renderer.objectsToRender[selectedObject].transform.scale.x, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##SX", &renderer.objectsToRender[selectedObject]->transform.scale.x, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableSetColumnIndex(2);
@@ -495,7 +497,7 @@ void Editor::Inspector()
                 ImGui::Text("Y");
 
                 ImGui::SameLine();
-                ImGui::InputFloat("##SY", &renderer.objectsToRender[selectedObject].transform.scale.y, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##SY", &renderer.objectsToRender[selectedObject]->transform.scale.y, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableSetColumnIndex(3);
@@ -506,7 +508,7 @@ void Editor::Inspector()
                 ImGui::Text("Z");
 
                 ImGui::SameLine();
-                ImGui::InputFloat("##SZ", &renderer.objectsToRender[selectedObject].transform.scale.z, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##SZ", &renderer.objectsToRender[selectedObject]->transform.scale.z, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::PopItemWidth(); // Reset item width
@@ -520,24 +522,30 @@ void Editor::Inspector()
 
         if (ImGui::CollapsingHeader("Sprite Renderer"))
         {
-            ImGui::Image((void*)renderer.objectsToRender[selectedObject].cTexture.textureBuffer, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
-
-            ImGui::SameLine();
-            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 0.5f));
-            ImGui::Text(renderer.objectsToRender[selectedObject].cTexture.m_imagePath.c_str());
-            ImGui::PopStyleColor();
-
-            ImGui::Text("Colour:");
-            ImGui::SameLine();
-            ImGui::ColorEdit4("##label4", (float*)&renderer.objectsToRender[selectedObject].color);
-
-            ImGui::SameLine();
-            if (ImGui::Button("Reset"))
+            if (std::shared_ptr<Character> character = dynamic_pointer_cast<Character>(renderer.objectsToRender[selectedObject]))
             {
-                renderer.objectsToRender[selectedObject].SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
+                ImGui::Image((void*)character->cTexture.textureBuffer, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
+
+                ImGui::SameLine();
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 0.5f));
+                ImGui::Text(character->cTexture.m_imagePath.c_str());
+                ImGui::PopStyleColor();
+
+                ImGui::Text("Colour:");
+                ImGui::SameLine();
+                ImGui::ColorEdit4("##label4", (float*)&character->color);
+
+                ImGui::SameLine();
+                if (ImGui::Button("Reset"))
+                {
+                    character->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
+                }
+            }
+            else
+            {
+                DebugOB.Log("Not worked");
             }
         }
-
     }
     else if (selectedObject == -1)
     {

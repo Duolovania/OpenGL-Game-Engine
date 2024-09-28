@@ -8,13 +8,22 @@ void FileManager::CreateFile(Scene sceneData, std::string fileName)
 
 	for (auto& data : sceneData.objectsToRender)
 	{
-		newFile << "Name: " << data.objectName << std::endl;
-		newFile << "ImagePath: " << data.cTexture.m_imagePath << std::endl;
-		newFile << "ImageColor: " + std::to_string(data.color[0]) + " " << std::to_string(data.color[1]) + " " << std::to_string(data.color[2]) + " " << std::to_string(data.color[3]) << std::endl;
+		newFile << "Name: " << data->objectName << std::endl;
 
-		newFile << "Position: " + std::to_string(data.transform.position.x) + " " << std::to_string(data.transform.position.y) + " " << std::to_string(data.transform.position.z) << std::endl;
-		newFile << "Rotation: " + std::to_string(data.transform.rotation.x) + " " << std::to_string(data.transform.rotation.y) + " " << std::to_string(data.transform.rotation.z) << std::endl;
-		newFile << "Scale: " + std::to_string(data.transform.scale.x) + " " << std::to_string(data.transform.scale.y) + " " << std::to_string(data.transform.scale.z) + "\n" << std::endl;
+		if (std::shared_ptr<Character> character = dynamic_pointer_cast<Character>(data))
+		{
+			newFile << "ImagePath: " << character->cTexture.m_imagePath << std::endl;
+			newFile << "ImageColor: " + std::to_string(character->color[0]) + " " << std::to_string(character->color[1]) + " " << std::to_string(character->color[2]) + " " << std::to_string(character->color[3]) << std::endl;
+		}
+
+		if (std::shared_ptr<Camera2D> camera = dynamic_pointer_cast<Camera2D>(data))
+		{
+			
+		}
+
+		newFile << "Rotation: " + std::to_string(data->transform.rotation.x) + " " << std::to_string(data->transform.rotation.y) + " " << std::to_string(data->transform.rotation.z) << std::endl;
+		newFile << "Position: " + std::to_string(data->transform.position.x) + " " << std::to_string(data->transform.position.y) + " " << std::to_string(data->transform.position.z) << std::endl;
+		newFile << "Scale: " + std::to_string(data->transform.scale.x) + " " << std::to_string(data->transform.scale.y) + " " << std::to_string(data->transform.scale.z) + "\n" << std::endl;
 	}
 
 	newFile.close();
@@ -55,7 +64,7 @@ Scene FileManager::LoadFile(std::string fileName)
 	std::ifstream oldFile(fileName);
 	std::string line;
 	Scene newScene;
-	Character newChar;
+	std::shared_ptr<Character> newChar = std::make_unique<Character>();
 
 	bool isPosition = false, newCharacter = false;
 
@@ -65,28 +74,28 @@ Scene FileManager::LoadFile(std::string fileName)
 		{
 			if (line.find("Name:") != std::string::npos)
 			{
-				newChar.objectName = line.substr(line.find("Name:") + 6);
+				newChar->objectName = line.substr(line.find("Name:") + 6);
 			}
 			else if (line.find("Position:") != std::string::npos)
 			{
-				newChar.transform.position = ParseVector3(line);
+				newChar->transform.position = ParseVector3(line);
 			}
 			else if (line.find("Rotation:") != std::string::npos)
 			{
-				newChar.transform.rotation = ParseVector3(line);
+				newChar->transform.rotation = ParseVector3(line);
 			}
 			else if (line.find("Scale:") != std::string::npos)
 			{
-				newChar.transform.scale = ParseVector3(line);
+				newChar->transform.scale = ParseVector3(line);
 			}
 			else if (line.find("ImagePath:") != std::string::npos)
 			{
-				newChar.cTexture.m_imagePath = line.substr(line.find("ImagePath:") + 11);
+				newChar->cTexture.m_imagePath = line.substr(line.find("ImagePath:") + 11);
 			}
 			else if (line.find("ImageColor:") != std::string::npos)
 			{
 				Vector4 vec4 = ParseVector4(line);
-				newChar.SetColor({ vec4.x, vec4.y, vec4.z, vec4.w });
+				newChar->SetColor({ vec4.x, vec4.y, vec4.z, vec4.w });
 			}
 			else
 			{
@@ -95,8 +104,10 @@ Scene FileManager::LoadFile(std::string fileName)
 
 			if (newCharacter)
 			{
-				newScene.objectsToRender.push_back(newChar);
-				newChar = Character();
+				std::shared_ptr<GameObject> tempgObj = newChar;
+
+				newScene.objectsToRender.push_back(tempgObj);
+				newChar = std::make_unique<Character>();
 				newCharacter = false;
 			}
 		}
