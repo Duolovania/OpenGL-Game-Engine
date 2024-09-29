@@ -27,7 +27,6 @@ Renderer::~Renderer()
 {
 	m_va->Unbind();
 	m_shader->UnBind();
-	m_texture->UnBind();
 	m_vb->Unbind();
 	m_ib->Unbind();
 }
@@ -77,11 +76,7 @@ void Renderer::Init()
 	m_shader->CreateShader();
 	m_shader->Bind();
 
-	m_texture = std::make_unique<Texture>("Assets/Sprites/R1.png");
-	m_texture->Gen();
-
 	m_va->Unbind();
-	m_texture->UnBind();
 	m_shader->UnBind();
 	m_vb->Unbind();
 	m_ib->Unbind();
@@ -115,11 +110,10 @@ void Renderer::Draw(glm::mat4 projection, glm::mat4 view, glm::vec4 colourTint)
 		{
 			if (character->CheckVisibility(glm::vec2(view[3].x, view[3].y)))
 			{
-				glm::mat4 transform = glm::translate(glm::mat4(1.0f), glm::vec3(character->transform.position.x, character->transform.position.y, 0.0f))
+				glm::mat4 transform = 
+					glm::translate(glm::mat4(1.0f), glm::vec3(character->transform.position.x, character->transform.position.y, 0.0f))
 					* glm::rotate(glm::mat4(1.0f), glm::radians(-character->transform.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f))
 					* glm::scale(glm::mat4(1.0f), glm::vec3(character->transform.scale.x, character->transform.scale.y, 1.0f));
-
-				m_shader->BindTexture(i, character->cTexture.textureBuffer);
 
 				buffer = CreateQuad(buffer, transform, i, { character->color[0], character->color[1], character->color[2], character->color[3] });
 			}
@@ -156,25 +150,22 @@ void Renderer::RegenerateObjects()
 
 	m_shader->Bind();
 
-	int samplers[32] = { 0, 1, 2 }; // How many texture slots.
+	GLuint64 samplers[32] = { 0, 1, 2 }; // How many texture slots.
 
 	// Prepares necessary amount of slots and binds each character texture to a slot.
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
-		samplers[i] = i;
-		m_texture->Bind(i + 1);
-
 		if (std::shared_ptr<Character> character = dynamic_pointer_cast<Character>(objectsToRender[i]))
 		{
-			character->cTexture.textureBuffer = GetCachedTexture(*character, i);
-			m_shader->BindTexture(i, character->cTexture.textureBuffer);
-		}
+			character->cTexture = GetCachedBindlessTexture(*character, i);
+			samplers[i] = character->cTexture.textureHandle;
 
-		texturesLoaded++;
+			texturesLoaded++;
+		}
 	}
 
 	//m_shader->SetUniform3f("ambientLight", glm::vec3(0.05, 0.05, 0.05));
-	m_shader->SetUniform1iv("u_Textures", sizeof(samplers), samplers); // Sets the shader texture slots to samplers.
+	m_shader->SetUniformHandlei64vARB("u_Textures", sizeof(samplers), samplers); // Sets the shader texture slots to samplers.
 	m_shader->UnBind();
 }
 
@@ -207,24 +198,21 @@ Vertex* Renderer::CreateQuad(Vertex* target, glm::mat4 transform, float texID, V
 	return target;
 }
 
-// Retrieves an existing texture if it already exists.
-unsigned int Renderer::GetCachedTexture(Character character, unsigned int index)
+LiteTexture Renderer::GetCachedBindlessTexture(Character character, unsigned int index)
 {
 	// Searches for a texture with the same file path.
 	for (int i = 0; i < index; i++)
 	{
 		if (character.cTexture.m_imagePath == cachedTextures[i].m_imagePath)
 		{
-			return cachedTextures[i].textureBuffer;
+			return cachedTextures[i];
 		}
 	}
 
 	newTextures++;
 
-	LiteTexture newTexture;
-	newTexture.m_imagePath = character.cTexture.m_imagePath;
-	newTexture.textureBuffer = m_texture->Load(character.cTexture.m_imagePath);
+	LiteTexture newTexture = m_text.GenBindlessTexture(character.cTexture.m_imagePath);
 	cachedTextures.push_back(newTexture);
 
-	return newTexture.textureBuffer; // Returns a new texture if none was found.
+	return newTexture; // Returns a new texture if none was found.
 }

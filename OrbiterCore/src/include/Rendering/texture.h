@@ -1,5 +1,13 @@
 #pragma once
 #include <iostream>
+#include "glad/glad.h"
+
+struct LiteTexture
+{
+	std::string m_imagePath;
+	GLuint64 textureHandle;
+	unsigned int textureBuffer;
+};
 
 class Texture
 {
@@ -13,8 +21,10 @@ class Texture
 		void UnBind() const;
 
 		void Gen(bool isPixelated = false);
+		LiteTexture GenBindlessTexture(const std::string& path, bool isPixelated = false);
 
 		unsigned int Load(const std::string& path, bool isPixelated = false);
+
 		unsigned int GetBufferID();
 		void SetBuffer(unsigned int newBuffer);
 
@@ -26,5 +36,5 @@ class Texture
 		std::string filePath;
 		unsigned int bufferID;
 		unsigned char* localBuffer;
-		int w, h, bpp; // Width, Height and Bits per Pixel
+		int w, h, bpp; // Width, Height and Bits per Pixel.
 };

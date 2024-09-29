@@ -36,7 +36,7 @@ enum UISelect
 UISelect uiSelect = UISelect::None;
 
 std::unique_ptr<Texture> iconTextures;
-unsigned int playButton, pauseButton, stopButton, fileIcon, folderIcon, wavFileIcon, fontFileIcon, sceneFileIcon, imageFileIcon;
+GLuint64 playButton, pauseButton, stopButton, fileIcon, folderIcon, wavFileIcon, fontFileIcon, sceneFileIcon, imageFileIcon;
 
 void Editor::Init(GLFWwindow* window)
 {
@@ -78,9 +78,9 @@ void Editor::Init(GLFWwindow* window)
     rootPath = currentPath;
 
     iconTextures = std::make_unique<Texture>("../OrbiterCore/Res/Application Icons/playbutton.png");
-    iconTextures->Gen(true);
+    //iconTextures->Gen(true);
 
-    playButton = iconTextures->GetBufferID();
+    playButton = iconTextures->Load("../OrbiterCore/Res/Application Icons/playbutton.png", true);
     pauseButton = iconTextures->Load("../OrbiterCore/Res/Application Icons/pausebutton.png", true);
     stopButton = iconTextures->Load("../OrbiterCore/Res/Application Icons/stopbutton.png", true);
 

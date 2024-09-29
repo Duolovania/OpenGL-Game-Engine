@@ -28,6 +28,9 @@ class Shader
 		void SetUniform1i(const std::string& name, int value);
 		void SetUniform1iv(const std::string& name, int count, const int* value);
 
+		void SetUniformHandlei64ARB(const std::string& name, const GLuint64 value); // Set bindless texture uniform.
+		void SetUniformHandlei64vARB(const std::string& name, int count, const GLuint64* value); // Set bindless texture array uniform.
+
 		void SetUniformMat4f(const std::string& name, const glm::mat4& matrix);
 		void CreateShader(); // Assign vertex and fragment to shader.
 

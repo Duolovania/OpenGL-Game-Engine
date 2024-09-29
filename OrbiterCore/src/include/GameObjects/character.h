@@ -5,12 +5,7 @@
 #include "GameObjects/gameobject.h"
 #include "Rendering/texture.h"
 #include "Rendering/shader.h"
-
-struct LiteTexture
-{
-	std::string m_imagePath;
-	unsigned int textureBuffer = 0;
-};
+#include "glad/glad.h"
 
 class Character : public GameObject
 {

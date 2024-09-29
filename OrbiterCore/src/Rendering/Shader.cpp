@@ -139,6 +139,16 @@ void Shader::SetUniform1iv(const std::string& name, int count, const int* value)
     GLCall(glUniform1iv(GetUniformLocation(name), count, value));
 }
 
+void Shader::SetUniformHandlei64ARB(const std::string& name, const GLuint64 value)
+{
+    GLCall(glUniformHandleui64ARB(GetUniformLocation(name), value));
+}
+
+void Shader::SetUniformHandlei64vARB(const std::string& name, int count, const GLuint64* value)
+{
+    GLCall(glUniformHandleui64vARB(GetUniformLocation(name), count, value));
+}
+
 void Shader::SetUniformMat4f(const std::string& name, const glm::mat4& matrix)
 {
     GLCall(glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]));

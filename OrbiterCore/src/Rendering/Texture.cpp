@@ -28,12 +28,12 @@ void Texture::Gen(bool isPixelated)
 
 	if (isPixelated)
 	{
-		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)); // GL_LINEAR = smooth. GL_NEAREST = pixelated.
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)); // GL_NEAREST = pixelated.
 		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
 	}
 	else
 	{
-		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)); // GL_LINEAR = smooth. GL_NEAREST = pixelated.
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)); // GL_LINEAR = smooth.
 		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
 	}
 
@@ -49,7 +49,21 @@ void Texture::Gen(bool isPixelated)
 		stbi_image_free(localBuffer);
 }
 
-// Generates texture data and returns the buffer ID (returns the new texture data through the ID).
+LiteTexture Texture::GenBindlessTexture(const std::string& path, bool isPixelated)
+{
+	LiteTexture newTexture;
+	localBuffer = stbi_load(path.c_str(), &w, &h, &bpp, 4);
+
+	Gen(isPixelated);
+	newTexture.m_imagePath = path;
+
+	newTexture.textureHandle = glGetTextureHandleARB(bufferID);
+	GLCall(glMakeTextureHandleResidentARB(newTexture.textureHandle));
+
+	newTexture.textureBuffer = bufferID;
+	return newTexture;
+}
+
 unsigned int Texture::Load(const std::string& path, bool isPixelated)
 {
 	localBuffer = stbi_load(path.c_str(), &w, &h, &bpp, 4);

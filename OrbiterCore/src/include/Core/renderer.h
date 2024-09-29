@@ -40,7 +40,7 @@ class Renderer
         std::unique_ptr<IndexBuffer> m_ib;
         std::unique_ptr<VertexBuffer> m_vb;
 
-        std::unique_ptr<Texture> m_texture;
+        Texture m_text;
         std::unique_ptr<Shader> m_shader;
 
         Vertex* buffer;
@@ -48,5 +48,5 @@ class Renderer
         std::vector<LiteTexture> cachedTextures;
 
         Vertex* CreateQuad(Vertex* target, glm::mat4 transform, float texID, Vector4 color);
-        unsigned int GetCachedTexture(Character character, unsigned int index);
+        LiteTexture GetCachedBindlessTexture(Character character, unsigned int index);
 };
