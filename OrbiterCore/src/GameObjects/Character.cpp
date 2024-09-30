@@ -11,7 +11,11 @@ Character::Character(const std::string& imagePath)
 
 Character::Character()
 {
+	objectName = "New Character";
+	cTexture.m_imagePath = "../OrbiterCore/Res/Default Sprites/whitesqure.png";
 
+	transform.position = Vector3::zero;
+	transform.scale = Vector3(100, 100, 0);
 }
 
 // Checks if the image is within the screen space.

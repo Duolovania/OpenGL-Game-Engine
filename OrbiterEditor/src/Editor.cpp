@@ -362,6 +362,16 @@ void Editor::Hierarchy()
 {
     ImGui::Begin("Hierarchy");
 
+    if (ImGui::Button("Add"))
+    {
+        std::shared_ptr<GameObject> newCharacter = std::make_unique<Character>();
+        newCharacter->transform.position = camera2D.transform.position;
+        renderer.objectsToRender.push_back(newCharacter);
+
+        //renderer.RegenerateObjects();
+        renderer.RegenerateObject(renderer.objectsToRender.size() - 1);
+    }
+
     if (currentTest != testMenu)
     {
         if (ImGui::Button((camera2D.objectName).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)))
@@ -391,6 +401,13 @@ void Editor::Inspector()
         if (ImGui::Button("Jump To"))
         {
             camera2D.transform.position = renderer.objectsToRender[selectedObject]->transform.position;
+        }
+
+        ImGui::SameLine();
+        if (ImGui::Button("Delete"))
+        {
+            renderer.objectsToRender.erase(renderer.objectsToRender.begin() + selectedObject);
+            selectedObject = -2;
         }
 
         if (ImGui::CollapsingHeader("Transform"))
@@ -527,9 +544,15 @@ void Editor::Inspector()
                 ImGui::Image((void*)character->cTexture.textureBuffer, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
 
                 ImGui::SameLine();
+
                 ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 0.5f));
-                ImGui::Text(character->cTexture.m_imagePath.c_str());
+                ImGui::InputText("##label", &character->cTexture.m_imagePath);
                 ImGui::PopStyleColor();
+
+                if (ImGui::Button("Save"))
+                {
+                    renderer.RegenerateObject(selectedObject);
+                }
 
                 ImGui::Text("Colour:");
                 ImGui::SameLine();
@@ -540,10 +563,6 @@ void Editor::Inspector()
                 {
                     character->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
                 }
-            }
-            else
-            {
-                DebugOB.Log("Not worked");
             }
         }
     }

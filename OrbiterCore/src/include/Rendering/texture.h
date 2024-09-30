@@ -5,8 +5,8 @@
 struct LiteTexture
 {
 	std::string m_imagePath;
-	GLuint64 textureHandle;
-	unsigned int textureBuffer;
+	GLuint64 textureHandle = 0;
+	unsigned int textureBuffer = 0;
 };
 
 class Texture

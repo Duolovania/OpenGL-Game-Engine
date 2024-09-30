@@ -59,6 +59,21 @@ Vector4 ParseVector4(const std::string& line)
 	return vec4;
 }
 
+int ParseInt(const std::string& line)
+{
+	int integer;
+	std::stringstream ss(line);
+	std::string temp;
+
+	ss >> temp;
+	ss >> integer;
+
+	ss.str("");
+	ss.clear();
+
+	return integer;
+}
+
 Scene FileManager::LoadFile(std::string fileName)
 {
 	std::ifstream oldFile(fileName);

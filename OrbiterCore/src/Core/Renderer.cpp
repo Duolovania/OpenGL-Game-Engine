@@ -20,7 +20,7 @@ bool GLLogCall(const char* function, const char* file, int line)
 
 Renderer::Renderer()
 {
-
+	
 }
 
 Renderer::~Renderer()
@@ -75,6 +75,9 @@ void Renderer::Init()
 	m_shader = std::make_unique<Shader>("../OrbiterCore/Res/Shaders/Basic.shader");
 	m_shader->CreateShader();
 	m_shader->Bind();
+
+	LiteTexture newTexture = m_text.GenBindlessTexture("../OrbiterCore/Res/Default Sprites/whitesqure.png");
+	cachedTextures.push_back(newTexture);
 
 	m_va->Unbind();
 	m_shader->UnBind();
@@ -150,7 +153,7 @@ void Renderer::RegenerateObjects()
 
 	m_shader->Bind();
 
-	GLuint64 samplers[32] = { 0, 1, 2 }; // How many texture slots.
+	std::fill(samplers, samplers + (sizeof(samplers) / sizeof(samplers[0])), 0);
 
 	// Prepares necessary amount of slots and binds each character texture to a slot.
 	for (int i = 0; i < objectsToRender.size(); i++)
@@ -165,6 +168,22 @@ void Renderer::RegenerateObjects()
 	}
 
 	//m_shader->SetUniform3f("ambientLight", glm::vec3(0.05, 0.05, 0.05));
+	m_shader->SetUniformHandlei64vARB("u_Textures", sizeof(samplers), samplers); // Sets the shader texture slots to samplers.
+	m_shader->UnBind();
+}
+
+void Renderer::RegenerateObject(unsigned int index)
+{
+	m_shader->Bind();
+
+	if (std::shared_ptr<Character> character = dynamic_pointer_cast<Character>(objectsToRender[index]))
+	{
+		character->cTexture = GetCachedBindlessTexture(*character, index);
+		samplers[index] = character->cTexture.textureHandle;
+
+		texturesLoaded++;
+	}
+
 	m_shader->SetUniformHandlei64vARB("u_Textures", sizeof(samplers), samplers); // Sets the shader texture slots to samplers.
 	m_shader->UnBind();
 }
@@ -205,6 +224,7 @@ LiteTexture Renderer::GetCachedBindlessTexture(Character character, unsigned int
 	{
 		if (character.cTexture.m_imagePath == cachedTextures[i].m_imagePath)
 		{
+			std::cout << "used caching for " << character.cTexture.m_imagePath << std::endl;
 			return cachedTextures[i];
 		}
 	}
