@@ -7,6 +7,6 @@
 class Scene
 {
 	public:
-		std::string sceneName;
+		std::string sceneName, scenePath;
 		std::vector<std::shared_ptr<GameObject>> objectsToRender;
 };

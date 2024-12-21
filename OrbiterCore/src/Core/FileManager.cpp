@@ -1,10 +1,20 @@
 #include "Core/filemanager.h"
 #include <sstream>
 
-void FileManager::CreateFile(Scene sceneData, std::string fileName)
+enum FileObjectType
+{
+	None,
+	SceneDetails,
+	CharacterDetails
+};
+
+void FileManager::CreateFile(Scene sceneData, std::string sceneName, std::string filePath)
 {
 	std::ofstream newFile;
-	newFile.open(fileName);
+	newFile.open(filePath);
+
+	newFile << "Scene: " << sceneName << std::endl;
+	newFile << "ScenePath: " << filePath + "\n" << std::endl;
 
 	for (auto& data : sceneData.objectsToRender)
 	{
@@ -74,21 +84,36 @@ int ParseInt(const std::string& line)
 	return integer;
 }
 
-Scene FileManager::LoadFile(std::string fileName)
+Scene FileManager::LoadFile(std::string filePath)
 {
-	std::ifstream oldFile(fileName);
+	std::ifstream oldFile(filePath);
 	std::string line;
+
 	Scene newScene;
 	std::shared_ptr<Character> newChar = std::make_unique<Character>();
 
-	bool isPosition = false, newCharacter = false;
+	FileObjectType fObjectType = FileObjectType::None;
+
+	bool isPosition = false, newObject = false;
 
 	if (oldFile.is_open())
 	{
 		while (std::getline(oldFile, line))
 		{
+			if (line.find("Scene:") != std::string::npos)
+			{
+				fObjectType = FileObjectType::SceneDetails;
+				newScene.sceneName = line.substr(line.find("Scene:") + 7);
+			}
+			if (line.find("ScenePath:") != std::string::npos)
+			{
+				newScene.scenePath = line.substr(line.find("ScenePath:") + 11);
+			}
+
 			if (line.find("Name:") != std::string::npos)
 			{
+				newObject = false;
+				fObjectType = FileObjectType::CharacterDetails;
 				newChar->objectName = line.substr(line.find("Name:") + 6);
 			}
 			else if (line.find("Position:") != std::string::npos)
@@ -114,16 +139,15 @@ Scene FileManager::LoadFile(std::string fileName)
 			}
 			else
 			{
-				newCharacter = true;
+				newObject = true;
 			}
 
-			if (newCharacter)
+			if (newObject && fObjectType == FileObjectType::CharacterDetails)
 			{
 				std::shared_ptr<GameObject> tempgObj = newChar;
 
 				newScene.objectsToRender.push_back(tempgObj);
 				newChar = std::make_unique<Character>();
-				newCharacter = false;
 			}
 		}
 

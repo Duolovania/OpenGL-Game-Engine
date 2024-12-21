@@ -59,7 +59,7 @@ void Editor::Init(GLFWwindow* window)
     renderer.Init();
 
     fbShader->Bind();
-    fbShader->SetUniform1i("screenTexture", 0);
+    fbShader->SetUniform1i("screenTexture", 1);
 
     frameBufferVA = std::make_unique<VertexArray>();
     frameBufferVA->Gen();
@@ -78,7 +78,6 @@ void Editor::Init(GLFWwindow* window)
     rootPath = currentPath;
 
     iconTextures = std::make_unique<Texture>("../OrbiterCore/Res/Application Icons/playbutton.png");
-    //iconTextures->Gen(true);
 
     playButton = iconTextures->Load("../OrbiterCore/Res/Application Icons/playbutton.png", true);
     pauseButton = iconTextures->Load("../OrbiterCore/Res/Application Icons/pausebutton.png", true);
@@ -362,15 +361,15 @@ void Editor::Hierarchy()
 {
     ImGui::Begin("Hierarchy");
 
-    if (ImGui::Button("Add"))
-    {
-        std::shared_ptr<GameObject> newCharacter = std::make_unique<Character>();
-        newCharacter->transform.position = camera2D.transform.position;
-        renderer.objectsToRender.push_back(newCharacter);
+    //if (ImGui::Button("Add"))
+    //{
+    //    std::shared_ptr<GameObject> newCharacter = std::make_unique<Character>();
+    //    newCharacter->transform.position = camera2D.transform.position;
+    //    renderer.objectsToRender.push_back(newCharacter);
 
-        //renderer.RegenerateObjects();
-        renderer.RegenerateObject(renderer.objectsToRender.size() - 1);
-    }
+    //    //renderer.RegenerateObjects();
+    //    renderer.RegenerateObject(renderer.objectsToRender.size() - 1);
+    //}
 
     if (currentTest != testMenu)
     {
@@ -915,9 +914,11 @@ void Editor::ContentBrowser()
 
                             if (tempFileName == ".worldOB")
                             {
-                                Scene loadedScene = fileManager.LoadFile("Assets/Scenes/" + entry.path().filename().string());
-                                renderer.objectsToRender = loadedScene.objectsToRender;
+                                currentScene = fileManager.LoadFile("Assets" + tempPath + "\\" + entry.path().filename().string());
+                                renderer.objectsToRender = currentScene.objectsToRender;
                                 renderer.RegenerateObjects();
+
+                                savedChanges = true;
                             }
                         };
 
@@ -954,7 +955,11 @@ void Editor::MenuBar()
         {
             if (ImGui::MenuItem("New Scene"))
             {
-                
+                currentScene.sceneName = "Untitled";
+                currentScene.objectsToRender.clear();
+                renderer.objectsToRender = currentScene.objectsToRender;
+
+                renderer.RegenerateObjects();
             }
 
             if (ImGui::MenuItem("Open Scene"))
@@ -971,18 +976,28 @@ void Editor::MenuBar()
 
                 if (file_path) 
                 {
-                    DebugOB.Log("File selected: %s\n" + std::string(file_path));
+                    std::string tempPath = "Assets" + std::string(file_path).erase(0, rootPath.length());
+
+                    currentScene = fileManager.LoadFile(tempPath);
+                    renderer.objectsToRender = currentScene.objectsToRender;
+                    renderer.RegenerateObjects();
                 }
             }
 
-            if (ImGui::MenuItem("Open Recent"))
+            /*if (ImGui::MenuItem("Open Recent"))
             {
 
-            }
+            }*/
 
             if (ImGui::MenuItem("Save"))
             {
+                Scene test;
+                test.sceneName = currentScene.sceneName;
+                test.scenePath = currentScene.scenePath;
+                test.objectsToRender = renderer.objectsToRender;
 
+                fileManager.CreateFile(test, test.sceneName, test.scenePath);
+                savedChanges = true;
             }
 
             if (ImGui::MenuItem("Save As"))
@@ -1025,11 +1040,12 @@ void Editor::MenuBar()
 
                     Scene test;
                     test.sceneName = file_name_no_ext;
+                    test.scenePath = savePath;
                     test.objectsToRender = renderer.objectsToRender;
 
                     std::string tempPath = savePath;
                     std::string newFileName = tempPath.erase(0, rootPath.length());
-                    fileManager.CreateFile(test, "Assets/" + newFileName);
+                    fileManager.CreateFile(test, test.sceneName, "Assets\\" + newFileName);
                 }
             }
 
@@ -1122,13 +1138,23 @@ void Editor::MenuBar()
 
             ImGui::EndMenu();
         }
+
+        ImGui::SameLine();
+
+        std::string sceneTitle = (savedChanges) ? currentScene.sceneName : currentScene.sceneName + " - Unsaved Changes";
+
+        ImVec2 sceneTitleSize = ImGui::CalcTextSize(sceneTitle.c_str());
+        ImGui::SetCursorPosX((ImGui::GetContentRegionMax().x / 2.0f) - sceneTitleSize.x / 2);
+
+        ImGui::Text(sceneTitle.c_str());
+
         ImGui::SameLine();
         ImGui::SetCursorPosX(ImGui::GetContentRegionMax().x / 1.2f);
 
         // Play scene button.
         if (ImGui::ImageButton((void*)playButton, ImVec2(ImGui::GetContentRegionMax().x / 120, ImGui::GetContentRegionAvail().y)))
         {
-
+            savedChanges = false; // test unsaved indicator.
         }
 
         // Pause scene button.

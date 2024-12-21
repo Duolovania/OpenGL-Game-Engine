@@ -7,6 +7,6 @@
 class FileManager
 {
 	public:
-		void CreateFile(Scene sceneData, std::string fileName);
-		Scene LoadFile(std::string fileName);
+		void CreateFile(Scene sceneData, std::string sceneName, std::string filePath);
+		Scene LoadFile(std::string filePath);
 };
