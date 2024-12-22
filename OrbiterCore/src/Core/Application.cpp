@@ -44,6 +44,8 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     glfwSetWindowIcon(window, 1, images);
 
     glfwSetKeyCallback(window, Engine::HandleInput);
+    glfwSetScrollCallback(window, Engine::HandleScrollInput);
+
     glfwSetJoystickCallback(Engine::HandleGamePadInput);
 
     if (!window)
@@ -124,6 +126,21 @@ void Engine::HandleInput(GLFWwindow* window, int key, int scanCode, int action, 
     }
 }
 
+// Handles mouse scroll input actions.
+void Engine::HandleScrollInput(GLFWwindow* window, double xoffset, double yoffset)
+{
+    if (yoffset > 0)
+        std::cout << "Scroll up" << std::endl;
+    else if (yoffset < 0) 
+        std::cout << "Scroll down" << std::endl;
+
+    if (xoffset > 0)
+        std::cout << "Scroll left" << std::endl;
+    else if (xoffset < 0)
+        std::cout << "Scroll right" << std::endl;
+}
+
+// Handles game pad input actions.
 void Engine::HandleGamePadInput(int jid, int event)
 {
     int buttonCount, selectedButton;

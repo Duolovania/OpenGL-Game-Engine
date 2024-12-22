@@ -34,6 +34,8 @@ class Engine
 		RenderingLayer* renderingLayer;
 
 		static void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods);
+		static void HandleScrollInput(GLFWwindow* window, double xoffset, double yoffset);
+
 		static void HandleGamePadInput(int jid, int event);
 	private:
 		Engine() {}
