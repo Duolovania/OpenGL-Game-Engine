@@ -2,7 +2,7 @@
 
 AudioContext::AudioContext()
 {
-	device = alcOpenDevice(nullptr);
+	device = alcOpenDevice(nullptr); // Opens the default audio device.
 
 	context = alcCreateContext(device, nullptr);
 	alcMakeContextCurrent(context);

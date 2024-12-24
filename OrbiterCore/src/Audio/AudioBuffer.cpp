@@ -10,9 +10,11 @@ AudioBuffer::AudioBuffer(const std::string name)
     ALsizei freq;
     std::vector<char> data;
 
-    if (!LoadWAVFile(name, bufferID, format, freq, data))
+    std::string filePath = "Assets/" + name;
+
+    if (!LoadWAVFile(filePath, bufferID, format, freq, data))
     {
-        DebugOB.Log("Failed to locate file: '" + name + "'. Please check the file path.");
+        DebugOB.Log("Failed to locate file: '" + filePath + "'. Please check the file path.");
     }
 }
 

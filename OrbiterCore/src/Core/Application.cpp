@@ -12,7 +12,6 @@ bool applicationQuit = false;
 
 Engine Engine::instance;
 
-// Application starting point.
 void Application::Run()
 {
     Init(m_screenWidth, m_screenHeight, "Orbiter Editor");
@@ -26,7 +25,6 @@ void Application::Run()
     Close();
 }
 
-// Initializer.
 void Application::Init(int screenWidth, int screenHeight, const char* windowTitle)
 {
     if (!glfwInit())
@@ -68,7 +66,7 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
 
     Sound newSound;
     newSound.soundName = "Test";
-    newSound.filePath = "Assets/SFX/elf-singing-89296.wav";
+    newSound.filePath = "SFX/elf-singing-89296.wav";
 
     Core.audioManager->sounds.push_back(newSound);
     Core.audioManager->GenAllSounds();
@@ -76,7 +74,6 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     Core.renderingLayer->Init(window);
 }
 
-// Application loop.
 void Application::Loop()
 {   
     applicationQuit = !Core.renderingLayer->OnUpdate(deltaTime);
@@ -94,7 +91,6 @@ void Application::Loop()
     timeTime += (float) 0.1;
 }
 
-// Terminates program.
 void Application::Close()
 {
     Core.audioManager->KillAudioManager();
@@ -105,7 +101,6 @@ void Application::Close()
     Core.renderingLayer->CleanUp();
 }
 
-// Handles key input actions.
 void Engine::HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods)
 {
     for (int i = 0; i < Core.InputManager.actionList.size(); i++)
@@ -126,7 +121,6 @@ void Engine::HandleInput(GLFWwindow* window, int key, int scanCode, int action, 
     }
 }
 
-// Handles mouse scroll input actions.
 void Engine::HandleScrollInput(GLFWwindow* window, double xoffset, double yoffset)
 {
     if (yoffset > 0)
@@ -140,7 +134,6 @@ void Engine::HandleScrollInput(GLFWwindow* window, double xoffset, double yoffse
         std::cout << "Scroll right" << std::endl;
 }
 
-// Handles game pad input actions.
 void Engine::HandleGamePadInput(int jid, int event)
 {
     int buttonCount, selectedButton;

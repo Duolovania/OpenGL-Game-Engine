@@ -914,7 +914,7 @@ void Editor::ContentBrowser()
 
                             if (tempFileName == ".worldOB")
                             {
-                                currentScene = fileManager.LoadFile("Assets" + tempPath + "\\" + entry.path().filename().string());
+                                currentScene = fileManager.LoadFile(tempPath + "\\" + entry.path().filename().string());
                                 renderer.objectsToRender = currentScene.objectsToRender;
                                 renderer.RegenerateObjects();
 
@@ -976,7 +976,7 @@ void Editor::MenuBar()
 
                 if (file_path) 
                 {
-                    std::string tempPath = "Assets" + std::string(file_path).erase(0, rootPath.length());
+                    std::string tempPath = std::string(file_path).erase(0, rootPath.length());
 
                     currentScene = fileManager.LoadFile(tempPath);
                     renderer.objectsToRender = currentScene.objectsToRender;
@@ -1045,7 +1045,7 @@ void Editor::MenuBar()
 
                     std::string tempPath = savePath;
                     std::string newFileName = tempPath.erase(0, rootPath.length());
-                    fileManager.CreateFile(test, test.sceneName, "Assets\\" + newFileName);
+                    fileManager.CreateFile(test, test.sceneName, newFileName);
                 }
             }
 

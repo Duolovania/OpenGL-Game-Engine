@@ -5,16 +5,34 @@ enum FileObjectType
 {
 	None,
 	SceneDetails,
+	AudioManagerDetails,
 	CharacterDetails
 };
 
 void FileManager::CreateFile(Scene sceneData, std::string sceneName, std::string filePath)
 {
 	std::ofstream newFile;
-	newFile.open(filePath);
+	std::string fullPath = "Assets\\" + filePath;
+
+	newFile.open(fullPath);
 
 	newFile << "Scene: " << sceneName << std::endl;
-	newFile << "ScenePath: " << filePath + "\n" << std::endl;
+	newFile << "ScenePath: " << fullPath + "\n" << std::endl;
+
+	newFile << "AudioManager: " << std::endl;
+
+	for (auto& soundEffect : sceneData.audioManager->sounds)
+	{
+		newFile << "SoundName: " << soundEffect.soundName << std::endl;
+		newFile << "SoundFilePath: " << soundEffect.filePath << std::endl;
+
+		newFile << "SoundPitch: " << soundEffect.pitch << std::endl;
+		newFile << "SoundVolume: " << soundEffect.volume << std::endl;
+
+		newFile << "SoundLooping: " << soundEffect.isLooping << std::endl;
+		newFile << "SoundOnStartUp: " << soundEffect.playOnStartUp << std::endl;
+		newFile << "SoundDelay: " << soundEffect.repeatDelay + "\n" << std::endl;
+	}
 
 	for (auto& data : sceneData.objectsToRender)
 	{
@@ -86,7 +104,7 @@ int ParseInt(const std::string& line)
 
 Scene FileManager::LoadFile(std::string filePath)
 {
-	std::ifstream oldFile(filePath);
+	std::ifstream oldFile("Assets" + filePath);
 	std::string line;
 
 	Scene newScene;
