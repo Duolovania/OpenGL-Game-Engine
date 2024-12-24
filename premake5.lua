@@ -75,6 +75,12 @@ project "OrbiterCore"
         "%{prj.name}/Vendor/imgui",
         "%{prj.name}/Vendor/stb_image",
         "%{prj.name}/Vendor/glm",
+
+        "%{prj.name}/Vendor/yaml-cpp-master",
+        "%{prj.name}/Vendor/yaml-cpp-master/include/yaml-cpp",
+        "%{prj.name}/Vendor/yaml-cpp-master/include",
+        "%{prj.name}/Vendor/yaml-cpp-master/src",
+
         "%{prj.name}/Vendor/tinyfiledialogs",
         "%{prj.name}/Vendor/tinyfiledialogs/more_dialogs",
 
