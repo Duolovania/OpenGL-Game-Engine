@@ -76,7 +76,7 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
 
 void Application::Loop()
 {   
-    applicationQuit = !Core.renderingLayer->OnUpdate(deltaTime);
+    applicationQuit = !Core.renderingLayer->OnUpdate(deltaTime, timeTime);
 
     timeSinceStart = static_cast<float>(glfwGetTime());
     deltaTime = timeSinceStart - oldTimeSinceStart;

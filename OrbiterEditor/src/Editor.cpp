@@ -1,13 +1,11 @@
 #include "editor.h"
 #include "tinyfiledialogs/tinyfiledialogs.h"
+#include <cmath>
 #include <filesystem>
 
 FileManager fileManager;
 int selectedObject = -2;
 std::string inputString, searchTerm, rootPath, currentPath;
-
-testSpace::Test* currentTest = nullptr;
-testSpace::TestMenu* testMenu = new testSpace::TestMenu(currentTest);
 
 float sprintSpeed;
 float iconSize = 200;
@@ -40,10 +38,6 @@ GLuint64 playButton, pauseButton, stopButton, fileIcon, folderIcon, wavFileIcon,
 
 void Editor::Init(GLFWwindow* window)
 {
-    currentTest = testMenu;
-    testMenu->RegisterTest<testSpace::TestClearColour>("Clear Colour");
-    testMenu->RegisterTest<testSpace::TestTexture2D>("Texture 2D");
-
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
 
@@ -95,7 +89,7 @@ void Editor::Init(GLFWwindow* window)
     renderer.RegenerateObjects();*/
 }
 
-bool Editor::OnUpdate(float deltaTime)
+bool Editor::OnUpdate(float deltaTime, float time)
 {
     ImGui_ImplGlfw_NewFrame();
     ImGui_ImplOpenGL3_NewFrame();
@@ -122,114 +116,110 @@ bool Editor::OnUpdate(float deltaTime)
     GLCall(glClearColor(camera2D.backgroundColor[0], camera2D.backgroundColor[1], camera2D.backgroundColor[2], 1.0f));
     GLCall(glClear(GL_COLOR_BUFFER_BIT));
 
-    if (currentTest)
+    
+    sprintSpeed = Core.InputManager.GetActionStrength("sprint") * 150;
+
+    camera2D.transform.scale = Vector3(viewportSize.x, viewportSize.y, 0);
+    camera2D.transform.position += Vector2(Core.InputManager.BasicMovement().x * (100.0f + sprintSpeed) * deltaTime, Core.InputManager.BasicMovement().y * (100.0f + sprintSpeed) * deltaTime);
+
+    // Logic for play button test.
+    if (isPlaying)
     {
-        //currentTest->OnUpdate(deltaTime);
-        //currentTest->OnRender();
+        renderer.objectsToRender[0]->transform.position.y = (sin((time) * 1)) * 100; // sine wave movement.
+    }
 
-        if (currentTest != testMenu)
-        {
-            sprintSpeed = Core.InputManager.GetActionStrength("sprint") * 150;
+    renderer.Draw(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f), camera2D.GetView(), {camera2D.outputColor[0], camera2D.outputColor[1], camera2D.outputColor[2], camera2D.outputColor[3]});
 
-            camera2D.transform.scale = Vector3(viewportSize.x, viewportSize.y, 0);
-            camera2D.transform.position += Vector2(Core.InputManager.BasicMovement().x * (100.0f + sprintSpeed) * deltaTime, Core.InputManager.BasicMovement().y * (100.0f + sprintSpeed) * deltaTime);
+    ImGui::Begin("Debug Log");
 
-            renderer.Draw(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f), camera2D.GetView(), {camera2D.outputColor[0], camera2D.outputColor[1], camera2D.outputColor[2], camera2D.outputColor[3]});
-        }
+    if (ImGui::Button("Clear")) DebugOB.ClearLog();
 
-        ImGui::Begin("Debug Log");
+    if (ImGui::BeginChild("ConsoleOutput", ImVec2(0, ImGui::GetContentRegionAvail().y / 2.5), true, ImGuiWindowFlags_AlwaysVerticalScrollbar))
+    {
+        ImGui::PushFont(pixelFont);
+        ImGui::TextUnformatted(Debug::Get().GetLogOutput().str().c_str());
+        ImGui::PopFont();
 
-        if (ImGui::Button("Clear")) DebugOB.ClearLog();
+        ImGui::EndChild();
+    }
 
-        if (ImGui::BeginChild("ConsoleOutput", ImVec2(0, ImGui::GetContentRegionAvail().y / 2.5), true, ImGuiWindowFlags_AlwaysVerticalScrollbar))
-        {
-            ImGui::PushFont(pixelFont);
-            ImGui::TextUnformatted(Debug::Get().GetLogOutput().str().c_str());
-            ImGui::PopFont();
+    ImGui::End();
 
-            ImGui::EndChild();
-        }
+    if (showStats)
+    {
+        ImGui::Begin("Rendering Stats");
 
-        currentTest->OnImGuiRender();
+        ImGui::Text("Textures Loaded: %.0f", double(renderer.texturesLoaded));
+        ImGui::Text("New Textures Created: %.0f", double(renderer.newTextures));
 
         ImGui::End();
+    }
 
-        if (showStats)
+    if (showProjSettings)
+    {
+        ImGui::Begin("Project Settings");
+
+        ImGui::Text("Enter Action Name:");
+        ImGui::SameLine();
+
+        ImGui::InputText("##actionInput", &inputString);
+
+        if (ImGui::Button("Add"))
         {
-            ImGui::Begin("Rendering Stats");
-
-            ImGui::Text("Textures Loaded: %.0f", double(renderer.texturesLoaded));
-            ImGui::Text("New Textures Created: %.0f", double(renderer.newTextures));
-
-            ImGui::End();
+            Core.InputManager.AddAction(Action(inputString));
         }
 
-        if (showProjSettings)
+        ImGui::SameLine();
+
+        if (ImGui::Button("Listen to Input")) Core.InputManager.listenToInput = !Core.InputManager.listenToInput;
+
+        if (Core.InputManager.listenToInput)
         {
-            ImGui::Begin("Project Settings");
-
-            ImGui::Text("Enter Action Name:");
             ImGui::SameLine();
+            ImGui::Text("Listening...");
+        }
 
-            ImGui::InputText("##actionInput", &inputString);
-
-            if (ImGui::Button("Add"))
+        if (ImGui::BeginListBox("Actions"))
+        {
+            for (int i = 0; i < Core.InputManager.actionList.size(); i++)
             {
-                Core.InputManager.AddAction(Action(inputString));
-            }
-
-            ImGui::SameLine();
-
-            if (ImGui::Button("Listen to Input")) Core.InputManager.listenToInput = !Core.InputManager.listenToInput;
-
-            if (Core.InputManager.listenToInput)
-            {
-                ImGui::SameLine();
-                ImGui::Text("Listening...");
-            }
-
-            if (ImGui::BeginListBox("Actions"))
-            {
-                for (int i = 0; i < Core.InputManager.actionList.size(); i++)
+                ImGui::PushID(i);
+                if (ImGui::CollapsingHeader(("Name: " + Core.InputManager.actionList[i].GetActionName()).c_str()))
                 {
-                    ImGui::PushID(i);
-                    if (ImGui::CollapsingHeader(("Name: " + Core.InputManager.actionList[i].GetActionName()).c_str()))
+                    Core.InputManager.selectedAction = i;
+
+                    for (int j = 0; j < Core.InputManager.actionList[i].GetKeyBinds().size(); j++)
                     {
-                        Core.InputManager.selectedAction = i;
-
-                        for (int j = 0; j < Core.InputManager.actionList[i].GetKeyBinds().size(); j++)
+                        if (ImGui::Selectable(Core.InputManager.actionList[i].GetKeyName(j)), keyBindIndex == j)
                         {
-                            if (ImGui::Selectable(Core.InputManager.actionList[i].GetKeyName(j)), keyBindIndex == j)
-                            {
 
-                            }
+                        }
 
-                            ImGui::SameLine();
+                        ImGui::SameLine();
 
-                            if (ImGui::Button("Delete##1"))
-                            {
-                                Core.InputManager.actionList[i].DeleteKeyBind(j);
-                            }
+                        if (ImGui::Button("Delete##1"))
+                        {
+                            Core.InputManager.actionList[i].DeleteKeyBind(j);
                         }
                     }
-
-                    ImGui::SetCursorPos(ImVec2(ImGui::GetContentRegionMax().x + 100, ImGui::GetCursorPos().y));
-
-                    ImGui::SameLine();
-
-                    if (ImGui::Button("Delete##2"))
-                    {
-                        Core.InputManager.DeleteAction(i);
-                    }
-
-                    ImGui::PopID();
                 }
 
-                ImGui::EndListBox();
+                ImGui::SetCursorPos(ImVec2(ImGui::GetContentRegionMax().x + 100, ImGui::GetCursorPos().y));
+
+                ImGui::SameLine();
+
+                if (ImGui::Button("Delete##2"))
+                {
+                    Core.InputManager.DeleteAction(i);
+                }
+
+                ImGui::PopID();
             }
 
-            ImGui::End();
+            ImGui::EndListBox();
         }
+
+        ImGui::End();
     }
 
     framebuffer->UnBind();
@@ -250,8 +240,7 @@ void Editor::Close()
 
 void Editor::CleanUp()
 {
-    delete currentTest;
-    if (currentTest != testMenu) delete testMenu;
+    
 }
 
 void Editor::StylesConfig()
@@ -371,20 +360,18 @@ void Editor::Hierarchy()
     //    renderer.RegenerateObject(renderer.objectsToRender.size() - 1);
     //}
 
-    if (currentTest != testMenu)
+    if (ImGui::Button((camera2D.objectName).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)))
     {
-        if (ImGui::Button((camera2D.objectName).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)))
-        {
             selectedObject = -1;
-        }
-
-        for (int i = 0; i < renderer.objectsToRender.size(); i++)
-        {
-            ImGui::PushID(i);
-            ShowHierarchy(renderer.objectsToRender[i]->objectName, i, true);
-            ImGui::PopID();
-        }
     }
+
+    for (int i = 0; i < renderer.objectsToRender.size(); i++)
+    {
+        ImGui::PushID(i);
+        ShowHierarchy(renderer.objectsToRender[i]->objectName, i, true);
+        ImGui::PopID();
+    }
+
     ImGui::End();
 }
 
@@ -1049,17 +1036,9 @@ void Editor::MenuBar()
                 }
             }
 
-            if (currentTest != testMenu)
+            if (ImGui::MenuItem("Close Scene"))
             {
-                if (ImGui::MenuItem("Close Scene"))
-                {
-                    if (currentTest != testMenu)
-                    {
-                        delete currentTest;
-                        currentTest = testMenu;
-                        selectedObject = -2;
-                    }
-                }
+                
             }
 
             if (ImGui::MenuItem("Exit Editor"))
@@ -1155,13 +1134,15 @@ void Editor::MenuBar()
         if (ImGui::ImageButton((void*)playButton, ImVec2(ImGui::GetContentRegionMax().x / 120, ImGui::GetContentRegionAvail().y)))
         {
             savedChanges = false; // test unsaved indicator.
+
+            isPlaying = true;
         }
 
         // Pause scene button.
         ImGui::SameLine();
         if (ImGui::ImageButton((void*)pauseButton, ImVec2(ImGui::GetContentRegionMax().x / 120, ImGui::GetContentRegionAvail().y)))
         {
-
+            isPlaying = false;
         }
 
         // Stop scene button.

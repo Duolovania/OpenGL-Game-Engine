@@ -2,6 +2,7 @@
 #include "Audio/audiosource.h"
 #include <string>
 
+// This struct acts as a blueprint for creating/storing sound effects. 
 struct Sound
 {
 	std::string soundName, filePath;
@@ -12,6 +13,7 @@ struct Sound
 	
 	glm::vec3 position, velocity;
 
+	// Overrides the '=' operator to allow for sounds to be set more easily.
 	Sound& operator=(const Sound& other)
 	{
 		Sound result;
@@ -28,6 +30,7 @@ struct Sound
 		return result;
 	}
 
+	// Overrides the '!=' operator to allow for sounds to be compared more easily.
 	bool& operator!=(const Sound& other)
 	{
 		bool result = (
@@ -43,6 +46,7 @@ struct Sound
 		return result;
 	}
 
+	// Overrides the '==' operator to allow for sounds to be compared more easily.
 	bool& operator==(const Sound& other)
 	{
 		bool result = (
