@@ -2,6 +2,9 @@
 
 This project was made as a test for creating a custom 2D game engine using OpenGL. The purpose of this project is to gain experience in creating large and complex applications with C++. 
 
+## Quick Preview of the Project:
+[![OpenGL-Engine](https://img.youtube.com/vi/BP6YV-C052M/0.jpg)](https://www.youtube.com/watch?v=BP6YV-C052M)
+
 ## Features:
 * 2D sprite creation and texture caching.
 * Asset browser (for navigating and managing project files). This includes icons, file searching, and dynamic table layout (depending on the size of the window).
