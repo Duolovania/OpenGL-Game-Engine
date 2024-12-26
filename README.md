@@ -22,6 +22,7 @@ This project was made as a test for creating a custom 2D game engine using OpenG
 * OpenAL - 3D audio API.
 * glm - OpenGL mathematics library.
 * Dear ImGui - GUI library for C++.
+* Premake - Build tool for creating and configuring project files.
 
 ## What I Learned:
 * File creation, writing, and parsing.
