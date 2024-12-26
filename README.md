@@ -29,4 +29,6 @@ This project was made as a test for creating a custom 2D game engine using OpenG
 * Using GLSL to write shader logic.
 * Using raw and smart pointers for memory management.
 * Working with third-party libraries to improve development time.
-* Setting up complex project structures.
+* Setting up project structures for complex applications.
+* Using Premake for generating and configuring the project.
+* Working with statically linked libaries in C++.
