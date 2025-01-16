@@ -12,6 +12,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrbiterEditor", "OrbiterEdi
 		{65079033-D1BC-0829-5AB1-0200C665FF2C} = {65079033-D1BC-0829-5AB1-0200C665FF2C}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yaml-cpp", "OrbiterCore\Vendor\yaml-cpp-master\yaml-cpp.vcxproj", "{88F1A057-74BE-FB62-9DD7-E90A890331F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -70,6 +72,18 @@ Global
 		{83178E5B-EFD7-0992-B812-530F24924E6E}.Release|Win32.Build.0 = Release|Win32
 		{83178E5B-EFD7-0992-B812-530F24924E6E}.Release|x64.ActiveCfg = Release|x64
 		{83178E5B-EFD7-0992-B812-530F24924E6E}.Release|x64.Build.0 = Release|x64
+		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Debug|Win32.Build.0 = Debug|Win32
+		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Debug|x64.ActiveCfg = Debug|x64
+		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Debug|x64.Build.0 = Debug|x64
+		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Dist|Win32.ActiveCfg = Dist|Win32
+		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Dist|Win32.Build.0 = Dist|Win32
+		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Dist|x64.ActiveCfg = Dist|x64
+		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Dist|x64.Build.0 = Dist|x64
+		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Release|Win32.ActiveCfg = Release|Win32
+		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Release|Win32.Build.0 = Release|Win32
+		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Release|x64.ActiveCfg = Release|x64
+		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

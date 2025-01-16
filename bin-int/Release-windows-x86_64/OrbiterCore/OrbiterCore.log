@@ -1,76 +1,4 @@
 ﻿cl : command line  warning D9025: overriding '/MT' with '/MD'
-  AudioBuffer.cpp
-  AudioContext.cpp
-  AudioListener.cpp
-  AudioManager.cpp
-  AudioSource.cpp
-  Action.cpp
-  Animation.cpp
-  AnimationFrame.cpp
-  AnimationPlayer.cpp
-  Application.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\Application.cpp(110,18): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
-  Character.cpp
-  EditorUI.cpp
-  FileManager.cpp
-  Input.cpp
-  Renderer.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\Renderer.cpp(158,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\Renderer.cpp(165,37): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\Renderer.cpp(218,20): warning C4018: '<': signed/unsigned mismatch
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(3597,56): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
-  (compiling source file 'Scripts/Core/Renderer.cpp')
-      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(3597,56):
-      the template instantiation context (the oldest one first) is
-          C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\Renderer.cpp(61,14):
-          see reference to function template instantiation 'std::unique_ptr<IndexBuffer,std::default_delete<IndexBuffer>> std::make_unique<IndexBuffer,size_t,0>(size_t &&)' being compiled
-  
-  FrameBuffer.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(74,16): warning C4244:         ]
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\FrameBuffer.cpp(75,17): warning C4244:         ]
-  IndexBuffer.cpp
-  Shader.cpp
-  Texture.cpp
-  VertexArray.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Rendering\VertexArray.cpp(42,3): warning C4312: 'type cast': conversion from 'unsigned int' to 'const void *' of greater size
-  Generating Code...
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\EditorUI.cpp(345,1): warning C4715: 'EditorUI::Begin': not all control paths return a value
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Core\Animation.cpp(24,1): warning C4715: 'Animation::Start': not all control paths return a value
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Audio\AudioManager.cpp(98,1): warning C4715: 'AudioManager::CheckDevice': not all control paths return a value
-  Compiling...
-  VertexBuffer.cpp
-  Test.cpp
-  TestClearColour.cpp
-  TestTexture2D.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(36,64): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(36,64): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(36,64): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(36,64): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(36,64): warning C4244:         ]
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(37,61): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(37,61): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(37,61): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(37,61): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(37,61): warning C4244:         ]
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(39,67): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(39,67): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(39,67): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(39,67): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(39,67): warning C4244:         ]
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(40,64): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(40,64): warning C4244:         with
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(40,64): warning C4244:         [
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(40,64): warning C4244:             T=float
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(40,64): warning C4244:         ]
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(42,63): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   glm.cpp
   imgui.cpp
   imgui_demo.cpp
@@ -81,13 +9,148 @@ C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Te
   imgui_tables.cpp
   imgui_widgets.cpp
   STB_Image.cpp
+  AudioBuffer.cpp
+  AudioContext.cpp
+  AudioListener.cpp
+  AudioManager.cpp
+  AudioSource.cpp
+  Action.cpp
+  Animation.cpp
+  AnimationFrame.cpp
+  AnimationPlayer.cpp
+  Application.cpp
   Generating Code...
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestTexture2D.cpp(77,1): warning C4172: returning address of local variable or temporary : tempArr
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\test.h(27,1): warning C4172: returning address of local variable or temporary : tempArr
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\TestClearColour.cpp(62,1): warning C4172: returning address of local variable or temporary : tempArr
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\test.h(27,1): warning C4172: returning address of local variable or temporary : tempArr
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Scripts\Tests\test.h(27,1): warning C4172: returning address of local variable or temporary : tempArr
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\Animation.cpp(24,1): warning C4715: 'Animation::Start': not all control paths return a value
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Audio\AudioManager.cpp(118,1): warning C4715: 'AudioManager::CheckDevice': not all control paths return a value
+  Compiling...
+  Debug.cpp
+  FileManager.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\parser.h(85,28): warning C4251: 'YAML::Parser::m_pScanner': 'std::unique_ptr<YAML::Scanner,std::default_delete<YAML::Scanner>>' needs to have dll-interface to be used by clients of 'YAML::Parser'
+  (compiling source file 'src/Core/FileManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\memory(3335,7):
+      see declaration of 'std::unique_ptr<YAML::Scanner,std::default_delete<YAML::Scanner>>'
+  
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\parser.h(86,31): warning C4251: 'YAML::Parser::m_pDirectives': 'std::unique_ptr<YAML::Directives,std::default_delete<YAML::Directives>>' needs to have dll-interface to be used by clients of 'YAML::Parser'
+  (compiling source file 'src/Core/FileManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\memory(3335,7):
+      see declaration of 'std::unique_ptr<YAML::Directives,std::default_delete<YAML::Directives>>'
+  
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\binary.h(65,30): warning C4251: 'YAML::Binary::m_data': 'std::vector<unsigned char,std::allocator<unsigned char>>' needs to have dll-interface to be used by clients of 'YAML::Binary'
+  (compiling source file 'src/Core/FileManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\vector(429,7):
+      see declaration of 'std::vector<unsigned char,std::allocator<unsigned char>>'
+  
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\ostream_wrapper.h(49,29): warning C4251: 'YAML::ostream_wrapper::m_buffer': 'std::vector<char,std::allocator<char>>' needs to have dll-interface to be used by clients of 'YAML::ostream_wrapper'
+  (compiling source file 'src/Core/FileManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\vector(429,7):
+      see declaration of 'std::vector<char,std::allocator<char>>'
+  
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\emitter.h(139,33): warning C4251: 'YAML::Emitter::m_pState': 'std::unique_ptr<YAML::EmitterState,std::default_delete<YAML::EmitterState>>' needs to have dll-interface to be used by clients of 'YAML::Emitter'
+  (compiling source file 'src/Core/FileManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\memory(3335,7):
+      see declaration of 'std::unique_ptr<YAML::EmitterState,std::default_delete<YAML::EmitterState>>'
+  
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\exceptions.h(155,44): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'YAML::Exception'
+  (compiling source file 'src/Core/FileManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\stdexcept(100,19):
+      see declaration of 'std::runtime_error'
+      C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\exceptions.h(155,20):
+      see declaration of 'YAML::Exception'
+  
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\exceptions.h(164,15): warning C4251: 'YAML::Exception::msg': 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of 'YAML::Exception'
+  (compiling source file 'src/Core/FileManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\xstring(527,7):
+      see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+  
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\node\node.h(135,15): warning C4251: 'YAML::Node::m_invalidKey': 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of 'YAML::Node'
+  (compiling source file 'src/Core/FileManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\xstring(527,7):
+      see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+  
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\node\node.h(136,40): warning C4251: 'YAML::Node::m_pMemory': 'std::shared_ptr<YAML::detail::memory_holder>' needs to have dll-interface to be used by clients of 'YAML::Node'
+  (compiling source file 'src/Core/FileManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\memory(1560,7):
+      see declaration of 'std::shared_ptr<YAML::detail::memory_holder>'
+  
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\node\detail\memory.h(31,9): warning C4251: 'YAML::detail::memory::m_nodes': 'std::set<YAML::detail::shared_node,std::less<YAML::detail::shared_node>,std::allocator<YAML::detail::shared_node>>' needs to have dll-interface to be used by clients of 'YAML::detail::memory'
+  (compiling source file 'src/Core/FileManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\set(51,7):
+      see declaration of 'std::set<YAML::detail::shared_node,std::less<YAML::detail::shared_node>,std::allocator<YAML::detail::shared_node>>'
+  
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\node\detail\memory.h(42,17): warning C4251: 'YAML::detail::memory_holder::m_pMemory': 'std::shared_ptr<YAML::detail::memory>' needs to have dll-interface to be used by clients of 'YAML::detail::memory_holder'
+  (compiling source file 'src/Core/FileManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\memory(1560,7):
+      see declaration of 'std::shared_ptr<YAML::detail::memory>'
+  
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\node\detail\node_data.h(104,15): warning C4251: 'YAML::detail::node_data::m_tag': 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of 'YAML::detail::node_data'
+  (compiling source file 'src/Core/FileManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\xstring(527,7):
+      see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+  
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\node\detail\node_data.h(108,15): warning C4251: 'YAML::detail::node_data::m_scalar': 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of 'YAML::detail::node_data'
+  (compiling source file 'src/Core/FileManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\xstring(527,7):
+      see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+  
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\node\detail\node_data.h(112,12): warning C4251: 'YAML::detail::node_data::m_sequence': 'std::vector<YAML::detail::node *,std::allocator<YAML::detail::node *>>' needs to have dll-interface to be used by clients of 'YAML::detail::node_data'
+  (compiling source file 'src/Core/FileManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\vector(429,7):
+      see declaration of 'std::vector<YAML::detail::node *,std::allocator<YAML::detail::node *>>'
+  
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\node\detail\node_data.h(118,12): warning C4251: 'YAML::detail::node_data::m_map': 'std::vector<std::pair<YAML::detail::node *,YAML::detail::node *>,std::allocator<std::pair<YAML::detail::node *,YAML::detail::node *>>>' needs to have dll-interface to be used by clients of 'YAML::detail::node_data'
+  (compiling source file 'src/Core/FileManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\vector(429,7):
+      see declaration of 'std::vector<std::pair<YAML::detail::node *,YAML::detail::node *>,std::allocator<std::pair<YAML::detail::node *,YAML::detail::node *>>>'
+  
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\node\detail\node_data.h(122,20): warning C4251: 'YAML::detail::node_data::m_undefinedPairs': 'std::list<YAML::detail::node_data::kv_pair,std::allocator<std::pair<YAML::detail::node *,YAML::detail::node *>>>' needs to have dll-interface to be used by clients of 'YAML::detail::node_data'
+  (compiling source file 'src/Core/FileManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\list(755,7):
+      see declaration of 'std::list<YAML::detail::node_data::kv_pair,std::allocator<std::pair<YAML::detail::node *,YAML::detail::node *>>>'
+  
+  Input.cpp
+  Renderer.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\Renderer.cpp(121,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\Renderer.cpp(127,35): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\Renderer.cpp(223,20): warning C4018: '<': signed/unsigned mismatch
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\memory(3597,56): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+  (compiling source file 'src/Core/Renderer.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\memory(3597,56):
+      the template instantiation context (the oldest one first) is
+          C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\Renderer.cpp(60,14):
+          see reference to function template instantiation 'std::unique_ptr<IndexBuffer,std::default_delete<IndexBuffer>> std::make_unique<IndexBuffer,size_t,0>(size_t &&)' being compiled
+  
+  Camera2D.cpp
+  Character.cpp
+  FrameBuffer.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Rendering\FrameBuffer.cpp(83,16): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Rendering\FrameBuffer.cpp(83,16): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Rendering\FrameBuffer.cpp(83,16): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Rendering\FrameBuffer.cpp(83,16): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Rendering\FrameBuffer.cpp(83,16): warning C4244:         ]
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Rendering\FrameBuffer.cpp(84,17): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Rendering\FrameBuffer.cpp(84,17): warning C4244:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Rendering\FrameBuffer.cpp(84,17): warning C4244:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Rendering\FrameBuffer.cpp(84,17): warning C4244:             T=float
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Rendering\FrameBuffer.cpp(84,17): warning C4244:         ]
+  IndexBuffer.cpp
+  Shader.cpp
+  Texture.cpp
+  VertexArray.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Rendering\VertexArray.cpp(42,3): warning C4312: 'type cast': conversion from 'unsigned int' to 'const void *' of greater size
+  VertexBuffer.cpp
+  Test.cpp
+  TestClearColour.cpp
+  TestTexture2D.cpp
+  Vector.cpp
+  Generating Code...
+cl : command line  warning D9025: overriding '/MT' with '/MD'
+  hello.c
+  hello_wchar_t.c
+  tinyfd_moredialogs.c
+  tinyfiledialogs.c
+  Generating Code...
 Gdi32.lib(GDI32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
 User32.lib(USER32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
 Shell32.lib(SHELL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
+hello.obj : warning LNK4006: main already defined in hello_wchar_t.obj; second definition ignored
   OrbiterCore.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin\Release-windows-x86_64\OrbiterCore\OrbiterCore.lib

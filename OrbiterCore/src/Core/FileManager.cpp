@@ -174,3 +174,57 @@ Scene FileManager::LoadFile(std::string filePath)
 
 	return newScene;
 }
+
+void FileManager::CreateYAMLFile(Scene sceneData, std::string sceneName, std::string filePath)
+{
+	YAML::Node yamlNode;
+
+	yamlNode["Scene Details"]["Name"] = sceneName;
+	yamlNode["Scene Details"]["Path"] = filePath;
+
+	for (auto& soundEffect : sceneData.audioManager->sounds)
+	{
+		yamlNode["Audio Manager"]["Name"] = soundEffect.soundName;
+		yamlNode["Audio Manager"]["Path"] = soundEffect.filePath;
+		yamlNode["Audio Manager"]["Pitch"] = soundEffect.pitch;
+		yamlNode["Audio Manager"]["Volume"] = soundEffect.volume;
+		yamlNode["Audio Manager"]["Looping"] = soundEffect.isLooping;
+
+		yamlNode["Audio Manager"]["On Start Up"] = soundEffect.playOnStartUp;
+		yamlNode["Audio Manager"]["Delay"] = soundEffect.repeatDelay;
+	}
+
+	for (auto& data : sceneData.objectsToRender)
+	{
+		yamlNode["GameObjects"]["Name"] = data->objectName;
+
+		if (std::shared_ptr<Character> character = dynamic_pointer_cast<Character>(data))
+		{
+			yamlNode["GameObjects"]["Sprite Renderer"]["Path"] = character->cTexture.m_imagePath;
+			yamlNode["GameObjects"]["Sprite Renderer"]["Color"] = std::to_string(character->color[0]) + " " + std::to_string(character->color[1]) + " " + std::to_string(character->color[2]) + " " + std::to_string(character->color[3]);
+		}
+
+		if (std::shared_ptr<Camera2D> camera = dynamic_pointer_cast<Camera2D>(data))
+		{
+
+		}
+
+		yamlNode["GameObjects"]["Transform"]["Position"] = std::to_string(data->transform.position.x) + " " + std::to_string(data->transform.position.y) + " " + std::to_string(data->transform.position.z);
+		yamlNode["GameObjects"]["Transform"]["Rotation"] = std::to_string(data->transform.rotation.x) + " " + std::to_string(data->transform.rotation.y) + " " + std::to_string(data->transform.rotation.z);
+		yamlNode["GameObjects"]["Transform"]["Scale"] = std::to_string(data->transform.scale.x) + " " + std::to_string(data->transform.scale.y) + " " + std::to_string(data->transform.scale.z);
+	}
+
+	std::ofstream fout(filePath);
+	
+	if (!fout) {
+		std::cerr << "Error: Could not create file at " << filePath << std::endl;
+	}
+
+	fout << yamlNode;
+	fout.close();
+}
+
+Scene FileManager::LoadYAMLFile(std::string filePath)
+{
+	return Scene();
+}

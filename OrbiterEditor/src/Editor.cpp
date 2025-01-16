@@ -982,8 +982,10 @@ void Editor::MenuBar()
                 test.sceneName = currentScene.sceneName;
                 test.scenePath = currentScene.scenePath;
                 test.objectsToRender = renderer.objectsToRender;
+                test.audioManager = Core.audioManager;
 
-                fileManager.CreateFile(test, test.sceneName, test.scenePath);
+                //fileManager.CreateFile(test, test.sceneName, test.scenePath);
+                fileManager.CreateYAMLFile(test, test.sceneName, test.scenePath);
                 savedChanges = true;
             }
 
@@ -1003,7 +1005,7 @@ void Editor::MenuBar()
                     const char* file_name = strrchr(savePath, '/');  // For Unix-based systems
                     if (!file_name) 
                     {
-                        file_name = strrchr(savePath, '\\');  // For Windows paths
+                        file_name = strrchr(savePath, '/');  // For Windows paths
                     }
 
                     if (file_name) 

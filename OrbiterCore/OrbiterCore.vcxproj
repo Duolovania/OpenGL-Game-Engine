@@ -132,8 +132,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;OB_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\yaml-cpp-master;Vendor\yaml-cpp-master\include\yaml-cpp;Vendor\yaml-cpp-master\include;Vendor\yaml-cpp-master\src;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;YAML_CPP_STATIC_DEFINE;OB_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Dependencies\Glad\include;Vendor\yaml-cpp-master\include;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor;Vendor\glfw-master-cherno\include\GLFW;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -154,8 +154,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;OB_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\yaml-cpp-master;Vendor\yaml-cpp-master\include\yaml-cpp;Vendor\yaml-cpp-master\include;Vendor\yaml-cpp-master\src;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;YAML_CPP_STATIC_DEFINE;OB_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Dependencies\Glad\include;Vendor\yaml-cpp-master\include;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor;Vendor\glfw-master-cherno\include\GLFW;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -176,8 +176,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;OB_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\yaml-cpp-master;Vendor\yaml-cpp-master\include\yaml-cpp;Vendor\yaml-cpp-master\include;Vendor\yaml-cpp-master\src;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;YAML_CPP_STATIC_DEFINE;OB_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Dependencies\Glad\include;Vendor\yaml-cpp-master\include;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor;Vendor\glfw-master-cherno\include\GLFW;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -202,8 +202,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;OB_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\yaml-cpp-master;Vendor\yaml-cpp-master\include\yaml-cpp;Vendor\yaml-cpp-master\include;Vendor\yaml-cpp-master\src;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;YAML_CPP_STATIC_DEFINE;OB_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Dependencies\Glad\include;Vendor\yaml-cpp-master\include;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor;Vendor\glfw-master-cherno\include\GLFW;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -228,8 +228,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;OB_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\yaml-cpp-master;Vendor\yaml-cpp-master\include\yaml-cpp;Vendor\yaml-cpp-master\include;Vendor\yaml-cpp-master\src;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;YAML_CPP_STATIC_DEFINE;OB_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Dependencies\Glad\include;Vendor\yaml-cpp-master\include;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor;Vendor\glfw-master-cherno\include\GLFW;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -254,8 +254,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;OB_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Vendor\glfw-master-cherno\include\GLFW;..\Dependencies\Glad\include;Vendor\openal-soft-master;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor\openal-soft-master\src;Vendor\openal-soft-master\src\alc;Vendor\openal-soft-master\src\al;Vendor\openal-soft-master\src\common;Vendor;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\yaml-cpp-master;Vendor\yaml-cpp-master\include\yaml-cpp;Vendor\yaml-cpp-master\include;Vendor\yaml-cpp-master\src;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;YAML_CPP_STATIC_DEFINE;OB_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Dependencies\Glad\include;Vendor\yaml-cpp-master\include;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor;Vendor\glfw-master-cherno\include\GLFW;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -390,6 +390,9 @@
     </ProjectReference>
     <ProjectReference Include="Vendor\openal-soft-master\OpenALSoft.vcxproj">
       <Project>{00310F52-ECE8-509F-55F0-29FB41C7EB8F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="Vendor\yaml-cpp-master\yaml-cpp.vcxproj">
+      <Project>{88F1A057-74BE-FB62-9DD7-E90A890331F1}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

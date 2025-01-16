@@ -26,10 +26,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["Glad"] = "Dependencies/Glad/include"
-IncludeDir["OpenALSoft"] = "OrbiterCore/Vendor/openal-soft-master"
+IncludeDir["yaml_cpp"] = "OrbiterCore/Vendor/yaml-cpp-master/include"
+IncludeDir["OpenALSoft"] = "OrbiterCore/Vendor/openal-soft-master/include"
 
 include "Dependencies/Glad"
 include "OrbiterCore/Vendor/openal-soft-master"
+include "OrbiterCore/Vendor/yaml-cpp-master"
 
 project "OrbiterCore"
     location "OrbiterCore"
@@ -61,25 +63,17 @@ project "OrbiterCore"
     -- Includes dependencies and include paths.
     includedirs 
     {
-        "%{prj.name}/Vendor/glfw-master-cherno/include/GLFW",
         "%{IncludeDir.Glad}",
-        "%{IncludeDir.OpenALSoft}",
-        "%{IncludeDir.OpenALSoft}/include",
-        "%{IncludeDir.OpenALSoft}/include/AL",
-        "%{IncludeDir.OpenALSoft}/src",
-        "%{IncludeDir.OpenALSoft}/src/alc",
-        "%{IncludeDir.OpenALSoft}/src/al",
-        "%{IncludeDir.OpenALSoft}/src/common",
+        "%{IncludeDir.yaml_cpp}",
 
+        "%{IncludeDir.OpenALSoft}",
+        "%{IncludeDir.OpenALSoft}/AL",
+        
         "%{prj.name}/Vendor",
+        "%{prj.name}/Vendor/glfw-master-cherno/include/GLFW",
         "%{prj.name}/Vendor/imgui",
         "%{prj.name}/Vendor/stb_image",
         "%{prj.name}/Vendor/glm",
-
-        "%{prj.name}/Vendor/yaml-cpp-master",
-        "%{prj.name}/Vendor/yaml-cpp-master/include/yaml-cpp",
-        "%{prj.name}/Vendor/yaml-cpp-master/include",
-        "%{prj.name}/Vendor/yaml-cpp-master/src",
 
         "%{prj.name}/Vendor/tinyfiledialogs",
         "%{prj.name}/Vendor/tinyfiledialogs/more_dialogs",
@@ -102,7 +96,8 @@ project "OrbiterCore"
         "User32",
         "Shell32",
         "Glad",
-        "OpenALSoft"
+        "OpenALSoft",
+        "yaml-cpp"
     }
 
     filter { "platforms:Win32" }
@@ -128,13 +123,14 @@ project "OrbiterCore"
             "GLFW_INCLUDE_NONE",
             "_CRT_SECURE_NO_WARNINGS",
             "NOMINMAX",
-            "AL_LIBTYPE_STATIC"
+            "AL_LIBTYPE_STATIC",
+            "YAML_CPP_STATIC_DEFINE"
         }
 
         -- -- Copies engine project DLL into editor project.
         -- postbuildcommands
         -- {
-        --     ("{COPY} %{cfg.buildtarget.relpath} .. /bin/" .. outputdir .. "/OrbiterEditor")
+        --     "{COPY} %{cfg.buildtarget.relpath} .. /bin/" .. outputdir .. "/OrbiterEditor"
         -- }
 
     filter "configurations:Debug"
@@ -173,12 +169,14 @@ project "OrbiterEditor"
     includedirs
     {
         "%{IncludeDir.Glad}",
+        "%{IncludeDir.yaml_cpp}",
         "%{IncludeDir.OpenALSoft}",
         "%{IncludeDir.OpenALSoft}/include",
 
         "OrbiterCore/Vendor/glfw-master-cherno/include/GLFW",
         "OrbiterCore/Vendor/glm",
         "OrbiterCore/Vendor",
+
         "OrbiterCore/src",
         "OrbiterCore/src/include",
         "%{prj.name}/src/include"
@@ -200,7 +198,8 @@ project "OrbiterEditor"
             "_CRT_SECURE_NO_WARNINGS",
             "NOMINMAX",
             "AL_LIBTYPE_STATIC",
-            "GLFW_INCLUDE_NONE"
+            "GLFW_INCLUDE_NONE",
+            "YAML_CPP_STATIC_DEFINE"
         }
 
     filter "configurations:Debug"

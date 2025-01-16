@@ -49,7 +49,7 @@ class Engine
 
 		// The audio manager is used for storing and generating sounds. 
 		// Note: there is only one audio manager in the project.
-		std::unique_ptr<AudioManager> audioManager; 
+		std::shared_ptr<AudioManager> audioManager; 
 
 		RenderingLayer* renderingLayer;
 
