@@ -901,7 +901,7 @@ void Editor::ContentBrowser()
 
                             if (tempFileName == ".worldOB")
                             {
-                                currentScene = fileManager.LoadFile(tempPath + "\\" + entry.path().filename().string());
+                                currentScene = fileManager.LoadYAMLFile(tempPath + "\\" + entry.path().filename().string());
                                 renderer.objectsToRender = currentScene.objectsToRender;
                                 renderer.RegenerateObjects();
 
@@ -1005,7 +1005,7 @@ void Editor::MenuBar()
                     const char* file_name = strrchr(savePath, '/');  // For Unix-based systems
                     if (!file_name) 
                     {
-                        file_name = strrchr(savePath, '/');  // For Windows paths
+                        file_name = strrchr(savePath, '\\');  // For Windows paths
                     }
 
                     if (file_name) 
@@ -1031,10 +1031,12 @@ void Editor::MenuBar()
                     test.sceneName = file_name_no_ext;
                     test.scenePath = savePath;
                     test.objectsToRender = renderer.objectsToRender;
+                    test.audioManager = Core.audioManager;
 
                     std::string tempPath = savePath;
                     std::string newFileName = tempPath.erase(0, rootPath.length());
-                    fileManager.CreateFile(test, test.sceneName, newFileName);
+
+                    fileManager.CreateYAMLFile(test, test.sceneName, "Assets" + newFileName);
                 }
             }
 

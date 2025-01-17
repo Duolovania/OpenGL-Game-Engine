@@ -1,20 +1,16 @@
-Scene Details:
-  Scene: MonkeyTest
-  Scene Path: Assets/Scenes/MonkeyTest.worldOB
-Audio Manager:
-  Sound Name: Test
-  Sound File Path: SFX/elf-singing-89296.wav
-  Sound Pitch: 1
-  Sound Volume: 0.25
-  Sound Looping: false
-  Sound On Start Up: false
-  Sound Delay: true
-GameObjects:
-  Name: Background
-  Sprite Renderer:
-    Image Path: Assets/Sprites/MonkeyStuff/ForestE.png
-    Image Color: 1.000000 1.000000 1.000000 1.000000
-  Transform:
-    Position: 0.000000 0.000000 0.000000
-    Rotation: 0.000000 0.000000 0.000000
-    Scale: 350.000000 300.000000 0.000000
+Scene: MonkeyTest
+ScenePath: Assets\Scenes\MonkeyTest.worldOB
+
+Name: Monkey
+ImagePath: Assets/Sprites/B happy.png
+ImageColor: l.000000 l.000000 l.000000 l.000000 
+Rotation: 0.000000 0.000000 0.000000
+Position: 250.000000 0.000000 0.000000
+Scale: 100.000000 100.000000 0.000000
+
+Name: Background
+ImagePath: Assets/Sprites/MonkeyStuff/ForestE.png
+ImageColor: l.000000 l.000000 l.000000 l.000000 
+Rotation: 0.000000 0.000000 0.000000
+Position: 250.000000 0.000000 0.000000
+Scale: 350.000000 300.000000 0.000000

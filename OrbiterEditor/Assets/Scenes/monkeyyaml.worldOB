@@ -1,0 +1,41 @@
+Scene Details:
+  Name: monkeyyaml
+  Path: Assets\Scenes\monkeyyaml.worldOB
+Audio Manager:
+  - Name: Test
+    Path: SFX/elf-singing-89296.wav
+    Pitch: 1
+    Volume: 0.25
+    Position:
+      - -107374180
+      - -107374180
+      - -107374180
+    Velocity:
+      - -107374180
+      - -107374180
+      - -107374180
+    Looping: false
+    On Start Up: false
+    Delay: true
+GameObjects:
+  - Name: Monkey
+    Sprite Renderer:
+      Path: Assets/Sprites/B happy.png
+      Color:
+        - 1
+        - 1
+        - 1
+        - 0.705882
+    Transform:
+      Position:
+        - 0
+        - 0
+        - 0
+      Rotation:
+        - 0
+        - 0
+        - 0
+      Scale:
+        - 100
+        - 100
+        - 0

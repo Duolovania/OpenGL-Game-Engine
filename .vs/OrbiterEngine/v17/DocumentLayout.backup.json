@@ -7,19 +7,26 @@
       "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\src\\Core\\FileManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\src\\Editor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|solutionrelative:OrbiterEditor\\src\\Editor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\USERS\\RYHAN KHAN\\DOWNLOADS\\GITHUB\\OPENGL-ENGINE\\OPENGL\\ORBITERCORE\\VENDOR\\YAML-CPP-MASTER\\INCLUDE\\YAML-CPP\\EMITTER.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:ORBITERCORE\\VENDOR\\YAML-CPP-MASTER\\INCLUDE\\YAML-CPP\\EMITTER.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88F1A057-74BE-FB62-9DD7-E90A890331F1}|OrbiterCore\\Vendor\\yaml-cpp-master\\yaml-cpp.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Vendor\\yaml-cpp-master\\include\\yaml-cpp\\node\\convert.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{88F1A057-74BE-FB62-9DD7-E90A890331F1}|OrbiterCore\\Vendor\\yaml-cpp-master\\yaml-cpp.vcxproj|solutionrelative:OrbiterCore\\Vendor\\yaml-cpp-master\\include\\yaml-cpp\\node\\convert.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\vector||{3B902123-F8A7-4915-9F01-361F908088D0}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\xmemory||{3B902123-F8A7-4915-9F01-361F908088D0}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\include\\Core\\filemanager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\src\\include\\Core\\filemanager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|C:\\USERS\\RYHAN KHAN\\DOWNLOADS\\GITHUB\\OPENGL-ENGINE\\OPENGL\\ORBITERCORE\\SRC\\INCLUDE\\CORE\\APPLICATION.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|solutionrelative:ORBITERCORE\\SRC\\INCLUDE\\CORE\\APPLICATION.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\vector||{3B902123-F8A7-4915-9F01-361F908088D0}|"
+      "AbsoluteMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\src\\Editor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|solutionrelative:OrbiterEditor\\src\\Editor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -29,7 +36,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -45,54 +52,80 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "application.h",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\include\\Core\\application.h",
-              "RelativeDocumentMoniker": "OrbiterCore\\src\\include\\Core\\application.h",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\include\\Core\\application.h",
-              "RelativeToolTip": "OrbiterCore\\src\\include\\Core\\application.h",
-              "ViewState": "AgIAACAAAAAAAAAAAAAvwDMAAAARAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "emitter.h",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Vendor\\yaml-cpp-master\\include\\yaml-cpp\\emitter.h",
+              "RelativeDocumentMoniker": "OrbiterCore\\Vendor\\yaml-cpp-master\\include\\yaml-cpp\\emitter.h",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Vendor\\yaml-cpp-master\\include\\yaml-cpp\\emitter.h",
+              "RelativeToolTip": "OrbiterCore\\Vendor\\yaml-cpp-master\\include\\yaml-cpp\\emitter.h",
+              "ViewState": "AgIAADEAAAAAAAAAAAAvwEMAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-16T14:15:28.245Z",
+              "WhenOpened": "2025-01-17T13:26:21.922Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "convert.h",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Vendor\\yaml-cpp-master\\include\\yaml-cpp\\node\\convert.h",
+              "RelativeDocumentMoniker": "OrbiterCore\\Vendor\\yaml-cpp-master\\include\\yaml-cpp\\node\\convert.h",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\Vendor\\yaml-cpp-master\\include\\yaml-cpp\\node\\convert.h",
+              "RelativeToolTip": "OrbiterCore\\Vendor\\yaml-cpp-master\\include\\yaml-cpp\\node\\convert.h",
+              "ViewState": "AgIAADEBAAAAAAAAAAAcwEIBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-17T12:44:30.929Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "xmemory",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\xmemory",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\xmemory",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\xmemory",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\xmemory",
+              "ViewState": "AgIAADAFAAAAAAAAAAAcwEEFAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-01-17T12:11:37.575Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "vector",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\vector",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\vector",
               "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\vector",
               "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\vector",
-              "ViewState": "AgIAACkHAAAAAAAAAAAcwDoHAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFEDAAAAAAAAAAAcwGIDAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-01-16T14:12:19.606Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "filemanager.h",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\include\\Core\\filemanager.h",
-              "RelativeDocumentMoniker": "OrbiterCore\\src\\include\\Core\\filemanager.h",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\include\\Core\\filemanager.h",
-              "RelativeToolTip": "OrbiterCore\\src\\include\\Core\\filemanager.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-15T11:01:29.986Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "Editor.cpp",
               "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\src\\Editor.cpp",
               "RelativeDocumentMoniker": "OrbiterEditor\\src\\Editor.cpp",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\src\\Editor.cpp",
               "RelativeToolTip": "OrbiterEditor\\src\\Editor.cpp",
-              "ViewState": "AgIAANgDAAAAAAAAAAAvwO8DAAA4AAAAAAAAAA==",
+              "ViewState": "AgIAAHQDAAAAAAAAAAAvwIYDAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-15T11:35:31.736Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "filemanager.h",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\include\\Core\\filemanager.h",
+              "RelativeDocumentMoniker": "OrbiterCore\\src\\include\\Core\\filemanager.h",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\include\\Core\\filemanager.h",
+              "RelativeToolTip": "OrbiterCore\\src\\include\\Core\\filemanager.h",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACgAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-15T11:01:29.986Z",
               "EditorCaption": ""
             },
             {
@@ -103,7 +136,7 @@
               "RelativeDocumentMoniker": "OrbiterCore\\src\\Core\\FileManager.cpp",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Core\\FileManager.cpp",
               "RelativeToolTip": "OrbiterCore\\src\\Core\\FileManager.cpp",
-              "ViewState": "AgIAALoAAAAAAAAAAAAAANoAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAOoAAAAAAAAAAAAAAPsAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-15T11:17:19.585Z",
               "EditorCaption": ""

@@ -123,7 +123,7 @@ void Engine::HandleInput(GLFWwindow* window, int key, int scanCode, int action, 
 
 void Engine::HandleScrollInput(GLFWwindow* window, double xoffset, double yoffset)
 {
-    if (yoffset > 0)
+    /*if (yoffset > 0)
         std::cout << "Scroll up" << std::endl;
     else if (yoffset < 0) 
         std::cout << "Scroll down" << std::endl;
@@ -131,7 +131,7 @@ void Engine::HandleScrollInput(GLFWwindow* window, double xoffset, double yoffse
     if (xoffset > 0)
         std::cout << "Scroll left" << std::endl;
     else if (xoffset < 0)
-        std::cout << "Scroll right" << std::endl;
+        std::cout << "Scroll right" << std::endl;*/
 }
 
 void Engine::HandleGamePadInput(int jid, int event)
