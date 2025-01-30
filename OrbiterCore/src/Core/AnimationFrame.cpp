@@ -1,4 +1,4 @@
-#include "Core/animationframe.h"
+#include "Components/animationframe.h"
 
 AnimationFrame::AnimationFrame(const std::string& filePath)
 	: m_imageFilePath(filePath)

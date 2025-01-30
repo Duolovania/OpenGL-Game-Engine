@@ -1,5 +1,5 @@
 #pragma once
-#include "Core/animationplayer.h"
+#include "Components/animationplayer.h"
 #include "gtc/matrix_transform.hpp"
 
 #include "GameObjects/gameobject.h"

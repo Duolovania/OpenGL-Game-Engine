@@ -168,13 +168,13 @@
     <ClInclude Include="src\include\Core\action.h">
       <Filter>src\include\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\Core\animation.h">
+    <ClInclude Include="src\include\Components\animation.h">
       <Filter>src\include\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\Core\animationframe.h">
+    <ClInclude Include="src\include\Components\animationframe.h">
       <Filter>src\include\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\Core\animationplayer.h">
+    <ClInclude Include="src\include\Components\animationplayer.h">
       <Filter>src\include\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\include\Core\application.h">
@@ -246,6 +246,9 @@
     <ClInclude Include="src\include\orbiter.h">
       <Filter>src\include</Filter>
     </ClInclude>
+    <ClInclude Include="src\include\Components\component.h" />
+    <ClInclude Include="src\include\Components\camera.h" />
+    <ClInclude Include="src\include\Components\spriterenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vendor\glm\detail\glm.cpp">
@@ -314,7 +317,7 @@
     <ClCompile Include="src\Core\AnimationFrame.cpp">
       <Filter>src\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Core\AnimationPlayer.cpp">
+    <ClCompile Include="src\Components\AnimationPlayer.cpp">
       <Filter>src\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Core\Application.cpp">
@@ -368,6 +371,9 @@
     <ClCompile Include="src\include\Math\Vector.cpp">
       <Filter>src\include\Math</Filter>
     </ClCompile>
+    <ClCompile Include="src\Components\Camera.cpp" />
+    <ClCompile Include="src\GameObjects\GameObject.cpp" />
+    <ClCompile Include="src\Components\SpriteRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vendor\tinyfiledialogs\dll_cs_lua_R_fortran_pascal\tinyfiledialogs_dylib.sh">

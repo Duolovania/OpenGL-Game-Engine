@@ -1,4 +1,4 @@
-#include "Core/animation.h"
+#include "Components/animation.h"
 
 Animation::Animation()
 	: playbackIndex(0), selectedTexture(0)

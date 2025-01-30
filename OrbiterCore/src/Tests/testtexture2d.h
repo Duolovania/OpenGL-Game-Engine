@@ -6,7 +6,7 @@
 #include "Rendering/vertexbufferlayout.h"
 #include "Rendering/vertexbuffer.h"
 #include "Core/input.h"
-#include "Core/animationplayer.h"
+#include "Components/animationplayer.h"
 
 #include <memory>
 #include <algorithm>

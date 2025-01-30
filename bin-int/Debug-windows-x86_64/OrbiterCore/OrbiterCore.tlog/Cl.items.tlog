@@ -1,3 +1,6 @@
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Components\Camera.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\Camera.obj
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\GameObjects\GameObject.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\GameObject.obj
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Components\SpriteRenderer.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\SpriteRenderer.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\glm\detail\glm.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\glm.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\imgui\imgui.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\imgui.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\imgui\imgui_demo.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\imgui_demo.obj
@@ -20,7 +23,7 @@ C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Audio\
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\Action.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\Action.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\Animation.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\Animation.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\AnimationFrame.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\AnimationFrame.obj
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\AnimationPlayer.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\AnimationPlayer.obj
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Components\AnimationPlayer.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\AnimationPlayer.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\Application.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\Application.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\Debug.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\Debug.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\FileManager.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\FileManager.obj
