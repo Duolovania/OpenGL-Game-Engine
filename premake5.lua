@@ -1,5 +1,6 @@
 workspace "OrbiterEngine"
     architecture "x64"
+    startproject "OrbiterEditor" -- Sets the startup project to the editor.
 
     configurations
     {
@@ -22,17 +23,19 @@ workspace "OrbiterEngine"
         system "Windows"
         architecture "x64"
 
-outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}" -- Sets the output directory naming structure.
 
 IncludeDir = {}
 IncludeDir["Glad"] = "Dependencies/Glad/include"
 IncludeDir["yaml_cpp"] = "OrbiterCore/Vendor/yaml-cpp-master/include"
 IncludeDir["OpenALSoft"] = "OrbiterCore/Vendor/openal-soft-master/include"
 
+-- Includes folders in the project.
 include "Dependencies/Glad"
 include "OrbiterCore/Vendor/openal-soft-master"
 include "OrbiterCore/Vendor/yaml-cpp-master"
 
+-- Engine core configuration.
 project "OrbiterCore"
     location "OrbiterCore"
     kind "StaticLib"
@@ -41,7 +44,7 @@ project "OrbiterCore"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-    -- Targets all cpp and header files.
+    -- Files to be compiled.
     files
     {
         "%{prj.name}/src/**.h",
@@ -60,7 +63,7 @@ project "OrbiterCore"
         "%{prj.name}/Vendor/tinyfiledialogs/**h"
     }
 
-    -- Includes dependencies and include paths.
+    -- Include directories/paths.
     includedirs 
     {
         "%{IncludeDir.Glad}",
@@ -136,18 +139,19 @@ project "OrbiterCore"
     filter "configurations:Debug"
         defines "OB_DEBUG"
         symbols "On"
-        buildoptions "/MDd"
+        buildoptions "/MDd" -- Multi-threaded debug DLL.
 
     filter "configurations:Release"
         defines "OB_RELEASE"
         optimize "On"
-        buildoptions "/MD"
+        buildoptions "/MD" -- Multi-threaded DLL.
 
     filter "configurations:Dist"
         defines "OB_DIST"
         optimize "On"
-        buildoptions "/MD"
+        buildoptions "/MD" -- Multi-threaded DLL.
 
+-- Engine editor configuration.
 project "OrbiterEditor"
     location "OrbiterEditor"
     kind "ConsoleApp"
@@ -205,14 +209,14 @@ project "OrbiterEditor"
     filter "configurations:Debug"
         defines "OB_DEBUG"
         symbols "On"
-        buildoptions "/MDd"
+        buildoptions "/MDd" -- Multi-threaded debug DLL.
 
     filter "configurations:Release"
         defines "OB_RELEASE"
         optimize "On"
-        buildoptions "/MD"
+        buildoptions "/MD" -- Multi-threaded DLL.
 
     filter "configurations:Dist"
         defines "OB_DIST"
         optimize "On"
-        buildoptions "/MD"
+        buildoptions "/MD" -- Multi-threaded DLL.
