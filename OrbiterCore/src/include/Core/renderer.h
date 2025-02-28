@@ -33,7 +33,6 @@ class Renderer
         void RegenerateObjects();
         void RegenerateObject(unsigned int index);
 
-        //std::vector<Character> objectsToRender;
         std::vector<std::shared_ptr<GameObject>> objectsToRender;
 
         int texturesLoaded = 0, newTextures = 0;
@@ -50,7 +49,7 @@ class Renderer
         std::vector<LiteTexture> cachedTextures;
 
         Vertex* CreateQuad(Vertex* target, glm::mat4 transform, float texID, Vector4 color);
-        LiteTexture GetCachedBindlessTexture(Character character, unsigned int index);
+        LiteTexture GetCachedBindlessTexture(std::shared_ptr<SpriteRenderer> spriteRendererComp, unsigned int index);
 
         GLuint64 samplers[32] = { 0, 1, 2 }; // How many texture slots.
 };

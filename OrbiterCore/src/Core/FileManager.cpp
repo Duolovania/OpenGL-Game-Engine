@@ -1,4 +1,5 @@
 #include "Core/filemanager.h"
+#include "Components/spriterenderer.h"
 #include <sstream>
 
 enum FileObjectType
@@ -231,10 +232,12 @@ void FileManager::CreateYAMLFile(Scene sceneData, std::string sceneName, std::st
 		YAML::Node newGObj;
 		newGObj["Name"] = data->objectName;
 
-		if (std::shared_ptr<Character> character = dynamic_pointer_cast<Character>(data))
+		if (data->HasComponent("Sprite Renderer"))
 		{
-			newGObj["Sprite Renderer"]["Path"] = character->cTexture.m_imagePath;
-			newGObj["Sprite Renderer"]["Color"] = Vector4ToString(Vector4(character->color[0], character->color[1], character->color[2], character->color[3]));
+			std::shared_ptr<SpriteRenderer> spriteRenderer = data->GetComponent<SpriteRenderer>();
+
+			newGObj["Sprite Renderer"]["Path"] = spriteRenderer->cTexture.m_imagePath;
+			newGObj["Sprite Renderer"]["Color"] = Vector4ToString(Vector4(spriteRenderer->color[0], spriteRenderer->color[1], spriteRenderer->color[2], spriteRenderer->color[3]));
 		}
 
 		if (std::shared_ptr<Camera2D> camera = dynamic_pointer_cast<Camera2D>(data))
@@ -281,22 +284,23 @@ std::vector<std::shared_ptr<GameObject>> GetGameObjects(const YAML::Node& root)
 
 	for (const auto& node : root["GameObjects"])
 	{
-		std::shared_ptr<Character> newChar = std::make_unique<Character>();
+		SpriteRenderer spriteRenderer;
+		std::shared_ptr<GameObject> tempgObj = std::make_unique<GameObject>();
 
 		Vector4 vec4 = NodeToVector4(node["Sprite Renderer"]["Color"]);
-		newChar->SetColor({ vec4.x, vec4.y, vec4.z, vec4.w });
+		spriteRenderer.SetColor({ vec4.x, vec4.y, vec4.z, vec4.w });
+		spriteRenderer.cTexture.m_imagePath = node["Sprite Renderer"]["Path"].as<std::string>();
 
-		newChar->objectName = node["Name"].as<std::string>();
-		newChar->cTexture.m_imagePath = node["Sprite Renderer"]["Path"].as<std::string>();
+		tempgObj->AddComponent(spriteRenderer);
 
-		newChar->transform.position = NodeToVector3(node["Transform"]["Position"]);
-		newChar->transform.rotation = NodeToVector3(node["Transform"]["Rotation"]);
-		newChar->transform.scale = NodeToVector3(node["Transform"]["Scale"]);
+		tempgObj->objectName = node["Name"].as<std::string>();
 
-		std::shared_ptr<GameObject> tempgObj = newChar;
+		tempgObj->transform.position = NodeToVector3(node["Transform"]["Position"]);
+		tempgObj->transform.rotation = NodeToVector3(node["Transform"]["Rotation"]);
+		tempgObj->transform.scale = NodeToVector3(node["Transform"]["Scale"]);
 
 		objectVector.push_back(tempgObj);
-		newChar = std::make_unique<Character>();
+		tempgObj = std::make_unique<GameObject>();
 	}
 
 	return objectVector;
@@ -338,7 +342,7 @@ Scene FileManager::LoadYAMLFile(std::string filePath)
 	// Checks if the file exists.
 	if (!yamlNode)
 	{
-		std::cout << "Failed to load file at:" << "Assets" + filePath << std::endl;
+		std::cout << "Failed to load file at:" << "Assets" + filePath << std::endl; // Outputs error message.
 		return newScene; // Returns empty scene.
 	}
 

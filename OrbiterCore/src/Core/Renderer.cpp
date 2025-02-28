@@ -109,16 +109,18 @@ void Renderer::Draw(glm::mat4 projection, glm::mat4 view, glm::vec4 colourTint)
 
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
-		if (std::shared_ptr<Character> character = dynamic_pointer_cast<Character>(objectsToRender[i]))
+		if (objectsToRender[i]->HasComponent("Sprite Renderer"))
 		{
-			if (character->CheckVisibility(glm::vec2(view[3].x, view[3].y)))
-			{
-				glm::mat4 transform = 
-					glm::translate(glm::mat4(1.0f), glm::vec3(character->transform.position.x, character->transform.position.y, 0.0f))
-					* glm::rotate(glm::mat4(1.0f), glm::radians(-character->transform.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f))
-					* glm::scale(glm::mat4(1.0f), glm::vec3(character->transform.scale.x, character->transform.scale.y, 1.0f));
+			std::shared_ptr<SpriteRenderer> spriteRenderer = objectsToRender[i]->GetComponent<SpriteRenderer>();
 
-				buffer = CreateQuad(buffer, transform, i, { character->color[0], character->color[1], character->color[2], character->color[3] });
+			if (spriteRenderer->CheckVisibility(glm::vec2(view[3].x, view[3].y)))
+			{
+				glm::mat4 transform =
+					glm::translate(glm::mat4(1.0f), glm::vec3(objectsToRender[i]->transform.position.x, objectsToRender[i]->transform.position.y, 0.0f))
+					* glm::rotate(glm::mat4(1.0f), glm::radians(-objectsToRender[i]->transform.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f))
+					* glm::scale(glm::mat4(1.0f), glm::vec3(objectsToRender[i]->transform.scale.x, objectsToRender[i]->transform.scale.y, 1.0f));
+
+					buffer = CreateQuad(buffer, transform, i, { spriteRenderer->color[0], spriteRenderer->color[1], spriteRenderer->color[2], spriteRenderer->color[3] });
 			}
 		}
 	}
@@ -158,10 +160,11 @@ void Renderer::RegenerateObjects()
 	// Prepares necessary amount of slots and binds each character texture to a slot.
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
-		if (std::shared_ptr<Character> character = dynamic_pointer_cast<Character>(objectsToRender[i]))
+		if (objectsToRender[i]->HasComponent("Sprite Renderer"))
 		{
-			character->cTexture = GetCachedBindlessTexture(*character, i);
-			samplers[i] = character->cTexture.textureHandle;
+			std::shared_ptr<SpriteRenderer> spriteRenderer = objectsToRender[i]->GetComponent<SpriteRenderer>();
+			spriteRenderer->cTexture = GetCachedBindlessTexture(spriteRenderer, i);
+			samplers[i] = spriteRenderer->cTexture.textureHandle;
 
 			texturesLoaded++;
 		}
@@ -176,10 +179,11 @@ void Renderer::RegenerateObject(unsigned int index)
 {
 	m_shader->Bind();
 
-	if (std::shared_ptr<Character> character = dynamic_pointer_cast<Character>(objectsToRender[index]))
+	if (objectsToRender[index]->HasComponent("Sprite Renderer"))
 	{
-		character->cTexture = GetCachedBindlessTexture(*character, index);
-		samplers[index] = character->cTexture.textureHandle;
+		std::shared_ptr<SpriteRenderer> spriteRenderer = objectsToRender[index]->GetComponent<SpriteRenderer>();
+		spriteRenderer->cTexture = GetCachedBindlessTexture(spriteRenderer, index);
+		samplers[index] = spriteRenderer->cTexture.textureHandle;
 
 		texturesLoaded++;
 	}
@@ -217,21 +221,21 @@ Vertex* Renderer::CreateQuad(Vertex* target, glm::mat4 transform, float texID, V
 	return target;
 }
 
-LiteTexture Renderer::GetCachedBindlessTexture(Character character, unsigned int index)
+LiteTexture Renderer::GetCachedBindlessTexture(std::shared_ptr<SpriteRenderer> spriteRendererComp, unsigned int index)
 {
 	// Searches for a texture with the same file path.
 	for (int i = 0; i < index; i++)
 	{
-		if (character.cTexture.m_imagePath == cachedTextures[i].m_imagePath)
+		if (spriteRendererComp->cTexture.m_imagePath == cachedTextures[i].m_imagePath)
 		{
-			std::cout << "used caching for " << character.cTexture.m_imagePath << std::endl;
+			std::cout << "used caching for " << spriteRendererComp->cTexture.m_imagePath << std::endl;
 			return cachedTextures[i];
 		}
 	}
 
 	newTextures++;
 
-	LiteTexture newTexture = m_text.GenBindlessTexture(character.cTexture.m_imagePath);
+	LiteTexture newTexture = m_text.GenBindlessTexture(spriteRendererComp->cTexture.m_imagePath);
 	cachedTextures.push_back(newTexture);
 
 	return newTexture; // Returns a new texture if none was found.

@@ -10,6 +10,8 @@
 #include "GameObjects/character.h"
 #include "GameObjects/camera2d.h"
 
+#include "Components/spriterenderer.h"
+
 #include "Tests/test.h"
 #include "Tests/testtexture2d.h"
 #include "Tests/testclearcolour.h"

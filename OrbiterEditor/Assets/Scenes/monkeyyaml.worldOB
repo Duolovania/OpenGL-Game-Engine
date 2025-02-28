@@ -25,7 +25,7 @@ GameObjects:
         - 1
         - 1
         - 1
-        - 0.705882
+        - 1
     Transform:
       Position:
         - 0
@@ -38,4 +38,25 @@ GameObjects:
       Scale:
         - 100
         - 100
+        - 0
+  - Name: New GameObject
+    Sprite Renderer:
+      Path: Assets/Sprites/B happy.png
+      Color:
+        - 1
+        - 1
+        - 1
+        - 1
+    Transform:
+      Position:
+        - 100
+        - 100
+        - 0
+      Rotation:
+        - 0
+        - 0
+        - 0
+      Scale:
+        - 0
+        - 0
         - 0

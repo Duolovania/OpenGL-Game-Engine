@@ -350,15 +350,15 @@ void Editor::Hierarchy()
 {
     ImGui::Begin("Hierarchy");
 
-    //if (ImGui::Button("Add"))
-    //{
-    //    std::shared_ptr<GameObject> newCharacter = std::make_unique<Character>();
-    //    newCharacter->transform.position = camera2D.transform.position;
-    //    renderer.objectsToRender.push_back(newCharacter);
+    if (ImGui::Button("Add"))
+    {
+        std::shared_ptr<GameObject> newGObj = std::make_unique<GameObject>();
+        newGObj->transform.position = camera2D.transform.position;
 
-    //    //renderer.RegenerateObjects();
-    //    renderer.RegenerateObject(renderer.objectsToRender.size() - 1);
-    //}
+        renderer.objectsToRender.push_back(newGObj);
+        //renderer.RegenerateObjects();
+        renderer.RegenerateObject(renderer.objectsToRender.size() - 1);
+    }
 
     if (ImGui::Button((camera2D.objectName).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)))
     {
@@ -523,16 +523,18 @@ void Editor::Inspector()
             }
         }
 
-        if (ImGui::CollapsingHeader("Sprite Renderer"))
+        if (renderer.objectsToRender[selectedObject]->HasComponent("Sprite Renderer"))
         {
-            if (std::shared_ptr<Character> character = dynamic_pointer_cast<Character>(renderer.objectsToRender[selectedObject]))
-            {
-                ImGui::Image((void*)character->cTexture.textureBuffer, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
+            if (ImGui::CollapsingHeader("Sprite Renderer"))
+            { 
+                std::shared_ptr<SpriteRenderer> spriteRenderer = renderer.objectsToRender[selectedObject]->GetComponent<SpriteRenderer>();
+
+                ImGui::Image((void*)spriteRenderer->cTexture.textureBuffer, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
 
                 ImGui::SameLine();
 
                 ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 0.5f));
-                ImGui::InputText("##label", &character->cTexture.m_imagePath);
+                ImGui::InputText("##label", &spriteRenderer->cTexture.m_imagePath);
                 ImGui::PopStyleColor();
 
                 if (ImGui::Button("Save"))
@@ -542,12 +544,12 @@ void Editor::Inspector()
 
                 ImGui::Text("Colour:");
                 ImGui::SameLine();
-                ImGui::ColorEdit4("##label4", (float*)&character->color);
+                ImGui::ColorEdit4("##label4", (float*)&spriteRenderer->color);
 
                 ImGui::SameLine();
                 if (ImGui::Button("Reset"))
                 {
-                    character->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
+                    spriteRenderer->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
                 }
             }
         }
@@ -709,6 +711,12 @@ void Editor::Inspector()
         {
             AudioManagerComponent();
         }
+    }
+
+    if (ImGui::Button("Add Sprite Renderer"))
+    {
+        SpriteRenderer spriteRenderer;
+        renderer.objectsToRender[selectedObject]->AddComponent(spriteRenderer);
     }
 
     ImGui::End();
