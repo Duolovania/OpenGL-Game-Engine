@@ -7,7 +7,6 @@
 #include "Core/scene.h"
 
 #include "GameObjects/gameobject.h"
-#include "GameObjects/character.h"
 #include "GameObjects/camera2d.h"
 
 #include "Components/spriterenderer.h"

@@ -30,7 +30,6 @@ C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\F
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\Input.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\Input.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\Renderer.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\Renderer.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\GameObjects\Camera2D.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\Camera2D.obj
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\GameObjects\Character.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\Character.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Rendering\FrameBuffer.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\FrameBuffer.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Rendering\IndexBuffer.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\IndexBuffer.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Rendering\Shader.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\Shader.obj

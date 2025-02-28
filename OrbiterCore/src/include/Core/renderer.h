@@ -4,9 +4,9 @@
 
 #include "Rendering/texture.h"
 #include "Rendering/shader.h"
+#include "GameObjects/gameobject.h"
 
 #include "Math/vector.h"
-#include "GameObjects/character.h"
 #include "Math/vertex.h"
 #include <array>
 

@@ -1,5 +1,4 @@
 #pragma once
-#include "GameObjects/character.h"
 #include "GameObjects/camera2d.h"
 #include "Audio/audiomanager.h"
 

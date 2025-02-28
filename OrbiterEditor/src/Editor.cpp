@@ -973,7 +973,7 @@ void Editor::MenuBar()
                 {
                     std::string tempPath = std::string(file_path).erase(0, rootPath.length());
 
-                    currentScene = fileManager.LoadFile(tempPath);
+                    currentScene = fileManager.LoadYAMLFile(tempPath);
                     renderer.objectsToRender = currentScene.objectsToRender;
                     renderer.RegenerateObjects();
                 }
