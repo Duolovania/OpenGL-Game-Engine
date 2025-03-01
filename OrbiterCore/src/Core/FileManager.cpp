@@ -1,5 +1,6 @@
 #include "Core/filemanager.h"
 #include "Components/spriterenderer.h"
+#include "Components/camera.h"
 #include <sstream>
 
 enum FileObjectType
@@ -119,9 +120,12 @@ void FileManager::CreateYAMLFile(Scene sceneData, std::string sceneName, std::st
 			newGObj["Sprite Renderer"]["Color"] = Vector4ToString(Vector4(spriteRenderer->color[0], spriteRenderer->color[1], spriteRenderer->color[2], spriteRenderer->color[3]));
 		}
 
-		if (std::shared_ptr<Camera2D> camera = dynamic_pointer_cast<Camera2D>(data))
+		if (data->HasComponent("Camera"))
 		{
+			std::shared_ptr<Camera> camera = data->GetComponent<Camera>();
 
+			newGObj["Camera"]["Output Color"] = Vector4ToString(Vector4(camera->outputColor[0], camera->outputColor[1], camera->outputColor[2], camera->outputColor[3]));
+			newGObj["Camera"]["Background Color"] = Vector4ToString(Vector4(camera->backgroundColor[0], camera->backgroundColor[1], camera->backgroundColor[2], camera->backgroundColor[3]));
 		}
 
 		newGObj["Transform"]["Position"] = Vector3ToString(data->transform.position);
@@ -163,14 +167,31 @@ std::vector<std::shared_ptr<GameObject>> GetGameObjects(const YAML::Node& root)
 
 	for (const auto& node : root["GameObjects"])
 	{
-		SpriteRenderer spriteRenderer;
 		std::shared_ptr<GameObject> tempgObj = std::make_unique<GameObject>();
 
-		Vector4 vec4 = NodeToVector4(node["Sprite Renderer"]["Color"]);
-		spriteRenderer.SetColor({ vec4.x, vec4.y, vec4.z, vec4.w });
-		spriteRenderer.cTexture.m_imagePath = node["Sprite Renderer"]["Path"].as<std::string>();
+		if (node["Sprite Renderer"])
+		{
+			SpriteRenderer spriteRenderer;
 
-		tempgObj->AddComponent(spriteRenderer);
+			Vector4 vec4 = NodeToVector4(node["Sprite Renderer"]["Color"]);
+			spriteRenderer.SetColor({ vec4.x, vec4.y, vec4.z, vec4.w });
+			spriteRenderer.cTexture.m_imagePath = node["Sprite Renderer"]["Path"].as<std::string>();
+
+			tempgObj->AddComponent(spriteRenderer);
+		}
+
+		if (node["Camera"])
+		{
+			Camera camera;
+
+			Vector4 vec4 = NodeToVector4(node["Camera"]["Output Color"]);
+			camera.SetColor(camera.outputColor, { vec4.x, vec4.y, vec4.z, vec4.w });
+
+			vec4 = NodeToVector4(node["Camera"]["Background Color"]);
+			camera.SetColor(camera.backgroundColor, { vec4.x, vec4.y, vec4.z, vec4.w });
+
+			tempgObj->AddComponent(camera);
+		}
 
 		tempgObj->objectName = node["Name"].as<std::string>();
 

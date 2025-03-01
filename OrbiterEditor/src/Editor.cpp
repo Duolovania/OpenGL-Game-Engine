@@ -84,9 +84,6 @@ void Editor::Init(GLFWwindow* window)
     fontFileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/fontfileicon.png", true);
     sceneFileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/scenefileicon.png", true);
     imageFileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/imagefileicon.png", true);
-
-    /*renderer.objectsToRender = fileManager.LoadFile("Assets/Scenes/becky.worldOB").objectsToRender;
-    renderer.RegenerateObjects();*/
 }
 
 bool Editor::OnUpdate(float deltaTime, float time)
@@ -113,22 +110,32 @@ bool Editor::OnUpdate(float deltaTime, float time)
 
     framebuffer->Bind();
 
-    GLCall(glClearColor(camera2D.backgroundColor[0], camera2D.backgroundColor[1], camera2D.backgroundColor[2], 1.0f));
-    GLCall(glClear(GL_COLOR_BUFFER_BIT));
-
-    
-    sprintSpeed = Core.InputManager.GetActionStrength("sprint") * 150;
-
-    camera2D.transform.scale = Vector3(viewportSize.x, viewportSize.y, 0);
-    camera2D.transform.position += Vector2(Core.InputManager.BasicMovement().x * (100.0f + sprintSpeed) * deltaTime, Core.InputManager.BasicMovement().y * (100.0f + sprintSpeed) * deltaTime);
-
-    // Logic for play button test.
-    if (isPlaying)
+    // Check if the camera does not exist.
+    if (camera != nullptr)
     {
-        renderer.objectsToRender[0]->transform.position.y = (sin((time) * 1)) * 100; // sine wave movement.
-    }
+        GLCall(glClearColor(camera->backgroundColor[0], camera->backgroundColor[1], camera->backgroundColor[2], 1.0f));
+        GLCall(glClear(GL_COLOR_BUFFER_BIT));
 
-    renderer.Draw(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f), camera2D.GetView(), {camera2D.outputColor[0], camera2D.outputColor[1], camera2D.outputColor[2], camera2D.outputColor[3]});
+        sprintSpeed = Core.InputManager.GetActionStrength("sprint") * 150; // Camera movement sprint speed.
+
+        cameraObj->transform.scale = Vector3(viewportSize.x, viewportSize.y, 0);
+        cameraObj->transform.position += Vector2(Core.InputManager.BasicMovement().x * (100.0f + sprintSpeed) * deltaTime, Core.InputManager.BasicMovement().y * (100.0f + sprintSpeed) * deltaTime);
+
+        // Logic for play button test.
+        if (isPlaying)
+        {
+            renderer.objectsToRender[0]->transform.position.y = (sin((time) * 1)) * 100; // sine wave movement.
+        }
+
+        // Render scene objects.
+        renderer.Draw(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f), cameraObj->GetView(), { camera->outputColor[0], camera->outputColor[1], camera->outputColor[2], camera->outputColor[3] });
+    }
+    else
+    {
+        GLCall(glClearColor(0.0f, 0.0f, 0.0f, 1.0f)); // Output black screen.
+        GLCall(glClear(GL_COLOR_BUFFER_BIT));
+    }
+    
 
     ImGui::Begin("Debug Log");
 
@@ -353,17 +360,17 @@ void Editor::Hierarchy()
     if (ImGui::Button("Add"))
     {
         std::shared_ptr<GameObject> newGObj = std::make_unique<GameObject>();
-        newGObj->transform.position = camera2D.transform.position;
+        newGObj->transform.position = Vector3();
 
         renderer.objectsToRender.push_back(newGObj);
         //renderer.RegenerateObjects();
         renderer.RegenerateObject(renderer.objectsToRender.size() - 1);
     }
 
-    if (ImGui::Button((camera2D.objectName).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)))
+    /*if (ImGui::Button((camera2D.objectName).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)))
     {
             selectedObject = -1;
-    }
+    }*/
 
     for (int i = 0; i < renderer.objectsToRender.size(); i++)
     {
@@ -386,7 +393,7 @@ void Editor::Inspector()
         ImGui::SameLine();
         if (ImGui::Button("Jump To"))
         {
-            camera2D.transform.position = renderer.objectsToRender[selectedObject]->transform.position;
+            cameraObj->transform.position = renderer.objectsToRender[selectedObject]->transform.position;
         }
 
         ImGui::SameLine();
@@ -553,170 +560,219 @@ void Editor::Inspector()
                 }
             }
         }
-    }
-    else if (selectedObject == -1)
-    {
-        ImGui::InputText("##label0", &camera2D.objectName);
 
-        if (ImGui::CollapsingHeader("Transform"))
+        if (renderer.objectsToRender[selectedObject]->HasComponent("Camera"))
         {
-            if (ImGui::BeginTable("TransformTable", 4))
+            cameraObj = renderer.objectsToRender[selectedObject]; // Sets this gameobject as the scene camera.
+
+            if (ImGui::CollapsingHeader("Camera Output"))
             {
-                ImGui::TableNextRow();
-                ImGui::TableSetColumnIndex(0);
+                camera = renderer.objectsToRender[selectedObject]->GetComponent<Camera>();
 
-                ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x / 4); // Set the width of each input field
-                ImGui::Text("Position:");
-                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
+                ImGui::Image((void*)framebuffer->GetTexture(), ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
 
-                ImGui::TableSetColumnIndex(1);
-                ImGui::Text("X");
+                ImGui::Text("Output Colour:");
+                ImGui::SameLine();
+                ImGui::ColorEdit4("##label7", (float*)&camera->outputColor);
 
                 ImGui::SameLine();
-                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+                if (ImGui::Button("Reset##1"))
+                {
+                    camera->SetColor(camera->outputColor, { 1.0f, 1.0f, 1.0f, 1.0f });
+                }
 
-                ImGui::InputFloat("##PX", &camera2D.transform.position.x, 0.0f, 0.0f, "%.f");
-                ImGui::PopStyleColor();
-
-                ImGui::TableSetColumnIndex(2);
-                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
-
-                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-                ImGui::Text("Y");
+                ImGui::Text("Background Colour:");
+                ImGui::SameLine();
+                ImGui::ColorEdit3("##label8", (float*)&camera->backgroundColor);
 
                 ImGui::SameLine();
-                ImGui::InputFloat("##PY", &camera2D.transform.position.y, 0.0f, 0.0f, "%.f");
-                ImGui::PopStyleColor();
-
-                ImGui::TableSetColumnIndex(3);
-
-                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
-
-                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-                ImGui::Text("Z");
-
-                ImGui::SameLine();
-                ImGui::InputFloat("##PZ", &camera2D.transform.position.z, 0.0f, 0.0f, "%.f");
-                ImGui::PopStyleColor();
-
-
-                ImGui::TableNextRow();
-                ImGui::TableSetColumnIndex(0);
-
-                ImGui::Text("Rotation:");
-
-                ImGui::TableSetColumnIndex(1);
-                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
-
-                ImGui::Text("X");
-
-                ImGui::SameLine();
-                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-
-                ImGui::InputFloat("##RX", &camera2D.transform.rotation.x, 0.0f, 0.0f, "%.f");
-                ImGui::PopStyleColor();
-
-                ImGui::TableSetColumnIndex(2);
-
-                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
-
-                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-                ImGui::Text("Y");
-
-                ImGui::SameLine();
-                ImGui::InputFloat("##RY", &camera2D.transform.rotation.y, 0.0f, 0.0f, "%.f");
-                ImGui::PopStyleColor();
-
-                ImGui::TableSetColumnIndex(3);
-
-                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
-
-                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-                ImGui::Text("Z");
-
-                ImGui::SameLine();
-                ImGui::InputFloat("##RZ", &camera2D.transform.rotation.z, 0.0f, 0.0f, "%.f");
-                ImGui::PopStyleColor();
-
-
-                ImGui::TableNextRow();
-                ImGui::TableSetColumnIndex(0);
-
-                ImGui::Text("Scale:");
-
-                ImGui::TableSetColumnIndex(1);
-                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
-
-                ImGui::Text("X");
-
-                ImGui::SameLine();
-                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-
-                ImGui::InputFloat("##SX", &camera2D.transform.scale.x, 0.0f, 0.0f, "%.f");
-                ImGui::PopStyleColor();
-
-                ImGui::TableSetColumnIndex(2);
-
-                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
-
-                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-                ImGui::Text("Y");
-
-                ImGui::SameLine();
-                ImGui::InputFloat("##SY", &camera2D.transform.scale.y, 0.0f, 0.0f, "%.f");
-                ImGui::PopStyleColor();
-
-                ImGui::TableSetColumnIndex(3);
-
-                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
-
-                ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-                ImGui::Text("Z");
-
-                ImGui::SameLine();
-                ImGui::InputFloat("##SZ", &camera2D.transform.scale.z, 0.0f, 0.0f, "%.f");
-                ImGui::PopStyleColor();
-                ImGui::PopItemWidth();
-
-                ImGui::EndTable();
-            }
-        }
-
-        if (ImGui::CollapsingHeader("Camera Output"))
-        {
-            ImGui::Image((void*)framebuffer->GetTexture(), ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
-
-            ImGui::Text("Output Colour:");
-            ImGui::SameLine();
-            ImGui::ColorEdit4("##label7", (float*)&camera2D.outputColor);
-
-            ImGui::SameLine();
-            if (ImGui::Button("Reset##1"))
-            {
-                camera2D.SetColor(camera2D.outputColor, { 1.0f, 1.0f, 1.0f, 1.0f });
+                if (ImGui::Button("Reset##2"))
+                {
+                    camera->SetColor(camera->backgroundColor, { 0.05f, 0.05f, 0.05f, 1.0f });
+                }
             }
 
-            ImGui::Text("Background Colour:");
-            ImGui::SameLine();
-            ImGui::ColorEdit3("##label8", (float*)&camera2D.backgroundColor);
-
-            ImGui::SameLine();
-            if (ImGui::Button("Reset##2"))
+            if (ImGui::CollapsingHeader("AudioManager"))
             {
-                camera2D.SetColor(camera2D.backgroundColor, { 0.05f, 0.05f, 0.05f, 1.0f });
+                AudioManagerComponent();
             }
-        }
-
-        if (ImGui::CollapsingHeader("AudioManager"))
-        {
-            AudioManagerComponent();
         }
     }
+    //else if (selectedObject == -1)
+    //{
+    //    ImGui::InputText("##label0", &camera2D.objectName);
 
-    if (ImGui::Button("Add Sprite Renderer"))
+    //    if (ImGui::CollapsingHeader("Transform"))
+    //    {
+    //        if (ImGui::BeginTable("TransformTable", 4))
+    //        {
+    //            ImGui::TableNextRow();
+    //            ImGui::TableSetColumnIndex(0);
+
+    //            ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x / 4); // Set the width of each input field
+    //            ImGui::Text("Position:");
+    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
+
+    //            ImGui::TableSetColumnIndex(1);
+    //            ImGui::Text("X");
+
+    //            ImGui::SameLine();
+    //            ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+
+    //            ImGui::InputFloat("##PX", &camera2D.transform.position.x, 0.0f, 0.0f, "%.f");
+    //            ImGui::PopStyleColor();
+
+    //            ImGui::TableSetColumnIndex(2);
+    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
+
+    //            ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+    //            ImGui::Text("Y");
+
+    //            ImGui::SameLine();
+    //            ImGui::InputFloat("##PY", &camera2D.transform.position.y, 0.0f, 0.0f, "%.f");
+    //            ImGui::PopStyleColor();
+
+    //            ImGui::TableSetColumnIndex(3);
+
+    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
+
+    //            ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+    //            ImGui::Text("Z");
+
+    //            ImGui::SameLine();
+    //            ImGui::InputFloat("##PZ", &camera2D.transform.position.z, 0.0f, 0.0f, "%.f");
+    //            ImGui::PopStyleColor();
+
+
+    //            ImGui::TableNextRow();
+    //            ImGui::TableSetColumnIndex(0);
+
+    //            ImGui::Text("Rotation:");
+
+    //            ImGui::TableSetColumnIndex(1);
+    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
+
+    //            ImGui::Text("X");
+
+    //            ImGui::SameLine();
+    //            ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+
+    //            ImGui::InputFloat("##RX", &camera2D.transform.rotation.x, 0.0f, 0.0f, "%.f");
+    //            ImGui::PopStyleColor();
+
+    //            ImGui::TableSetColumnIndex(2);
+
+    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
+
+    //            ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+    //            ImGui::Text("Y");
+
+    //            ImGui::SameLine();
+    //            ImGui::InputFloat("##RY", &camera2D.transform.rotation.y, 0.0f, 0.0f, "%.f");
+    //            ImGui::PopStyleColor();
+
+    //            ImGui::TableSetColumnIndex(3);
+
+    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
+
+    //            ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+    //            ImGui::Text("Z");
+
+    //            ImGui::SameLine();
+    //            ImGui::InputFloat("##RZ", &camera2D.transform.rotation.z, 0.0f, 0.0f, "%.f");
+    //            ImGui::PopStyleColor();
+
+
+    //            ImGui::TableNextRow();
+    //            ImGui::TableSetColumnIndex(0);
+
+    //            ImGui::Text("Scale:");
+
+    //            ImGui::TableSetColumnIndex(1);
+    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
+
+    //            ImGui::Text("X");
+
+    //            ImGui::SameLine();
+    //            ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+
+    //            ImGui::InputFloat("##SX", &camera2D.transform.scale.x, 0.0f, 0.0f, "%.f");
+    //            ImGui::PopStyleColor();
+
+    //            ImGui::TableSetColumnIndex(2);
+
+    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
+
+    //            ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+    //            ImGui::Text("Y");
+
+    //            ImGui::SameLine();
+    //            ImGui::InputFloat("##SY", &camera2D.transform.scale.y, 0.0f, 0.0f, "%.f");
+    //            ImGui::PopStyleColor();
+
+    //            ImGui::TableSetColumnIndex(3);
+
+    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
+
+    //            ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
+    //            ImGui::Text("Z");
+
+    //            ImGui::SameLine();
+    //            ImGui::InputFloat("##SZ", &camera2D.transform.scale.z, 0.0f, 0.0f, "%.f");
+    //            ImGui::PopStyleColor();
+    //            ImGui::PopItemWidth();
+
+    //            ImGui::EndTable();
+    //        }
+    //    }
+
+    //    if (ImGui::CollapsingHeader("Camera Output"))
+    //    {
+    //        ImGui::Image((void*)framebuffer->GetTexture(), ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
+
+    //        ImGui::Text("Output Colour:");
+    //        ImGui::SameLine();
+    //        ImGui::ColorEdit4("##label7", (float*)&camera2D.outputColor);
+
+    //        ImGui::SameLine();
+    //        if (ImGui::Button("Reset##1"))
+    //        {
+    //            camera2D.SetColor(camera2D.outputColor, { 1.0f, 1.0f, 1.0f, 1.0f });
+    //        }
+
+    //        ImGui::Text("Background Colour:");
+    //        ImGui::SameLine();
+    //        ImGui::ColorEdit3("##label8", (float*)&camera2D.backgroundColor);
+
+    //        ImGui::SameLine();
+    //        if (ImGui::Button("Reset##2"))
+    //        {
+    //            camera2D.SetColor(camera2D.backgroundColor, { 0.05f, 0.05f, 0.05f, 1.0f });
+    //        }
+    //    }
+
+    //    if (ImGui::CollapsingHeader("AudioManager"))
+    //    {
+    //        AudioManagerComponent();
+    //    }
+    //}
+
+    if (selectedObject >= 0 && !renderer.objectsToRender[selectedObject]->HasComponent("Sprite Renderer") && !renderer.objectsToRender[selectedObject]->HasComponent("Camera"))
     {
-        SpriteRenderer spriteRenderer;
-        renderer.objectsToRender[selectedObject]->AddComponent(spriteRenderer);
+        if (ImGui::Button("Add Sprite Renderer"))
+        {
+            SpriteRenderer spriteRendererComponent;
+            renderer.objectsToRender[selectedObject]->AddComponent(spriteRendererComponent);
+        }
+    }
+
+    if (selectedObject >= 0 && !renderer.objectsToRender[selectedObject]->HasComponent("Camera") && !renderer.objectsToRender[selectedObject]->HasComponent("Sprite Renderer"))
+    {
+        if (ImGui::Button("Add Camera"))
+        {
+            Camera cameraComponent;
+            renderer.objectsToRender[selectedObject]->AddComponent(cameraComponent);
+        }
     }
 
     ImGui::End();
@@ -1001,38 +1057,38 @@ void Editor::MenuBar()
             {
                 const char* filterTypes[1] = { ".worldOB" };
                 const char* savePath = tinyfd_saveFileDialog(
-                    "Save scene",              // Title of the dialog
-                    (rootPath + "/Assets/").c_str(),                        // Default name
-                    1,                         // Number of file filters
-                    filterTypes,               // File filters (e.g., ["*.txt"])
-                    NULL                       // Filter description
+                    "Save scene",              // Title of the dialog.
+                    (rootPath + "/Assets/").c_str(), // Default name.
+                    1,                         // Number of file filters.
+                    filterTypes,               // File filters (e.g., ["*.txt"]).
+                    NULL                       // Filter description.
                 );
 
                 if (savePath) 
                 {
-                    const char* file_name = strrchr(savePath, '/');  // For Unix-based systems
+                    const char* file_name = strrchr(savePath, '/');  // For Unix-based systems.
                     if (!file_name) 
                     {
-                        file_name = strrchr(savePath, '\\');  // For Windows paths
+                        file_name = strrchr(savePath, '\\');  // For Windows paths.
                     }
 
                     if (file_name) 
                     {
-                        file_name++;  // Move past the slash to get the file name
+                        file_name++;  // Move past the slash to get the file name.
                     }
                     else 
                     {
-                        file_name = savePath;  // If no slash was found, the entire string is the file name
+                        file_name = savePath;  // If no slash was found, the entire string is the file name.
                     }
 
                     // Now strip the extension by finding the last dot ('.')
-                    char file_name_no_ext[256];  // Buffer to store the file name without extension
-                    strcpy(file_name_no_ext, file_name);  // Copy file name
+                    char file_name_no_ext[256];  // Buffer to store the file name without extension.
+                    strcpy(file_name_no_ext, file_name);  // Copy file name.
                     char* dot = strrchr(file_name_no_ext, '.');
 
                     if (dot) 
                     {
-                        *dot = '\0';  // Truncate at the dot to remove the extension
+                        *dot = '\0';  // Truncate at the dot to remove the extension.
                     }
 
                     Scene test;

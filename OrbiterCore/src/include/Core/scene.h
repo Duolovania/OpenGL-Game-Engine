@@ -1,5 +1,5 @@
 #pragma once
-#include "GameObjects/camera2d.h"
+#include "GameObjects/gameobject.h"
 #include "Audio/audiomanager.h"
 
 #include <vector>

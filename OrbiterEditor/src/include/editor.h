@@ -28,7 +28,9 @@ class Editor : public RenderingLayer
 		ImVec2 viewportSize;
 		glm::vec2 inputVector;
 		Renderer renderer;
-		Camera2D camera2D;
+
+		std::shared_ptr<Camera> camera;
+		std::shared_ptr<GameObject> cameraObj;
 
 		Scene currentScene;
 

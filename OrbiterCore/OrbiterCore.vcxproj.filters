@@ -201,9 +201,6 @@
     <ClInclude Include="src\include\Core\scene.h">
       <Filter>src\include\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\GameObjects\camera2d.h">
-      <Filter>src\include\GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="src\include\GameObjects\gameobject.h">
       <Filter>src\include\GameObjects</Filter>
     </ClInclude>
@@ -331,9 +328,6 @@
     </ClCompile>
     <ClCompile Include="src\Core\Renderer.cpp">
       <Filter>src\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObjects\Camera2D.cpp">
-      <Filter>src\GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="src\Rendering\FrameBuffer.cpp">
       <Filter>src\Rendering</Filter>

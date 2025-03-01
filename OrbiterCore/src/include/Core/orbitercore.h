@@ -7,9 +7,9 @@
 #include "Core/scene.h"
 
 #include "GameObjects/gameobject.h"
-#include "GameObjects/camera2d.h"
 
 #include "Components/spriterenderer.h"
+#include "Components/camera.h"
 
 #include "Tests/test.h"
 #include "Tests/testtexture2d.h"

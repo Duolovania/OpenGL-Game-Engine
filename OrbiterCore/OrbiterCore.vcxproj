@@ -325,7 +325,6 @@
     <ClInclude Include="src\include\Core\renderer.h" />
     <ClInclude Include="src\include\Core\renderinglayer.h" />
     <ClInclude Include="src\include\Core\scene.h" />
-    <ClInclude Include="src\include\GameObjects\camera2d.h" />
     <ClInclude Include="src\include\GameObjects\gameobject.h" />
     <ClInclude Include="src\include\Math\transform.h" />
     <ClInclude Include="src\include\Math\vector.h" />
@@ -372,7 +371,6 @@
     <ClCompile Include="src\Core\FileManager.cpp" />
     <ClCompile Include="src\Core\Input.cpp" />
     <ClCompile Include="src\Core\Renderer.cpp" />
-    <ClCompile Include="src\GameObjects\Camera2D.cpp" />
     <ClCompile Include="src\Rendering\FrameBuffer.cpp" />
     <ClCompile Include="src\Rendering\IndexBuffer.cpp" />
     <ClCompile Include="src\Rendering\Shader.cpp" />

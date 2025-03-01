@@ -44,8 +44,8 @@ GameObjects:
       Path: Assets/Sprites/B happy.png
       Color:
         - 1
-        - 1
-        - 1
+        - 0
+        - 0
         - 1
     Transform:
       Position:
@@ -59,4 +59,50 @@ GameObjects:
       Scale:
         - 0
         - 0
+        - 0
+  - Name: bazinga
+    Sprite Renderer:
+      Path: ../OrbiterCore/Res/Default Sprites/whitesqure.png
+      Color:
+        - 1
+        - 1
+        - 1
+        - 1
+    Transform:
+      Position:
+        - -100
+        - -100
+        - 0
+      Rotation:
+        - 0
+        - 0
+        - 0
+      Scale:
+        - 0
+        - 0
+        - 0
+  - Name: Camera2D
+    Camera:
+      Output Color:
+        - 1
+        - 1
+        - 1
+        - 1
+      Background Color:
+        - 0.05
+        - 0.05
+        - 0.05
+        - 1
+    Transform:
+      Position:
+        - -1.1257954
+        - 35.37496
+        - 0
+      Rotation:
+        - 0
+        - 0
+        - 0
+      Scale:
+        - 1082
+        - 540
         - 0

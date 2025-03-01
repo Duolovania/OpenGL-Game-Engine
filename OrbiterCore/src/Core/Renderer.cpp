@@ -120,7 +120,7 @@ void Renderer::Draw(glm::mat4 projection, glm::mat4 view, glm::vec4 colourTint)
 					* glm::rotate(glm::mat4(1.0f), glm::radians(-objectsToRender[i]->transform.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f))
 					* glm::scale(glm::mat4(1.0f), glm::vec3(objectsToRender[i]->transform.scale.x, objectsToRender[i]->transform.scale.y, 1.0f));
 
-					buffer = CreateQuad(buffer, transform, i, { spriteRenderer->color[0], spriteRenderer->color[1], spriteRenderer->color[2], spriteRenderer->color[3] });
+				buffer = CreateQuad(buffer, transform, i, { spriteRenderer->color[0], spriteRenderer->color[1], spriteRenderer->color[2], spriteRenderer->color[3] });
 			}
 		}
 	}
