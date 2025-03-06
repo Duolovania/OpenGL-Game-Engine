@@ -19,6 +19,7 @@ class Editor : public RenderingLayer
 		void MenuBar();
 
 		void AudioManagerComponent();
+		void SearchMainCamera();
 
 		void CreateTransformColumn(const std::array<std::string, 3>& colNames, std::array<Vector3, 3> values);
 

@@ -45,10 +45,10 @@ void AudioSource::SetProperties(float pitch, float volume, bool looping, glm::ve
     alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);
 
     // Set reference distance (distance at which sound begins to attenuate).
-    alSourcef(sourceID, AL_REFERENCE_DISTANCE, 100.0f); // 1.0f is an example value.
+    alSourcef(sourceID, AL_REFERENCE_DISTANCE, 100.0f); // 100.0f is an example value.
 
-    alSourcef(sourceID, AL_CONE_INNER_ANGLE, 360); // 1.0f is an example value.
-    alSourcef(sourceID, AL_CONE_OUTER_ANGLE, 360); // 1.0f is an example value.
+    alSourcef(sourceID, AL_CONE_INNER_ANGLE, 360); // 360.0f is an example value.
+    alSourcef(sourceID, AL_CONE_OUTER_ANGLE, 360); // 360.0f is an example value.
 
     alSource3f(sourceID, AL_VELOCITY, m_velocity.x, m_velocity.y, m_velocity.z);
 }

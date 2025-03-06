@@ -970,6 +970,7 @@ void Editor::ContentBrowser()
                                 renderer.RegenerateObjects();
 
                                 savedChanges = true;
+                                SearchMainCamera();
                             }
                         };
 
@@ -1459,6 +1460,20 @@ void Editor::AudioManagerComponent()
 
         ImGui::PopID();
         ImGui::Unindent();
+    }
+}
+
+void Editor::SearchMainCamera()
+{
+    for (auto& obj : renderer.objectsToRender)
+    {
+        camera = obj->GetComponent<Camera>();
+        cameraObj = obj;
+
+        /*if (camera != nullptr)
+        {
+
+        }*/
     }
 }
 
