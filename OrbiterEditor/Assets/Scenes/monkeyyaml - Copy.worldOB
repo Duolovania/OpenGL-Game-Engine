@@ -1,6 +1,6 @@
 Scene Details:
-  Name: monkeyyaml
-  Path: Assets\Scenes\monkeyyaml.worldOB
+  Name: monkeyyaml - Copy
+  Path: Assets\Scenes\monkeyyaml - Copy.worldOB
 Audio Manager:
   - Name: Test
     Path: SFX/elf-singing-89296.wav
@@ -20,7 +20,7 @@ Audio Manager:
 GameObjects:
   - Name: Monkey
     Sprite Renderer:
-      Path: Assets/Sprites/B happy.png
+      Path: Assets/Sprites/MonkeyStuff/G idle.png
       Color:
         - 1
         - 1
@@ -39,28 +39,7 @@ GameObjects:
         - 100
         - 100
         - 0
-  - Name: New GameObject
-    Sprite Renderer:
-      Path: Assets/Sprites/B happy.png
-      Color:
-        - 1
-        - 0
-        - 0
-        - 1
-    Transform:
-      Position:
-        - 100
-        - 100
-        - 0
-      Rotation:
-        - 0
-        - 0
-        - 0
-      Scale:
-        - 0
-        - 0
-        - 0
-  - Name: bazinga
+  - Name: white square
     Sprite Renderer:
       Path: ../OrbiterCore/Res/Default Sprites/whitesqure.png
       Color:
@@ -78,8 +57,8 @@ GameObjects:
         - 0
         - 0
       Scale:
-        - 0
-        - 0
+        - 100
+        - 100
         - 0
   - Name: Camera2D
     Camera:
@@ -95,8 +74,8 @@ GameObjects:
         - 1
     Transform:
       Position:
-        - -1.1257954
-        - 35.37496
+        - -106.661224
+        - -100.01842
         - 0
       Rotation:
         - 0

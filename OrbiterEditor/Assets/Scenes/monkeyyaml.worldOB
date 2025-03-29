@@ -39,27 +39,6 @@ GameObjects:
         - 100
         - 100
         - 0
-  - Name: New GameObject
-    Sprite Renderer:
-      Path: Assets/Sprites/B happy.png
-      Color:
-        - 1
-        - 0
-        - 0
-        - 1
-    Transform:
-      Position:
-        - 100
-        - 100
-        - 0
-      Rotation:
-        - 0
-        - 0
-        - 0
-      Scale:
-        - 0
-        - 0
-        - 0
   - Name: bazinga
     Sprite Renderer:
       Path: ../OrbiterCore/Res/Default Sprites/whitesqure.png

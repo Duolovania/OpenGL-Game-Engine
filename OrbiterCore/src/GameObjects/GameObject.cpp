@@ -14,8 +14,10 @@ glm::mat4 GameObject::GetView() const
 
 bool GameObject::HasComponent(const std::string targetComponent)
 {
+	// Loops through each component in the vector.
 	for (int i = 0; i < m_components.size(); i++)
 	{
+		// Checks if the selected component has the same name as the search term.
 		if (m_components[i]->m_componentName == targetComponent)
 		{
 			return true;
@@ -25,18 +27,15 @@ bool GameObject::HasComponent(const std::string targetComponent)
 	return false;
 }
 
-//void GameObject::AddComponent(Component newComponent)
-//{
-//	m_components.push_back(std::make_unique<Component>(newComponent));
-//}
-
 void GameObject::RemoveComponent(std::string componentName)
 {
+	// Loops through each component in the vector.
 	for (int i = 0; i < m_components.size(); i++)
 	{
+		// Checks if the selected component has the same name as the search term.
 		if (m_components[i]->m_componentName == componentName)
 		{
-			m_components.erase(m_components.begin() + i);
+			m_components.erase(m_components.begin() + i); // Delete the component.
 		}
 	}
 }

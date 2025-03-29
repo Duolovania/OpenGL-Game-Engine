@@ -1,9 +1,10 @@
 #pragma once
 #include "Audio/sound.h"
 #include "Audio/audiocontext.h"
+#include "Components/component.h"
 
 // This class stores methods for audio management.
-class AudioManager
+class AudioManager : public Component
 {
 	public:
 		AudioManager();
@@ -48,6 +49,6 @@ class AudioManager
 		*/
 		void GenSound(int index);
 	private:
-		std::unique_ptr<AudioContext> m_audioContext;
+		std::shared_ptr<AudioContext> m_audioContext;
 		bool CheckDevice();
 };

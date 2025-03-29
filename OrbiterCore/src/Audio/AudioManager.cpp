@@ -3,6 +3,7 @@
 
 AudioManager::AudioManager()
 {
+	m_componentName = "Audio Manager";
 	m_audioContext = std::make_unique<AudioContext>();
 }
 
@@ -10,12 +11,12 @@ AudioManager::~AudioManager()
 {
 	if (!CheckDevice()) return;
 
-	for (auto& sound : sounds)
+	/*for (auto& sound : sounds)
 	{
 		sound.audioSource->KillSource();
-	}
+	}*/
 
-	m_audioContext->KillContext();
+	//m_audioContext->KillContext();
 }
 
 void AudioManager::Play(std::string soundName)

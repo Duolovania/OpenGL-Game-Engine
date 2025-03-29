@@ -234,7 +234,7 @@ std::vector<Sound> GetSoundEffects(const YAML::Node& root)
 	return soundVector;
 }
 
-Scene FileManager::LoadYAMLFile(std::string filePath)
+Scene FileManager::LoadYAMLFile(std::string fileName, std::string filePath)
 {
 	YAML::Node yamlNode = YAML::LoadFile("Assets" + filePath);
 	Scene newScene;
@@ -246,9 +246,9 @@ Scene FileManager::LoadYAMLFile(std::string filePath)
 		return newScene; // Returns empty scene.
 	}
 
-	newScene.sceneName = yamlNode["Scene Details"]["Name"].as<std::string>();
-	newScene.scenePath = yamlNode["Scene Details"]["Path"].as<std::string>();
-	
+	newScene.sceneName = fileName;
+	newScene.scenePath = "Assets" + filePath;
+
 	newScene.objectsToRender = GetGameObjects(yamlNode);
 
 	newScene.audioManager = std::make_unique<AudioManager>();

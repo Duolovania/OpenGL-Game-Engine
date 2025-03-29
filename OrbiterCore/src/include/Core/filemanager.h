@@ -20,7 +20,8 @@ class FileManager
 		/**
 		* @brief Loads scene data from a file that uses the YAML format.
 		*
+		* @param fileName the name of the scene. This will be visible at the top of the editor.
 		* @param filePath the path to the scene file. This requires the file extension.
 		*/
-		Scene LoadYAMLFile(std::string filePath);
+		Scene LoadYAMLFile(std::string fileName, std::string filePath);
 };

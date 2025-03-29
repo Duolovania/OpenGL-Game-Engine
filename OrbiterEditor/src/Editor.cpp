@@ -386,7 +386,7 @@ void Editor::Inspector()
 {
     ImGui::Begin("Inspector");
 
-    if (selectedObject > -1)
+    if (selectedObject >= 0)
     {
         ImGui::InputText("##label0", &renderer.objectsToRender[selectedObject]->objectName);
 
@@ -396,11 +396,16 @@ void Editor::Inspector()
             cameraObj->transform.position = renderer.objectsToRender[selectedObject]->transform.position;
         }
 
-        ImGui::SameLine();
-        if (ImGui::Button("Delete"))
+        // Check that there is more than 1 object in the scene.
+        if (renderer.objectsToRender.size() > 1) 
         {
-            renderer.objectsToRender.erase(renderer.objectsToRender.begin() + selectedObject);
-            selectedObject = -2;
+            ImGui::SameLine();
+
+            if (ImGui::Button("Delete"))
+            {
+                renderer.objectsToRender.erase(renderer.objectsToRender.begin() + selectedObject);
+                selectedObject = 0; // Set the default selected item. 
+            }
         }
 
         if (ImGui::CollapsingHeader("Transform"))
@@ -597,6 +602,44 @@ void Editor::Inspector()
                 AudioManagerComponent();
             }
         }
+
+        /*if (renderer.objectsToRender[selectedObject]->HasComponent("Audio Manager"))
+        {
+            if (ImGui::CollapsingHeader("AudioManager"))
+            {
+                AudioManagerComponent();
+            }
+        }*/
+
+
+        if (selectedObject >= 0 && !renderer.objectsToRender[selectedObject]->HasComponent("Sprite Renderer") && !renderer.objectsToRender[selectedObject]->HasComponent("Camera"))
+        {
+            if (ImGui::Button("Add Sprite Renderer"))
+            {
+                SpriteRenderer spriteRendererComponent;
+                renderer.objectsToRender[selectedObject]->AddComponent(spriteRendererComponent);
+            }
+        }
+
+        if (selectedObject >= 0 && !renderer.objectsToRender[selectedObject]->HasComponent("Camera") && !renderer.objectsToRender[selectedObject]->HasComponent("Sprite Renderer"))
+        {
+            if (ImGui::Button("Add Camera"))
+            {
+                Camera cameraComponent;
+                renderer.objectsToRender[selectedObject]->AddComponent(cameraComponent);
+            }
+        }
+
+        if (selectedObject >= 0 && !renderer.objectsToRender[selectedObject]->HasComponent("Audio Manager") && !renderer.objectsToRender[selectedObject]->HasComponent("Audio Manager"))
+        {
+            if (ImGui::Button("Add Audio Manager"))
+            {
+                AudioManager audioManagerComponent;
+                renderer.objectsToRender[selectedObject]->AddComponent(audioManagerComponent);
+
+                //Core.audioManager = std::make_unique<AudioManager>(audioManagerComponent);
+            }
+        }
     }
     //else if (selectedObject == -1)
     //{
@@ -757,24 +800,6 @@ void Editor::Inspector()
     //    }
     //}
 
-    if (selectedObject >= 0 && !renderer.objectsToRender[selectedObject]->HasComponent("Sprite Renderer") && !renderer.objectsToRender[selectedObject]->HasComponent("Camera"))
-    {
-        if (ImGui::Button("Add Sprite Renderer"))
-        {
-            SpriteRenderer spriteRendererComponent;
-            renderer.objectsToRender[selectedObject]->AddComponent(spriteRendererComponent);
-        }
-    }
-
-    if (selectedObject >= 0 && !renderer.objectsToRender[selectedObject]->HasComponent("Camera") && !renderer.objectsToRender[selectedObject]->HasComponent("Sprite Renderer"))
-    {
-        if (ImGui::Button("Add Camera"))
-        {
-            Camera cameraComponent;
-            renderer.objectsToRender[selectedObject]->AddComponent(cameraComponent);
-        }
-    }
-
     ImGui::End();
 }
 
@@ -931,28 +956,30 @@ void Editor::ContentBrowser()
                         ImGui::PushID(counter);
                         ImGui::SetCursorPos(buttonPos);
 
-                        unsigned int fileThumbnail = fileIcon;
-                        int fileNameLength = entry.path().filename().string().find_last_of('.');
+                        unsigned int fileThumbnail = fileIcon; // Sets the thumbnail image to the generic file icon by default.
+                        int fileNameLength = entry.path().filename().string().find_last_of('.'); // Gets the length of the file name up to the file extension.
 
-                        std::string tempFileName = entry.path().filename().string().substr(fileNameLength);
+                        std::string fileExtension = entry.path().filename().string().substr(fileNameLength); // Gets the file extension.
 
-                        if (tempFileName == ".wav")
+                        // Sets the correct file thumbnail based on the extension.
+                        if (fileExtension == ".wav")
                         {
                             fileThumbnail = wavFileIcon;
                         }
-                        else if (tempFileName == ".ttf" || tempFileName == ".otf")
+                        else if (fileExtension == ".ttf" || fileExtension == ".otf")
                         {
                             fileThumbnail = fontFileIcon;
                         }
-                        else if (tempFileName == ".worldOB")
+                        else if (fileExtension == ".worldOB")
                         {
                             fileThumbnail = sceneFileIcon;
                         }
-                        else if (tempFileName == ".png" || tempFileName == ".jpg")
+                        else if (fileExtension == ".png" || fileExtension == ".jpg")
                         {
                             fileThumbnail = imageFileIcon;
                         }
 
+                        // Creates the file buttons.
                         if (ImGui::ImageButton((void*)fileThumbnail, buttonSize, ImVec2(0, 1), ImVec2(1, 0)))
                         {
                             if (ImGui::BeginDragDropSource())
@@ -963,10 +990,14 @@ void Editor::ContentBrowser()
                                 ImGui::EndDragDropSource();
                             }
 
-                            if (tempFileName == ".worldOB")
+                            // Checks if the file is an engine scene file.
+                            if (fileExtension == ".worldOB")
                             {
-                                currentScene = fileManager.LoadYAMLFile(tempPath + "\\" + entry.path().filename().string());
+                                std::size_t pos = entry.path().filename().string().find(fileExtension); // Gets the position of the file extension part of the path.
+                                currentScene = fileManager.LoadYAMLFile(entry.path().filename().string().substr(0, pos), tempPath + "\\" + entry.path().filename().string());
+
                                 renderer.objectsToRender = currentScene.objectsToRender;
+                                Core.audioManager = currentScene.audioManager;
                                 renderer.RegenerateObjects();
 
                                 savedChanges = true;
@@ -976,7 +1007,7 @@ void Editor::ContentBrowser()
 
                         ImGui::SetCursorPos(textPos);
 
-                        ImGui::Text(entry.path().filename().string().c_str());
+                        ImGui::Text(entry.path().filename().string().c_str()); // Creates the file label.
                         ImGui::SameLine();
                         ImGui::PopID();
 
@@ -1030,8 +1061,15 @@ void Editor::MenuBar()
                 {
                     std::string tempPath = std::string(file_path).erase(0, rootPath.length());
 
-                    currentScene = fileManager.LoadYAMLFile(tempPath);
+                    int fileNamePos = tempPath.find_last_of('\\') + 1; // Gets the final directory position in the file path.
+                    int fileExtensionPos = tempPath.find_last_of('.'); // Gets the extension position in the file path.
+
+                    std::string fileName = tempPath.substr(fileNamePos, fileExtensionPos); // Gets the file name from the file path.
+
+                    currentScene = fileManager.LoadYAMLFile(fileName, tempPath);
+
                     renderer.objectsToRender = currentScene.objectsToRender;
+                    Core.audioManager = currentScene.audioManager;
                     renderer.RegenerateObjects();
                 }
             }
@@ -1049,7 +1087,6 @@ void Editor::MenuBar()
                 test.objectsToRender = renderer.objectsToRender;
                 test.audioManager = Core.audioManager;
 
-                //fileManager.CreateFile(test, test.sceneName, test.scenePath);
                 fileManager.CreateYAMLFile(test, test.sceneName, test.scenePath);
                 savedChanges = true;
             }
