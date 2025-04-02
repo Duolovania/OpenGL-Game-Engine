@@ -277,9 +277,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\include\Components\camera.h" />
-    <ClInclude Include="src\include\Components\component.h" />
-    <ClInclude Include="src\include\Components\spriterenderer.h" />
     <ClInclude Include="Vendor\glm\simd\common.h" />
     <ClInclude Include="Vendor\glm\simd\exponential.h" />
     <ClInclude Include="Vendor\glm\simd\geometric.h" />
@@ -313,10 +310,13 @@
     <ClInclude Include="src\include\Audio\audiosource.h" />
     <ClInclude Include="src\include\Audio\orbiteraudio.h" />
     <ClInclude Include="src\include\Audio\sound.h" />
-    <ClInclude Include="src\include\Core\action.h" />
     <ClInclude Include="src\include\Components\animation.h" />
     <ClInclude Include="src\include\Components\animationframe.h" />
     <ClInclude Include="src\include\Components\animationplayer.h" />
+    <ClInclude Include="src\include\Components\camera.h" />
+    <ClInclude Include="src\include\Components\component.h" />
+    <ClInclude Include="src\include\Components\spriterenderer.h" />
+    <ClInclude Include="src\include\Core\action.h" />
     <ClInclude Include="src\include\Core\application.h" />
     <ClInclude Include="src\include\Core\debug.h" />
     <ClInclude Include="src\include\Core\filemanager.h" />
@@ -340,9 +340,6 @@
     <ClInclude Include="src\include\orbiter.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Components\Camera.cpp" />
-    <ClCompile Include="src\GameObjects\GameObject.cpp" />
-    <ClCompile Include="src\Components\SpriteRenderer.cpp" />
     <ClCompile Include="Vendor\glm\detail\glm.cpp" />
     <ClCompile Include="Vendor\imgui\imgui.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_demo.cpp" />
@@ -362,15 +359,18 @@
     <ClCompile Include="src\Audio\AudioListener.cpp" />
     <ClCompile Include="src\Audio\AudioManager.cpp" />
     <ClCompile Include="src\Audio\AudioSource.cpp" />
+    <ClCompile Include="src\Components\AnimationPlayer.cpp" />
+    <ClCompile Include="src\Components\Camera.cpp" />
+    <ClCompile Include="src\Components\SpriteRenderer.cpp" />
     <ClCompile Include="src\Core\Action.cpp" />
     <ClCompile Include="src\Core\Animation.cpp" />
     <ClCompile Include="src\Core\AnimationFrame.cpp" />
-    <ClCompile Include="src\Components\AnimationPlayer.cpp" />
     <ClCompile Include="src\Core\Application.cpp" />
     <ClCompile Include="src\Core\Debug.cpp" />
     <ClCompile Include="src\Core\FileManager.cpp" />
     <ClCompile Include="src\Core\Input.cpp" />
     <ClCompile Include="src\Core\Renderer.cpp" />
+    <ClCompile Include="src\GameObjects\GameObject.cpp" />
     <ClCompile Include="src\Rendering\FrameBuffer.cpp" />
     <ClCompile Include="src\Rendering\IndexBuffer.cpp" />
     <ClCompile Include="src\Rendering\Shader.cpp" />

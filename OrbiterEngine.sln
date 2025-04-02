@@ -1,16 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrbiterEditor", "OrbiterEditor\OrbiterEditor.vcxproj", "{83178E5B-EFD7-0992-B812-530F24924E6E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{65079033-D1BC-0829-5AB1-0200C665FF2C} = {65079033-D1BC-0829-5AB1-0200C665FF2C}
+	EndProjectSection
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Glad", "Dependencies\Glad\Glad.vcxproj", "{BDD6857C-A90D-870D-52FA-6C103E10030F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenALSoft", "OrbiterCore\Vendor\openal-soft-master\OpenALSoft.vcxproj", "{00310F52-ECE8-509F-55F0-29FB41C7EB8F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrbiterCore", "OrbiterCore\OrbiterCore.vcxproj", "{65079033-D1BC-0829-5AB1-0200C665FF2C}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrbiterEditor", "OrbiterEditor\OrbiterEditor.vcxproj", "{83178E5B-EFD7-0992-B812-530F24924E6E}"
-	ProjectSection(ProjectDependencies) = postProject
-		{65079033-D1BC-0829-5AB1-0200C665FF2C} = {65079033-D1BC-0829-5AB1-0200C665FF2C}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yaml-cpp", "OrbiterCore\Vendor\yaml-cpp-master\yaml-cpp.vcxproj", "{88F1A057-74BE-FB62-9DD7-E90A890331F1}"
 EndProject
@@ -24,6 +24,18 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Debug|Win32.Build.0 = Debug|Win32
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Debug|x64.ActiveCfg = Debug|x64
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Debug|x64.Build.0 = Debug|x64
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Dist|Win32.ActiveCfg = Dist|Win32
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Dist|Win32.Build.0 = Dist|Win32
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Dist|x64.ActiveCfg = Dist|x64
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Dist|x64.Build.0 = Dist|x64
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Release|Win32.ActiveCfg = Release|Win32
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Release|Win32.Build.0 = Release|Win32
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Release|x64.ActiveCfg = Release|x64
+		{83178E5B-EFD7-0992-B812-530F24924E6E}.Release|x64.Build.0 = Release|x64
 		{BDD6857C-A90D-870D-52FA-6C103E10030F}.Debug|Win32.ActiveCfg = Debug|Win32
 		{BDD6857C-A90D-870D-52FA-6C103E10030F}.Debug|Win32.Build.0 = Debug|Win32
 		{BDD6857C-A90D-870D-52FA-6C103E10030F}.Debug|x64.ActiveCfg = Debug|x64
@@ -60,18 +72,6 @@ Global
 		{65079033-D1BC-0829-5AB1-0200C665FF2C}.Release|Win32.Build.0 = Release|Win32
 		{65079033-D1BC-0829-5AB1-0200C665FF2C}.Release|x64.ActiveCfg = Release|x64
 		{65079033-D1BC-0829-5AB1-0200C665FF2C}.Release|x64.Build.0 = Release|x64
-		{83178E5B-EFD7-0992-B812-530F24924E6E}.Debug|Win32.ActiveCfg = Debug|Win32
-		{83178E5B-EFD7-0992-B812-530F24924E6E}.Debug|Win32.Build.0 = Debug|Win32
-		{83178E5B-EFD7-0992-B812-530F24924E6E}.Debug|x64.ActiveCfg = Debug|x64
-		{83178E5B-EFD7-0992-B812-530F24924E6E}.Debug|x64.Build.0 = Debug|x64
-		{83178E5B-EFD7-0992-B812-530F24924E6E}.Dist|Win32.ActiveCfg = Dist|Win32
-		{83178E5B-EFD7-0992-B812-530F24924E6E}.Dist|Win32.Build.0 = Dist|Win32
-		{83178E5B-EFD7-0992-B812-530F24924E6E}.Dist|x64.ActiveCfg = Dist|x64
-		{83178E5B-EFD7-0992-B812-530F24924E6E}.Dist|x64.Build.0 = Dist|x64
-		{83178E5B-EFD7-0992-B812-530F24924E6E}.Release|Win32.ActiveCfg = Release|Win32
-		{83178E5B-EFD7-0992-B812-530F24924E6E}.Release|Win32.Build.0 = Release|Win32
-		{83178E5B-EFD7-0992-B812-530F24924E6E}.Release|x64.ActiveCfg = Release|x64
-		{83178E5B-EFD7-0992-B812-530F24924E6E}.Release|x64.Build.0 = Release|x64
 		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Debug|Win32.ActiveCfg = Debug|Win32
 		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Debug|Win32.Build.0 = Debug|Win32
 		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Debug|x64.ActiveCfg = Debug|x64

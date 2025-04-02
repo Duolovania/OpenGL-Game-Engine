@@ -34,7 +34,7 @@ enum UISelect
 UISelect uiSelect = UISelect::None;
 
 std::unique_ptr<Texture> iconTextures;
-GLuint64 playButton, pauseButton, stopButton, fileIcon, folderIcon, wavFileIcon, fontFileIcon, sceneFileIcon, imageFileIcon;
+GLuint64 playButton, pauseButton, stopButton, fileIcon, folderIcon, wavFileIcon, fontFileIcon, sceneFileIcon, imageFileIcon, miniFolderIcon, resetIcon;
 
 void Editor::Init(GLFWwindow* window)
 {
@@ -84,6 +84,8 @@ void Editor::Init(GLFWwindow* window)
     fontFileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/fontfileicon.png", true);
     sceneFileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/scenefileicon.png", true);
     imageFileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/imagefileicon.png", true);
+    miniFolderIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/foldericon - mini.png", true);
+    resetIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/reset.png", true);
 }
 
 bool Editor::OnUpdate(float deltaTime, float time)
@@ -535,6 +537,7 @@ void Editor::Inspector()
             }
         }
 
+        // Checks if the object has a sprite renderer component before showing the dropdown.
         if (renderer.objectsToRender[selectedObject]->HasComponent("Sprite Renderer"))
         {
             if (ImGui::CollapsingHeader("Sprite Renderer"))
@@ -545,13 +548,34 @@ void Editor::Inspector()
 
                 ImGui::SameLine();
 
-                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 0.5f));
-                ImGui::InputText("##label", &spriteRenderer->cTexture.m_imagePath);
-                ImGui::PopStyleColor();
+                ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 0.5f)); // Sets the text to green.
 
-                if (ImGui::Button("Save"))
+                std::string imageName = spriteRenderer->cTexture.m_imagePath.erase(0, spriteRenderer->cTexture.m_imagePath.find_last_of("/") + 1); // Cuts the image directory, leaving just the name and extension.
+                ImGui::Text(imageName.c_str());
+
+                ImGui::PopStyleColor(); // Pops the style.
+
+                ImGui::SameLine();
+
+                // Creates a button that allows the user to pick an image file. 
+                if (ImGui::ImageButton((void*)miniFolderIcon, ImVec2(20, 20), ImVec2(0, 1), ImVec2(1, 0)))
                 {
-                    renderer.RegenerateObject(selectedObject);
+                    const char* filterTypes[4] = { "*.png", "*.jpg"};
+                    const char* file_path = tinyfd_openFileDialog(
+                        "Open an image file",              // Title of the dialog
+                        (rootPath + "/Assets").c_str(),                         // Default path ("" means current directory)
+                        2,                          // Number of file filters
+                        filterTypes,                // File filters (e.g., ["*.txt"])
+                        "Image",                       // Filter description
+                        0                           // Allow multiple selections (0 for no)
+                    );
+
+                    // Checks if the file exists.
+                    if (file_path)
+                    {
+                        spriteRenderer->cTexture.m_imagePath = "Assets" + std::string(file_path).erase(0, rootPath.length()); // Erases the directories leading up to the "Assets" folder.
+                        renderer.RegenerateObject(selectedObject); // Updates the image to apply changes.
+                    }
                 }
 
                 ImGui::Text("Colour:");
@@ -559,13 +583,27 @@ void Editor::Inspector()
                 ImGui::ColorEdit4("##label4", (float*)&spriteRenderer->color);
 
                 ImGui::SameLine();
-                if (ImGui::Button("Reset"))
+
+                if (ImGui::ImageButton((void*) resetIcon, ImVec2(20, 20), ImVec2(0, 1), ImVec2(1, 0)))
                 {
                     spriteRenderer->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
                 }
             }
         }
+        else
+        {
+            // Check if the object does not have a camera component before providing the option to add a sprite renderer.
+            if (selectedObject >= 0 && !renderer.objectsToRender[selectedObject]->HasComponent("Camera"))
+            {
+                if (ImGui::Button("Add Sprite Renderer"))
+                {
+                    SpriteRenderer spriteRendererComponent;
+                    renderer.objectsToRender[selectedObject]->AddComponent(spriteRendererComponent);
+                }
+            }
+        }
 
+        // Checks if the object has a camera component before showing the dropdown.
         if (renderer.objectsToRender[selectedObject]->HasComponent("Camera"))
         {
             cameraObj = renderer.objectsToRender[selectedObject]; // Sets this gameobject as the scene camera.
@@ -581,7 +619,7 @@ void Editor::Inspector()
                 ImGui::ColorEdit4("##label7", (float*)&camera->outputColor);
 
                 ImGui::SameLine();
-                if (ImGui::Button("Reset##1"))
+                if (ImGui::ImageButton((void*)resetIcon, ImVec2(20, 20), ImVec2(0, 1), ImVec2(1, 0)))
                 {
                     camera->SetColor(camera->outputColor, { 1.0f, 1.0f, 1.0f, 1.0f });
                 }
@@ -591,214 +629,46 @@ void Editor::Inspector()
                 ImGui::ColorEdit3("##label8", (float*)&camera->backgroundColor);
 
                 ImGui::SameLine();
-                if (ImGui::Button("Reset##2"))
+                if (ImGui::ImageButton((void*)resetIcon, ImVec2(20, 20), ImVec2(0, 1), ImVec2(1, 0)))
                 {
                     camera->SetColor(camera->backgroundColor, { 0.05f, 0.05f, 0.05f, 1.0f });
                 }
             }
+        }
+        else
+        {
+            // Check if the object does not have a sprite renderer component before providing the option to add a camera.
+            if (selectedObject >= 0 && !renderer.objectsToRender[selectedObject]->HasComponent("Sprite Renderer"))
+            {
+                if (ImGui::Button("Add Camera"))
+                {
+                    Camera cameraComponent;
+                    renderer.objectsToRender[selectedObject]->AddComponent(cameraComponent);
+                }
+            }
+        }
 
+        // Checks if the object has an audio manager component before showing the dropdown.
+        if (renderer.objectsToRender[selectedObject]->HasComponent("Audio Manager"))
+        {
             if (ImGui::CollapsingHeader("AudioManager"))
             {
                 AudioManagerComponent();
             }
         }
-
-        /*if (renderer.objectsToRender[selectedObject]->HasComponent("Audio Manager"))
+        else
         {
-            if (ImGui::CollapsingHeader("AudioManager"))
+            // Check an object is selected before providing the option to add an audio manager.
+            if (selectedObject >= 0)
             {
-                AudioManagerComponent();
-            }
-        }*/
-
-
-        if (selectedObject >= 0 && !renderer.objectsToRender[selectedObject]->HasComponent("Sprite Renderer") && !renderer.objectsToRender[selectedObject]->HasComponent("Camera"))
-        {
-            if (ImGui::Button("Add Sprite Renderer"))
-            {
-                SpriteRenderer spriteRendererComponent;
-                renderer.objectsToRender[selectedObject]->AddComponent(spriteRendererComponent);
-            }
-        }
-
-        if (selectedObject >= 0 && !renderer.objectsToRender[selectedObject]->HasComponent("Camera") && !renderer.objectsToRender[selectedObject]->HasComponent("Sprite Renderer"))
-        {
-            if (ImGui::Button("Add Camera"))
-            {
-                Camera cameraComponent;
-                renderer.objectsToRender[selectedObject]->AddComponent(cameraComponent);
-            }
-        }
-
-        if (selectedObject >= 0 && !renderer.objectsToRender[selectedObject]->HasComponent("Audio Manager") && !renderer.objectsToRender[selectedObject]->HasComponent("Audio Manager"))
-        {
-            if (ImGui::Button("Add Audio Manager"))
-            {
-                AudioManager audioManagerComponent;
-                renderer.objectsToRender[selectedObject]->AddComponent(audioManagerComponent);
-
-                //Core.audioManager = std::make_unique<AudioManager>(audioManagerComponent);
+                if (ImGui::Button("Add Audio Manager"))
+                {
+                    AudioManager audioManagerComponent;
+                    renderer.objectsToRender[selectedObject]->AddComponent(audioManagerComponent);
+                }
             }
         }
     }
-    //else if (selectedObject == -1)
-    //{
-    //    ImGui::InputText("##label0", &camera2D.objectName);
-
-    //    if (ImGui::CollapsingHeader("Transform"))
-    //    {
-    //        if (ImGui::BeginTable("TransformTable", 4))
-    //        {
-    //            ImGui::TableNextRow();
-    //            ImGui::TableSetColumnIndex(0);
-
-    //            ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x / 4); // Set the width of each input field
-    //            ImGui::Text("Position:");
-    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
-
-    //            ImGui::TableSetColumnIndex(1);
-    //            ImGui::Text("X");
-
-    //            ImGui::SameLine();
-    //            ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-
-    //            ImGui::InputFloat("##PX", &camera2D.transform.position.x, 0.0f, 0.0f, "%.f");
-    //            ImGui::PopStyleColor();
-
-    //            ImGui::TableSetColumnIndex(2);
-    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
-
-    //            ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-    //            ImGui::Text("Y");
-
-    //            ImGui::SameLine();
-    //            ImGui::InputFloat("##PY", &camera2D.transform.position.y, 0.0f, 0.0f, "%.f");
-    //            ImGui::PopStyleColor();
-
-    //            ImGui::TableSetColumnIndex(3);
-
-    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
-
-    //            ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-    //            ImGui::Text("Z");
-
-    //            ImGui::SameLine();
-    //            ImGui::InputFloat("##PZ", &camera2D.transform.position.z, 0.0f, 0.0f, "%.f");
-    //            ImGui::PopStyleColor();
-
-
-    //            ImGui::TableNextRow();
-    //            ImGui::TableSetColumnIndex(0);
-
-    //            ImGui::Text("Rotation:");
-
-    //            ImGui::TableSetColumnIndex(1);
-    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
-
-    //            ImGui::Text("X");
-
-    //            ImGui::SameLine();
-    //            ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-
-    //            ImGui::InputFloat("##RX", &camera2D.transform.rotation.x, 0.0f, 0.0f, "%.f");
-    //            ImGui::PopStyleColor();
-
-    //            ImGui::TableSetColumnIndex(2);
-
-    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
-
-    //            ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-    //            ImGui::Text("Y");
-
-    //            ImGui::SameLine();
-    //            ImGui::InputFloat("##RY", &camera2D.transform.rotation.y, 0.0f, 0.0f, "%.f");
-    //            ImGui::PopStyleColor();
-
-    //            ImGui::TableSetColumnIndex(3);
-
-    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
-
-    //            ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-    //            ImGui::Text("Z");
-
-    //            ImGui::SameLine();
-    //            ImGui::InputFloat("##RZ", &camera2D.transform.rotation.z, 0.0f, 0.0f, "%.f");
-    //            ImGui::PopStyleColor();
-
-
-    //            ImGui::TableNextRow();
-    //            ImGui::TableSetColumnIndex(0);
-
-    //            ImGui::Text("Scale:");
-
-    //            ImGui::TableSetColumnIndex(1);
-    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.3f, 0.3f, 1.0f)); // X color
-
-    //            ImGui::Text("X");
-
-    //            ImGui::SameLine();
-    //            ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-
-    //            ImGui::InputFloat("##SX", &camera2D.transform.scale.x, 0.0f, 0.0f, "%.f");
-    //            ImGui::PopStyleColor();
-
-    //            ImGui::TableSetColumnIndex(2);
-
-    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 1.0f)); // Y color
-
-    //            ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-    //            ImGui::Text("Y");
-
-    //            ImGui::SameLine();
-    //            ImGui::InputFloat("##SY", &camera2D.transform.scale.y, 0.0f, 0.0f, "%.f");
-    //            ImGui::PopStyleColor();
-
-    //            ImGui::TableSetColumnIndex(3);
-
-    //            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 0.3f, 1.0f, 1.0f)); // Z color
-
-    //            ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
-    //            ImGui::Text("Z");
-
-    //            ImGui::SameLine();
-    //            ImGui::InputFloat("##SZ", &camera2D.transform.scale.z, 0.0f, 0.0f, "%.f");
-    //            ImGui::PopStyleColor();
-    //            ImGui::PopItemWidth();
-
-    //            ImGui::EndTable();
-    //        }
-    //    }
-
-    //    if (ImGui::CollapsingHeader("Camera Output"))
-    //    {
-    //        ImGui::Image((void*)framebuffer->GetTexture(), ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
-
-    //        ImGui::Text("Output Colour:");
-    //        ImGui::SameLine();
-    //        ImGui::ColorEdit4("##label7", (float*)&camera2D.outputColor);
-
-    //        ImGui::SameLine();
-    //        if (ImGui::Button("Reset##1"))
-    //        {
-    //            camera2D.SetColor(camera2D.outputColor, { 1.0f, 1.0f, 1.0f, 1.0f });
-    //        }
-
-    //        ImGui::Text("Background Colour:");
-    //        ImGui::SameLine();
-    //        ImGui::ColorEdit3("##label8", (float*)&camera2D.backgroundColor);
-
-    //        ImGui::SameLine();
-    //        if (ImGui::Button("Reset##2"))
-    //        {
-    //            camera2D.SetColor(camera2D.backgroundColor, { 0.05f, 0.05f, 0.05f, 1.0f });
-    //        }
-    //    }
-
-    //    if (ImGui::CollapsingHeader("AudioManager"))
-    //    {
-    //        AudioManagerComponent();
-    //    }
-    //}
 
     ImGui::End();
 }
@@ -997,7 +867,7 @@ void Editor::ContentBrowser()
                                 currentScene = fileManager.LoadYAMLFile(entry.path().filename().string().substr(0, pos), tempPath + "\\" + entry.path().filename().string());
 
                                 renderer.objectsToRender = currentScene.objectsToRender;
-                                Core.audioManager = currentScene.audioManager;
+                                /*Core.audioManager = currentScene.audioManager;*/
                                 renderer.RegenerateObjects();
 
                                 savedChanges = true;
@@ -1047,19 +917,12 @@ void Editor::MenuBar()
 
             if (ImGui::MenuItem("Open Scene"))
             {
-                const char* filterTypes[1] = { ".worldOB" };
-                const char* file_path = tinyfd_openFileDialog(
-                    "Open a scene",              // Title of the dialog
-                    (rootPath + "/Assets").c_str(),                         // Default path ("" means current directory)
-                    1,                          // Number of file filters
-                    filterTypes,                // File filters (e.g., ["*.txt"])
-                    NULL,                       // Filter description
-                    0                           // Allow multiple selections (0 for no)
-                );
+                const char* filterTypes[1] = { "*.worldOB" }; // Defines the filters in the file explorer.
+                std::string filePath = fileManager.OpenFileExplorer(filterTypes, "Open a scene", rootPath); // Gets the full path of the selected file.
 
-                if (file_path) 
+                if (!filePath.empty())
                 {
-                    std::string tempPath = std::string(file_path).erase(0, rootPath.length());
+                    std::string tempPath = filePath.erase(0, rootPath.length());
 
                     int fileNamePos = tempPath.find_last_of('\\') + 1; // Gets the final directory position in the file path.
                     int fileExtensionPos = tempPath.find_last_of('.'); // Gets the extension position in the file path.
@@ -1069,7 +932,6 @@ void Editor::MenuBar()
                     currentScene = fileManager.LoadYAMLFile(fileName, tempPath);
 
                     renderer.objectsToRender = currentScene.objectsToRender;
-                    Core.audioManager = currentScene.audioManager;
                     renderer.RegenerateObjects();
                 }
             }
@@ -1085,7 +947,7 @@ void Editor::MenuBar()
                 test.sceneName = currentScene.sceneName;
                 test.scenePath = currentScene.scenePath;
                 test.objectsToRender = renderer.objectsToRender;
-                test.audioManager = Core.audioManager;
+                //test.audioManager = Core.audioManager;
 
                 fileManager.CreateYAMLFile(test, test.sceneName, test.scenePath);
                 savedChanges = true;
@@ -1093,14 +955,8 @@ void Editor::MenuBar()
 
             if (ImGui::MenuItem("Save As"))
             {
-                const char* filterTypes[1] = { ".worldOB" };
-                const char* savePath = tinyfd_saveFileDialog(
-                    "Save scene",              // Title of the dialog.
-                    (rootPath + "/Assets/").c_str(), // Default name.
-                    1,                         // Number of file filters.
-                    filterTypes,               // File filters (e.g., ["*.txt"]).
-                    NULL                       // Filter description.
-                );
+                const char* filterTypes[1] = { ".worldOB" }; // Defines the filters in the file explorer.
+                const char* savePath = fileManager.SaveFileExplorer(filterTypes, "Save scene", rootPath); // Gets the full path of the selected file.
 
                 if (savePath) 
                 {
@@ -1133,7 +989,7 @@ void Editor::MenuBar()
                     test.sceneName = file_name_no_ext;
                     test.scenePath = savePath;
                     test.objectsToRender = renderer.objectsToRender;
-                    test.audioManager = Core.audioManager;
+                    //test.audioManager = Core.audioManager;
 
                     std::string tempPath = savePath;
                     std::string newFileName = tempPath.erase(0, rootPath.length());
@@ -1267,7 +1123,9 @@ void Editor::AudioManagerComponent()
     ImGui::Text("Sounds: ");
     ImGui::SameLine();
 
-    ImGui::Text(std::to_string(Core.audioManager->sounds.size()).c_str()); // Shows the number of sounds in the vector.
+    std::shared_ptr<AudioManager> audioManager = renderer.objectsToRender[selectedObject]->GetComponent<AudioManager>();
+
+    ImGui::Text(std::to_string(audioManager->sounds.size()).c_str()); // Shows the number of sounds in the vector.
 
     ImGui::SameLine();
 
@@ -1284,18 +1142,18 @@ void Editor::AudioManagerComponent()
         s.position = glm::vec3(0);
         s.velocity = glm::vec3(0);
 
-        Core.audioManager->sounds.push_back(s); // Adds a sound to the list.
+        audioManager->sounds.push_back(s); // Adds a sound to the list.
     }
 
     // Loops through every item in sounds vector.
-    for (int i = 0; i < Core.audioManager->sounds.size(); i++)
+    for (int i = 0; i < audioManager->sounds.size(); i++)
     {
         ImGui::Indent();
 
         ImGui::PushID(i);
-        Sound sound = Core.audioManager->sounds[i]; // Gets a sound from the vector.
+        Sound sound = audioManager->sounds[i]; // Gets a sound from the vector.
 
-        if (sound.soundName != Core.audioManager->sounds[i].soundName) ImGui::SetNextItemOpen(true);
+        if (sound.soundName != audioManager->sounds[i].soundName) ImGui::SetNextItemOpen(true);
 
         // Collapsing header for selected sound.
         if (ImGui::CollapsingHeader(sound.soundName.c_str(), ImGuiTreeNodeFlags_DefaultOpen))
@@ -1311,7 +1169,7 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::InputText("##name", &Core.audioManager->sounds[i].soundName);
+                ImGui::InputText("##name", &audioManager->sounds[i].soundName);
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
@@ -1320,7 +1178,21 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::InputText("##path", &Core.audioManager->sounds[i].filePath);
+                ImGui::Text(audioManager->sounds[i].filePath.c_str());
+                ImGui::SameLine();
+
+                // Creates a button for the user to select a file through the file explorer.
+                if (ImGui::ImageButton((void*)miniFolderIcon, ImVec2(20, 20), ImVec2(0, 1), ImVec2(1, 0)))
+                {
+                    const char* filterTypes[1] = { "*.wav" }; // Defines the file filters.
+                    std::string filePath = fileManager.OpenFileExplorer(filterTypes, "Select a sound file", rootPath); // Gets the file path using the file explorer.
+
+                    // Checks if file path is valid.
+                    if (!filePath.empty())
+                    {
+                        audioManager->sounds[i].filePath = filePath.erase(0, rootPath.length() + 1); // Updates the file path.
+                    }
+                }
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
@@ -1329,7 +1201,7 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::SliderFloat("##pitch", &Core.audioManager->sounds[i].pitch, 0.1, 2.0, "%.2f");
+                ImGui::SliderFloat("##pitch", &audioManager->sounds[i].pitch, 0.1, 2.0, "%.2f");
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
@@ -1338,7 +1210,7 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::SliderFloat("##volume", &Core.audioManager->sounds[i].volume, 0.0, 1.0, "%.2f");
+                ImGui::SliderFloat("##volume", &audioManager->sounds[i].volume, 0.0, 1.0, "%.2f");
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
@@ -1360,7 +1232,7 @@ void Editor::AudioManagerComponent()
                     ImGui::SameLine();
                     ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
 
-                    ImGui::InputFloat("##PX", &Core.audioManager->sounds[i].position.x, 0.0f, 0.0f, "%.f");
+                    ImGui::InputFloat("##PX", &audioManager->sounds[i].position.x, 0.0f, 0.0f, "%.f");
                     ImGui::PopStyleColor();
 
                     ImGui::TableSetColumnIndex(1);
@@ -1370,7 +1242,7 @@ void Editor::AudioManagerComponent()
                     ImGui::Text("Y");
 
                     ImGui::SameLine();
-                    ImGui::InputFloat("##PY", &Core.audioManager->sounds[i].position.y, 0.0f, 0.0f, "%.f");
+                    ImGui::InputFloat("##PY", &audioManager->sounds[i].position.y, 0.0f, 0.0f, "%.f");
                     ImGui::PopStyleColor();
 
                     ImGui::TableSetColumnIndex(2);
@@ -1381,7 +1253,7 @@ void Editor::AudioManagerComponent()
                     ImGui::Text("Z");
 
                     ImGui::SameLine();
-                    ImGui::InputFloat("##PZ", &Core.audioManager->sounds[i].position.z, 0.0f, 0.0f, "%.f");
+                    ImGui::InputFloat("##PZ", &audioManager->sounds[i].position.z, 0.0f, 0.0f, "%.f");
                     ImGui::PopStyleColor();
 
                     ImGui::EndTable();
@@ -1406,7 +1278,7 @@ void Editor::AudioManagerComponent()
                     ImGui::SameLine();
                     ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
 
-                    ImGui::InputFloat("##VX", &Core.audioManager->sounds[i].velocity.x, 0.0f, 0.0f, "%.f");
+                    ImGui::InputFloat("##VX", &audioManager->sounds[i].velocity.x, 0.0f, 0.0f, "%.f");
                     ImGui::PopStyleColor();
 
                     ImGui::TableSetColumnIndex(1);
@@ -1417,7 +1289,7 @@ void Editor::AudioManagerComponent()
                     ImGui::Text("Y");
 
                     ImGui::SameLine();
-                    ImGui::InputFloat("##VY", &Core.audioManager->sounds[i].velocity.y, 0.0f, 0.0f, "%.f");
+                    ImGui::InputFloat("##VY", &audioManager->sounds[i].velocity.y, 0.0f, 0.0f, "%.f");
                     ImGui::PopStyleColor();
 
                     ImGui::TableSetColumnIndex(2);
@@ -1428,7 +1300,7 @@ void Editor::AudioManagerComponent()
                     ImGui::Text("Z");
 
                     ImGui::SameLine();
-                    ImGui::InputFloat("##VZ", &Core.audioManager->sounds[i].velocity.z, 0.0f, 0.0f, "%.f");
+                    ImGui::InputFloat("##VZ", &audioManager->sounds[i].velocity.z, 0.0f, 0.0f, "%.f");
                     ImGui::PopStyleColor();
 
                     ImGui::EndTable();
@@ -1441,7 +1313,7 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::Checkbox("##playStart", &Core.audioManager->sounds[i].playOnStartUp);
+                ImGui::Checkbox("##playStart", &audioManager->sounds[i].playOnStartUp);
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
@@ -1450,7 +1322,7 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::Checkbox("##repeat", &Core.audioManager->sounds[i].repeatDelay);
+                ImGui::Checkbox("##repeat", &audioManager->sounds[i].repeatDelay);
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
@@ -1459,7 +1331,7 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::Checkbox("##loop", &Core.audioManager->sounds[i].isLooping);
+                ImGui::Checkbox("##loop", &audioManager->sounds[i].isLooping);
 
                 ImGui::NewLine();
                 ImGui::TableNextRow();
@@ -1473,12 +1345,12 @@ void Editor::AudioManagerComponent()
                 // The play button.
                 if (ImGui::Button("Play"))
                 {
-                    Core.audioManager->GenSound(i); // If a new sound has been created, generate sources and buffers for audio to play.
+                    audioManager->GenSound(i); // If a new sound has been created, generate sources and buffers for audio to play.
 
-                    Core.audioManager->sounds[i].audioSource->ChangeFile(Core.audioManager->sounds[i].filePath); // Changes the file path for the audio source.
-                    Core.audioManager->sounds[i].audioSource->SetProperties(Core.audioManager->sounds[i].pitch, Core.audioManager->sounds[i].volume, Core.audioManager->sounds[i].isLooping, Core.audioManager->sounds[i].position, Core.audioManager->sounds[i].velocity); // Resets audio source properties.
+                    audioManager->sounds[i].audioSource->ChangeFile(audioManager->sounds[i].filePath); // Changes the file path for the audio source.
+                    audioManager->sounds[i].audioSource->SetProperties(audioManager->sounds[i].pitch, audioManager->sounds[i].volume, audioManager->sounds[i].isLooping, audioManager->sounds[i].position, audioManager->sounds[i].velocity); // Resets audio source properties.
                     
-                    Core.audioManager->sounds[i].audioSource->Play(); // Plays the sound.
+                    audioManager->sounds[i].audioSource->Play(); // Plays the sound.
                 }
 
                 ImGui::SameLine();
@@ -1486,7 +1358,7 @@ void Editor::AudioManagerComponent()
                 // The stop button.
                 if (ImGui::Button("Stop"))
                 {
-                    Core.audioManager->sounds[i].audioSource->Stop(); // Stops the sound.
+                    audioManager->sounds[i].audioSource->Stop(); // Stops the sound.
                 }
 
                 ImGui::EndTable();

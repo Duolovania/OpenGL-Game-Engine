@@ -34,6 +34,9 @@
     <Filter Include="src\Audio">
       <UniqueIdentifier>{EE2696B2-5A91-4A29-A3CF-FBCE0F79287E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Components">
+      <UniqueIdentifier>{221ADC4D-0EE8-CF53-F77B-407AE3E8ABB8}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Core">
       <UniqueIdentifier>{A5D31CCF-91A0-77DA-BAB9-6582A6E5AC68}</UniqueIdentifier>
     </Filter>
@@ -51,6 +54,9 @@
     </Filter>
     <Filter Include="src\include\Audio">
       <UniqueIdentifier>{A175DA19-0D8C-D8AF-5603-64D1C258A937}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\include\Components">
+      <UniqueIdentifier>{B5908C73-A18A-B5C5-8AF7-4BD676901B32}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\include\Core">
       <UniqueIdentifier>{F897E87C-E490-07CF-0DC3-EC53F91AE7DA}</UniqueIdentifier>
@@ -165,16 +171,25 @@
     <ClInclude Include="src\include\Audio\sound.h">
       <Filter>src\include\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\Core\action.h">
-      <Filter>src\include\Core</Filter>
-    </ClInclude>
     <ClInclude Include="src\include\Components\animation.h">
-      <Filter>src\include\Core</Filter>
+      <Filter>src\include\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\include\Components\animationframe.h">
-      <Filter>src\include\Core</Filter>
+      <Filter>src\include\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\include\Components\animationplayer.h">
+      <Filter>src\include\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Components\camera.h">
+      <Filter>src\include\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Components\component.h">
+      <Filter>src\include\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Components\spriterenderer.h">
+      <Filter>src\include\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Core\action.h">
       <Filter>src\include\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\include\Core\application.h">
@@ -240,9 +255,6 @@
     <ClInclude Include="src\include\orbiter.h">
       <Filter>src\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\Components\component.h" />
-    <ClInclude Include="src\include\Components\camera.h" />
-    <ClInclude Include="src\include\Components\spriterenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vendor\glm\detail\glm.cpp">
@@ -302,6 +314,15 @@
     <ClCompile Include="src\Audio\AudioSource.cpp">
       <Filter>src\Audio</Filter>
     </ClCompile>
+    <ClCompile Include="src\Components\AnimationPlayer.cpp">
+      <Filter>src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Camera.cpp">
+      <Filter>src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\SpriteRenderer.cpp">
+      <Filter>src\Components</Filter>
+    </ClCompile>
     <ClCompile Include="src\Core\Action.cpp">
       <Filter>src\Core</Filter>
     </ClCompile>
@@ -309,9 +330,6 @@
       <Filter>src\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Core\AnimationFrame.cpp">
-      <Filter>src\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\AnimationPlayer.cpp">
       <Filter>src\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Core\Application.cpp">
@@ -328,6 +346,9 @@
     </ClCompile>
     <ClCompile Include="src\Core\Renderer.cpp">
       <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObjects\GameObject.cpp">
+      <Filter>src\GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="src\Rendering\FrameBuffer.cpp">
       <Filter>src\Rendering</Filter>
@@ -359,9 +380,6 @@
     <ClCompile Include="src\include\Math\Vector.cpp">
       <Filter>src\include\Math</Filter>
     </ClCompile>
-    <ClCompile Include="src\Components\Camera.cpp" />
-    <ClCompile Include="src\GameObjects\GameObject.cpp" />
-    <ClCompile Include="src\Components\SpriteRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vendor\tinyfiledialogs\dll_cs_lua_R_fortran_pascal\tinyfiledialogs_dylib.sh">

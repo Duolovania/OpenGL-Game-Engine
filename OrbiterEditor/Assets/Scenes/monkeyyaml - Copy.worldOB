@@ -1,22 +1,6 @@
 Scene Details:
   Name: monkeyyaml - Copy
   Path: Assets\Scenes\monkeyyaml - Copy.worldOB
-Audio Manager:
-  - Name: Test
-    Path: SFX/elf-singing-89296.wav
-    Pitch: 1
-    Volume: 0.25
-    Position:
-      - -107374180
-      - -107374180
-      - -107374180
-    Velocity:
-      - -107374180
-      - -107374180
-      - -107374180
-    Looping: false
-    On Start Up: false
-    Delay: true
 GameObjects:
   - Name: Monkey
     Sprite Renderer:
@@ -72,10 +56,26 @@ GameObjects:
         - 0.05
         - 0.05
         - 1
+    Audio Manager:
+      - Name: Elf
+        Path: SFX\elf-singing-89296.wav
+        Pitch: 1
+        Volume: 1
+        Position:
+          - 0
+          - 0
+          - 0
+        Velocity:
+          - 0
+          - 0
+          - 0
+        Looping: false
+        On Start Up: false
+        Delay: false
     Transform:
       Position:
-        - -106.661224
-        - -100.01842
+        - -38.716175
+        - -10.596685
         - 0
       Rotation:
         - 0
@@ -83,5 +83,5 @@ GameObjects:
         - 0
       Scale:
         - 1082
-        - 540
+        - 550
         - 0

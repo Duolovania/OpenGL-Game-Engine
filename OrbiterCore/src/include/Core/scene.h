@@ -10,6 +10,4 @@ class Scene
 	public:
 		std::string sceneName, scenePath;
 		std::vector<std::shared_ptr<GameObject>> objectsToRender;
-
-		std::shared_ptr<AudioManager> audioManager;
 };

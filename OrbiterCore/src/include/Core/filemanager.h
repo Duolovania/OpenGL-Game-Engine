@@ -24,4 +24,22 @@ class FileManager
 		* @param filePath the path to the scene file. This requires the file extension.
 		*/
 		Scene LoadYAMLFile(std::string fileName, std::string filePath);
+
+		/**
+		* @brief Opens the file explorer for selecting files.
+		*
+		* @param filters the accepted file types.
+		* @param prompt the prompt shown to the user in the file explorer.
+		* @param rootPath the path to the "Assets" folder. Exclude the "Assets" folder when entering the path.
+		*/
+		std::string OpenFileExplorer(const char* filters[], const char* prompt, std::string rootPath);
+
+		/**
+		* @brief Saves the file to a specified path in the file explorer.
+		*
+		* @param filters the accepted file types.
+		* @param prompt the prompt shown to the user in the file explorer.
+		* @param rootPath the path to the "Assets" folder. Exclude the "Assets" folder when entering the path.
+		*/
+		const char* SaveFileExplorer(const char* filters[], const char* prompt, std::string rootPath);
 };

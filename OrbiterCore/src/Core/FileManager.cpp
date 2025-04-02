@@ -1,6 +1,8 @@
 #include "Core/filemanager.h"
 #include "Components/spriterenderer.h"
 #include "Components/camera.h"
+#include "tinyfiledialogs/tinyfiledialogs.h"
+
 #include <sstream>
 
 enum FileObjectType
@@ -84,27 +86,6 @@ void FileManager::CreateYAMLFile(Scene sceneData, std::string sceneName, std::st
 	yamlNode["Scene Details"]["Name"] = sceneName;
 	yamlNode["Scene Details"]["Path"] = filePath;
 
-	yamlNode["Audio Manager"] = YAML::Node(YAML::NodeType::Sequence);
-
-	for (auto& soundEffect : sceneData.audioManager->sounds)
-	{
-		YAML::Node newSoundEffect;
-
-		newSoundEffect["Name"] = soundEffect.soundName;
-		newSoundEffect["Path"] = soundEffect.filePath;
-		newSoundEffect["Pitch"] = soundEffect.pitch;
-		newSoundEffect["Volume"] = soundEffect.volume;
-
-		newSoundEffect["Position"] = Vector3ToString(Vector3(soundEffect.position.x, soundEffect.position.y, soundEffect.position.z));
-		newSoundEffect["Velocity"] = Vector3ToString(Vector3(soundEffect.velocity.x, soundEffect.velocity.y, soundEffect.velocity.z));
-
-		newSoundEffect["Looping"] = soundEffect.isLooping;
-		newSoundEffect["On Start Up"] = soundEffect.playOnStartUp;
-		newSoundEffect["Delay"] = soundEffect.repeatDelay;
-
-		yamlNode["Audio Manager"].push_back(newSoundEffect);
-	}
-
 	yamlNode["GameObjects"] = YAML::Node(YAML::NodeType::Sequence);
 
 	for (auto& data : sceneData.objectsToRender)
@@ -126,6 +107,32 @@ void FileManager::CreateYAMLFile(Scene sceneData, std::string sceneName, std::st
 
 			newGObj["Camera"]["Output Color"] = Vector4ToString(Vector4(camera->outputColor[0], camera->outputColor[1], camera->outputColor[2], camera->outputColor[3]));
 			newGObj["Camera"]["Background Color"] = Vector4ToString(Vector4(camera->backgroundColor[0], camera->backgroundColor[1], camera->backgroundColor[2], camera->backgroundColor[3]));
+		}
+
+		if (data->HasComponent("Audio Manager"))
+		{
+			newGObj["Audio Manager"] = YAML::Node(YAML::NodeType::Sequence);
+
+			std::shared_ptr<AudioManager> audioManager = data->GetComponent<AudioManager>();
+
+			for (auto& soundEffect : audioManager->sounds)
+			{
+				YAML::Node newSoundEffect;
+
+				newSoundEffect["Name"] = soundEffect.soundName;
+				newSoundEffect["Path"] = soundEffect.filePath;
+				newSoundEffect["Pitch"] = soundEffect.pitch;
+				newSoundEffect["Volume"] = soundEffect.volume;
+
+				newSoundEffect["Position"] = Vector3ToString(Vector3(soundEffect.position.x, soundEffect.position.y, soundEffect.position.z));
+				newSoundEffect["Velocity"] = Vector3ToString(Vector3(soundEffect.velocity.x, soundEffect.velocity.y, soundEffect.velocity.z));
+
+				newSoundEffect["Looping"] = soundEffect.isLooping;
+				newSoundEffect["On Start Up"] = soundEffect.playOnStartUp;
+				newSoundEffect["Delay"] = soundEffect.repeatDelay;
+
+				newGObj["Audio Manager"].push_back(newSoundEffect);
+			}
 		}
 
 		newGObj["Transform"]["Position"] = Vector3ToString(data->transform.position);
@@ -161,6 +168,34 @@ Vector4 NodeToVector4(const YAML::Node& root)
 	return Vector4(tempVec4[0], tempVec4[1], tempVec4[2], tempVec4[3]);
 }
 
+std::vector<Sound> GetSoundEffects(const YAML::Node& root)
+{
+	std::vector<Sound> soundVector;
+
+	for (const auto& node : root["Audio Manager"])
+	{
+		Sound newSound;
+		newSound.soundName = node["Name"].as<std::string>();
+		newSound.filePath = node["Path"].as<std::string>();
+		newSound.pitch = node["Pitch"].as<float>();
+		newSound.volume = node["Volume"].as<float>();
+
+		Vector3 tempVec3 = NodeToVector3(node["Position"]);
+		newSound.position = glm::vec3(tempVec3.x, tempVec3.y, tempVec3.z);
+
+		tempVec3 = NodeToVector3(node["Velocity"]);
+		newSound.velocity = glm::vec3(tempVec3.x, tempVec3.y, tempVec3.z);
+
+		newSound.isLooping = node["Looping"].as<bool>();
+		newSound.playOnStartUp = node["On Start Up"].as<bool>();
+		newSound.repeatDelay = node["Delay"].as<bool>();
+
+		soundVector.push_back(newSound);
+	}
+
+	return soundVector;
+}
+
 std::vector<std::shared_ptr<GameObject>> GetGameObjects(const YAML::Node& root)
 {
 	std::vector<std::shared_ptr<GameObject>> objectVector;
@@ -193,6 +228,14 @@ std::vector<std::shared_ptr<GameObject>> GetGameObjects(const YAML::Node& root)
 			tempgObj->AddComponent(camera);
 		}
 
+		if (node["Audio Manager"])
+		{
+			AudioManager audioManager;
+
+			tempgObj->AddComponent(audioManager);
+			tempgObj->GetComponent<AudioManager>()->sounds = GetSoundEffects(node); // Gets the sound effects after the component is added as "AddComponent" initializes the shared pointer so the sound data would be reset.
+		}
+
 		tempgObj->objectName = node["Name"].as<std::string>();
 
 		tempgObj->transform.position = NodeToVector3(node["Transform"]["Position"]);
@@ -206,33 +249,7 @@ std::vector<std::shared_ptr<GameObject>> GetGameObjects(const YAML::Node& root)
 	return objectVector;
 }
 
-std::vector<Sound> GetSoundEffects(const YAML::Node& root)
-{
-	std::vector<Sound> soundVector;
 
-	for (const auto& node : root["Audio Manager"])
-	{
-		Sound newSound;
-		newSound.soundName = node["Name"].as<std::string>();
-		newSound.filePath = node["Path"].as<std::string>();
-		newSound.pitch = node["Pitch"].as<float>();
-		newSound.volume = node["Volume"].as<float>();
-
-		Vector3 tempVec3 = NodeToVector3(node["Position"]);
-		newSound.position = glm::vec3(tempVec3.x, tempVec3.y, tempVec3.z);
-
-		tempVec3 = NodeToVector3(node["Velocity"]);
-		newSound.velocity = glm::vec3(tempVec3.x, tempVec3.y, tempVec3.z);
-		
-		newSound.isLooping = node["Looping"].as<bool>();
-		newSound.playOnStartUp = node["On Start Up"].as<bool>();
-		newSound.repeatDelay = node["Delay"].as<bool>();
-
-		soundVector.push_back(newSound);
-	}
-
-	return soundVector;
-}
 
 Scene FileManager::LoadYAMLFile(std::string fileName, std::string filePath)
 {
@@ -251,8 +268,34 @@ Scene FileManager::LoadYAMLFile(std::string fileName, std::string filePath)
 
 	newScene.objectsToRender = GetGameObjects(yamlNode);
 
-	newScene.audioManager = std::make_unique<AudioManager>();
-	newScene.audioManager->sounds = GetSoundEffects(yamlNode);
-
 	return newScene;
+}
+
+std::string FileManager::OpenFileExplorer(const char* filters[], const char* prompt, std::string rootPath)
+{
+	const char* filePath = tinyfd_openFileDialog(
+		prompt,              // Title of the dialog
+		(rootPath + "/Assets").c_str(),                         // Default path ("" means current directory)
+		1,                          // Number of file filters
+		filters,                // File filters (e.g., ["*.txt"])
+		NULL,                       // Filter description
+		0                           // Allow multiple selections (0 for no)
+	);
+
+	if (!filePath) return "";
+
+	return std::string(filePath);
+}
+
+const char* FileManager::SaveFileExplorer(const char* filters[], const char* prompt, std::string rootPath)
+{
+	const char* savePath = tinyfd_saveFileDialog(
+		prompt,              // Title of the dialog.
+		(rootPath + "/Assets/").c_str(), // Default name.
+		1,                         // Number of file filters.
+		filters,               // File filters (e.g., ["*.txt"]).
+		NULL                       // Filter description.
+	);
+
+	return savePath;
 }

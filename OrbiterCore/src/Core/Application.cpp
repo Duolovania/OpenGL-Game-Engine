@@ -62,15 +62,6 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     Core.renderingLayer->framebuffer = std::make_unique<FrameBuffer>(m_screenWidth, m_screenHeight);
     Core.renderingLayer->framebuffer->Gen();
 
-    Core.audioManager = std::make_unique<AudioManager>();
-
-    Sound newSound;
-    newSound.soundName = "Test";
-    newSound.filePath = "SFX/elf-singing-89296.wav";
-
-    Core.audioManager->sounds.push_back(newSound);
-    Core.audioManager->GenAllSounds();
-
     Core.renderingLayer->Init(window);
 }
 
@@ -93,7 +84,6 @@ void Application::Loop()
 
 void Application::Close()
 {
-    Core.audioManager->KillAudioManager();
     Core.renderingLayer->Close();
 
     glfwTerminate();

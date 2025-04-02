@@ -7,13 +7,13 @@ Audio Manager:
     Pitch: 1
     Volume: 0.25
     Position:
-      - -107374180
-      - -107374180
-      - -107374180
+      - 0
+      - 0
+      - 0
     Velocity:
-      - -107374180
-      - -107374180
-      - -107374180
+      - 0
+      - 0
+      - 0
     Looping: false
     On Start Up: false
     Delay: true
@@ -83,5 +83,5 @@ GameObjects:
         - 0
       Scale:
         - 1082
-        - 540
+        - 550
         - 0

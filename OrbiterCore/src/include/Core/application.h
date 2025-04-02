@@ -46,11 +46,6 @@ class Engine
 
 		// The input manager is used for mapping the user's input to controls that can be used in the project.
 		Input InputManager;
-
-		// The audio manager is used for storing and generating sounds. 
-		// Note: there is only one audio manager in the project.
-		std::shared_ptr<AudioManager> audioManager; 
-
 		RenderingLayer* renderingLayer;
 
 		// This method handles the keyboard input.
