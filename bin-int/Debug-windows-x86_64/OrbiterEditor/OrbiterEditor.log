@@ -26,4 +26,6 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.3480
           C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(62,26):
           see reference to function template instantiation 'std::unique_ptr<VertexBuffer,std::default_delete<VertexBuffer>> std::make_unique<VertexBuffer,size_t,0>(size_t &&)' being compiled
   
+  Source.cpp
+  Generating Code...
   OrbiterEditor.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin\Debug-windows-x86_64\OrbiterEditor\OrbiterEditor.exe

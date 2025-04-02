@@ -44,8 +44,6 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     glfwSetKeyCallback(window, Engine::HandleInput);
     glfwSetScrollCallback(window, Engine::HandleScrollInput);
 
-    glfwSetJoystickCallback(Engine::HandleGamePadInput);
-
     if (!window)
         glfwTerminate();
 
@@ -122,32 +120,4 @@ void Engine::HandleScrollInput(GLFWwindow* window, double xoffset, double yoffse
         std::cout << "Scroll left" << std::endl;
     else if (xoffset < 0)
         std::cout << "Scroll right" << std::endl;*/
-}
-
-void Engine::HandleGamePadInput(int jid, int event)
-{
-    int buttonCount, selectedButton;
-    const unsigned char* buttons = glfwGetJoystickButtons(jid, &buttonCount);
-
-    if (buttons)
-    {
-        for (int i = 0; i < Core.InputManager.actionList.size(); i++)
-        {
-            for (int j = 0; j < Core.InputManager.actionList[i].GetKeyBinds().size(); j++)
-            {
-                if (Core.InputManager.actionList[i].GetKeyBindIndex(j) && buttons[i])
-                {
-                    //int action = (buttons[i] == GLFW_PRESS) ? 1 : 0;
-                    Core.InputManager.actionList[i].SetStrength(buttons[i]);
-                    selectedButton = buttons[i];
-                }
-            }
-        }
-    }
-
-    if (Core.InputManager.listenToInput)
-    {
-        Core.InputManager.actionList[Core.InputManager.selectedAction].AddKeyBind(buttons[0]);
-        Core.InputManager.listenToInput = false;
-    }
 }

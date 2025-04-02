@@ -53,9 +53,6 @@ class Engine
 
 		// This method handles the mouse scroll wheel input.
 		static void HandleScrollInput(GLFWwindow* window, double xoffset, double yoffset);
-
-		// This method handles game pad input.
-		static void HandleGamePadInput(int jid, int event);
 	private:
 		Engine() {}
 		static Engine instance;
