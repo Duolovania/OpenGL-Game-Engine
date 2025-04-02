@@ -18,6 +18,8 @@ This project was made as a test for creating a custom 2D game engine using OpenG
 2. Run the 'GenerateProject.bat' file to generate the solution file.
 3. Open the 'OrbiterEngine.sln' file in Visual Studio.
 
+Note: you will need Visual Studio 2022 installed to generate the solution file.
+
 ## Libraries Used:
 * Glad - API function loader for OpenGL.
 * GLFW - OpenGL framework used for input handling and window creation.
