@@ -9,14 +9,7 @@ AudioManager::AudioManager()
 
 AudioManager::~AudioManager()
 {
-	if (!CheckDevice()) return;
-
-	/*for (auto& sound : sounds)
-	{
-		sound.audioSource->KillSource();
-	}*/
-
-	//m_audioContext->KillContext();
+	//KillAudioManager();
 }
 
 void AudioManager::Play(std::string soundName)
@@ -101,11 +94,13 @@ void AudioManager::GenSound(int index)
 {
 	if (!CheckDevice()) return;
 
-	if (sounds[index].audioSource == nullptr) sounds[index].audioSource = std::make_unique<AudioSource>(sounds[index].filePath);
-	else
+	// Checks if the audio source does not exist.
+	if (sounds[index].audioSource == nullptr || !sounds[index].audioSource->ValidSource())
 	{
-		if (!sounds[index].audioSource->ValidSource()) sounds[index].audioSource = std::make_unique<AudioSource>(sounds[index].filePath);
+		sounds[index].audioSource = std::make_unique<AudioSource>(sounds[index].filePath); // Create a new audio source.
+		std::cout << "Regenerated audio source" << std::endl;
 	}
+
 	sounds[index].audioSource->SetProperties(sounds[index].pitch, sounds[index].volume, sounds[index].isLooping, sounds[index].position, sounds[index].velocity);
 }
 

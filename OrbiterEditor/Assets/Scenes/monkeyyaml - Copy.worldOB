@@ -58,9 +58,9 @@ GameObjects:
         - 1
     Audio Manager:
       - Name: Elf
-        Path: SFX\elf-singing-89296.wav
+        Path: SFX\You're too slow.wav
         Pitch: 1
-        Volume: 1
+        Volume: 0.25
         Position:
           - 0
           - 0

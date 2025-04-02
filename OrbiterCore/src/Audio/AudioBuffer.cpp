@@ -20,12 +20,7 @@ AudioBuffer::AudioBuffer(const std::string name)
 
 AudioBuffer::~AudioBuffer()
 {
-    if (alIsBuffer(bufferID) == AL_FALSE)
-    {
-        return;
-    }
-
-    alDeleteBuffers(1, &bufferID);
+    KillBuffer();
 }
 
 ALuint AudioBuffer::GetBufferID() const

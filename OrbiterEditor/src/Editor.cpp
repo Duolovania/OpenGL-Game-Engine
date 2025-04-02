@@ -86,6 +86,12 @@ void Editor::Init(GLFWwindow* window)
     imageFileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/imagefileicon.png", true);
     miniFolderIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/foldericon - mini.png", true);
     resetIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/reset.png", true);
+
+    currentScene.sceneName = "Untitled";
+    currentScene.objectsToRender.clear();
+    renderer.objectsToRender = currentScene.objectsToRender;
+
+    renderer.RegenerateObjects();
 }
 
 bool Editor::OnUpdate(float deltaTime, float time)
@@ -365,14 +371,8 @@ void Editor::Hierarchy()
         newGObj->transform.position = Vector3();
 
         renderer.objectsToRender.push_back(newGObj);
-        //renderer.RegenerateObjects();
         renderer.RegenerateObject(renderer.objectsToRender.size() - 1);
     }
-
-    /*if (ImGui::Button((camera2D.objectName).c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0)))
-    {
-            selectedObject = -1;
-    }*/
 
     for (int i = 0; i < renderer.objectsToRender.size(); i++)
     {
@@ -388,14 +388,18 @@ void Editor::Inspector()
 {
     ImGui::Begin("Inspector");
 
-    if (selectedObject >= 0)
+    if (selectedObject >= 0 && renderer.objectsToRender.size() >= 1)
     {
         ImGui::InputText("##label0", &renderer.objectsToRender[selectedObject]->objectName);
 
-        ImGui::SameLine();
-        if (ImGui::Button("Jump To"))
+        if (cameraObj != nullptr)
         {
-            cameraObj->transform.position = renderer.objectsToRender[selectedObject]->transform.position;
+            ImGui::SameLine();
+
+            if (ImGui::Button("Jump To"))
+            {
+                cameraObj->transform.position = renderer.objectsToRender[selectedObject]->transform.position;
+            }
         }
 
         // Check that there is more than 1 object in the scene.
@@ -867,7 +871,6 @@ void Editor::ContentBrowser()
                                 currentScene = fileManager.LoadYAMLFile(entry.path().filename().string().substr(0, pos), tempPath + "\\" + entry.path().filename().string());
 
                                 renderer.objectsToRender = currentScene.objectsToRender;
-                                /*Core.audioManager = currentScene.audioManager;*/
                                 renderer.RegenerateObjects();
 
                                 savedChanges = true;
@@ -889,10 +892,7 @@ void Editor::ContentBrowser()
             ImGui::EndChild();
         }
 
-        
-
         ImGui::SetWindowFontScale(1.0f);
-
         ImGui::EndTable();
     }
 
@@ -955,7 +955,7 @@ void Editor::MenuBar()
 
             if (ImGui::MenuItem("Save As"))
             {
-                const char* filterTypes[1] = { ".worldOB" }; // Defines the filters in the file explorer.
+                const char* filterTypes[1] = { "*.worldOB" }; // Defines the filters in the file explorer.
                 const char* savePath = fileManager.SaveFileExplorer(filterTypes, "Save scene", rootPath); // Gets the full path of the selected file.
 
                 if (savePath) 
@@ -989,7 +989,6 @@ void Editor::MenuBar()
                     test.sceneName = file_name_no_ext;
                     test.scenePath = savePath;
                     test.objectsToRender = renderer.objectsToRender;
-                    //test.audioManager = Core.audioManager;
 
                     std::string tempPath = savePath;
                     std::string newFileName = tempPath.erase(0, rootPath.length());
@@ -1184,6 +1183,9 @@ void Editor::AudioManagerComponent()
                 // Creates a button for the user to select a file through the file explorer.
                 if (ImGui::ImageButton((void*)miniFolderIcon, ImVec2(20, 20), ImVec2(0, 1), ImVec2(1, 0)))
                 {
+                    audioManager->GenSound(i); // If a new sound has been created, generate sources and buffers for audio to play.
+                    audioManager->Stop(audioManager->sounds[i].soundName); // Stops the audio source.
+
                     const char* filterTypes[1] = { "*.wav" }; // Defines the file filters.
                     std::string filePath = fileManager.OpenFileExplorer(filterTypes, "Select a sound file", rootPath); // Gets the file path using the file explorer.
 
@@ -1191,6 +1193,9 @@ void Editor::AudioManagerComponent()
                     if (!filePath.empty())
                     {
                         audioManager->sounds[i].filePath = filePath.erase(0, rootPath.length() + 1); // Updates the file path.
+
+                        audioManager->sounds[i].audioSource->ChangeFile(audioManager->sounds[i].filePath); // Changes the file path for the audio source.
+                        audioManager->sounds[i].audioSource->SetProperties(audioManager->sounds[i].pitch, audioManager->sounds[i].volume, audioManager->sounds[i].isLooping, audioManager->sounds[i].position, audioManager->sounds[i].velocity); // Resets audio source properties.
                     }
                 }
 
@@ -1346,6 +1351,8 @@ void Editor::AudioManagerComponent()
                 if (ImGui::Button("Play"))
                 {
                     audioManager->GenSound(i); // If a new sound has been created, generate sources and buffers for audio to play.
+
+                    audioManager->sounds[i].audioSource->Stop(); // Stops the sound from playing.
 
                     audioManager->sounds[i].audioSource->ChangeFile(audioManager->sounds[i].filePath); // Changes the file path for the audio source.
                     audioManager->sounds[i].audioSource->SetProperties(audioManager->sounds[i].pitch, audioManager->sounds[i].volume, audioManager->sounds[i].isLooping, audioManager->sounds[i].position, audioManager->sounds[i].velocity); // Resets audio source properties.

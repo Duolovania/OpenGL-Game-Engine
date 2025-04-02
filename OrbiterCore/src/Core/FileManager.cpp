@@ -234,6 +234,7 @@ std::vector<std::shared_ptr<GameObject>> GetGameObjects(const YAML::Node& root)
 
 			tempgObj->AddComponent(audioManager);
 			tempgObj->GetComponent<AudioManager>()->sounds = GetSoundEffects(node); // Gets the sound effects after the component is added as "AddComponent" initializes the shared pointer so the sound data would be reset.
+			tempgObj->GetComponent<AudioManager>()->GenAllSounds();
 		}
 
 		tempgObj->objectName = node["Name"].as<std::string>();

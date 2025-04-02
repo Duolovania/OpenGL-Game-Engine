@@ -1,22 +1,6 @@
 Scene Details:
   Name: monkeyyaml
   Path: Assets\Scenes\monkeyyaml.worldOB
-Audio Manager:
-  - Name: Test
-    Path: SFX/elf-singing-89296.wav
-    Pitch: 1
-    Volume: 0.25
-    Position:
-      - 0
-      - 0
-      - 0
-    Velocity:
-      - 0
-      - 0
-      - 0
-    Looping: false
-    On Start Up: false
-    Delay: true
 GameObjects:
   - Name: Monkey
     Sprite Renderer:
@@ -72,9 +56,25 @@ GameObjects:
         - 0.05
         - 0.05
         - 1
+    Audio Manager:
+      - Name: Poopie
+        Path: SFX\Derezz2.wav
+        Pitch: 0.69
+        Volume: 0.5
+        Position:
+          - 0
+          - 0
+          - 0
+        Velocity:
+          - 0
+          - 0
+          - 0
+        Looping: false
+        On Start Up: false
+        Delay: false
     Transform:
       Position:
-        - -1.1257954
+        - -8.396418
         - 35.37496
         - 0
       Rotation:

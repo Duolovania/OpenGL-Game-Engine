@@ -15,14 +15,8 @@ AudioSource::AudioSource(const std::string name)
 
 AudioSource::~AudioSource()
 {
-    // Check to see if the sound is playing.
-    if (ValidSource())
-    {
-        alSourceStop(sourceID); // Stop the audio source.
-        alDeleteSources(1, &sourceID); // Delete the audio source buffer.
-    }
-    
-    audioBuffer->KillBuffer(); // Destroy the audio buffer, essentially wiping the audio source clean.
+    KillSource();
+    std::cout << "killed source" << std::endl;
 }
 
 void AudioSource::SetProperties(float pitch, float volume, bool looping, glm::vec3 position, glm::vec3 velocity)
@@ -33,7 +27,7 @@ void AudioSource::SetProperties(float pitch, float volume, bool looping, glm::ve
     m_position = position;
     m_velocity = velocity;
 
-    if (!ValidSource())
+    if (!IsPlaying())
     {
         return;
     }
@@ -63,7 +57,7 @@ void AudioSource::Play()
     }
 
     // Checks to see if the sound is not playing.
-    if (!ValidSource())
+    if (IsPlaying())
     {
         return;
     }
@@ -80,7 +74,7 @@ void AudioSource::Play()
 void AudioSource::Pause()
 {
     // Checks to see if the sound is not playing.
-    if (!ValidSource())
+    if (!IsPlaying())
     {
         return;
     }
@@ -94,7 +88,7 @@ void AudioSource::Pause()
 void AudioSource::Stop()
 {
     // Checks to see if the sound is not playing.
-    if (!ValidSource())
+    if (!IsPlaying())
     {
         return;
     }
@@ -104,12 +98,9 @@ void AudioSource::Stop()
 
 void AudioSource::KillSource()
 {
-    // Checks to see if the sound is playing before it is terminated.
-    if (ValidSource())
-    {
-        alSourceStop(sourceID); // Stop the audio.
-        alDeleteSources(1, &sourceID); // Delete the audio source.
-    }
+    alSourceStop(sourceID); // Stop the audio.
+    alSourcei(sourceID, AL_BUFFER, 0); // Detach the audio buffer.
+    alDeleteSources(1, &sourceID); // Delete the audio source.
 
     audioBuffer->KillBuffer(); // Destroy the audio buffer, essentially wiping the audio source clean.
 }
@@ -123,27 +114,35 @@ void AudioSource::ChangeFile(const std::string name)
     }
 
     // Checks to see if the sound is playing before it is terminated.
-    if (ValidSource()) 
+    if (IsPlaying()) 
     {
         alSourceStop(sourceID); // Stop the audio.
-        alSourcei(sourceID, AL_BUFFER, 0); // Reset the audio source buffer.
     }
 
-    fileName = name; // Update the file name.
-    audioBuffer = std::make_unique<AudioBuffer>(name);
+    alSourcei(sourceID, AL_BUFFER, 0); // Detach the audio source buffer.
 
-    // Check to see if the sound is not playing.
-    if (!ValidSource())
+    fileName = name; // Update the file name.
+    audioBuffer = std::make_unique<AudioBuffer>(fileName); // Generate a new audio buffer with the new file name.
+
+    if (alIsBuffer(audioBuffer->GetBufferID()))
     {
         alGenSources(1, &sourceID); // Regenerate the sound buffer.
         alSourcei(sourceID, AL_BUFFER, audioBuffer->GetBufferID());
     }
-
-    alSourcei(sourceID, AL_BUFFER, audioBuffer->GetBufferID());
 }
 
 bool AudioSource::ValidSource() const
 {
     if (alIsBuffer(sourceID) == AL_TRUE) return true;
+    return false;
+}
+
+bool AudioSource::IsPlaying() const
+{
+    ALenum state;
+
+    alGetSourcei(sourceID, AL_SOURCE_STATE, &state);
+    if (state == AL_PLAYING) return true;
+
     return false;
 }

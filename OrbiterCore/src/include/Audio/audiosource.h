@@ -44,8 +44,11 @@ class AudioSource
 		*/
 		void ChangeFile(const std::string name);
 
-		// Checks if the audio source is valid. This is useful for checking whether a sound effect is playing.
+		// Checks if the audio source is valid.
 		bool ValidSource() const;
+
+		// Checks if the audio source is playing.
+		bool IsPlaying() const;
 
 		float m_pitch, m_volume;
 		bool m_looping;
