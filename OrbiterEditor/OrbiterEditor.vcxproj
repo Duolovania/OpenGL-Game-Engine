@@ -259,9 +259,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Assets\Scripts\include\player.h" />
     <ClInclude Include="src\include\editor.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Assets\Scripts\Player.cpp" />
     <ClCompile Include="src\Editor.cpp" />
     <ClCompile Include="src\Source.cpp" />
   </ItemGroup>

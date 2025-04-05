@@ -9,9 +9,11 @@
     <ClInclude Include="src\include\editor.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="Assets\Scripts\include\player.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Editor.cpp" />
     <ClCompile Include="src\Source.cpp" />
+    <ClCompile Include="Assets\Scripts\Player.cpp" />
   </ItemGroup>
 </Project>

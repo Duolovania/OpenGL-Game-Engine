@@ -146,8 +146,17 @@ bool Editor::OnUpdate(float deltaTime, float time)
     
 
     ImGui::Begin("Debug Log");
+    AddTooltip("This window is used for showing the log console."); // Add tooltip for UI element above.
 
     if (ImGui::Button("Clear")) DebugOB.ClearLog();
+    AddTooltip("Clear all messages in the log console."); // Add tooltip for UI element above.
+
+    ImGui::SameLine();
+    if (ImGui::Button("Group"))
+    {
+
+    }
+    AddTooltip("Group the same messages together.");
 
     if (ImGui::BeginChild("ConsoleOutput", ImVec2(0, ImGui::GetContentRegionAvail().y / 2.5), true, ImGuiWindowFlags_AlwaysVerticalScrollbar))
     {
@@ -157,6 +166,7 @@ bool Editor::OnUpdate(float deltaTime, float time)
 
         ImGui::EndChild();
     }
+    AddTooltip("Use 'DebugOB.Log(x)' to make use of the console."); // Add tooltip for UI element above.
 
     ImGui::End();
 
@@ -314,6 +324,7 @@ void Editor::Viewport()
 {
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
     ImGui::Begin("Viewport");
+    AddTooltip("This window provides a preview of the scene for editing purposes."); // Add tooltip for UI element above.
 
     viewportSize = ImGui::GetContentRegionAvail();
     if (framebuffer->GetSize() != glm::vec2(viewportSize.x, viewportSize.y)) framebuffer->Resize(glm::vec2(viewportSize.x, viewportSize.y));
@@ -364,6 +375,7 @@ void ShowHierarchy(const std::string& name, int index, bool isLeaf = false)
 void Editor::Hierarchy()
 {
     ImGui::Begin("Hierarchy");
+    AddTooltip("This window shows a list of all objects in the scene."); // Add tooltip for UI element above.
 
     if (ImGui::Button("Add"))
     {
@@ -373,6 +385,7 @@ void Editor::Hierarchy()
         renderer.objectsToRender.push_back(newGObj);
         renderer.RegenerateObject(renderer.objectsToRender.size() - 1);
     }
+    AddTooltip("Adds a blank GameObject to the scene."); // Add tooltip for UI element above.
 
     for (int i = 0; i < renderer.objectsToRender.size(); i++)
     {
@@ -387,6 +400,7 @@ void Editor::Hierarchy()
 void Editor::Inspector()
 {
     ImGui::Begin("Inspector");
+    AddTooltip("This window covers the details for each component in the GameObject."); // Add tooltip for UI element above.
 
     if (selectedObject >= 0 && renderer.objectsToRender.size() >= 1)
     {
@@ -400,6 +414,7 @@ void Editor::Inspector()
             {
                 cameraObj->transform.position = renderer.objectsToRender[selectedObject]->transform.position;
             }
+            AddTooltip("See where this object is located on the scene."); // Add tooltip for UI element above.
         }
 
         // Check that there is more than 1 object in the scene.
@@ -412,6 +427,7 @@ void Editor::Inspector()
                 renderer.objectsToRender.erase(renderer.objectsToRender.begin() + selectedObject);
                 selectedObject = 0; // Set the default selected item. 
             }
+            AddTooltip("Delete the object from the scene."); // Add tooltip for UI element above.
         }
 
         if (ImGui::CollapsingHeader("Transform"))
@@ -581,6 +597,7 @@ void Editor::Inspector()
                         renderer.RegenerateObject(selectedObject); // Updates the image to apply changes.
                     }
                 }
+                AddTooltip("Locate the file through your files window."); // Adds a tooltip to the UI element above.
 
                 ImGui::Text("Colour:");
                 ImGui::SameLine();
@@ -592,6 +609,7 @@ void Editor::Inspector()
                 {
                     spriteRenderer->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
                 }
+                AddTooltip("Reset to default."); // Adds a tooltip to the UI element above.
             }
         }
         else
@@ -637,6 +655,7 @@ void Editor::Inspector()
                 {
                     camera->SetColor(camera->backgroundColor, { 0.05f, 0.05f, 0.05f, 1.0f });
                 }
+                AddTooltip("Reset to default."); // Adds a tooltip to the UI element above.
             }
         }
         else
@@ -733,6 +752,8 @@ void ShowFolders(const std::filesystem::path& folderPath, bool isLeaf = false)
 void Editor::ContentBrowser()
 {
     ImGui::Begin("Assets Folder");
+    std::string toolTipMsg = "This is a repository for all your game assets. This can be found at: " + rootPath;
+    AddTooltip(toolTipMsg.c_str()); // Add tooltip for UI element above.
 
     ImGui::BeginChild("TableChild", ImVec2(0, ImGui::GetContentRegionAvail().y), true, ImGuiWindowFlags_HorizontalScrollbar);
 
@@ -766,6 +787,8 @@ void Editor::ContentBrowser()
         ImGui::SameLine();
 
         ImGui::Text("Search");
+        AddTooltip("Search for an item in the folder."); // Add tooltip for UI element above.
+        
         ImGui::SameLine();
         ImGui::InputText("##search", &searchTerm);
 
@@ -848,7 +871,7 @@ void Editor::ContentBrowser()
                         {
                             fileThumbnail = sceneFileIcon;
                         }
-                        else if (fileExtension == ".png" || fileExtension == ".jpg")
+                        else if (fileExtension == ".png" || fileExtension == ".jpg" || fileExtension == ".gif" || fileExtension == ".PNG" || fileExtension == ".JPG")
                         {
                             fileThumbnail = imageFileIcon;
                         }
@@ -914,6 +937,7 @@ void Editor::MenuBar()
 
                 renderer.RegenerateObjects();
             }
+            AddTooltip("Create a new, blank scene."); // Add tooltip for UI element above.
 
             if (ImGui::MenuItem("Open Scene"))
             {
@@ -935,6 +959,7 @@ void Editor::MenuBar()
                     renderer.RegenerateObjects();
                 }
             }
+            AddTooltip("Open a scene from your files window."); // Add tooltip for UI element above.
 
             /*if (ImGui::MenuItem("Open Recent"))
             {
@@ -947,11 +972,11 @@ void Editor::MenuBar()
                 test.sceneName = currentScene.sceneName;
                 test.scenePath = currentScene.scenePath;
                 test.objectsToRender = renderer.objectsToRender;
-                //test.audioManager = Core.audioManager;
 
                 fileManager.CreateYAMLFile(test, test.sceneName, test.scenePath);
                 savedChanges = true;
             }
+            AddTooltip("Saves the current scene. Make sure to do this regularly!"); // Add tooltip for UI element above.
 
             if (ImGui::MenuItem("Save As"))
             {
@@ -996,19 +1021,17 @@ void Editor::MenuBar()
                     fileManager.CreateYAMLFile(test, test.sceneName, "Assets" + newFileName);
                 }
             }
-
-            if (ImGui::MenuItem("Close Scene"))
-            {
-                
-            }
+            AddTooltip("Save the scene manually through your files window."); // Add tooltip for UI element above.
 
             if (ImGui::MenuItem("Exit Editor"))
             {
                 applicationRunning = false;
             }
+            AddTooltip("Quit the application."); // Add tooltip for UI element above.
 
             ImGui::EndMenu();
         }
+        AddTooltip("Save or open a scene."); // Add tooltip for UI element above.
 
         if (ImGui::BeginMenu("Project"))
         {
@@ -1019,6 +1042,7 @@ void Editor::MenuBar()
 
             ImGui::EndMenu();
         }
+        AddTooltip("Tweak project settings."); // Add tooltip for UI element above.
 
         if (ImGui::BeginMenu("Editor"))
         {
@@ -1048,11 +1072,13 @@ void Editor::MenuBar()
 
             if (ImGui::MenuItem("Advanced Settings"))
             {
-
+                showToolTip = !showToolTip;
             }
+            AddTooltip("You can turn off tooltips here."); // Add tooltip for UI element above.
 
             ImGui::EndMenu();
         }
+        AddTooltip("Tweak editor settings."); // Add tooltip for UI element above.
 
         if (ImGui::BeginMenu("Window"))
         {
@@ -1060,9 +1086,11 @@ void Editor::MenuBar()
             {
                 showStats = !showStats;
             }
+            AddTooltip("Shows how many textures are created, how many are used, etc."); // Add tooltip for UI element above.
 
             ImGui::EndMenu();
         }
+        AddTooltip("Toggle editor windows."); // Add tooltip for UI element above.
 
         if (ImGui::BeginMenu("Help"))
         {
@@ -1078,6 +1106,7 @@ void Editor::MenuBar()
 
             ImGui::EndMenu();
         }
+        AddTooltip("Opens the 'About' and 'Documentation' pages."); // Add tooltip for UI element above.
 
         ImGui::SameLine();
 
@@ -1087,6 +1116,7 @@ void Editor::MenuBar()
         ImGui::SetCursorPosX((ImGui::GetContentRegionMax().x / 2.0f) - sceneTitleSize.x / 2);
 
         ImGui::Text(sceneTitle.c_str());
+        AddTooltip("The scene name.");
 
         ImGui::SameLine();
         ImGui::SetCursorPosX(ImGui::GetContentRegionMax().x / 1.2f);
@@ -1098,6 +1128,7 @@ void Editor::MenuBar()
 
             isPlaying = true;
         }
+        AddTooltip("Play the scene."); // Add tooltip for UI element above.
 
         // Pause scene button.
         ImGui::SameLine();
@@ -1105,6 +1136,7 @@ void Editor::MenuBar()
         {
             isPlaying = false;
         }
+        AddTooltip("Pause the scene."); // Add tooltip for UI element above.
 
         // Stop scene button.
         ImGui::SameLine();
@@ -1112,6 +1144,7 @@ void Editor::MenuBar()
         {
 
         }
+        AddTooltip("Stop the scene."); // Add tooltip for UI element above.
 
         ImGui::EndMainMenuBar();
     }
@@ -1119,6 +1152,16 @@ void Editor::MenuBar()
 
 void Editor::AudioManagerComponent()
 {
+    // Right-click menu.
+    if (ImGui::BeginPopupContextItem()) 
+    {
+        if (ImGui::MenuItem("Delete")) 
+        {
+            //renderer.objectsToRender[selectedObject]->RemoveComponent("Audio Manager");
+        }
+        ImGui::EndPopup();
+    }
+
     ImGui::Text("Sounds: ");
     ImGui::SameLine();
 
@@ -1143,6 +1186,7 @@ void Editor::AudioManagerComponent()
 
         audioManager->sounds.push_back(s); // Adds a sound to the list.
     }
+    AddTooltip("Create a new sound effect."); // Add tooltip for UI element above.
 
     // Loops through every item in sounds vector.
     for (int i = 0; i < audioManager->sounds.size(); i++)
@@ -1198,6 +1242,7 @@ void Editor::AudioManagerComponent()
                         audioManager->sounds[i].audioSource->SetProperties(audioManager->sounds[i].pitch, audioManager->sounds[i].volume, audioManager->sounds[i].isLooping, audioManager->sounds[i].position, audioManager->sounds[i].velocity); // Resets audio source properties.
                     }
                 }
+                AddTooltip("Locate the file through your files window."); // Adds a tooltip to the UI element above.
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
@@ -1315,6 +1360,7 @@ void Editor::AudioManagerComponent()
                 ImGui::TableSetColumnIndex(0);
 
                 ImGui::Text("Play On Start-Up:");
+                AddTooltip("Should the sound effect play when the scene starts?");
 
                 ImGui::TableSetColumnIndex(1);
 
@@ -1324,6 +1370,7 @@ void Editor::AudioManagerComponent()
                 ImGui::TableSetColumnIndex(0);
 
                 ImGui::Text("Repeat Delay:");
+                AddTooltip("Should the sound effect not overlap another? This can be useful for voicelines.");
 
                 ImGui::TableSetColumnIndex(1);
 
@@ -1333,6 +1380,7 @@ void Editor::AudioManagerComponent()
                 ImGui::TableSetColumnIndex(0);
 
                 ImGui::Text("Looped:");
+                AddTooltip("Should the sound effect play constantly?");
 
                 ImGui::TableSetColumnIndex(1);
 
@@ -1358,6 +1406,14 @@ void Editor::AudioManagerComponent()
                     audioManager->sounds[i].audioSource->SetProperties(audioManager->sounds[i].pitch, audioManager->sounds[i].volume, audioManager->sounds[i].isLooping, audioManager->sounds[i].position, audioManager->sounds[i].velocity); // Resets audio source properties.
                     
                     audioManager->sounds[i].audioSource->Play(); // Plays the sound.
+                }
+
+                ImGui::SameLine();
+
+                // The stop button.
+                if (ImGui::Button("Pause"))
+                {
+                    audioManager->sounds[i].audioSource->Pause(); // Stops the sound.
                 }
 
                 ImGui::SameLine();
@@ -1391,6 +1447,12 @@ void Editor::SearchMainCamera()
 
         }*/
     }
+}
+
+void Editor::AddTooltip(const char* message) const
+{
+    if (!showToolTip) return; // Don't show a tooltip if it's been disabled.
+    if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) ImGui::SetTooltip(message); // Add tooltip for UI element.
 }
 
 void Editor::CreateTransformColumn(const std::array<std::string, 3>& colNames, std::array<Vector3, 3> values)

@@ -255,6 +255,8 @@
     <ClInclude Include="src\include\orbiter.h">
       <Filter>src\include</Filter>
     </ClInclude>
+    <ClInclude Include="src\include\Scripts\script.h" />
+    <ClInclude Include="src\include\Scripts\orbiterscript.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vendor\glm\detail\glm.cpp">

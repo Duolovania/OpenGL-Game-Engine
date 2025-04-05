@@ -2,3 +2,4 @@
 #include "Core/orbitercore.h"
 #include "Audio/orbiteraudio.h"
 #include "Rendering/orbiterrenderer.h"
+#include "Scripts/orbiterscript.h"

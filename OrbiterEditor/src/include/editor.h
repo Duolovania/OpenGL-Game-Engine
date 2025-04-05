@@ -20,10 +20,11 @@ class Editor : public RenderingLayer
 
 		void AudioManagerComponent();
 		void SearchMainCamera();
-
+		
+		void AddTooltip(const char* message) const;
 		void CreateTransformColumn(const std::array<std::string, 3>& colNames, std::array<Vector3, 3> values);
 
-		bool showStats = false, wireframeMode = false, showFPS = false, applicationRunning = true, savedChanges = true, isPlaying = false;
+		bool showStats = false, wireframeMode = false, showFPS = false, applicationRunning = true, savedChanges = true, isPlaying = false, showToolTip = true;
 		int actionIndex = 0, keyBindIndex = 0;
 
 		ImVec2 viewportSize;
