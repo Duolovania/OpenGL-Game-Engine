@@ -50,7 +50,7 @@ void Editor::Init(GLFWwindow* window)
     fbShader->CreateShader();
     fbShader->Bind();
 
-    renderer.Init();
+    Core.renderer.Init();
 
     fbShader->Bind();
     fbShader->SetUniform1i("screenTexture", 1);
@@ -68,8 +68,9 @@ void Editor::Init(GLFWwindow* window)
 
     frameBufferVA->AddBuffer(*frameBufferVB, layout);
 
-    currentPath = std::filesystem::current_path().string() + "\\Assets";
+    currentPath = std::filesystem::current_path().parent_path().string() + "\\Projects\\" + Core.currentProjName + "\\Assets";
     rootPath = currentPath;
+    Core.currentProjPath = currentPath;
 
     iconTextures = std::make_unique<Texture>("../OrbiterCore/Res/Application Icons/playbutton.png");
 
@@ -89,9 +90,9 @@ void Editor::Init(GLFWwindow* window)
 
     currentScene.sceneName = "Untitled";
     currentScene.objectsToRender.clear();
-    renderer.objectsToRender = currentScene.objectsToRender;
+    Core.renderer.objectsToRender = currentScene.objectsToRender;
 
-    renderer.RegenerateObjects();
+    Core.renderer.RegenerateObjects();
 }
 
 bool Editor::OnUpdate(float deltaTime, float time)
@@ -132,11 +133,11 @@ bool Editor::OnUpdate(float deltaTime, float time)
         // Logic for play button test.
         if (isPlaying)
         {
-            renderer.objectsToRender[0]->transform.position.y = (sin((time) * 1)) * 100; // sine wave movement.
+            Core.renderer.objectsToRender[0]->transform.position.y = (sin((time) * 1)) * 100; // sine wave movement.
         }
 
         // Render scene objects.
-        renderer.Draw(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f), cameraObj->GetView(), { camera->outputColor[0], camera->outputColor[1], camera->outputColor[2], camera->outputColor[3] });
+        Core.renderer.Draw(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f), cameraObj->GetView(), { camera->outputColor[0], camera->outputColor[1], camera->outputColor[2], camera->outputColor[3] });
     }
     else
     {
@@ -174,8 +175,9 @@ bool Editor::OnUpdate(float deltaTime, float time)
     {
         ImGui::Begin("Rendering Stats");
 
-        ImGui::Text("Textures Loaded: %.0f", double(renderer.texturesLoaded));
-        ImGui::Text("New Textures Created: %.0f", double(renderer.newTextures));
+        ImGui::Text("Textures Loaded: %.0f", double(Core.renderer.texturesLoaded));
+        ImGui::Text("New Textures Created: %.0f", double(Core.renderer.newTextures));
+        ImGui::Text("Cached textures: %.0f", double(Core.renderer.GetCachedTextureCount()));
 
         ImGui::End();
     }
@@ -382,15 +384,15 @@ void Editor::Hierarchy()
         std::shared_ptr<GameObject> newGObj = std::make_unique<GameObject>();
         newGObj->transform.position = Vector3();
 
-        renderer.objectsToRender.push_back(newGObj);
-        renderer.RegenerateObject(renderer.objectsToRender.size() - 1);
+        Core.renderer.objectsToRender.push_back(newGObj);
+        Core.renderer.RegenerateObject(Core.renderer.objectsToRender.size() - 1);
     }
     AddTooltip("Adds a blank GameObject to the scene."); // Add tooltip for UI element above.
 
-    for (int i = 0; i < renderer.objectsToRender.size(); i++)
+    for (int i = 0; i < Core.renderer.objectsToRender.size(); i++)
     {
         ImGui::PushID(i);
-        ShowHierarchy(renderer.objectsToRender[i]->objectName, i, true);
+        ShowHierarchy(Core.renderer.objectsToRender[i]->objectName, i, true);
         ImGui::PopID();
     }
 
@@ -402,9 +404,9 @@ void Editor::Inspector()
     ImGui::Begin("Inspector");
     AddTooltip("This window covers the details for each component in the GameObject."); // Add tooltip for UI element above.
 
-    if (selectedObject >= 0 && renderer.objectsToRender.size() >= 1)
+    if (selectedObject >= 0 && Core.renderer.objectsToRender.size() >= 1)
     {
-        ImGui::InputText("##label0", &renderer.objectsToRender[selectedObject]->objectName);
+        ImGui::InputText("##label0", &Core.renderer.objectsToRender[selectedObject]->objectName);
 
         if (cameraObj != nullptr)
         {
@@ -412,19 +414,19 @@ void Editor::Inspector()
 
             if (ImGui::Button("Jump To"))
             {
-                cameraObj->transform.position = renderer.objectsToRender[selectedObject]->transform.position;
+                cameraObj->transform.position = Core.renderer.objectsToRender[selectedObject]->transform.position;
             }
             AddTooltip("See where this object is located on the scene."); // Add tooltip for UI element above.
         }
 
         // Check that there is more than 1 object in the scene.
-        if (renderer.objectsToRender.size() > 1) 
+        if (Core.renderer.objectsToRender.size() > 1)
         {
             ImGui::SameLine();
 
             if (ImGui::Button("Delete"))
             {
-                renderer.objectsToRender.erase(renderer.objectsToRender.begin() + selectedObject);
+                Core.renderer.objectsToRender.erase(Core.renderer.objectsToRender.begin() + selectedObject);
                 selectedObject = 0; // Set the default selected item. 
             }
             AddTooltip("Delete the object from the scene."); // Add tooltip for UI element above.
@@ -447,7 +449,7 @@ void Editor::Inspector()
                 ImGui::SameLine();
                 ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
 
-                ImGui::InputFloat("##PX", &renderer.objectsToRender[selectedObject]->transform.position.x, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##PX", &Core.renderer.objectsToRender[selectedObject]->transform.position.x, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableSetColumnIndex(2);
@@ -457,7 +459,7 @@ void Editor::Inspector()
                 ImGui::Text("Y");
 
                 ImGui::SameLine();
-                ImGui::InputFloat("##PY", &renderer.objectsToRender[selectedObject]->transform.position.y, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##PY", &Core.renderer.objectsToRender[selectedObject]->transform.position.y, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableSetColumnIndex(3);
@@ -468,7 +470,7 @@ void Editor::Inspector()
                 ImGui::Text("Z");
 
                 ImGui::SameLine();
-                ImGui::InputFloat("##PZ", &renderer.objectsToRender[selectedObject]->transform.position.z, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##PZ", &Core.renderer.objectsToRender[selectedObject]->transform.position.z, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
 
@@ -485,7 +487,7 @@ void Editor::Inspector()
                 ImGui::SameLine();
                 ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
 
-                ImGui::InputFloat("##RX", &renderer.objectsToRender[selectedObject]->transform.rotation.x, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##RX", &Core.renderer.objectsToRender[selectedObject]->transform.rotation.x, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableSetColumnIndex(2);
@@ -496,7 +498,7 @@ void Editor::Inspector()
                 ImGui::Text("Y");
 
                 ImGui::SameLine();
-                ImGui::InputFloat("##RY", &renderer.objectsToRender[selectedObject]->transform.rotation.y, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##RY", &Core.renderer.objectsToRender[selectedObject]->transform.rotation.y, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableSetColumnIndex(3);
@@ -507,7 +509,7 @@ void Editor::Inspector()
                 ImGui::Text("Z");
 
                 ImGui::SameLine();
-                ImGui::InputFloat("##RZ", &renderer.objectsToRender[selectedObject]->transform.rotation.z, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##RZ", &Core.renderer.objectsToRender[selectedObject]->transform.rotation.z, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableNextRow();
@@ -523,7 +525,7 @@ void Editor::Inspector()
                 ImGui::SameLine();
                 ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
 
-                ImGui::InputFloat("##SX", &renderer.objectsToRender[selectedObject]->transform.scale.x, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##SX", &Core.renderer.objectsToRender[selectedObject]->transform.scale.x, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableSetColumnIndex(2);
@@ -534,7 +536,7 @@ void Editor::Inspector()
                 ImGui::Text("Y");
 
                 ImGui::SameLine();
-                ImGui::InputFloat("##SY", &renderer.objectsToRender[selectedObject]->transform.scale.y, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##SY", &Core.renderer.objectsToRender[selectedObject]->transform.scale.y, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableSetColumnIndex(3);
@@ -545,7 +547,7 @@ void Editor::Inspector()
                 ImGui::Text("Z");
 
                 ImGui::SameLine();
-                ImGui::InputFloat("##SZ", &renderer.objectsToRender[selectedObject]->transform.scale.z, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##SZ", &Core.renderer.objectsToRender[selectedObject]->transform.scale.z, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::PopItemWidth(); // Reset item width
@@ -558,11 +560,11 @@ void Editor::Inspector()
         }
 
         // Checks if the object has a sprite renderer component before showing the dropdown.
-        if (renderer.objectsToRender[selectedObject]->HasComponent("Sprite Renderer"))
+        if (Core.renderer.objectsToRender[selectedObject]->HasComponent("Sprite Renderer"))
         {
             if (ImGui::CollapsingHeader("Sprite Renderer"))
             { 
-                std::shared_ptr<SpriteRenderer> spriteRenderer = renderer.objectsToRender[selectedObject]->GetComponent<SpriteRenderer>();
+                std::shared_ptr<SpriteRenderer> spriteRenderer = Core.renderer.objectsToRender[selectedObject]->GetComponent<SpriteRenderer>();
 
                 ImGui::Image((void*)spriteRenderer->cTexture.textureBuffer, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
 
@@ -593,8 +595,8 @@ void Editor::Inspector()
                     // Checks if the file exists.
                     if (file_path)
                     {
-                        spriteRenderer->cTexture.m_imagePath = "Assets" + std::string(file_path).erase(0, rootPath.length()); // Erases the directories leading up to the "Assets" folder.
-                        renderer.RegenerateObject(selectedObject); // Updates the image to apply changes.
+                        spriteRenderer->cTexture.m_imagePath = rootPath + std::string(file_path).erase(0, rootPath.length()); // Erases the directories leading up to the "Assets" folder.
+                        Core.renderer.RegenerateObject(selectedObject); // Updates the image to apply changes.
                     }
                 }
                 AddTooltip("Locate the file through your files window."); // Adds a tooltip to the UI element above.
@@ -615,24 +617,24 @@ void Editor::Inspector()
         else
         {
             // Check if the object does not have a camera component before providing the option to add a sprite renderer.
-            if (selectedObject >= 0 && !renderer.objectsToRender[selectedObject]->HasComponent("Camera"))
+            if (selectedObject >= 0 && !Core.renderer.objectsToRender[selectedObject]->HasComponent("Camera"))
             {
                 if (ImGui::Button("Add Sprite Renderer"))
                 {
                     SpriteRenderer spriteRendererComponent;
-                    renderer.objectsToRender[selectedObject]->AddComponent(spriteRendererComponent);
+                    Core.renderer.objectsToRender[selectedObject]->AddComponent(spriteRendererComponent);
                 }
             }
         }
 
         // Checks if the object has a camera component before showing the dropdown.
-        if (renderer.objectsToRender[selectedObject]->HasComponent("Camera"))
+        if (Core.renderer.objectsToRender[selectedObject]->HasComponent("Camera"))
         {
-            cameraObj = renderer.objectsToRender[selectedObject]; // Sets this gameobject as the scene camera.
+            cameraObj = Core.renderer.objectsToRender[selectedObject]; // Sets this gameobject as the scene camera.
 
             if (ImGui::CollapsingHeader("Camera Output"))
             {
-                camera = renderer.objectsToRender[selectedObject]->GetComponent<Camera>();
+                camera = Core.renderer.objectsToRender[selectedObject]->GetComponent<Camera>();
 
                 ImGui::Image((void*)framebuffer->GetTexture(), ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
 
@@ -661,18 +663,18 @@ void Editor::Inspector()
         else
         {
             // Check if the object does not have a sprite renderer component before providing the option to add a camera.
-            if (selectedObject >= 0 && !renderer.objectsToRender[selectedObject]->HasComponent("Sprite Renderer"))
+            if (selectedObject >= 0 && !Core.renderer.objectsToRender[selectedObject]->HasComponent("Sprite Renderer"))
             {
                 if (ImGui::Button("Add Camera"))
                 {
                     Camera cameraComponent;
-                    renderer.objectsToRender[selectedObject]->AddComponent(cameraComponent);
+                    Core.renderer.objectsToRender[selectedObject]->AddComponent(cameraComponent);
                 }
             }
         }
 
         // Checks if the object has an audio manager component before showing the dropdown.
-        if (renderer.objectsToRender[selectedObject]->HasComponent("Audio Manager"))
+        if (Core.renderer.objectsToRender[selectedObject]->HasComponent("Audio Manager"))
         {
             if (ImGui::CollapsingHeader("AudioManager"))
             {
@@ -687,7 +689,7 @@ void Editor::Inspector()
                 if (ImGui::Button("Add Audio Manager"))
                 {
                     AudioManager audioManagerComponent;
-                    renderer.objectsToRender[selectedObject]->AddComponent(audioManagerComponent);
+                    Core.renderer.objectsToRender[selectedObject]->AddComponent(audioManagerComponent);
                 }
             }
         }
@@ -696,6 +698,7 @@ void Editor::Inspector()
     ImGui::End();
 }
 
+// Checks if the current directory has sub-folders.
 bool HasSubFolder(const std::filesystem::path& folderPath)
 {
     for (const auto& entry : std::filesystem::directory_iterator(folderPath))
@@ -709,6 +712,7 @@ bool HasSubFolder(const std::filesystem::path& folderPath)
     return false;
 }
 
+// Creates a selectable for each folder in Assets.
 void ShowFolders(const std::filesystem::path& folderPath, bool isLeaf = false) 
 {
     for (const auto& entry : std::filesystem::directory_iterator(folderPath))
@@ -749,6 +753,7 @@ void ShowFolders(const std::filesystem::path& folderPath, bool isLeaf = false)
     }
 }
 
+// Draws the assets folder window.
 void Editor::ContentBrowser()
 {
     ImGui::Begin("Assets Folder");
@@ -891,10 +896,10 @@ void Editor::ContentBrowser()
                             if (fileExtension == ".worldOB")
                             {
                                 std::size_t pos = entry.path().filename().string().find(fileExtension); // Gets the position of the file extension part of the path.
-                                currentScene = fileManager.LoadYAMLFile(entry.path().filename().string().substr(0, pos), tempPath + "\\" + entry.path().filename().string());
+                                currentScene = fileManager.LoadYAMLFile(entry.path().filename().string().substr(0, pos), rootPath + tempPath + "\\" + entry.path().filename().string());
 
-                                renderer.objectsToRender = currentScene.objectsToRender;
-                                renderer.RegenerateObjects();
+                                Core.renderer.objectsToRender = currentScene.objectsToRender;
+                                Core.renderer.RegenerateObjects();
 
                                 savedChanges = true;
                                 SearchMainCamera();
@@ -933,9 +938,9 @@ void Editor::MenuBar()
             {
                 currentScene.sceneName = "Untitled";
                 currentScene.objectsToRender.clear();
-                renderer.objectsToRender = currentScene.objectsToRender;
+                Core.renderer.objectsToRender = currentScene.objectsToRender;
 
-                renderer.RegenerateObjects();
+                Core.renderer.RegenerateObjects();
             }
             AddTooltip("Create a new, blank scene."); // Add tooltip for UI element above.
 
@@ -955,8 +960,8 @@ void Editor::MenuBar()
 
                     currentScene = fileManager.LoadYAMLFile(fileName, tempPath);
 
-                    renderer.objectsToRender = currentScene.objectsToRender;
-                    renderer.RegenerateObjects();
+                    Core.renderer.objectsToRender = currentScene.objectsToRender;
+                    Core.renderer.RegenerateObjects();
                 }
             }
             AddTooltip("Open a scene from your files window."); // Add tooltip for UI element above.
@@ -971,7 +976,7 @@ void Editor::MenuBar()
                 Scene test;
                 test.sceneName = currentScene.sceneName;
                 test.scenePath = currentScene.scenePath;
-                test.objectsToRender = renderer.objectsToRender;
+                test.objectsToRender = Core.renderer.objectsToRender;
 
                 fileManager.CreateYAMLFile(test, test.sceneName, test.scenePath);
                 savedChanges = true;
@@ -1013,12 +1018,12 @@ void Editor::MenuBar()
                     Scene test;
                     test.sceneName = file_name_no_ext;
                     test.scenePath = savePath;
-                    test.objectsToRender = renderer.objectsToRender;
+                    test.objectsToRender = Core.renderer.objectsToRender;
 
                     std::string tempPath = savePath;
                     std::string newFileName = tempPath.erase(0, rootPath.length());
 
-                    fileManager.CreateYAMLFile(test, test.sceneName, "Assets" + newFileName);
+                    fileManager.CreateYAMLFile(test, test.sceneName, rootPath + newFileName);
                 }
             }
             AddTooltip("Save the scene manually through your files window."); // Add tooltip for UI element above.
@@ -1165,7 +1170,7 @@ void Editor::AudioManagerComponent()
     ImGui::Text("Sounds: ");
     ImGui::SameLine();
 
-    std::shared_ptr<AudioManager> audioManager = renderer.objectsToRender[selectedObject]->GetComponent<AudioManager>();
+    std::shared_ptr<AudioManager> audioManager = Core.renderer.objectsToRender[selectedObject]->GetComponent<AudioManager>();
 
     ImGui::Text(std::to_string(audioManager->sounds.size()).c_str()); // Shows the number of sounds in the vector.
 
@@ -1437,7 +1442,7 @@ void Editor::AudioManagerComponent()
 
 void Editor::SearchMainCamera()
 {
-    for (auto& obj : renderer.objectsToRender)
+    for (auto& obj : Core.renderer.objectsToRender)
     {
         camera = obj->GetComponent<Camera>();
         cameraObj = obj;

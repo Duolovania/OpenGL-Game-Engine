@@ -1,0 +1,87 @@
+Scene Details:
+  Name: monkeyyaml
+  Path: C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\Projects\Game1\Assets\Scenes\monkeyyaml.worldOB
+GameObjects:
+  - Name: Monkey
+    Sprite Renderer:
+      Path: C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\Projects\Game1\Assets\Sprites\B happy.png
+      Color:
+        - 1
+        - 1
+        - 1
+        - 1
+    Transform:
+      Position:
+        - 0
+        - 0
+        - 0
+      Rotation:
+        - 0
+        - 0
+        - 0
+      Scale:
+        - 100
+        - 100
+        - 0
+  - Name: bazinga
+    Sprite Renderer:
+      Path: whitesqure.png
+      Color:
+        - 1
+        - 1
+        - 1
+        - 1
+    Transform:
+      Position:
+        - -100
+        - -100
+        - 0
+      Rotation:
+        - 0
+        - 0
+        - 0
+      Scale:
+        - 100
+        - 100
+        - 0
+  - Name: Camera2D
+    Camera:
+      Output Color:
+        - 1
+        - 1
+        - 1
+        - 1
+      Background Color:
+        - 0.05
+        - 0.05
+        - 0.05
+        - 1
+    Audio Manager:
+      - Name: Poopie
+        Path: SFX\Derezz2.wav
+        Pitch: 0.69
+        Volume: 0.5
+        Position:
+          - 0
+          - 0
+          - 0
+        Velocity:
+          - 0
+          - 0
+          - 0
+        Looping: false
+        On Start Up: false
+        Delay: false
+    Transform:
+      Position:
+        - -100
+        - -100
+        - 0
+      Rotation:
+        - 0
+        - 0
+        - 0
+      Scale:
+        - 1082
+        - 550
+        - 0

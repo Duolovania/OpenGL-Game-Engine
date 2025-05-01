@@ -130,12 +130,6 @@ project "OrbiterCore"
             "YAML_CPP_STATIC_DEFINE"
         }
 
-        -- -- Copies engine project DLL into editor project.
-        -- postbuildcommands
-        -- {
-        --     "{COPY} %{cfg.buildtarget.relpath} .. /bin/" .. outputdir .. "/OrbiterEditor"
-        -- }
-
     filter "configurations:Debug"
         defines "OB_DEBUG"
         symbols "On"
@@ -177,6 +171,8 @@ project "OrbiterEditor"
         "%{IncludeDir.OpenALSoft}",
         "%{IncludeDir.OpenALSoft}/include",
 
+        "Projects",
+
         "OrbiterCore/Vendor/glfw-master-cherno/include/GLFW",
         "OrbiterCore/Vendor/glm",
         "OrbiterCore/Vendor",
@@ -190,6 +186,11 @@ project "OrbiterEditor"
     {
         "OrbiterCore"
     }
+
+    -- postbuildcommands
+        -- {
+        --     "{COPY} %{cfg.buildtarget.relpath} .. /bin/" .. outputdir .. "/OrbiterEditor"
+        -- }
 
     filter "system:windows"
         cppdialect "C++20"
@@ -220,3 +221,60 @@ project "OrbiterEditor"
         defines "OB_DIST"
         optimize "On"
         buildoptions "/MD" -- Multi-threaded DLL.
+
+-- Automatically add each game in Projects/
+local gameDirs = os.matchdirs("Projects/*")
+for _, dir in ipairs(gameDirs) do
+   local gameName = path.getname(dir)
+   project(gameName)
+      kind "ConsoleApp"
+      language "C++"
+
+      location (dir .. "/")
+      objdir ("bin-int/" .. outputdir .. gameName)
+
+      files
+        {
+            dir .. "/src/**.h", 
+            dir .. "/src/**.cpp" 
+        }
+
+    -- Includes dependencies and include paths.
+    includedirs
+    {
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.yaml_cpp}",
+        "%{IncludeDir.OpenALSoft}",
+        "%{IncludeDir.OpenALSoft}/include",
+
+        dir .. "/Assets",
+
+        "OrbiterCore/Vendor/glfw-master-cherno/include/GLFW",
+        "OrbiterCore/Vendor/glm",
+        "OrbiterCore/Vendor",
+
+        "OrbiterCore/src",
+        "OrbiterCore/src/include",
+        "%{prj.name}/src/include"
+    }
+
+    links
+    {
+        "OrbiterCore"
+    }
+
+    filter "system:windows"
+    cppdialect "C++20"
+    staticruntime "On"
+    systemversion "latest"
+
+    defines
+    {
+        "WIN32",
+        "_CRT_SECURE_NO_WARNINGS",
+        "NOMINMAX",
+        "AL_LIBTYPE_STATIC",
+        "GLFW_INCLUDE_NONE",
+        "YAML_CPP_STATIC_DEFINE"
+    }
+end

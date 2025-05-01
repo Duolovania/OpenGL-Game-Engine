@@ -254,18 +254,18 @@ std::vector<std::shared_ptr<GameObject>> GetGameObjects(const YAML::Node& root)
 
 Scene FileManager::LoadYAMLFile(std::string fileName, std::string filePath)
 {
-	YAML::Node yamlNode = YAML::LoadFile("Assets" + filePath);
+	YAML::Node yamlNode = YAML::LoadFile(filePath);
 	Scene newScene;
 
 	// Checks if the file exists.
 	if (!yamlNode)
 	{
-		std::cout << "Failed to load file at:" << "Assets" + filePath << std::endl; // Outputs error message.
+		std::cout << "Failed to load file at:" << filePath << std::endl; // Outputs error message.
 		return newScene; // Returns empty scene.
 	}
 
 	newScene.sceneName = fileName;
-	newScene.scenePath = "Assets" + filePath;
+	newScene.scenePath = filePath;
 
 	newScene.objectsToRender = GetGameObjects(yamlNode);
 

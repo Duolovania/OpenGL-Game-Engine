@@ -70,6 +70,9 @@
     <Filter Include="src\include\Rendering">
       <UniqueIdentifier>{ED803CB5-59ED-F7AF-22E1-8F0D8E0C1A18}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\include\Scripts">
+      <UniqueIdentifier>{D736E73A-4398-C448-CC05-0BFB3866FB07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vendor\glm\simd\common.h">
@@ -252,11 +255,15 @@
     <ClInclude Include="src\include\Rendering\vertexbufferlayout.h">
       <Filter>src\include\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="src\include\Scripts\orbiterscript.h">
+      <Filter>src\include\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Scripts\script.h">
+      <Filter>src\include\Scripts</Filter>
+    </ClInclude>
     <ClInclude Include="src\include\orbiter.h">
       <Filter>src\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\include\Scripts\script.h" />
-    <ClInclude Include="src\include\Scripts\orbiterscript.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vendor\glm\detail\glm.cpp">

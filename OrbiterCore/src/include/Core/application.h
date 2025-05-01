@@ -47,6 +47,10 @@ class Engine
 		// The input manager is used for mapping the user's input to controls that can be used in the project.
 		Input InputManager;
 		RenderingLayer* renderingLayer;
+		Renderer renderer;
+
+		std::string currentProjName = "Game1"; // This is the name of the loaded project (e.g. 'Game1', 'Flappy Bird', etc.)
+		std::string currentProjPath; // This is the folder directory of the loaded project.
 
 		// This method handles the keyboard input.
 		static void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods);

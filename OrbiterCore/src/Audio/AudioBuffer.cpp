@@ -3,6 +3,7 @@
 #include <bit>
 #include <fstream>
 #include "Core/debug.h"
+#include "Core/application.h"
 
 AudioBuffer::AudioBuffer(const std::string name)
 {
@@ -10,7 +11,8 @@ AudioBuffer::AudioBuffer(const std::string name)
     ALsizei freq;
     std::vector<char> data;
 
-    std::string filePath = "Assets/" + name;
+    //std::string filePath = "Assets/" + name;
+    std::string filePath = Core.currentProjPath + "\\" + name;
 
     if (!LoadWAVFile(filePath, bufferID, format, freq, data))
     {

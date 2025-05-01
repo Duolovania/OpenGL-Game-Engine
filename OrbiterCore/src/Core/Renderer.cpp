@@ -163,7 +163,7 @@ void Renderer::RegenerateObjects()
 		if (objectsToRender[i]->HasComponent("Sprite Renderer"))
 		{
 			std::shared_ptr<SpriteRenderer> spriteRenderer = objectsToRender[i]->GetComponent<SpriteRenderer>();
-			spriteRenderer->cTexture = GetCachedBindlessTexture(spriteRenderer, i);
+			spriteRenderer->cTexture = GetCachedBindlessTexture(spriteRenderer);
 			samplers[i] = spriteRenderer->cTexture.textureHandle;
 
 			texturesLoaded++;
@@ -182,7 +182,7 @@ void Renderer::RegenerateObject(unsigned int index)
 	if (objectsToRender[index]->HasComponent("Sprite Renderer"))
 	{
 		std::shared_ptr<SpriteRenderer> spriteRenderer = objectsToRender[index]->GetComponent<SpriteRenderer>();
-		spriteRenderer->cTexture = GetCachedBindlessTexture(spriteRenderer, index);
+		spriteRenderer->cTexture = GetCachedBindlessTexture(spriteRenderer);
 		samplers[index] = spriteRenderer->cTexture.textureHandle;
 
 		texturesLoaded++;
@@ -190,6 +190,11 @@ void Renderer::RegenerateObject(unsigned int index)
 
 	m_shader->SetUniformHandlei64vARB("u_Textures", sizeof(samplers), samplers); // Sets the shader texture slots to samplers.
 	m_shader->UnBind();
+}
+
+int Renderer::GetCachedTextureCount() const
+{
+	return cachedTextures.size();
 }
 
 Vertex* Renderer::CreateQuad(Vertex* target, glm::mat4 transform, float texID, Vector4 color)
@@ -221,14 +226,14 @@ Vertex* Renderer::CreateQuad(Vertex* target, glm::mat4 transform, float texID, V
 	return target;
 }
 
-LiteTexture Renderer::GetCachedBindlessTexture(std::shared_ptr<SpriteRenderer> spriteRendererComp, unsigned int index)
+LiteTexture Renderer::GetCachedBindlessTexture(std::shared_ptr<SpriteRenderer> spriteRendererComp)
 {
 	// Searches for a texture with the same file path.
-	for (int i = 0; i < index; i++)
+	for (int i = 0; i < cachedTextures.size(); i++)
 	{
 		if (spriteRendererComp->cTexture.m_imagePath == cachedTextures[i].m_imagePath)
 		{
-			std::cout << "used caching for " << spriteRendererComp->cTexture.m_imagePath << std::endl;
+			std::cout << "Used caching for " << spriteRendererComp->cTexture.m_imagePath << std::endl;
 			return cachedTextures[i];
 		}
 	}
