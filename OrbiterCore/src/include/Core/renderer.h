@@ -25,15 +25,13 @@ class Renderer
         Renderer();
         ~Renderer();
 
-        void Init();
+        void Init(); // Generates essential rendering data. This must be called before draw().
+        void Draw(glm::mat4 projection, glm::mat4 view, glm::vec4 colourTint); // Outputs the rendering data onto the viewport.
 
-        void Draw() const;
-        void Draw(glm::mat4 projection, glm::mat4 view, glm::vec4 colourTint);
+        void RegenerateObjects(); // Regenerates all objects. This should be called if multiple textures must be refreshed (e.g. image file has changed.)
+        void RegenerateObject(unsigned int index); // Regenerates a single object. This should be called if a texture must be refreshed (e.g. image file has changed.)
 
-        void RegenerateObjects();
-        void RegenerateObject(unsigned int index);
-
-        int GetCachedTextureCount() const;
+        int GetCachedTextureCount() const; // Gets the number of cached textures. This is for debugging in the editor only.
 
         std::vector<std::shared_ptr<GameObject>> objectsToRender;
 
@@ -50,8 +48,8 @@ class Renderer
         std::array<Vertex, 200> vertices;
         std::vector<LiteTexture> cachedTextures;
 
-        Vertex* CreateQuad(Vertex* target, glm::mat4 transform, float texID, Vector4 color);
-        LiteTexture GetCachedBindlessTexture(std::shared_ptr<SpriteRenderer> spriteRendererComp);
+        Vertex* CreateQuad(Vertex* target, glm::mat4 transform, float texID, Vector4 color); // Creates a new quad with the transform matrix and sprite renderer colour values.
+        LiteTexture GetCachedBindlessTexture(std::shared_ptr<SpriteRenderer> spriteRendererComp); // Searches for a cached texture with the same file path.
 
         GLuint64 samplers[32] = { 0, 1, 2 }; // How many texture slots.
 };

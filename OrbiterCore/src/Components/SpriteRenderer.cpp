@@ -4,7 +4,7 @@
 SpriteRenderer::SpriteRenderer(const std::string& imagePath)
 {
 	m_componentName = "Sprite Renderer";
-	cTexture.m_imagePath = Core.currentProjPath + "/Sprites/" + imagePath;
+	cTexture.m_imagePath = Core.selectedProject.name + "/Sprites/" + imagePath;
 }
 
 SpriteRenderer::SpriteRenderer()
@@ -33,7 +33,7 @@ bool SpriteRenderer::CheckVisibility(glm::vec2 cameraPosition)
 
 void SpriteRenderer::SetPath(const std::string& imagePath)
 {
-	cTexture.m_imagePath = Core.currentProjPath + "/Sprites/" + imagePath;
+	cTexture.m_imagePath = Core.selectedProject.name + "/Sprites/" + imagePath;
 }
 
 void SpriteRenderer::SetColor(glm::vec4 newColor)

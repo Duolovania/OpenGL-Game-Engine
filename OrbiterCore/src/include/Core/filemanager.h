@@ -3,6 +3,8 @@
 #include <string>
 #include <fstream>
 #include "Core/scene.h"
+#include "Core/editorsettings.h"
+#include "Core/projectsettings.h"
 #include "yaml-cpp/yaml.h"
 
 class FileManager
@@ -15,7 +17,7 @@ class FileManager
 		* @param sceneName the name of the scene. This does not take in folders.
 		* @param filePath the path to the scene file. This requires the file extension.
 		*/
-		void CreateYAMLFile(Scene sceneData, std::string sceneName, std::string filePath);
+		void CreateSceneFile(Scene sceneData, std::string sceneName, std::string filePath);
 
 		/**
 		* @brief Loads scene data from a file that uses the YAML format.
@@ -23,7 +25,37 @@ class FileManager
 		* @param fileName the name of the scene. This will be visible at the top of the editor.
 		* @param filePath the path to the scene file. This requires the file extension.
 		*/
-		Scene LoadYAMLFile(std::string fileName, std::string filePath);
+		Scene LoadSceneFile(std::string fileName, std::string filePath);
+
+		/**
+		* @brief Creates a new file, storing details of the editor settings using the YAML format.
+		*
+		* @param settings the object containing the config data.
+		* @param filePath the path to the file. This requires the file extension.
+		*/
+		void CreateEditorConfig(EditorSettings settings, std::string filePath);
+
+		/**
+		* @brief Loads editor config data from a file that uses the YAML format.
+		*
+		* @param filePath the path to the file. This requires the file extension.
+		*/
+		EditorSettings LoadEditorConfig(std::string filePath);
+
+		/**
+		* @brief Creates a new file, storing details of the project settings using the YAML format.
+		*
+		* @param settings the object containing the config data.
+		* @param filePath the path to the file. This requires the file extension.
+		*/
+		void CreateProjectConfig(ProjectSettings settings, std::string filePath);
+
+		/**
+		* @brief Loads project config data from a file that uses the YAML format.
+		*
+		* @param filePath the path to the file. This requires the file extension.
+		*/
+		ProjectSettings LoadProjectConfig(std::string filePath);
 
 		/**
 		* @brief Opens the file explorer for selecting files.

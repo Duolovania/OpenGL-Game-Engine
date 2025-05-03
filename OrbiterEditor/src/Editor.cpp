@@ -10,8 +10,6 @@ std::string inputString, searchTerm, rootPath, currentPath;
 float sprintSpeed;
 float iconSize = 200;
 
-bool showProjSettings = false;
-
 float rectangleVertices[] =
 {
     // Coords    // texCoords
@@ -46,34 +44,40 @@ void Editor::Init(GLFWwindow* window)
 
     StylesConfig();
 
+    // Creates frame buffer shader.
     fbShader = std::make_unique<Shader>("../OrbiterCore/Res/Shaders/Framebuffer.shader");
     fbShader->CreateShader();
     fbShader->Bind();
 
-    Core.renderer.Init();
+    Core.renderer.Init(); // Generates essential rendering data.
 
     fbShader->Bind();
     fbShader->SetUniform1i("screenTexture", 1);
 
+    // Generates and binds the frame buffer vertex array.
     frameBufferVA = std::make_unique<VertexArray>();
     frameBufferVA->Gen();
     frameBufferVA->Bind();
 
+    // Generates the frame buffer vertex buffer.
     frameBufferVB = std::make_unique<VertexBuffer>(sizeof(rectangleVertices));
     frameBufferVB->Gen(&rectangleVertices);
-
+    
+    // Defines the vertex buffer layout.
     VertexBufferLayout layout;
     layout.Push<float>(2);
     layout.Push<float>(2);
 
-    frameBufferVA->AddBuffer(*frameBufferVB, layout);
+    frameBufferVA->AddBuffer(*frameBufferVB, layout); // Adds the vertex buffer to the vertex array.
 
-    currentPath = std::filesystem::current_path().parent_path().string() + "\\Projects\\" + Core.currentProjName + "\\Assets";
-    rootPath = currentPath;
-    Core.currentProjPath = currentPath;
+    // Sets the project 'Assets' folder path to the corresponding project directory using the project name.
+    rootPath = Core.selectedProject.filePath;
+    currentPath = rootPath;
+    //Core.selectedProject.filePath = rootPath;
 
     iconTextures = std::make_unique<Texture>("../OrbiterCore/Res/Application Icons/playbutton.png");
 
+    // Loads the editor application icons (e.g. play button, folder icon, reset properties icon, etc.)
     playButton = iconTextures->Load("../OrbiterCore/Res/Application Icons/playbutton.png", true);
     pauseButton = iconTextures->Load("../OrbiterCore/Res/Application Icons/pausebutton.png", true);
     stopButton = iconTextures->Load("../OrbiterCore/Res/Application Icons/stopbutton.png", true);
@@ -88,29 +92,36 @@ void Editor::Init(GLFWwindow* window)
     miniFolderIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/foldericon - mini.png", true);
     resetIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/reset.png", true);
 
+    // Sets the first scene to a new, empty scene.
     currentScene.sceneName = "Untitled";
     currentScene.objectsToRender.clear();
-    Core.renderer.objectsToRender = currentScene.objectsToRender;
 
+    // Updates the renderer data.
+    Core.renderer.objectsToRender = currentScene.objectsToRender;
     Core.renderer.RegenerateObjects();
+
+    // Sets the editor configuration.
+    selectedEditorConfig = fileManager.LoadEditorConfig(std::filesystem::current_path().parent_path().string() + "\\Projects\\" + Core.selectedProject.name + "\\default.editorOB");
 }
 
 bool Editor::OnUpdate(float deltaTime, float time)
 {
+    // Creates ImGui window frames.
     ImGui_ImplGlfw_NewFrame();
     ImGui_ImplOpenGL3_NewFrame();
     ImGui::NewFrame();
 
     ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport(), ImGuiDockNodeFlags_None);
 
-    MenuBar();
+    MenuBar(); // Shows the navigation bar at the top of the screen.
 
-    ContentBrowser();
-    Inspector();
+    ContentBrowser(); // Shows the assets folder window.
+    Inspector(); // Shows the inspector window.
 
-    Hierarchy();
-    Viewport();
+    Hierarchy(); // Shows the hierarchy window.
+    Viewport(); // Shows the viewport window.
 
+    // Checks if the screen has been minimized.
     if (viewportSize.x < 0 || viewportSize.y < 0)
     {
         ImGui::Render();
@@ -130,12 +141,6 @@ bool Editor::OnUpdate(float deltaTime, float time)
         cameraObj->transform.scale = Vector3(viewportSize.x, viewportSize.y, 0);
         cameraObj->transform.position += Vector2(Core.InputManager.BasicMovement().x * (100.0f + sprintSpeed) * deltaTime, Core.InputManager.BasicMovement().y * (100.0f + sprintSpeed) * deltaTime);
 
-        // Logic for play button test.
-        if (isPlaying)
-        {
-            Core.renderer.objectsToRender[0]->transform.position.y = (sin((time) * 1)) * 100; // sine wave movement.
-        }
-
         // Render scene objects.
         Core.renderer.Draw(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f), cameraObj->GetView(), { camera->outputColor[0], camera->outputColor[1], camera->outputColor[2], camera->outputColor[3] });
     }
@@ -144,137 +149,37 @@ bool Editor::OnUpdate(float deltaTime, float time)
         GLCall(glClearColor(0.0f, 0.0f, 0.0f, 1.0f)); // Output black screen.
         GLCall(glClear(GL_COLOR_BUFFER_BIT));
     }
-    
 
-    ImGui::Begin("Debug Log");
-    AddTooltip("This window is used for showing the log console."); // Add tooltip for UI element above.
+    DebugWindow(); // Shows the debug console window.
+    OptionalWindows(); // Shows additional windows (e.g. rendering stats, project settings, etc.)
 
-    if (ImGui::Button("Clear")) DebugOB.ClearLog();
-    AddTooltip("Clear all messages in the log console."); // Add tooltip for UI element above.
-
-    ImGui::SameLine();
-    if (ImGui::Button("Group"))
-    {
-
-    }
-    AddTooltip("Group the same messages together.");
-
-    if (ImGui::BeginChild("ConsoleOutput", ImVec2(0, ImGui::GetContentRegionAvail().y / 2.5), true, ImGuiWindowFlags_AlwaysVerticalScrollbar))
-    {
-        ImGui::PushFont(pixelFont);
-        ImGui::TextUnformatted(Debug::Get().GetLogOutput().str().c_str());
-        ImGui::PopFont();
-
-        ImGui::EndChild();
-    }
-    AddTooltip("Use 'DebugOB.Log(x)' to make use of the console."); // Add tooltip for UI element above.
-
-    ImGui::End();
-
-    if (showStats)
-    {
-        ImGui::Begin("Rendering Stats");
-
-        ImGui::Text("Textures Loaded: %.0f", double(Core.renderer.texturesLoaded));
-        ImGui::Text("New Textures Created: %.0f", double(Core.renderer.newTextures));
-        ImGui::Text("Cached textures: %.0f", double(Core.renderer.GetCachedTextureCount()));
-
-        ImGui::End();
-    }
-
-    if (showProjSettings)
-    {
-        ImGui::Begin("Project Settings");
-
-        ImGui::Text("Enter Action Name:");
-        ImGui::SameLine();
-
-        ImGui::InputText("##actionInput", &inputString);
-
-        if (ImGui::Button("Add"))
-        {
-            Core.InputManager.AddAction(Action(inputString));
-        }
-
-        ImGui::SameLine();
-
-        if (ImGui::Button("Listen to Input")) Core.InputManager.listenToInput = !Core.InputManager.listenToInput;
-
-        if (Core.InputManager.listenToInput)
-        {
-            ImGui::SameLine();
-            ImGui::Text("Listening...");
-        }
-
-        if (ImGui::BeginListBox("Actions"))
-        {
-            for (int i = 0; i < Core.InputManager.actionList.size(); i++)
-            {
-                ImGui::PushID(i);
-                if (ImGui::CollapsingHeader(("Name: " + Core.InputManager.actionList[i].GetActionName()).c_str()))
-                {
-                    Core.InputManager.selectedAction = i;
-
-                    for (int j = 0; j < Core.InputManager.actionList[i].GetKeyBinds().size(); j++)
-                    {
-                        if (ImGui::Selectable(Core.InputManager.actionList[i].GetKeyName(j)), keyBindIndex == j)
-                        {
-
-                        }
-
-                        ImGui::SameLine();
-
-                        if (ImGui::Button("Delete##1"))
-                        {
-                            Core.InputManager.actionList[i].DeleteKeyBind(j);
-                        }
-                    }
-                }
-
-                ImGui::SetCursorPos(ImVec2(ImGui::GetContentRegionMax().x + 100, ImGui::GetCursorPos().y));
-
-                ImGui::SameLine();
-
-                if (ImGui::Button("Delete##2"))
-                {
-                    Core.InputManager.DeleteAction(i);
-                }
-
-                ImGui::PopID();
-            }
-
-            ImGui::EndListBox();
-        }
-
-        ImGui::End();
-    }
-
+    // Unbinds frame buffer components.
     framebuffer->UnBind();
     fbShader->Bind();
 
+    // Renders ImGui data.
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-    return applicationRunning;
+    return applicationRunning; // Returns the state of the application.
 }
 
 void Editor::Close()
 {
+    // Updates the editor config.
+    fileManager.CreateEditorConfig(selectedEditorConfig, std::filesystem::current_path().parent_path().string() + "\\Projects\\" + Core.selectedProject.name + "\\default.editorOB");
+
+    // Updates the project config.
+    fileManager.CreateProjectConfig(Core.selectedProject, std::filesystem::current_path().parent_path().string() + "\\Projects\\" + Core.selectedProject.name + "\\" + Core.selectedProject.name + ".projectOB");
+
     ImGui_ImplGlfw_Shutdown();
     ImGui_ImplOpenGL3_Shutdown();
     ImGui::DestroyContext();
 }
 
-void Editor::CleanUp()
-{
-    
-}
-
 void Editor::StylesConfig()
 {
     ImGuiIO& io = ImGui::GetIO(); (void)io;
-    //io.FontDefault = io.Fonts->AddFontFromFileTTF("../OrbiterCore/Res/Fonts/scada/Scada-Regular.ttf", 18.0f);
-
     io.FontDefault = io.Fonts->AddFontFromFileTTF("../OrbiterCore/Res/Fonts/open-sans/OpenSans-Semibold.ttf", 18.0f);
     
     pixelFont = io.Fonts->AddFontFromFileTTF("../OrbiterCore/Res/Fonts/joystix/joystix monospace.otf", 10.0f);
@@ -337,7 +242,8 @@ void Editor::Viewport()
     ImVec2 position = ImVec2(imagePos.x * 1.15f, imagePos.y / 10.15f);
     ImGui::SetCursorScreenPos(position);
 
-    if (showFPS)
+    // Checks if the FPS count should be shown.
+    if (selectedEditorConfig.showFPS)
     {
         ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.988f, 0.659f, 0.176f, 1.0f));
         ImGui::Text("FPS: %.1f", double(1.0f / ImGui::GetIO().DeltaTime));
@@ -348,28 +254,26 @@ void Editor::Viewport()
     ImGui::PopStyleVar();
 }
 
-// Function to recursively display hierarchy
+// Recursively displays hierarchy.
 void ShowHierarchy(const std::string& name, int index, bool isLeaf = false) 
 {
-    // Check if the node is a leaf node or can be expanded
+    // Check if the node does not contain other objects.
     if (isLeaf) 
     {
+        // Shows a 'regular' button.
         if (ImGui::Selectable(name.c_str(), false)) 
         {
-            selectedObject = index;
-
+            selectedObject = index; // Updates the selected object in the hierarchy.
         }
     }
     else 
     {
         if (ImGui::TreeNode(name.c_str())) 
         {
-            selectedObject = index;
+            selectedObject = index; // Updates the selected object in the hierarchy.
 
-            // Example of child nodes (these can be dynamic)
             ShowHierarchy("Child 1", 0, true);
-
-            ImGui::TreePop();
+            ImGui::TreePop(); // Pops the style to prevent style changes to other tree nodes.
         }
     }
 }
@@ -896,7 +800,7 @@ void Editor::ContentBrowser()
                             if (fileExtension == ".worldOB")
                             {
                                 std::size_t pos = entry.path().filename().string().find(fileExtension); // Gets the position of the file extension part of the path.
-                                currentScene = fileManager.LoadYAMLFile(entry.path().filename().string().substr(0, pos), rootPath + tempPath + "\\" + entry.path().filename().string());
+                                currentScene = fileManager.LoadSceneFile(entry.path().filename().string().substr(0, pos), rootPath + tempPath + "\\" + entry.path().filename().string());
 
                                 Core.renderer.objectsToRender = currentScene.objectsToRender;
                                 Core.renderer.RegenerateObjects();
@@ -958,7 +862,7 @@ void Editor::MenuBar()
 
                     std::string fileName = tempPath.substr(fileNamePos, fileExtensionPos); // Gets the file name from the file path.
 
-                    currentScene = fileManager.LoadYAMLFile(fileName, tempPath);
+                    currentScene = fileManager.LoadSceneFile(fileName, tempPath);
 
                     Core.renderer.objectsToRender = currentScene.objectsToRender;
                     Core.renderer.RegenerateObjects();
@@ -978,7 +882,7 @@ void Editor::MenuBar()
                 test.scenePath = currentScene.scenePath;
                 test.objectsToRender = Core.renderer.objectsToRender;
 
-                fileManager.CreateYAMLFile(test, test.sceneName, test.scenePath);
+                fileManager.CreateSceneFile(test, test.sceneName, test.scenePath);
                 savedChanges = true;
             }
             AddTooltip("Saves the current scene. Make sure to do this regularly!"); // Add tooltip for UI element above.
@@ -1023,7 +927,7 @@ void Editor::MenuBar()
                     std::string tempPath = savePath;
                     std::string newFileName = tempPath.erase(0, rootPath.length());
 
-                    fileManager.CreateYAMLFile(test, test.sceneName, rootPath + newFileName);
+                    fileManager.CreateSceneFile(test, test.sceneName, rootPath + newFileName);
                 }
             }
             AddTooltip("Save the scene manually through your files window."); // Add tooltip for UI element above.
@@ -1042,7 +946,7 @@ void Editor::MenuBar()
         {
             if (ImGui::MenuItem("Project Settings"))
             {
-                showProjSettings = !showProjSettings;
+                selectedEditorConfig.showProjSettings = !selectedEditorConfig.showProjSettings;
             }
 
             ImGui::EndMenu();
@@ -1053,7 +957,7 @@ void Editor::MenuBar()
         {
             if (ImGui::MenuItem("Toggle FPS"))
             {
-                showFPS = !showFPS;
+                selectedEditorConfig.showFPS = !selectedEditorConfig.showFPS;
             }
 
             if (ImGui::MenuItem("Toggle VSync"))
@@ -1063,9 +967,9 @@ void Editor::MenuBar()
 
             if (ImGui::MenuItem("Toggle Wireframe Mode"))
             {
-                wireframeMode = !wireframeMode;
+                selectedEditorConfig.showWireframe = !selectedEditorConfig.showWireframe;
 
-                if (wireframeMode)
+                if (selectedEditorConfig.showWireframe)
                 {
                     GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));
                 }
@@ -1077,7 +981,7 @@ void Editor::MenuBar()
 
             if (ImGui::MenuItem("Advanced Settings"))
             {
-                showToolTip = !showToolTip;
+                selectedEditorConfig.showTooltips = !selectedEditorConfig.showTooltips;
             }
             AddTooltip("You can turn off tooltips here."); // Add tooltip for UI element above.
 
@@ -1089,7 +993,7 @@ void Editor::MenuBar()
         {
             if (ImGui::MenuItem("Rendering Stats Window"))
             {
-                showStats = !showStats;
+                selectedEditorConfig.showRenderingStats = !selectedEditorConfig.showRenderingStats;
             }
             AddTooltip("Shows how many textures are created, how many are used, etc."); // Add tooltip for UI element above.
 
@@ -1454,9 +1358,143 @@ void Editor::SearchMainCamera()
     }
 }
 
+void Editor::DebugWindow()
+{
+    ImGui::Begin("Debug Log");
+    AddTooltip("This window is used for showing the log console."); // Add tooltip for UI element above.
+
+    if (ImGui::Button("Clear")) DebugOB.ClearLog();
+    AddTooltip("Clear all messages in the log console."); // Add tooltip for UI element above.
+
+    ImGui::SameLine();
+    if (ImGui::Button("Group"))
+    {
+
+    }
+    AddTooltip("Group the same messages together.");
+
+    if (ImGui::BeginChild("ConsoleOutput", ImVec2(0, ImGui::GetContentRegionAvail().y / 2.5), true, ImGuiWindowFlags_AlwaysVerticalScrollbar))
+    {
+        ImGui::PushFont(pixelFont);
+        ImGui::TextUnformatted(Debug::Get().GetLogOutput().str().c_str());
+        ImGui::PopFont();
+
+        ImGui::EndChild();
+    }
+    AddTooltip("Use 'DebugOB.Log(x)' to make use of the console."); // Add tooltip for UI element above.
+
+    ImGui::End();
+}
+
+void Editor::OptionalWindows()
+{
+    // Checks if the stats window should be visible.
+    if (selectedEditorConfig.showRenderingStats)
+    {
+        ImGui::Begin("Rendering Stats"); // Sets the window title.
+
+        ImGui::Text("Textures Loaded: %.0f", double(Core.renderer.texturesLoaded));
+        ImGui::Text("New Textures Created: %.0f", double(Core.renderer.newTextures));
+        ImGui::Text("Cached textures: %.0f", double(Core.renderer.GetCachedTextureCount()));
+
+        ImGui::End();
+    }
+
+    // Checks if the project settings window should be visible.
+    if (selectedEditorConfig.showProjSettings)
+    {
+        ImGui::Begin("Project Settings"); // Sets the window title.
+
+        /*if (ImGui::BeginCombo("Select First Scene", items[current_item])) 
+        {
+            for (int n = 0; n < IM_ARRAYSIZE(items); n++) 
+            {
+                bool is_selected = (current_item == n);
+
+                if (ImGui::Selectable(items[n], is_selected))
+                    current_item = n;
+                if (is_selected)
+                    ImGui::SetItemDefaultFocus();
+            }
+            ImGui::EndCombo();
+        }*/
+
+        // Displays the input text and its label.
+        ImGui::Text("Enter Action Name:");
+        ImGui::SameLine();
+        ImGui::InputText("##actionInput", &inputString);
+
+        // 'Add new action' button.
+        if (ImGui::Button("Add"))
+        {
+            Core.InputManager.AddAction(Action(inputString));
+        }
+
+        ImGui::SameLine();
+
+        if (ImGui::Button("Listen to Input")) Core.InputManager.listenToInput = !Core.InputManager.listenToInput;
+
+        // Checks if the input manager is listening for keyboard input.
+        if (Core.InputManager.listenToInput)
+        {
+            ImGui::SameLine();
+            ImGui::Text("Listening..."); // Display feedback text.
+        }
+
+        // Shows the list of actions.
+        if (ImGui::BeginListBox("Actions"))
+        {
+            // Loops through each input action.
+            for (int i = 0; i < Core.InputManager.actionList.size(); i++)
+            {
+                ImGui::PushID(i);
+
+                // Checks if the action header has been opened.
+                if (ImGui::CollapsingHeader(("Name: " + Core.InputManager.actionList[i].GetActionName()).c_str()))
+                {
+                    Core.InputManager.selectedAction = i; // Updates the currently selected action.
+
+                    // Loops through each keybind in the action.
+                    for (int j = 0; j < Core.InputManager.actionList[i].GetKeyBinds().size(); j++)
+                    {
+                        if (ImGui::Selectable(Core.InputManager.actionList[i].GetKeyName(j)), keyBindIndex == j)
+                        {
+
+                        }
+
+                        ImGui::SameLine();
+
+                        // 'Delete keybind' button.
+                        if (ImGui::Button("Delete##1"))
+                        {
+                            Core.InputManager.actionList[i].DeleteKeyBind(j); // Deletes the selected keybind.
+                        }
+                    }
+                }
+
+                // Moves the delete button position.
+                ImGui::SetCursorPos(ImVec2(ImGui::GetContentRegionMax().x + 100, ImGui::GetCursorPos().y));
+                ImGui::SameLine();
+
+                // 'Delete action' button.
+                if (ImGui::Button("Delete##2"))
+                {
+                    Core.InputManager.DeleteAction(i);
+                }
+
+                ImGui::PopID(); // Pops the style to prevent changes to other UI components.
+            }
+
+            ImGui::EndListBox();
+        }
+
+        ImGui::End();
+    }
+}
+
 void Editor::AddTooltip(const char* message) const
 {
-    if (!showToolTip) return; // Don't show a tooltip if it's been disabled.
+    if (!selectedEditorConfig.showTooltips) return; // Don't show a tooltip if it's been disabled.
     if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) ImGui::SetTooltip(message); // Add tooltip for UI element.
 }
 

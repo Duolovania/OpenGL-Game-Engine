@@ -8,7 +8,6 @@ class Editor : public RenderingLayer
 
 		bool OnUpdate(float deltaTime, float time) override;
 		void Close() override;
-		void CleanUp() override;
 	private:
 		void StylesConfig();
 
@@ -20,12 +19,17 @@ class Editor : public RenderingLayer
 
 		void AudioManagerComponent();
 		void SearchMainCamera();
+
+		void DebugWindow();
+		void OptionalWindows();
 		
 		void AddTooltip(const char* message) const;
 		void CreateTransformColumn(const std::array<std::string, 3>& colNames, std::array<Vector3, 3> values);
 
-		bool showStats = false, wireframeMode = false, showFPS = false, applicationRunning = true, savedChanges = true, isPlaying = false, showToolTip = true;
+		bool applicationRunning = true, savedChanges = true, isPlaying = false;
 		int actionIndex = 0, keyBindIndex = 0;
+
+		EditorSettings selectedEditorConfig;
 
 		ImVec2 viewportSize;
 		glm::vec2 inputVector;

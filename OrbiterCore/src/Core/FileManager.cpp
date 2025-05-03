@@ -79,46 +79,56 @@ std::vector<float> Vector4ToString(Vector4 input)
 	return temp;
 }
 
-void FileManager::CreateYAMLFile(Scene sceneData, std::string sceneName, std::string filePath)
+void FileManager::CreateSceneFile(Scene sceneData, std::string sceneName, std::string filePath)
 {
 	YAML::Node yamlNode;
 
+	// Sets the scene file header details.
 	yamlNode["Scene Details"]["Name"] = sceneName;
 	yamlNode["Scene Details"]["Path"] = filePath;
 
+	// Creates the list for game objects in the file structure.
 	yamlNode["GameObjects"] = YAML::Node(YAML::NodeType::Sequence);
 
+	// Loops through each game object.
 	for (auto& data : sceneData.objectsToRender)
 	{
 		YAML::Node newGObj;
-		newGObj["Name"] = data->objectName;
+		newGObj["Name"] = data->objectName; // Sets the game object name.
 
+		// Checks if the object has a sprite renderer component.
 		if (data->HasComponent("Sprite Renderer"))
 		{
 			std::shared_ptr<SpriteRenderer> spriteRenderer = data->GetComponent<SpriteRenderer>();
 
+			// Copies the component properties.
 			newGObj["Sprite Renderer"]["Path"] = spriteRenderer->cTexture.m_imagePath;
 			newGObj["Sprite Renderer"]["Color"] = Vector4ToString(Vector4(spriteRenderer->color[0], spriteRenderer->color[1], spriteRenderer->color[2], spriteRenderer->color[3]));
 		}
 
+		// Checks if the object has a camera component.
 		if (data->HasComponent("Camera"))
 		{
 			std::shared_ptr<Camera> camera = data->GetComponent<Camera>();
 
+			// Copies the component properties.
 			newGObj["Camera"]["Output Color"] = Vector4ToString(Vector4(camera->outputColor[0], camera->outputColor[1], camera->outputColor[2], camera->outputColor[3]));
 			newGObj["Camera"]["Background Color"] = Vector4ToString(Vector4(camera->backgroundColor[0], camera->backgroundColor[1], camera->backgroundColor[2], camera->backgroundColor[3]));
 		}
 
+		// Checks if the object has an audio manager component.
 		if (data->HasComponent("Audio Manager"))
 		{
-			newGObj["Audio Manager"] = YAML::Node(YAML::NodeType::Sequence);
+			newGObj["Audio Manager"] = YAML::Node(YAML::NodeType::Sequence); // Creates the 'Audio Manager' umbrella.
 
 			std::shared_ptr<AudioManager> audioManager = data->GetComponent<AudioManager>();
 
+			// Loops through each sound effect in the list of sounds.
 			for (auto& soundEffect : audioManager->sounds)
 			{
 				YAML::Node newSoundEffect;
 
+				// Copies the sound effect properties.
 				newSoundEffect["Name"] = soundEffect.soundName;
 				newSoundEffect["Path"] = soundEffect.filePath;
 				newSoundEffect["Pitch"] = soundEffect.pitch;
@@ -131,29 +141,32 @@ void FileManager::CreateYAMLFile(Scene sceneData, std::string sceneName, std::st
 				newSoundEffect["On Start Up"] = soundEffect.playOnStartUp;
 				newSoundEffect["Delay"] = soundEffect.repeatDelay;
 
-				newGObj["Audio Manager"].push_back(newSoundEffect);
+				newGObj["Audio Manager"].push_back(newSoundEffect); // Adds the sound effect details to the yaml data.
 			}
 		}
 
+		// Copies the transform data.
 		newGObj["Transform"]["Position"] = Vector3ToString(data->transform.position);
 		newGObj["Transform"]["Rotation"] = Vector3ToString(data->transform.rotation);
 		newGObj["Transform"]["Scale"] = Vector3ToString(data->transform.scale);
 
-		yamlNode["GameObjects"].push_back(newGObj);
+		yamlNode["GameObjects"].push_back(newGObj); // Adds the game object to the yaml data.
 	}
 
 	YAML::Emitter out;
 	out << YAML::Flow;
 	out << yamlNode;
 
+	// Create file at the file path.
 	std::ofstream fout(filePath);
 	
+	// Checks if the file was not created.
 	if (!fout) {
 		std::cerr << "Error: Could not create file at " << filePath << std::endl;
 	}
 
-	fout << yamlNode;
-	fout.close();
+	fout << yamlNode; // Writes data to file.
+	fout.close(); // Closes the file.
 }
 
 Vector3 NodeToVector3(const YAML::Node& root)
@@ -252,7 +265,7 @@ std::vector<std::shared_ptr<GameObject>> GetGameObjects(const YAML::Node& root)
 
 
 
-Scene FileManager::LoadYAMLFile(std::string fileName, std::string filePath)
+Scene FileManager::LoadSceneFile(std::string fileName, std::string filePath)
 {
 	YAML::Node yamlNode = YAML::LoadFile(filePath);
 	Scene newScene;
@@ -270,6 +283,144 @@ Scene FileManager::LoadYAMLFile(std::string fileName, std::string filePath)
 	newScene.objectsToRender = GetGameObjects(yamlNode);
 
 	return newScene;
+}
+
+void FileManager::CreateEditorConfig(EditorSettings settings, std::string filePath)
+{
+	YAML::Node yamlNode;
+
+	// Sets the name of the editor configuration.
+	yamlNode["Editor Details"]["Name"] = settings.name;
+
+	// Sets the general values.
+	yamlNode["Editor Details"]["General"]["Show Tooltips"] = settings.showTooltips;
+
+	// Sets the viewport debugging values.
+	yamlNode["Editor Details"]["Viewport"]["Show FPS"] = settings.showFPS;
+	yamlNode["Editor Details"]["Viewport"]["Show Wire Frame"] = settings.showWireframe;
+
+	// Sets the window toggle values.
+	yamlNode["Editor Details"]["Window"]["Show Rendering Stats"] = settings.showRenderingStats;
+	yamlNode["Editor Details"]["Window"]["Show Project Settings"] = settings.showProjSettings;
+
+	YAML::Emitter out;
+	out << YAML::Flow;
+	out << yamlNode;
+
+	// Create file at the file path.
+	std::ofstream fout(filePath);
+
+	// Checks if the file was not created.
+	if (!fout) {
+		std::cerr << "Error: Could not create file at " << filePath << std::endl;
+	}
+
+	fout << yamlNode; // Writes editor data to file.
+	fout.close(); // Closes the file.
+}
+
+EditorSettings FileManager::LoadEditorConfig(std::string filePath)
+{
+	EditorSettings newEditorConfig;
+
+	try 
+	{
+		YAML::Node yamlNode = YAML::LoadFile(filePath);
+
+		// Checks if the file exists.
+		if (!yamlNode)
+		{
+			std::cout << "Failed to load file at:" << filePath << std::endl; // Outputs error message.
+			return newEditorConfig; // Returns empty scene.
+		}
+
+		// Sets the config name.
+		newEditorConfig.name = yamlNode["Editor Details"]["Name"].as<std::string>();
+
+		// Sets the general values.
+		newEditorConfig.showTooltips = yamlNode["Editor Details"]["General"]["Show Tooltips"].as<bool>();
+
+		// Sets the viewport debug toggle values.
+		newEditorConfig.showFPS = yamlNode["Editor Details"]["Viewport"]["Show FPS"].as<bool>();
+		newEditorConfig.showWireframe = yamlNode["Editor Details"]["Viewport"]["Show Wire Frame"].as<bool>();
+
+		// Sets the window toggle values.
+		newEditorConfig.showRenderingStats = yamlNode["Editor Details"]["Window"]["Show Rendering Stats"].as<bool>();
+		newEditorConfig.showWireframe = yamlNode["Editor Details"]["Window"]["Show Project Settings"].as<bool>();
+	}
+	catch (const YAML::Exception& e)
+	{
+		std::cerr << "Could not find editor config file. Loading default configuration." << std::endl;
+	}
+
+	return newEditorConfig;
+}
+
+void FileManager::CreateProjectConfig(ProjectSettings settings, std::string filePath)
+{
+	YAML::Node yamlNode;
+
+	// Sets the general data of the project.
+	yamlNode["Project Details"]["Name"] = settings.name;
+	yamlNode["Project Details"]["Path"] = settings.filePath;
+
+	// Sets the first scene data.
+	yamlNode["Project Details"]["First Scene"]["Name"] = settings.firstSceneName;
+	yamlNode["Project Details"]["First Scene"]["Path"] = settings.firstScenePath;
+
+	// Sets the display properties.
+	yamlNode["Project Details"]["Display"]["Resolution"]["X"] = settings.displayResX;
+	yamlNode["Project Details"]["Display"]["Resolution"]["Y"] = settings.displayResY;
+
+	YAML::Emitter out;
+	out << YAML::Flow;
+	out << yamlNode;
+
+	// Create file at the file path.
+	std::ofstream fout(filePath);
+
+	// Checks if the file was not created.
+	if (!fout) {
+		std::cerr << "Error: Could not create file at " << filePath << std::endl;
+	}
+
+	fout << yamlNode; // Writes editor data to file.
+	fout.close(); // Closes the file.
+}
+
+ProjectSettings FileManager::LoadProjectConfig(std::string filePath)
+{
+	ProjectSettings newProjectConfig;
+
+	try
+	{
+		YAML::Node yamlNode = YAML::LoadFile(filePath);
+
+		// Checks if the file exists.
+		if (!yamlNode)
+		{
+			std::cout << "Failed to load file at:" << filePath << std::endl; // Outputs error message.
+			return newProjectConfig; // Returns empty scene.
+		}
+
+		// Sets the general values.
+		newProjectConfig.name = yamlNode["Project Details"]["Name"].as<std::string>();
+		newProjectConfig.filePath = yamlNode["Project Details"]["Path"].as<std::string>();
+
+		// Sets the general values.
+		newProjectConfig.firstSceneName = yamlNode["Project Details"]["First Scene"]["Name"].as<std::string>();
+		newProjectConfig.firstScenePath = yamlNode["Project Details"]["First Scene"]["Path"].as<std::string>();
+
+		// Sets the display values.
+		newProjectConfig.displayResX = yamlNode["Project Details"]["Display"]["Resolution"]["X"].as<float>();
+		newProjectConfig.displayResY = yamlNode["Project Details"]["Display"]["Resolution"]["Y"].as<float>();
+	}
+	catch (const YAML::Exception& e)
+	{
+		std::cerr << "Could not find project file. Loading New Project." << std::endl;
+	}
+
+	return newProjectConfig;
 }
 
 std::string FileManager::OpenFileExplorer(const char* filters[], const char* prompt, std::string rootPath)

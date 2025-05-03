@@ -277,6 +277,9 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Res\Copy Files\game.h" />
+    <ClInclude Include="src\include\Core\editorsettings.h" />
+    <ClInclude Include="src\include\Core\projectsettings.h" />
     <ClInclude Include="Vendor\glm\simd\common.h" />
     <ClInclude Include="Vendor\glm\simd\exponential.h" />
     <ClInclude Include="Vendor\glm\simd\geometric.h" />
@@ -342,6 +345,7 @@
     <ClInclude Include="src\include\orbiter.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Res\Copy Files\Game.cpp" />
     <ClCompile Include="Vendor\glm\detail\glm.cpp" />
     <ClCompile Include="Vendor\imgui\imgui.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_demo.cpp" />

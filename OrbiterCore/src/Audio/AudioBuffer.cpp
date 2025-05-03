@@ -12,7 +12,7 @@ AudioBuffer::AudioBuffer(const std::string name)
     std::vector<char> data;
 
     //std::string filePath = "Assets/" + name;
-    std::string filePath = Core.currentProjPath + "\\" + name;
+    std::string filePath = Core.selectedProject.filePath + "\\" + name;
 
     if (!LoadWAVFile(filePath, bufferID, format, freq, data))
     {

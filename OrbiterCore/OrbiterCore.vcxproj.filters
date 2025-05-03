@@ -264,6 +264,9 @@
     <ClInclude Include="src\include\orbiter.h">
       <Filter>src\include</Filter>
     </ClInclude>
+    <ClInclude Include="Res\Copy Files\game.h" />
+    <ClInclude Include="src\include\Core\editorsettings.h" />
+    <ClInclude Include="src\include\Core\projectsettings.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vendor\glm\detail\glm.cpp">
@@ -389,6 +392,7 @@
     <ClCompile Include="src\include\Math\Vector.cpp">
       <Filter>src\include\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Res\Copy Files\Game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vendor\tinyfiledialogs\dll_cs_lua_R_fortran_pascal\tinyfiledialogs_dylib.sh">

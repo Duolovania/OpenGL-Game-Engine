@@ -4,6 +4,7 @@
 #include "Core/input.h"
 #include "Audio/audiomanager.h"
 #include "Core/renderinglayer.h"
+#include "Core/projectsettings.h"
 
 // This class stores the methods and properties for the application creation, loop, and termination. 
 class Application
@@ -49,8 +50,7 @@ class Engine
 		RenderingLayer* renderingLayer;
 		Renderer renderer;
 
-		std::string currentProjName = "Game1"; // This is the name of the loaded project (e.g. 'Game1', 'Flappy Bird', etc.)
-		std::string currentProjPath; // This is the folder directory of the loaded project.
+		ProjectSettings selectedProject;
 
 		// This method handles the keyboard input.
 		static void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods);
