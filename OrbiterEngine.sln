@@ -14,6 +14,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenALSoft", "OrbiterCore\V
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrbiterCore", "OrbiterCore\OrbiterCore.vcxproj", "{65079033-D1BC-0829-5AB1-0200C665FF2C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrbiterLauncher", "OrbiterLauncher\OrbiterLauncher.vcxproj", "{0EC3DA21-7A4E-48E6-835F-CBDAEF69A4E6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{65079033-D1BC-0829-5AB1-0200C665FF2C} = {65079033-D1BC-0829-5AB1-0200C665FF2C}
+	EndProjectSection
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yaml-cpp", "OrbiterCore\Vendor\yaml-cpp-master\yaml-cpp.vcxproj", "{88F1A057-74BE-FB62-9DD7-E90A890331F1}"
 EndProject
 Global
@@ -86,6 +91,18 @@ Global
 		{65079033-D1BC-0829-5AB1-0200C665FF2C}.Release|Win32.Build.0 = Release|Win32
 		{65079033-D1BC-0829-5AB1-0200C665FF2C}.Release|x64.ActiveCfg = Release|x64
 		{65079033-D1BC-0829-5AB1-0200C665FF2C}.Release|x64.Build.0 = Release|x64
+		{0EC3DA21-7A4E-48E6-835F-CBDAEF69A4E6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0EC3DA21-7A4E-48E6-835F-CBDAEF69A4E6}.Debug|Win32.Build.0 = Debug|Win32
+		{0EC3DA21-7A4E-48E6-835F-CBDAEF69A4E6}.Debug|x64.ActiveCfg = Debug|x64
+		{0EC3DA21-7A4E-48E6-835F-CBDAEF69A4E6}.Debug|x64.Build.0 = Debug|x64
+		{0EC3DA21-7A4E-48E6-835F-CBDAEF69A4E6}.Dist|Win32.ActiveCfg = Dist|Win32
+		{0EC3DA21-7A4E-48E6-835F-CBDAEF69A4E6}.Dist|Win32.Build.0 = Dist|Win32
+		{0EC3DA21-7A4E-48E6-835F-CBDAEF69A4E6}.Dist|x64.ActiveCfg = Dist|x64
+		{0EC3DA21-7A4E-48E6-835F-CBDAEF69A4E6}.Dist|x64.Build.0 = Dist|x64
+		{0EC3DA21-7A4E-48E6-835F-CBDAEF69A4E6}.Release|Win32.ActiveCfg = Release|Win32
+		{0EC3DA21-7A4E-48E6-835F-CBDAEF69A4E6}.Release|Win32.Build.0 = Release|Win32
+		{0EC3DA21-7A4E-48E6-835F-CBDAEF69A4E6}.Release|x64.ActiveCfg = Release|x64
+		{0EC3DA21-7A4E-48E6-835F-CBDAEF69A4E6}.Release|x64.Build.0 = Release|x64
 		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Debug|Win32.ActiveCfg = Debug|Win32
 		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Debug|Win32.Build.0 = Debug|Win32
 		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Debug|x64.ActiveCfg = Debug|x64

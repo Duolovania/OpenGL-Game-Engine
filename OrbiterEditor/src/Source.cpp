@@ -5,6 +5,7 @@
 int main()
 {
 	Application a;
+	a.applicationType = ApplicationType::EditorOB;
 
 	Editor editor;
 	Core.renderingLayer = &editor;

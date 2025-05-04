@@ -222,6 +222,78 @@ project "OrbiterEditor"
         optimize "On"
         buildoptions "/MD" -- Multi-threaded DLL.
 
+-- Engine launcher configuration.
+project "OrbiterLauncher"
+    location "OrbiterLauncher"
+    kind "ConsoleApp"
+    language "C++"
+
+    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+    dependson { "OrbiterCore" }
+
+    -- Targets all cpp and header files.
+    files
+    {
+        "%{prj.name}/src/**.h",
+        "%{prj.name}/src/**.cpp"
+    }
+
+    -- Includes dependencies and include paths.
+    includedirs
+    {
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.yaml_cpp}",
+        "%{IncludeDir.OpenALSoft}",
+        "%{IncludeDir.OpenALSoft}/include",
+
+        "Projects",
+
+        "OrbiterCore/Vendor/glfw-master-cherno/include/GLFW",
+        "OrbiterCore/Vendor/glm",
+        "OrbiterCore/Vendor",
+
+        "OrbiterCore/src",
+        "OrbiterCore/src/include",
+        "%{prj.name}/src/include"
+    }
+
+    links
+    {
+        "OrbiterCore"
+    }
+
+    filter "system:windows"
+        cppdialect "C++20"
+        staticruntime "On"
+        systemversion "latest"
+
+        defines
+        {
+            "WIN32",
+            "_CRT_SECURE_NO_WARNINGS",
+            "NOMINMAX",
+            "AL_LIBTYPE_STATIC",
+            "GLFW_INCLUDE_NONE",
+            "YAML_CPP_STATIC_DEFINE"
+        }
+
+    filter "configurations:Debug"
+        defines "OB_DEBUG"
+        symbols "On"
+        buildoptions "/MDd" -- Multi-threaded debug DLL.
+
+    filter "configurations:Release"
+        defines "OB_RELEASE"
+        optimize "On"
+        buildoptions "/MD" -- Multi-threaded DLL.
+
+    filter "configurations:Dist"
+        defines "OB_DIST"
+        optimize "On"
+        buildoptions "/MD" -- Multi-threaded DLL.
+
 -- Automatically add each game in Projects/
 local gameDirs = os.matchdirs("Projects/*")
 for _, dir in ipairs(gameDirs) do

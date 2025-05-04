@@ -6,6 +6,13 @@
 #include "Core/renderinglayer.h"
 #include "Core/projectsettings.h"
 
+enum ApplicationType
+{
+	LauncherOB,
+	EditorOB,
+	GameOB
+};
+
 // This class stores the methods and properties for the application creation, loop, and termination. 
 class Application
 {
@@ -28,7 +35,16 @@ class Application
 		// Terminates the application window.
 		void Close();
 
+		/**
+		* @brief Updates the screen resolution. By default, this is 1920 x 1080.
+		*
+		* @param screenWidth the width of the window.
+		* @param screenHeight the height of the window.
+		*/
+		void SetScreenResolution(int screenWidth, int screenHeight);
+
 		GLFWwindow* window;
+		ApplicationType applicationType;
 	private:
 		// 1920 x 1080 by default.
 		int m_screenWidth = 1920, m_screenHeight = 1080;

@@ -277,9 +277,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Res\Copy Files\game.h" />
-    <ClInclude Include="src\include\Core\editorsettings.h" />
-    <ClInclude Include="src\include\Core\projectsettings.h" />
     <ClInclude Include="Vendor\glm\simd\common.h" />
     <ClInclude Include="Vendor\glm\simd\exponential.h" />
     <ClInclude Include="Vendor\glm\simd\geometric.h" />
@@ -322,9 +319,11 @@
     <ClInclude Include="src\include\Core\action.h" />
     <ClInclude Include="src\include\Core\application.h" />
     <ClInclude Include="src\include\Core\debug.h" />
+    <ClInclude Include="src\include\Core\editorsettings.h" />
     <ClInclude Include="src\include\Core\filemanager.h" />
     <ClInclude Include="src\include\Core\input.h" />
     <ClInclude Include="src\include\Core\orbitercore.h" />
+    <ClInclude Include="src\include\Core\projectsettings.h" />
     <ClInclude Include="src\include\Core\renderer.h" />
     <ClInclude Include="src\include\Core\renderinglayer.h" />
     <ClInclude Include="src\include\Core\scene.h" />
@@ -345,7 +344,6 @@
     <ClInclude Include="src\include\orbiter.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Res\Copy Files\Game.cpp" />
     <ClCompile Include="Vendor\glm\detail\glm.cpp" />
     <ClCompile Include="Vendor\imgui\imgui.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_demo.cpp" />

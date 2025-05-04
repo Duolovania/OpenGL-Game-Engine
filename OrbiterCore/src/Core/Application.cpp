@@ -17,24 +17,42 @@ Engine Engine::instance;
 void Application::Run()
 {
     FileManager fileManager;
+    std::string windowTitle;
 
-    // Loads the project config.
-    Core.selectedProject = fileManager.LoadProjectConfig(std::filesystem::current_path().parent_path().string() + "\\Projects\\" + "Game1" + "\\" + "Game1" + ".projectOB");
-
-    // Fix the project file path if the config file is corrupted.
-    if (Core.selectedProject.filePath.empty()) Core.selectedProject.filePath = std::filesystem::current_path().parent_path().string() + "\\Projects\\" + "Game1" + "\\Assets"; // Sets the path of the 'Assets' folder.
-    
-    // Fix the project name if the config file is corrupted.
-    if (Core.selectedProject.name.empty())
+    // Ensures that only projects are loaded for the editor and game.
+    if (applicationType != ApplicationType::LauncherOB)
     {
-        std::filesystem::path filePath = Core.selectedProject.filePath;
-        std::string projectFolderName = filePath.parent_path().filename().string(); // Gets the name of the project folder. This should match the project name either way.
+        // Loads the project config.
+        Core.selectedProject = fileManager.LoadProjectConfig(std::filesystem::current_path().parent_path().string() + "\\Projects\\" + "Game1" + "\\" + "Game1" + ".projectOB");
 
-        Core.selectedProject.name = projectFolderName;
+        // Fix the project file path if the config file is corrupted.
+        if (Core.selectedProject.filePath.empty()) Core.selectedProject.filePath = std::filesystem::current_path().parent_path().string() + "\\Projects\\" + "Game1" + "\\Assets"; // Sets the path of the 'Assets' folder.
+
+        // Fix the project name if the config file is corrupted.
+        if (Core.selectedProject.name.empty())
+        {
+            std::filesystem::path filePath = Core.selectedProject.filePath;
+            std::string projectFolderName = filePath.parent_path().filename().string(); // Gets the name of the project folder. This should match the project name either way.
+
+            Core.selectedProject.name = projectFolderName;
+        }
     }
 
-    // Sets the application window properties.
-    std::string windowTitle = "Orbiter Editor - " + Core.selectedProject.name;
+    // Sets the title for the window.
+    switch (applicationType)
+    {
+        case ApplicationType::LauncherOB:
+            windowTitle = "Orbiter Launcher";
+            break;
+        case ApplicationType::EditorOB:
+            windowTitle = "Orbiter Editor - " + Core.selectedProject.name;
+            break;
+        default:
+            windowTitle = Core.selectedProject.name;
+            break;
+    }
+
+    // Initializes the window.
     Init(m_screenWidth, m_screenHeight, windowTitle.c_str());
 
     // Loop until the user closes the window
@@ -71,7 +89,7 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
 
     // Makes this the current window.
     glfwMakeContextCurrent(window);
-    glfwMaximizeWindow(window); // Sets window to fullscreen by default.
+    if (applicationType != ApplicationType::LauncherOB) glfwMaximizeWindow(window); // Sets window to fullscreen by default.
 
     // Checks if glad is working.
     int status = gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
@@ -107,6 +125,12 @@ void Application::Close()
 {
     Core.renderingLayer->Close();
     glfwTerminate(); // Terminates the window.
+}
+
+void Application::SetScreenResolution(int screenWidth, int screenHeight)
+{
+    m_screenWidth = screenWidth;
+    m_screenHeight = screenHeight;
 }
 
 void Engine::HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods)
