@@ -9,7 +9,6 @@
 #include <filesystem>
 
 float timeTime = 0, oldTimeSinceStart = 0, timeSinceStart, deltaTime;
-
 bool applicationQuit = false;
 
 Engine Engine::instance;
@@ -108,6 +107,7 @@ void Application::Loop()
 {   
     applicationQuit = !Core.renderingLayer->OnUpdate(deltaTime, timeTime);
 
+    // Calculates the deltaTime.
     timeSinceStart = static_cast<float>(glfwGetTime());
     deltaTime = timeSinceStart - oldTimeSinceStart;
     oldTimeSinceStart = timeSinceStart;
@@ -123,7 +123,7 @@ void Application::Loop()
 
 void Application::Close()
 {
-    Core.renderingLayer->Close();
+    Core.renderingLayer->Close(); // Closes the rendering layer.
     glfwTerminate(); // Terminates the window.
 }
 
@@ -136,24 +136,24 @@ void Application::SetScreenResolution(int screenWidth, int screenHeight)
 void Engine::HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods)
 {
     // Loops through each input action.
-    for (int i = 0; i < Core.InputManager.actionList.size(); i++)
+    for (int i = 0; i < Project.InputManager.actionList.size(); i++)
     {
         // Loops through each keybind.
-        for (int j = 0; j < Core.InputManager.actionList[i].GetKeyBinds().size(); j++)
+        for (int j = 0; j < Project.InputManager.actionList[i].GetKeyBinds().size(); j++)
         {
             // Checks if the keybind is pressed.
-            if (Core.InputManager.actionList[i].GetKeyBindIndex(j) == key)
+            if (Project.InputManager.actionList[i].GetKeyBindIndex(j) == key)
             {
-                Core.InputManager.actionList[i].SetStrength(action); // Triggers the keybind.
+                Project.InputManager.actionList[i].SetStrength(action); // Triggers the keybind.
             }
         }
     }
 
     // Checks if the input manager is listening for input.
-    if (Core.InputManager.listenToInput)
+    if (Project.InputManager.listenToInput)
     {
-        Core.InputManager.actionList[Core.InputManager.selectedAction].AddKeyBind(key); // Adds the keybind to the selected action.
-        Core.InputManager.listenToInput = false; // Resets the listening state.
+        Project.InputManager.actionList[Project.InputManager.selectedAction].AddKeyBind(key); // Adds the keybind to the selected action.
+        Project.InputManager.listenToInput = false; // Resets the listening state.
     }
 }
 

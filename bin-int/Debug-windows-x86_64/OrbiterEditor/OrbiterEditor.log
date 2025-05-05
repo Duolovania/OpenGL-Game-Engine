@@ -1,6 +1,6 @@
 ﻿cl : command line  warning D9025: overriding '/MTd' with '/MDd'
   Editor.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(139,69): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(139,72): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(239,18): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(292,77): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(473,30): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size

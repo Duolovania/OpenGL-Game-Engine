@@ -1,7 +1,15 @@
 #include "Core/action.h"
 
+// The default constructor.
+Action::Action(const std::string actionName)
+	: m_actionName(actionName), m_strength(0)
+{
+
+};
+
+// Additional constructor. This adds an initial keybind.
 Action::Action(const std::string actionName, int keyBind)
-	: actionName(actionName), strength(0)
+	: m_actionName(actionName), m_strength(0)
 {
 	AddKeyBind(keyBind);
 };
@@ -9,58 +17,58 @@ Action::Action(const std::string actionName, int keyBind)
 // Returns the result of the key pressed event given from 'SetStrength()'.
 int Action::GetStrength() const
 {
-	return strength;
+	return m_strength;
 };
 
 // Returns all keybinds.
 std::vector<int> Action::GetKeyBinds() const
 {
-	return keybinds;
+	return m_keybinds;
 };
 
 // Returns the keybind value using the index.
 int Action::GetKeyBindIndex(int index) const
 {
-	return keybinds[index];
+	return m_keybinds[index];
 };
 
 // Checks if the set key has been pressed.
 void Action::SetStrength(int glfwAction)
 {
-	strength = (glfwAction == GLFW_RELEASE) ? 0 : 1;
+	m_strength = (glfwAction == GLFW_RELEASE) ? 0 : 1;
 };
 
-// Adds a new keybinding.
+// Adds a new keybind.
 void Action::AddKeyBind(int newKey)
 {
-	if (std::find(keybinds.begin(), keybinds.end(), newKey) != keybinds.end()) return;
+	if (std::find(m_keybinds.begin(), m_keybinds.end(), newKey) != m_keybinds.end()) return;
 
-	keybinds.push_back(newKey);
+	m_keybinds.push_back(newKey);
 };
 
 // Deletes a keybinding.
 void Action::DeleteKeyBind(int index)
 {
-	keybinds.erase(keybinds.begin() + index);
+	m_keybinds.erase(m_keybinds.begin() + index);
 };
 
 // Returns the name of the action.
 const std::string Action::GetActionName() const
 {
-	return actionName;
+	return m_actionName;
 };
 
 // Returns the name of the keybind.
 const char* Action::GetKeyName(int keyCode)
 {
-	const char* getName = glfwGetKeyName(keybinds[keyCode], 0);
+	const char* getName = glfwGetKeyName(m_keybinds[keyCode], 0);
 
 	if (getName)
 	{
 		return getName;
 	}
 
-	switch (keybinds[keyCode])
+	switch (m_keybinds[keyCode])
 	{
 		case GLFW_KEY_LEFT_SHIFT:
 			return "	Left-Shift";

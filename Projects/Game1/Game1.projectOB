@@ -8,3 +8,31 @@ Project Details:
     Resolution:
       X: 0
       Y: 0
+  Input Actions:
+    - Name: right
+      Keybinds:
+        - Key Code: 68
+    - Name: left
+      Keybinds:
+        - Key Code: 65
+    - Name: down
+      Keybinds:
+        - Key Code: 83
+    - Name: up
+      Keybinds:
+        - Key Code: 87
+    - Name: arrowRight
+      Keybinds:
+        - Key Code: 262
+    - Name: arrowLeft
+      Keybinds:
+        - Key Code: 263
+    - Name: arrowDown
+      Keybinds:
+        - Key Code: 264
+    - Name: arrowUp
+      Keybinds:
+        - Key Code: 265
+    - Name: sprint
+      Keybinds:
+        - Key Code: 340

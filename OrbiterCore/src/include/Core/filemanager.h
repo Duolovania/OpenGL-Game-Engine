@@ -7,6 +7,7 @@
 #include "Core/projectsettings.h"
 #include "yaml-cpp/yaml.h"
 
+// This class handles file creation and loading features.
 class FileManager
 {
 	public:
@@ -24,6 +25,8 @@ class FileManager
 		*
 		* @param fileName the name of the scene. This will be visible at the top of the editor.
 		* @param filePath the path to the scene file. This requires the file extension.
+		* 
+		* @return the loaded scene data.
 		*/
 		Scene LoadSceneFile(std::string fileName, std::string filePath);
 
@@ -39,6 +42,7 @@ class FileManager
 		* @brief Loads editor config data from a file that uses the YAML format.
 		*
 		* @param filePath the path to the file. This requires the file extension.
+		* @return the loaded editor settings data.
 		*/
 		EditorSettings LoadEditorConfig(std::string filePath);
 
@@ -54,6 +58,7 @@ class FileManager
 		* @brief Loads project config data from a file that uses the YAML format.
 		*
 		* @param filePath the path to the file. This requires the file extension.
+		* @return the loaded project settings data.
 		*/
 		ProjectSettings LoadProjectConfig(std::string filePath);
 
@@ -63,6 +68,8 @@ class FileManager
 		* @param filters the accepted file types.
 		* @param prompt the prompt shown to the user in the file explorer.
 		* @param rootPath the path to the "Assets" folder. Exclude the "Assets" folder when entering the path.
+		* 
+		* @return the file path that was opened.
 		*/
 		std::string OpenFileExplorer(const char* filters[], const char* prompt, std::string rootPath);
 
@@ -72,6 +79,8 @@ class FileManager
 		* @param filters the accepted file types.
 		* @param prompt the prompt shown to the user in the file explorer.
 		* @param rootPath the path to the "Assets" folder. Exclude the "Assets" folder when entering the path.
+		* 
+		* @return the file path that was saved to.
 		*/
 		const char* SaveFileExplorer(const char* filters[], const char* prompt, std::string rootPath);
 };

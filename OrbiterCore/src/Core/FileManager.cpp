@@ -3,61 +3,10 @@
 #include "Components/camera.h"
 #include "tinyfiledialogs/tinyfiledialogs.h"
 
+#include "Core/input.h"
 #include <sstream>
 
-enum FileObjectType
-{
-	None,
-	SceneDetails,
-	AudioManagerDetails,
-	CharacterDetails
-};
-
-Vector3 ParseVector3(const std::string& line)
-{
-	Vector3 vec3;
-	std::stringstream ss(line);
-	std::string temp;
-
-	ss >> temp;
-	ss >> vec3.x >> vec3.y >> vec3.z;
-
-	ss.str("");
-	ss.clear();
-
-	return vec3;
-}
-
-Vector4 ParseVector4(const std::string& line)
-{
-	Vector4 vec4;
-	std::stringstream ss(line);
-	std::string temp;
-
-	ss >> temp;
-	ss >> vec4.x >> vec4.y >> vec4.z >> vec4.w;
-
-	ss.str("");
-	ss.clear();
-
-	return vec4;
-}
-
-int ParseInt(const std::string& line)
-{
-	int integer;
-	std::stringstream ss(line);
-	std::string temp;
-
-	ss >> temp;
-	ss >> integer;
-
-	ss.str("");
-	ss.clear();
-
-	return integer;
-}
-
+// Converts Vector 3 to string.
 std::vector<float> Vector3ToString(Vector3 input)
 {
 	std::vector<float> temp;
@@ -68,6 +17,7 @@ std::vector<float> Vector3ToString(Vector3 input)
 	return temp;
 }
 
+// Converts Vector 4 to string.
 std::vector<float> Vector4ToString(Vector4 input)
 {
 	std::vector<float> temp;
@@ -79,6 +29,127 @@ std::vector<float> Vector4ToString(Vector4 input)
 	return temp;
 }
 
+// Converts a YAML node to Vector 3.
+Vector3 NodeToVector3(const YAML::Node& root)
+{
+	std::vector<float> tempVec3 = root.as<std::vector<float>>();
+	return Vector3(tempVec3[0], tempVec3[1], tempVec3[2]);
+}
+
+// Converts a YAML node to Vector 4.
+Vector4 NodeToVector4(const YAML::Node& root)
+{
+	std::vector<float> tempVec4 = root.as<std::vector<float>>();
+	return Vector4(tempVec4[0], tempVec4[1], tempVec4[2], tempVec4[3]);
+}
+
+// Reads a yaml node to generate the vector of sound effects.
+std::vector<Sound> GetSoundEffects(const YAML::Node& root)
+{
+	std::vector<Sound> soundVector;
+
+	for (const auto& node : root["Audio Manager"])
+	{
+		Sound newSound;
+		newSound.soundName = node["Name"].as<std::string>();
+		newSound.filePath = node["Path"].as<std::string>();
+		newSound.pitch = node["Pitch"].as<float>();
+		newSound.volume = node["Volume"].as<float>();
+
+		Vector3 tempVec3 = NodeToVector3(node["Position"]);
+		newSound.position = glm::vec3(tempVec3.x, tempVec3.y, tempVec3.z);
+
+		tempVec3 = NodeToVector3(node["Velocity"]);
+		newSound.velocity = glm::vec3(tempVec3.x, tempVec3.y, tempVec3.z);
+
+		newSound.isLooping = node["Looping"].as<bool>();
+		newSound.playOnStartUp = node["On Start Up"].as<bool>();
+		newSound.repeatDelay = node["Delay"].as<bool>();
+
+		soundVector.push_back(newSound);
+	}
+
+	return soundVector;
+}
+
+// Reads a yaml node to generate the vector of game objects.
+std::vector<std::shared_ptr<GameObject>> GetGameObjects(const YAML::Node& root)
+{
+	std::vector<std::shared_ptr<GameObject>> objectVector;
+
+	for (const auto& node : root["GameObjects"])
+	{
+		std::shared_ptr<GameObject> tempgObj = std::make_unique<GameObject>();
+
+		if (node["Sprite Renderer"])
+		{
+			SpriteRenderer spriteRenderer;
+
+			Vector4 vec4 = NodeToVector4(node["Sprite Renderer"]["Color"]);
+			spriteRenderer.SetColor({ vec4.x, vec4.y, vec4.z, vec4.w });
+			spriteRenderer.cTexture.m_imagePath = node["Sprite Renderer"]["Path"].as<std::string>();
+
+			tempgObj->AddComponent(spriteRenderer);
+		}
+
+		if (node["Camera"])
+		{
+			Camera camera;
+
+			Vector4 vec4 = NodeToVector4(node["Camera"]["Output Color"]);
+			camera.SetColor(camera.outputColor, { vec4.x, vec4.y, vec4.z, vec4.w });
+
+			vec4 = NodeToVector4(node["Camera"]["Background Color"]);
+			camera.SetColor(camera.backgroundColor, { vec4.x, vec4.y, vec4.z, vec4.w });
+
+			tempgObj->AddComponent(camera);
+		}
+
+		if (node["Audio Manager"])
+		{
+			AudioManager audioManager;
+
+			tempgObj->AddComponent(audioManager);
+			tempgObj->GetComponent<AudioManager>()->sounds = GetSoundEffects(node); // Gets the sound effects after the component is added as "AddComponent" initializes the shared pointer so the sound data would be reset.
+			tempgObj->GetComponent<AudioManager>()->GenAllSounds();
+		}
+
+		tempgObj->objectName = node["Name"].as<std::string>();
+
+		tempgObj->transform.position = NodeToVector3(node["Transform"]["Position"]);
+		tempgObj->transform.rotation = NodeToVector3(node["Transform"]["Rotation"]);
+		tempgObj->transform.scale = NodeToVector3(node["Transform"]["Scale"]);
+
+		objectVector.push_back(tempgObj);
+		tempgObj = std::make_unique<GameObject>();
+	}
+
+	return objectVector;
+}
+
+// Reads a yaml node to generate the vector of input actions.
+std::vector<Action> GetActions(const YAML::Node& root)
+{
+	std::vector<Action> newActionList; // Creates a blank vector of actions.
+
+	// Loops through each action node.
+	for (const auto& actionNode : root["Project Details"]["Input Actions"])
+	{
+		Action newAction = Action(actionNode["Name"].as<std::string>()); // Gets the name of the action.
+
+		// Loops through each keybind node.
+		for (const auto& keyBindNode : actionNode["Keybinds"])
+		{
+			newAction.AddKeyBind(keyBindNode["Key Code"].as<int>()); // Adds the keybind to the list of keybinds.
+		}
+
+		newActionList.push_back(newAction); // Adds the action to the list of actions.
+	}
+
+	return newActionList;
+}
+
+// Creates the scene file using the scene data.
 void FileManager::CreateSceneFile(Scene sceneData, std::string sceneName, std::string filePath)
 {
 	YAML::Node yamlNode;
@@ -169,102 +240,7 @@ void FileManager::CreateSceneFile(Scene sceneData, std::string sceneName, std::s
 	fout.close(); // Closes the file.
 }
 
-Vector3 NodeToVector3(const YAML::Node& root)
-{
-	std::vector<float> tempVec3 = root.as<std::vector<float>>();
-	return Vector3(tempVec3[0], tempVec3[1], tempVec3[2]);
-}
-
-Vector4 NodeToVector4(const YAML::Node& root)
-{
-	std::vector<float> tempVec4 = root.as<std::vector<float>>();
-	return Vector4(tempVec4[0], tempVec4[1], tempVec4[2], tempVec4[3]);
-}
-
-std::vector<Sound> GetSoundEffects(const YAML::Node& root)
-{
-	std::vector<Sound> soundVector;
-
-	for (const auto& node : root["Audio Manager"])
-	{
-		Sound newSound;
-		newSound.soundName = node["Name"].as<std::string>();
-		newSound.filePath = node["Path"].as<std::string>();
-		newSound.pitch = node["Pitch"].as<float>();
-		newSound.volume = node["Volume"].as<float>();
-
-		Vector3 tempVec3 = NodeToVector3(node["Position"]);
-		newSound.position = glm::vec3(tempVec3.x, tempVec3.y, tempVec3.z);
-
-		tempVec3 = NodeToVector3(node["Velocity"]);
-		newSound.velocity = glm::vec3(tempVec3.x, tempVec3.y, tempVec3.z);
-
-		newSound.isLooping = node["Looping"].as<bool>();
-		newSound.playOnStartUp = node["On Start Up"].as<bool>();
-		newSound.repeatDelay = node["Delay"].as<bool>();
-
-		soundVector.push_back(newSound);
-	}
-
-	return soundVector;
-}
-
-std::vector<std::shared_ptr<GameObject>> GetGameObjects(const YAML::Node& root)
-{
-	std::vector<std::shared_ptr<GameObject>> objectVector;
-
-	for (const auto& node : root["GameObjects"])
-	{
-		std::shared_ptr<GameObject> tempgObj = std::make_unique<GameObject>();
-
-		if (node["Sprite Renderer"])
-		{
-			SpriteRenderer spriteRenderer;
-
-			Vector4 vec4 = NodeToVector4(node["Sprite Renderer"]["Color"]);
-			spriteRenderer.SetColor({ vec4.x, vec4.y, vec4.z, vec4.w });
-			spriteRenderer.cTexture.m_imagePath = node["Sprite Renderer"]["Path"].as<std::string>();
-
-			tempgObj->AddComponent(spriteRenderer);
-		}
-
-		if (node["Camera"])
-		{
-			Camera camera;
-
-			Vector4 vec4 = NodeToVector4(node["Camera"]["Output Color"]);
-			camera.SetColor(camera.outputColor, { vec4.x, vec4.y, vec4.z, vec4.w });
-
-			vec4 = NodeToVector4(node["Camera"]["Background Color"]);
-			camera.SetColor(camera.backgroundColor, { vec4.x, vec4.y, vec4.z, vec4.w });
-
-			tempgObj->AddComponent(camera);
-		}
-
-		if (node["Audio Manager"])
-		{
-			AudioManager audioManager;
-
-			tempgObj->AddComponent(audioManager);
-			tempgObj->GetComponent<AudioManager>()->sounds = GetSoundEffects(node); // Gets the sound effects after the component is added as "AddComponent" initializes the shared pointer so the sound data would be reset.
-			tempgObj->GetComponent<AudioManager>()->GenAllSounds();
-		}
-
-		tempgObj->objectName = node["Name"].as<std::string>();
-
-		tempgObj->transform.position = NodeToVector3(node["Transform"]["Position"]);
-		tempgObj->transform.rotation = NodeToVector3(node["Transform"]["Rotation"]);
-		tempgObj->transform.scale = NodeToVector3(node["Transform"]["Scale"]);
-
-		objectVector.push_back(tempgObj);
-		tempgObj = std::make_unique<GameObject>();
-	}
-
-	return objectVector;
-}
-
-
-
+// Loads the YAML file to scene data.
 Scene FileManager::LoadSceneFile(std::string fileName, std::string filePath)
 {
 	YAML::Node yamlNode = YAML::LoadFile(filePath);
@@ -285,6 +261,7 @@ Scene FileManager::LoadSceneFile(std::string fileName, std::string filePath)
 	return newScene;
 }
 
+// Creates an editor config file using editor settings data.
 void FileManager::CreateEditorConfig(EditorSettings settings, std::string filePath)
 {
 	YAML::Node yamlNode;
@@ -319,6 +296,7 @@ void FileManager::CreateEditorConfig(EditorSettings settings, std::string filePa
 	fout.close(); // Closes the file.
 }
 
+// Loads the YAML file to editor config data.
 EditorSettings FileManager::LoadEditorConfig(std::string filePath)
 {
 	EditorSettings newEditorConfig;
@@ -356,6 +334,7 @@ EditorSettings FileManager::LoadEditorConfig(std::string filePath)
 	return newEditorConfig;
 }
 
+// Creates project settings file using project settings data.
 void FileManager::CreateProjectConfig(ProjectSettings settings, std::string filePath)
 {
 	YAML::Node yamlNode;
@@ -371,6 +350,29 @@ void FileManager::CreateProjectConfig(ProjectSettings settings, std::string file
 	// Sets the display properties.
 	yamlNode["Project Details"]["Display"]["Resolution"]["X"] = settings.displayResX;
 	yamlNode["Project Details"]["Display"]["Resolution"]["Y"] = settings.displayResY;
+
+	// Creates the list for input actions in the file structure.
+	yamlNode["Project Details"]["Input Actions"] = YAML::Node(YAML::NodeType::Sequence);
+
+	// Loops through each input action.
+	for (auto& data : settings.InputManager.actionList)
+	{
+		YAML::Node newAction;
+
+		newAction["Name"] = data.GetActionName(); // Sets the action name.
+		newAction["Keybinds"] = YAML::Node(YAML::NodeType::Sequence); // Creates the 'Keybinds' umbrella.
+
+		// Loops through each keybind in the list of keybinds.
+		for (auto& keyBind : data.GetKeyBinds())
+		{
+			YAML::Node newKeyBind;
+
+			newKeyBind["Key Code"] = keyBind; // Copies the key code value.
+			newAction["Keybinds"].push_back(newKeyBind); // Adds the key code to the list of keybinds.
+		}
+
+		yamlNode["Project Details"]["Input Actions"].push_back(newAction); // Adds the action to the yaml data.
+	}
 
 	YAML::Emitter out;
 	out << YAML::Flow;
@@ -388,6 +390,7 @@ void FileManager::CreateProjectConfig(ProjectSettings settings, std::string file
 	fout.close(); // Closes the file.
 }
 
+// Loads the YAML file to project settings data.
 ProjectSettings FileManager::LoadProjectConfig(std::string filePath)
 {
 	ProjectSettings newProjectConfig;
@@ -414,6 +417,10 @@ ProjectSettings FileManager::LoadProjectConfig(std::string filePath)
 		// Sets the display values.
 		newProjectConfig.displayResX = yamlNode["Project Details"]["Display"]["Resolution"]["X"].as<float>();
 		newProjectConfig.displayResY = yamlNode["Project Details"]["Display"]["Resolution"]["Y"].as<float>();
+
+		// Checks if any actions were found before overwriting the default action list.
+		std::vector<Action> newActionList = GetActions(yamlNode);
+		if (newActionList.size() > 0) newProjectConfig.InputManager.actionList = newActionList;
 	}
 	catch (const YAML::Exception& e)
 	{
@@ -423,6 +430,7 @@ ProjectSettings FileManager::LoadProjectConfig(std::string filePath)
 	return newProjectConfig;
 }
 
+// Opens the system file explorer.
 std::string FileManager::OpenFileExplorer(const char* filters[], const char* prompt, std::string rootPath)
 {
 	const char* filePath = tinyfd_openFileDialog(
@@ -439,6 +447,7 @@ std::string FileManager::OpenFileExplorer(const char* filters[], const char* pro
 	return std::string(filePath);
 }
 
+// Saves a file through the file explorer.
 const char* FileManager::SaveFileExplorer(const char* filters[], const char* prompt, std::string rootPath)
 {
 	const char* savePath = tinyfd_saveFileDialog(

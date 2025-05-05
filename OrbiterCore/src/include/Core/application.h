@@ -62,7 +62,6 @@ class Engine
 		}
 
 		// The input manager is used for mapping the user's input to controls that can be used in the project.
-		Input InputManager;
 		RenderingLayer* renderingLayer;
 		Renderer renderer;
 
@@ -80,3 +79,6 @@ class Engine
 
 // This macro allows for the engine singleton to called as 'Core.[method]' instead of 'Engine::Get().[method]'. 
 #define Core Engine::Get()
+
+// This macro allows for easier access to the project settings. Alternatively, you can use 'Core.selectedProject.[method]'.
+#define Project Engine::Get().selectedProject

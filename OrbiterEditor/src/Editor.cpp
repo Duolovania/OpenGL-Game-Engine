@@ -136,10 +136,10 @@ bool Editor::OnUpdate(float deltaTime, float time)
         GLCall(glClearColor(camera->backgroundColor[0], camera->backgroundColor[1], camera->backgroundColor[2], 1.0f));
         GLCall(glClear(GL_COLOR_BUFFER_BIT));
 
-        sprintSpeed = Core.InputManager.GetActionStrength("sprint") * 150; // Camera movement sprint speed.
+        sprintSpeed = Project.InputManager.GetActionStrength("sprint") * 150; // Camera movement sprint speed.
 
         cameraObj->transform.scale = Vector3(viewportSize.x, viewportSize.y, 0);
-        cameraObj->transform.position += Vector2(Core.InputManager.BasicMovement().x * (100.0f + sprintSpeed) * deltaTime, Core.InputManager.BasicMovement().y * (100.0f + sprintSpeed) * deltaTime);
+        cameraObj->transform.position += Vector2(Project.InputManager.BasicMovement().x * (100.0f + sprintSpeed) * deltaTime, Project.InputManager.BasicMovement().y * (100.0f + sprintSpeed) * deltaTime);
 
         // Render scene objects.
         Core.renderer.Draw(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f), cameraObj->GetView(), { camera->outputColor[0], camera->outputColor[1], camera->outputColor[2], camera->outputColor[3] });
@@ -1427,15 +1427,15 @@ void Editor::OptionalWindows()
         // 'Add new action' button.
         if (ImGui::Button("Add"))
         {
-            Core.InputManager.AddAction(Action(inputString));
+            Project.InputManager.AddAction(Action(inputString));
         }
 
         ImGui::SameLine();
 
-        if (ImGui::Button("Listen to Input")) Core.InputManager.listenToInput = !Core.InputManager.listenToInput;
+        if (ImGui::Button("Listen to Input")) Project.InputManager.listenToInput = !Project.InputManager.listenToInput;
 
         // Checks if the input manager is listening for keyboard input.
-        if (Core.InputManager.listenToInput)
+        if (Project.InputManager.listenToInput)
         {
             ImGui::SameLine();
             ImGui::Text("Listening..."); // Display feedback text.
@@ -1445,19 +1445,19 @@ void Editor::OptionalWindows()
         if (ImGui::BeginListBox("Actions"))
         {
             // Loops through each input action.
-            for (int i = 0; i < Core.InputManager.actionList.size(); i++)
+            for (int i = 0; i < Project.InputManager.actionList.size(); i++)
             {
                 ImGui::PushID(i);
 
                 // Checks if the action header has been opened.
-                if (ImGui::CollapsingHeader(("Name: " + Core.InputManager.actionList[i].GetActionName()).c_str()))
+                if (ImGui::CollapsingHeader(("Name: " + Project.InputManager.actionList[i].GetActionName()).c_str()))
                 {
-                    Core.InputManager.selectedAction = i; // Updates the currently selected action.
+                    Project.InputManager.selectedAction = i; // Updates the currently selected action.
 
                     // Loops through each keybind in the action.
-                    for (int j = 0; j < Core.InputManager.actionList[i].GetKeyBinds().size(); j++)
+                    for (int j = 0; j < Project.InputManager.actionList[i].GetKeyBinds().size(); j++)
                     {
-                        if (ImGui::Selectable(Core.InputManager.actionList[i].GetKeyName(j)), keyBindIndex == j)
+                        if (ImGui::Selectable(Project.InputManager.actionList[i].GetKeyName(j)), keyBindIndex == j)
                         {
 
                         }
@@ -1467,7 +1467,7 @@ void Editor::OptionalWindows()
                         // 'Delete keybind' button.
                         if (ImGui::Button("Delete##1"))
                         {
-                            Core.InputManager.actionList[i].DeleteKeyBind(j); // Deletes the selected keybind.
+                            Project.InputManager.actionList[i].DeleteKeyBind(j); // Deletes the selected keybind.
                         }
                     }
                 }
@@ -1479,7 +1479,7 @@ void Editor::OptionalWindows()
                 // 'Delete action' button.
                 if (ImGui::Button("Delete##2"))
                 {
-                    Core.InputManager.DeleteAction(i);
+                    Project.InputManager.DeleteAction(i);
                 }
 
                 ImGui::PopID(); // Pops the style to prevent changes to other UI components.
