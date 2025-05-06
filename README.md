@@ -12,6 +12,7 @@ This project was made as a test for creating a custom 2D game engine using OpenG
 * Built-in audio manager (for adding sound effects and changing properties of sound effects that will be used in-game).
 * Scene creation and saving capabilities.
 * Keyboard input management system.
+* Lua scripting for game logic.
 
 ## How to Run the Project:
 1. Open the 'OpenGL' folder.
