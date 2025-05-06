@@ -13,6 +13,9 @@ This project was made as a test for creating a custom 2D game engine using OpenG
 * Scene creation and saving capabilities.
 * Keyboard input management system.
 * Lua scripting for game logic.
+* Simple debug logging.
+* Project-specific editor settings.
+* Editor tooltips.
 
 ## How to Run the Project:
 1. Open the 'OpenGL' folder.
