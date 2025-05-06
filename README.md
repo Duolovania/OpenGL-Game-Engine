@@ -28,6 +28,7 @@ Note: you will need Visual Studio 2022 installed to generate the solution file.
 * glm - OpenGL mathematics library.
 * Dear ImGui - GUI library for C++.
 * Premake - Build tool for creating and configuring project files.
+* sol2 - C++ Lua API wrapper.
 
 ## What I Learned:
 * File creation, writing, and parsing.
