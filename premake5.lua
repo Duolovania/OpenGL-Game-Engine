@@ -59,6 +59,9 @@ project "OrbiterCore"
         "%{prj.name}/Vendor/imgui/**cpp",
         "%{prj.name}/Vendor/imgui/**h",
 
+        "%{prj.name}/Vendor/lua/**c",
+        "%{prj.name}/Vendor/lua/**h",
+
         "%{prj.name}/Vendor/tinyfiledialogs/**c",
         "%{prj.name}/Vendor/tinyfiledialogs/**h"
     }
@@ -77,6 +80,8 @@ project "OrbiterCore"
         "%{prj.name}/Vendor/imgui",
         "%{prj.name}/Vendor/stb_image",
         "%{prj.name}/Vendor/glm",
+        "%{prj.name}/Vendor/sol",
+        "%{prj.name}/Vendor/lua/src",
 
         "%{prj.name}/Vendor/tinyfiledialogs",
         "%{prj.name}/Vendor/tinyfiledialogs/more_dialogs",

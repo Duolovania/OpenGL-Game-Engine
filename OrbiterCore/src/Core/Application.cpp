@@ -7,6 +7,7 @@
 #include "stb_image.h"
 #include "Core/filemanager.h"
 #include <filesystem>
+#include "sol.hpp"
 
 float timeTime = 0, oldTimeSinceStart = 0, timeSinceStart, deltaTime;
 bool applicationQuit = false;
@@ -53,6 +54,15 @@ void Application::Run()
 
     // Initializes the window.
     Init(m_screenWidth, m_screenHeight, windowTitle.c_str());
+
+    // Test lua script call:
+    sol::state lua;
+
+    lua.open_libraries(sol::lib::base, sol::lib::math);
+    lua.script_file(Project.filePath + "\\Scripts\\testscript.lua"); // Loads 'testscript.lua' file.
+
+    sol::function update = lua["Update"]; // Gets the 'Update' lua function.
+    update(); // Calls the function.
 
     // Loop until the user closes the window
     while (!glfwWindowShouldClose(window) && !applicationQuit)

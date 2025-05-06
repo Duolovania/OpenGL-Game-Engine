@@ -259,17 +259,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OrbiterCore\OrbiterCore.vcxproj">
-      <Project>{65079033-D1BC-0829-5AB1-0200C665FF2C}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\launcher.h" />
     <ClInclude Include="src\include\launcher.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Launcher.cpp" />
     <ClCompile Include="src\Source.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OrbiterCore\OrbiterCore.vcxproj">
+      <Project>{65079033-D1BC-0829-5AB1-0200C665FF2C}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

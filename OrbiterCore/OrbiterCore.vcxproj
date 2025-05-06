@@ -133,7 +133,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;YAML_CPP_STATIC_DEFINE;OB_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Dependencies\Glad\include;Vendor\yaml-cpp-master\include;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor;Vendor\glfw-master-cherno\include\GLFW;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Dependencies\Glad\include;Vendor\yaml-cpp-master\include;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor;Vendor\glfw-master-cherno\include\GLFW;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\sol;Vendor\lua\src;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -155,7 +155,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;YAML_CPP_STATIC_DEFINE;OB_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Dependencies\Glad\include;Vendor\yaml-cpp-master\include;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor;Vendor\glfw-master-cherno\include\GLFW;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Dependencies\Glad\include;Vendor\yaml-cpp-master\include;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor;Vendor\glfw-master-cherno\include\GLFW;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\sol;Vendor\lua\src;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -177,7 +177,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;YAML_CPP_STATIC_DEFINE;OB_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Dependencies\Glad\include;Vendor\yaml-cpp-master\include;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor;Vendor\glfw-master-cherno\include\GLFW;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Dependencies\Glad\include;Vendor\yaml-cpp-master\include;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor;Vendor\glfw-master-cherno\include\GLFW;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\sol;Vendor\lua\src;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -203,7 +203,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;YAML_CPP_STATIC_DEFINE;OB_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Dependencies\Glad\include;Vendor\yaml-cpp-master\include;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor;Vendor\glfw-master-cherno\include\GLFW;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Dependencies\Glad\include;Vendor\yaml-cpp-master\include;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor;Vendor\glfw-master-cherno\include\GLFW;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\sol;Vendor\lua\src;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -229,7 +229,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;YAML_CPP_STATIC_DEFINE;OB_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Dependencies\Glad\include;Vendor\yaml-cpp-master\include;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor;Vendor\glfw-master-cherno\include\GLFW;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Dependencies\Glad\include;Vendor\yaml-cpp-master\include;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor;Vendor\glfw-master-cherno\include\GLFW;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\sol;Vendor\lua\src;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -255,7 +255,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;GLFW_INCLUDE_NONE;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AL_LIBTYPE_STATIC;YAML_CPP_STATIC_DEFINE;OB_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Dependencies\Glad\include;Vendor\yaml-cpp-master\include;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor;Vendor\glfw-master-cherno\include\GLFW;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Dependencies\Glad\include;Vendor\yaml-cpp-master\include;Vendor\openal-soft-master\include;Vendor\openal-soft-master\include\AL;Vendor;Vendor\glfw-master-cherno\include\GLFW;Vendor\imgui;Vendor\stb_image;Vendor\glm;Vendor\sol;Vendor\lua\src;Vendor\tinyfiledialogs;Vendor\tinyfiledialogs\more_dialogs;src\include;src\Tests;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -297,6 +297,33 @@
     <ClInclude Include="Vendor\imgui\imstb_rectpack.h" />
     <ClInclude Include="Vendor\imgui\imstb_textedit.h" />
     <ClInclude Include="Vendor\imgui\imstb_truetype.h" />
+    <ClInclude Include="Vendor\lua\src\lapi.h" />
+    <ClInclude Include="Vendor\lua\src\lauxlib.h" />
+    <ClInclude Include="Vendor\lua\src\lcode.h" />
+    <ClInclude Include="Vendor\lua\src\lctype.h" />
+    <ClInclude Include="Vendor\lua\src\ldebug.h" />
+    <ClInclude Include="Vendor\lua\src\ldo.h" />
+    <ClInclude Include="Vendor\lua\src\lfunc.h" />
+    <ClInclude Include="Vendor\lua\src\lgc.h" />
+    <ClInclude Include="Vendor\lua\src\ljumptab.h" />
+    <ClInclude Include="Vendor\lua\src\llex.h" />
+    <ClInclude Include="Vendor\lua\src\llimits.h" />
+    <ClInclude Include="Vendor\lua\src\lmem.h" />
+    <ClInclude Include="Vendor\lua\src\lobject.h" />
+    <ClInclude Include="Vendor\lua\src\lopcodes.h" />
+    <ClInclude Include="Vendor\lua\src\lopnames.h" />
+    <ClInclude Include="Vendor\lua\src\lparser.h" />
+    <ClInclude Include="Vendor\lua\src\lprefix.h" />
+    <ClInclude Include="Vendor\lua\src\lstate.h" />
+    <ClInclude Include="Vendor\lua\src\lstring.h" />
+    <ClInclude Include="Vendor\lua\src\ltable.h" />
+    <ClInclude Include="Vendor\lua\src\ltm.h" />
+    <ClInclude Include="Vendor\lua\src\lua.h" />
+    <ClInclude Include="Vendor\lua\src\luaconf.h" />
+    <ClInclude Include="Vendor\lua\src\lualib.h" />
+    <ClInclude Include="Vendor\lua\src\lundump.h" />
+    <ClInclude Include="Vendor\lua\src\lvm.h" />
+    <ClInclude Include="Vendor\lua\src\lzio.h" />
     <ClInclude Include="Vendor\stb_image\stb_image.h" />
     <ClInclude Include="Vendor\tinyfiledialogs\more_dialogs\tinyfd_moredialogs.h" />
     <ClInclude Include="Vendor\tinyfiledialogs\tinyfiledialogs.h" />
@@ -353,6 +380,40 @@
     <ClCompile Include="Vendor\imgui\imgui_stdlib.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_tables.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Vendor\lua\src\lapi.c" />
+    <ClCompile Include="Vendor\lua\src\lauxlib.c" />
+    <ClCompile Include="Vendor\lua\src\lbaselib.c" />
+    <ClCompile Include="Vendor\lua\src\lcode.c" />
+    <ClCompile Include="Vendor\lua\src\lcorolib.c" />
+    <ClCompile Include="Vendor\lua\src\lctype.c" />
+    <ClCompile Include="Vendor\lua\src\ldblib.c" />
+    <ClCompile Include="Vendor\lua\src\ldebug.c" />
+    <ClCompile Include="Vendor\lua\src\ldo.c" />
+    <ClCompile Include="Vendor\lua\src\ldump.c" />
+    <ClCompile Include="Vendor\lua\src\lfunc.c" />
+    <ClCompile Include="Vendor\lua\src\lgc.c" />
+    <ClCompile Include="Vendor\lua\src\linit.c" />
+    <ClCompile Include="Vendor\lua\src\liolib.c" />
+    <ClCompile Include="Vendor\lua\src\llex.c" />
+    <ClCompile Include="Vendor\lua\src\lmathlib.c" />
+    <ClCompile Include="Vendor\lua\src\lmem.c" />
+    <ClCompile Include="Vendor\lua\src\loadlib.c" />
+    <ClCompile Include="Vendor\lua\src\lobject.c" />
+    <ClCompile Include="Vendor\lua\src\lopcodes.c" />
+    <ClCompile Include="Vendor\lua\src\loslib.c" />
+    <ClCompile Include="Vendor\lua\src\lparser.c" />
+    <ClCompile Include="Vendor\lua\src\lstate.c" />
+    <ClCompile Include="Vendor\lua\src\lstring.c" />
+    <ClCompile Include="Vendor\lua\src\lstrlib.c" />
+    <ClCompile Include="Vendor\lua\src\ltable.c" />
+    <ClCompile Include="Vendor\lua\src\ltablib.c" />
+    <ClCompile Include="Vendor\lua\src\ltm.c" />
+    <ClCompile Include="Vendor\lua\src\lua.c" />
+    <ClCompile Include="Vendor\lua\src\luac.c" />
+    <ClCompile Include="Vendor\lua\src\lundump.c" />
+    <ClCompile Include="Vendor\lua\src\lutf8lib.c" />
+    <ClCompile Include="Vendor\lua\src\lvm.c" />
+    <ClCompile Include="Vendor\lua\src\lzio.c" />
     <ClCompile Include="Vendor\stb_image\STB_Image.cpp" />
     <ClCompile Include="Vendor\tinyfiledialogs\hello.c" />
     <ClCompile Include="Vendor\tinyfiledialogs\hello_wchar_t.c" />

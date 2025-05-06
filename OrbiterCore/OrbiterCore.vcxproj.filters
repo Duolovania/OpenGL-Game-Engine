@@ -16,6 +16,12 @@
     <Filter Include="Vendor\imgui">
       <UniqueIdentifier>{3D8F64D2-29F2-F376-D277-2C2DBEB9BFF9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Vendor\lua">
+      <UniqueIdentifier>{C4917327-B049-B574-1951-8ED005285065}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\lua\src">
+      <UniqueIdentifier>{DB91CAF6-C75F-BEFC-B0F3-2E239C609A61}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Vendor\stb_image">
       <UniqueIdentifier>{EDE315D3-D9DC-3425-020F-1AAAEE661431}</UniqueIdentifier>
     </Filter>
@@ -134,6 +140,87 @@
     </ClInclude>
     <ClInclude Include="Vendor\imgui\imstb_truetype.h">
       <Filter>Vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\lapi.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\lauxlib.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\lcode.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\lctype.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\ldebug.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\ldo.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\lfunc.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\lgc.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\ljumptab.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\llex.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\llimits.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\lmem.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\lobject.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\lopcodes.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\lopnames.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\lparser.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\lprefix.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\lstate.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\lstring.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\ltable.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\ltm.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\lua.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\luaconf.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\lualib.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\lundump.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\lvm.h">
+      <Filter>Vendor\lua\src</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendor\lua\src\lzio.h">
+      <Filter>Vendor\lua\src</Filter>
     </ClInclude>
     <ClInclude Include="Vendor\stb_image\stb_image.h">
       <Filter>Vendor\stb_image</Filter>
@@ -298,6 +385,108 @@
     </ClCompile>
     <ClCompile Include="Vendor\imgui\imgui_widgets.cpp">
       <Filter>Vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lapi.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lauxlib.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lbaselib.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lcode.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lcorolib.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lctype.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\ldblib.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\ldebug.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\ldo.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\ldump.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lfunc.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lgc.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\linit.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\liolib.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\llex.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lmathlib.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lmem.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\loadlib.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lobject.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lopcodes.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\loslib.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lparser.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lstate.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lstring.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lstrlib.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\ltable.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\ltablib.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\ltm.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lua.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\luac.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lundump.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lutf8lib.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lvm.c">
+      <Filter>Vendor\lua\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Vendor\lua\src\lzio.c">
+      <Filter>Vendor\lua\src</Filter>
     </ClCompile>
     <ClCompile Include="Vendor\stb_image\STB_Image.cpp">
       <Filter>Vendor\stb_image</Filter>
