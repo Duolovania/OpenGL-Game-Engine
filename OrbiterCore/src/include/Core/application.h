@@ -5,12 +5,22 @@
 #include "Audio/audiomanager.h"
 #include "Core/renderinglayer.h"
 #include "Core/projectsettings.h"
+#include "Scripts/luacontroller.h"
 
+// This is used to define whether the editor, launcher, or solo game is being launched.
 enum ApplicationType
 {
 	LauncherOB,
 	EditorOB,
 	GameOB
+};
+
+// This is used to determine whether the game is playing, paused, or stopped.
+enum ApplicationState
+{
+	Play,
+	Pause,
+	Stop
 };
 
 // This class stores the methods and properties for the application creation, loop, and termination. 
@@ -48,6 +58,7 @@ class Application
 	private:
 		// 1920 x 1080 by default.
 		int m_screenWidth = 1920, m_screenHeight = 1080;
+		bool hasStarted = false;
 };
 
 // This class stores singleton methods and objects used throughout the program.
@@ -66,6 +77,9 @@ class Engine
 		Renderer renderer;
 
 		ProjectSettings selectedProject;
+		LuaController m_scriptController;
+
+		ApplicationState m_applicationState = ApplicationState::Stop;
 
 		// This method handles the keyboard input.
 		static void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods);

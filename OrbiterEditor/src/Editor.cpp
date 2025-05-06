@@ -597,6 +597,26 @@ void Editor::Inspector()
                 }
             }
         }
+
+        // Checks if the object has a script component before showing the dropdown.
+        if (Core.renderer.objectsToRender[selectedObject]->HasComponent("Script"))
+        {
+            if (ImGui::CollapsingHeader("Script"))
+            {
+                // Add script UI properties here.
+            }
+        }
+        // Check an object is selected before providing the option to add a script.
+        if (selectedObject >= 0)
+        {
+            if (ImGui::Button("Add Script"))
+            {
+                // TODO: show window/pop-up to choose script name. That way you can set the script component name directly through it's constructor.
+
+                /*Script scriptComponent = Script(name);
+                Core.renderer.objectsToRender[selectedObject]->AddComponent(scriptComponent);*/
+            }
+        }
     }
 
     ImGui::End();
@@ -1035,7 +1055,7 @@ void Editor::MenuBar()
         {
             savedChanges = false; // test unsaved indicator.
 
-            isPlaying = true;
+            Core.m_applicationState = ApplicationState::Play;
         }
         AddTooltip("Play the scene."); // Add tooltip for UI element above.
 
@@ -1043,7 +1063,7 @@ void Editor::MenuBar()
         ImGui::SameLine();
         if (ImGui::ImageButton((void*)pauseButton, ImVec2(ImGui::GetContentRegionMax().x / 120, ImGui::GetContentRegionAvail().y)))
         {
-            isPlaying = false;
+            Core.m_applicationState = ApplicationState::Pause;
         }
         AddTooltip("Pause the scene."); // Add tooltip for UI element above.
 
@@ -1051,7 +1071,7 @@ void Editor::MenuBar()
         ImGui::SameLine();
         if (ImGui::ImageButton((void*)stopButton, ImVec2(ImGui::GetContentRegionMax().x / 120, ImGui::GetContentRegionAvail().y)))
         {
-
+            Core.m_applicationState = ApplicationState::Stop;
         }
         AddTooltip("Stop the scene."); // Add tooltip for UI element above.
 

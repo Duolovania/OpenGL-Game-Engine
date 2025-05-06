@@ -229,6 +229,9 @@
       <Project>{65079033-D1BC-0829-5AB1-0200C665FF2C}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Scripts\testscripttwo.lua" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

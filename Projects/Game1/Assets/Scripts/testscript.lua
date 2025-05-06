@@ -1,3 +1,7 @@
+function Start()
+    LogOB("Started!")
+end
+
 function Update()
-    print("Bazinga boys!!!!")
+    LogOB("Eeny meeny!")
 end

@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\src\\Core\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Core\\FileManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\src\\Core\\FileManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\include\\Core\\renderinglayer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\src\\include\\Core\\renderinglayer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,28 +34,29 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "renderinglayer.h",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\include\\Core\\renderinglayer.h",
+              "RelativeDocumentMoniker": "OrbiterCore\\src\\include\\Core\\renderinglayer.h",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\include\\Core\\renderinglayer.h",
+              "RelativeToolTip": "OrbiterCore\\src\\include\\Core\\renderinglayer.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-06T14:13:48.338Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Application.cpp",
               "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Core\\Application.cpp",
               "RelativeDocumentMoniker": "OrbiterCore\\src\\Core\\Application.cpp",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Core\\Application.cpp",
               "RelativeToolTip": "OrbiterCore\\src\\Core\\Application.cpp",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAAEAAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAADwAAABZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-05-06T08:08:38.292Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FileManager.cpp",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Core\\FileManager.cpp",
-              "RelativeDocumentMoniker": "OrbiterCore\\src\\Core\\FileManager.cpp",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Core\\FileManager.cpp",
-              "RelativeToolTip": "OrbiterCore\\src\\Core\\FileManager.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-05T15:34:17.501Z"
             }
           ]
         }

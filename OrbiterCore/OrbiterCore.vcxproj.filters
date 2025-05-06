@@ -52,6 +52,9 @@
     <Filter Include="src\Rendering">
       <UniqueIdentifier>{BA10DABB-26D1-55F2-EF0B-9F6F5B8B9ACE}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Scripts">
+      <UniqueIdentifier>{646F54F1-D024-CDE6-5919-C7BDC5CDC3EA}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Tests">
       <UniqueIdentifier>{AF73E5B3-1BDE-992A-641C-4BD0D0C5777F}</UniqueIdentifier>
     </Filter>
@@ -348,6 +351,9 @@
     <ClInclude Include="src\include\Rendering\vertexbufferlayout.h">
       <Filter>src\include\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="src\include\Scripts\luacontroller.h">
+      <Filter>src\include\Scripts</Filter>
+    </ClInclude>
     <ClInclude Include="src\include\Scripts\orbiterscript.h">
       <Filter>src\include\Scripts</Filter>
     </ClInclude>
@@ -572,6 +578,9 @@
     <ClCompile Include="src\Rendering\VertexBuffer.cpp">
       <Filter>src\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="src\Scripts\LuaController.cpp">
+      <Filter>src\Scripts</Filter>
+    </ClCompile>
     <ClCompile Include="src\Tests\Test.cpp">
       <Filter>src\Tests</Filter>
     </ClCompile>
@@ -584,6 +593,7 @@
     <ClCompile Include="src\include\Math\Vector.cpp">
       <Filter>src\include\Math</Filter>
     </ClCompile>
+    <ClCompile Include="src\Scripts\Script.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Vendor\tinyfiledialogs\dll_cs_lua_R_fortran_pascal\tinyfiledialogs_dylib.sh">

@@ -1,3 +1,4 @@
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Scripts\Script.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\Script.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\glm\detail\glm.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\glm.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\imgui\imgui.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\imgui.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\imgui\imgui_demo.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\imgui_demo.obj
@@ -69,6 +70,7 @@ C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Render
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Rendering\Texture.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\Texture.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Rendering\VertexArray.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\VertexArray.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Rendering\VertexBuffer.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\VertexBuffer.obj
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Scripts\LuaController.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\LuaController.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Tests\Test.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\Test.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Tests\TestClearColour.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\TestClearColour.obj
 C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Tests\TestTexture2D.cpp;C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin-int\Debug-windows-x86_64\OrbiterCore\TestTexture2D.obj

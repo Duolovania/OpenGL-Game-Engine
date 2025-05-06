@@ -1,8 +1,17 @@
 #pragma once
+#include "Components/component.h"
 
-class Script 
+// This class stores the script details.
+class Script : public Component
 {
 	public:
-		virtual void OnStart() {};
-		virtual void OnUpdate() {};
+		/**
+		* @brief The default constructor.
+		* 
+		* @param name the name of the script component. This does not need the file extension.
+		*/
+		Script(std::string name);
+
+		// The path where the script file is stored.
+		std::string filePath;
 };

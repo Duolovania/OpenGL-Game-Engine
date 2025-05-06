@@ -82,6 +82,7 @@ project "OrbiterCore"
         "%{prj.name}/Vendor/glm",
         "%{prj.name}/Vendor/sol",
         "%{prj.name}/Vendor/lua/src",
+        "%{prj.name}/Vendor/lua",
 
         "%{prj.name}/Vendor/tinyfiledialogs",
         "%{prj.name}/Vendor/tinyfiledialogs/more_dialogs",

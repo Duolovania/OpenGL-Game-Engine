@@ -7,7 +7,6 @@
 #include "stb_image.h"
 #include "Core/filemanager.h"
 #include <filesystem>
-#include "sol.hpp"
 
 float timeTime = 0, oldTimeSinceStart = 0, timeSinceStart, deltaTime;
 bool applicationQuit = false;
@@ -23,18 +22,18 @@ void Application::Run()
     if (applicationType != ApplicationType::LauncherOB)
     {
         // Loads the project config.
-        Core.selectedProject = fileManager.LoadProjectConfig(std::filesystem::current_path().parent_path().string() + "\\Projects\\" + "Game1" + "\\" + "Game1" + ".projectOB");
+        Project = fileManager.LoadProjectConfig(std::filesystem::current_path().parent_path().string() + "\\Projects\\" + "Game1" + "\\" + "Game1" + ".projectOB");
 
         // Fix the project file path if the config file is corrupted.
-        if (Core.selectedProject.filePath.empty()) Core.selectedProject.filePath = std::filesystem::current_path().parent_path().string() + "\\Projects\\" + "Game1" + "\\Assets"; // Sets the path of the 'Assets' folder.
+        if (Project.filePath.empty()) Project.filePath = std::filesystem::current_path().parent_path().string() + "\\Projects\\" + "Game1" + "\\Assets"; // Sets the path of the 'Assets' folder.
 
         // Fix the project name if the config file is corrupted.
-        if (Core.selectedProject.name.empty())
+        if (Project.name.empty())
         {
-            std::filesystem::path filePath = Core.selectedProject.filePath;
+            std::filesystem::path filePath = Project.filePath;
             std::string projectFolderName = filePath.parent_path().filename().string(); // Gets the name of the project folder. This should match the project name either way.
 
-            Core.selectedProject.name = projectFolderName;
+            Project.name = projectFolderName;
         }
     }
 
@@ -45,24 +44,21 @@ void Application::Run()
             windowTitle = "Orbiter Launcher";
             break;
         case ApplicationType::EditorOB:
-            windowTitle = "Orbiter Editor - " + Core.selectedProject.name;
+            windowTitle = "Orbiter Editor - " + Project.name;
             break;
         default:
-            windowTitle = Core.selectedProject.name;
+            windowTitle = Project.name;
+            Core.m_applicationState = ApplicationState::Play;
             break;
     }
 
     // Initializes the window.
     Init(m_screenWidth, m_screenHeight, windowTitle.c_str());
 
-    // Test lua script call:
-    sol::state lua;
-
-    lua.open_libraries(sol::lib::base, sol::lib::math);
-    lua.script_file(Project.filePath + "\\Scripts\\testscript.lua"); // Loads 'testscript.lua' file.
-
-    sol::function update = lua["Update"]; // Gets the 'Update' lua function.
-    update(); // Calls the function.
+    // Sets up script controller and attaches scripts.
+    Core.m_scriptController.Init();
+    Core.m_scriptController.AddScript(Project.filePath + "\\Scripts\\testscript.lua");
+    Core.m_scriptController.AddScript(Project.filePath + "\\Scripts\\testscripttwo.lua");
 
     // Loop until the user closes the window
     while (!glfwWindowShouldClose(window) && !applicationQuit)
@@ -116,6 +112,23 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
 void Application::Loop()
 {   
     applicationQuit = !Core.renderingLayer->OnUpdate(deltaTime, timeTime);
+
+    // Checks if the game is playing.
+    if (Core.m_applicationState == ApplicationState::Play)
+    {
+        // Checks if the game hasn't started yet.
+        if (!hasStarted)
+        {
+            Core.m_scriptController.CallStart(); // Calls all 'Start' functions.
+            hasStarted = true; // Stops start from being called.
+        }
+
+        Core.m_scriptController.CallUpdate(); // Calls all 'Update' functions.
+    }
+    else if (Core.m_applicationState == ApplicationState::Stop)
+    {
+        hasStarted = false; // Allows 'Start' functions to run again.
+    }
 
     // Calculates the deltaTime.
     timeSinceStart = static_cast<float>(glfwGetTime());
