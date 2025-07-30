@@ -1,4 +1,5 @@
 #include "launcher.h"
+#include "tinyfiledialogs/tinyfiledialogs.h"
 #include <filesystem>
 
 float iconSize = 200;
@@ -16,7 +17,8 @@ void Launcher::Init(GLFWwindow* window)
 
     StylesConfig();
 
-    projPath = std::filesystem::current_path().parent_path().string() + "\\Projects\\";
+    rootPath = std::filesystem::current_path().parent_path().string();
+    projPath = rootPath + "\\Projects\\";
 
     iconTextures = std::make_unique<Texture>("../OrbiterCore/Res/Application Icons/playbutton.png");
 
@@ -36,6 +38,41 @@ bool Launcher::OnUpdate(float deltaTime, float time)
 
     ImGui::Begin("Projects");
     ShowProjects();
+
+    if (ImGui::Button("Set Project Folder"))
+    {
+        const char* file_path = tinyfd_selectFolderDialog(
+            "Open a folder",              // Title of the dialog
+            (rootPath).c_str()                    // Allow multiple selections (0 for no)
+        );
+
+        // Checks if the file exists.
+        if (file_path)
+        {
+            std::cout << projPath << std::endl;
+            projPath = rootPath + std::string(file_path).erase(0, rootPath.length()); // Erases the directories leading up to the "Assets" folder.
+        }
+    }
+
+    if (ImGui::Button("Open Project From Disk"))
+    {
+        const char* filterTypes[4] = { "*.projectOB" };
+        const char* file_path = tinyfd_openFileDialog(
+            "Open a project",              // Title of the dialog
+            (rootPath).c_str(),                         // Default path ("" means current directory)
+            1,                          // Number of file filters
+            filterTypes,                // File filters (e.g., ["*.txt"])
+            "Project",                       // Filter description
+            0                           // Allow multiple selections (0 for no)
+        );
+
+        // Checks if the file exists.
+        if (file_path)
+        {
+            // Open editor with project.
+            std::cout << "Opened file." << std::endl;
+        }
+    }
     ImGui::End();
 
     // Renders ImGui data.
@@ -109,51 +146,54 @@ void Launcher::ShowProjects()
 
         for (const auto& entry : std::filesystem::directory_iterator(projPath))
         {
-            ImVec2 buttonSize = ImVec2(iconSize, iconSize);
-            ImVec2 buttonPos = ImVec2(originalPos.x + (counter * (buttonSize.x + padding.x)), originalPos.y); // Calculates the x position based on how many items there are.
-
-            ImGui::SetWindowFontScale(buttonSize.x / 195.0f);
-
-            // Sets the text position to the center of the thumbnail (sets the text origin position to the center of the thumbnail and subtracts it by the amount of characters. The subtraction is to ensure that the text is centered regardless of it's length).
-            ImVec2 textPos = ImVec2(buttonPos.x + (buttonSize.x - ImGui::CalcTextSize(entry.path().filename().string().c_str()).x) / 2, originalPos.y + (buttonSize.y + padding.y));
-
-            // Checks if the thumbnail will exceed the window size.
-            if ((buttonPos.x + buttonSize.x > ImGui::GetContentRegionMax().x))
-            {
-                counter = 0; // Resets the x position.
-                originalPos = ImVec2(originalPos.x, ImGui::GetCursorPos().y + ((buttonSize.y / 4) + padding.y)); // Calculates the y position based on the button size and padding amount.
-
-                buttonPos = ImVec2(originalPos.x + (counter * (buttonSize.x + padding.x)), originalPos.y); // Recalculates the button position with the x position being reset.
-                textPos = ImVec2(buttonPos.x + (buttonSize.x - ImGui::CalcTextSize(entry.path().filename().string().c_str()).x) / 2, originalPos.y + (buttonSize.y + padding.y)); // Recalculates the text position with the x position being reset.
-            }
-
             if (!entry.is_directory())
             {
-                ImGui::PushID(counter);
-                ImGui::SetCursorPos(buttonPos);
-
                 unsigned int fileThumbnail = fileIcon; // Sets the thumbnail image to the generic file icon by default.
                 int fileNameLength = entry.path().filename().string().find_last_of('.'); // Gets the length of the file name up to the file extension.
-
                 std::string fileExtension = entry.path().filename().string().substr(fileNameLength); // Gets the file extension.
 
-                // Checks if the file is an engine scene file.
+                // Checks if the file is an engine project file.
                 if (fileExtension == ".projectOB")
                 {
+                    // Excludes file extension from label.
+                    std::string buttonText = entry.path().filename().string().erase(fileNameLength, entry.path().filename().string().length());
+
+                    ImVec2 buttonSize = ImVec2(iconSize, iconSize);
+                    ImVec2 buttonPos = ImVec2(originalPos.x + (counter * (buttonSize.x + padding.x)), originalPos.y); // Calculates the x position based on how many items there are.
+
+                    ImGui::SetWindowFontScale(buttonSize.x / 195.0f);
+
+                    // Sets the text position to the center of the thumbnail (sets the text origin position to the center of the thumbnail and subtracts it by the amount of characters. The subtraction is to ensure that the text is centered regardless of it's length).
+                    ImVec2 textPos = ImVec2(buttonPos.x + (buttonSize.x - ImGui::CalcTextSize(buttonText.c_str()).x) / 2, originalPos.y + (buttonSize.y + padding.y));
+
+                    // Checks if the thumbnail will exceed the window size.
+                    if ((buttonPos.x + buttonSize.x > ImGui::GetContentRegionMax().x))
+                    {
+                        counter = 0; // Resets the x position.
+                        originalPos = ImVec2(originalPos.x, ImGui::GetCursorPos().y + ((buttonSize.y / 4) + padding.y)); // Calculates the y position based on the button size and padding amount.
+
+                        buttonPos = ImVec2(originalPos.x + (counter * (buttonSize.x + padding.x)), originalPos.y); // Recalculates the button position with the x position being reset.
+                        textPos = ImVec2(buttonPos.x + (buttonSize.x - ImGui::CalcTextSize(buttonText.c_str()).x) / 2, originalPos.y + (buttonSize.y + padding.y)); // Recalculates the text position with the x position being reset.
+                    }
+                
+                    ImGui::PushID(counter);
+                    ImGui::SetCursorPos(buttonPos);
+
                     // Creates the file buttons.
                     if (ImGui::ImageButton((void*)fileThumbnail, buttonSize, ImVec2(0, 1), ImVec2(1, 0)))
                     {
                         std::cout << "do stuff" << std::endl;
                     };
+                
+
+                    ImGui::SetCursorPos(textPos);
+
+                    ImGui::Text(buttonText.c_str()); // Creates the file label.
+                    ImGui::SameLine();
+                    ImGui::PopID();
+
+                    counter++;
                 }
-
-                ImGui::SetCursorPos(textPos);
-
-                ImGui::Text(entry.path().filename().string().c_str()); // Creates the file label.
-                ImGui::SameLine();
-                ImGui::PopID();
-
-                counter++;
             }
         }
 

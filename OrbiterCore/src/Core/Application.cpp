@@ -55,10 +55,10 @@ void Application::Run()
     // Initializes the window.
     Init(m_screenWidth, m_screenHeight, windowTitle.c_str());
 
-    // Sets up script controller and attaches scripts.
-    Core.m_scriptController.Init();
-    Core.m_scriptController.AddScript(Project.filePath + "\\Scripts\\testscript.lua");
-    Core.m_scriptController.AddScript(Project.filePath + "\\Scripts\\testscripttwo.lua");
+    //// Sets up script controller and attaches scripts.
+    //Core.m_scriptController.Init();
+    //Core.m_scriptController.AddScript(Project.filePath + "\\Scripts\\testscript.lua");
+    //Core.m_scriptController.AddScript(Project.filePath + "\\Scripts\\testscripttwo.lua");
 
     // Loop until the user closes the window
     while (!glfwWindowShouldClose(window) && !applicationQuit)
@@ -119,11 +119,11 @@ void Application::Loop()
         // Checks if the game hasn't started yet.
         if (!hasStarted)
         {
-            Core.m_scriptController.CallStart(); // Calls all 'Start' functions.
+            //Core.m_scriptController.CallStart(); // Calls all 'Start' functions.
             hasStarted = true; // Stops start from being called.
         }
 
-        Core.m_scriptController.CallUpdate(); // Calls all 'Update' functions.
+        //Core.m_scriptController.CallUpdate(); // Calls all 'Update' functions.
     }
     else if (Core.m_applicationState == ApplicationState::Stop)
     {

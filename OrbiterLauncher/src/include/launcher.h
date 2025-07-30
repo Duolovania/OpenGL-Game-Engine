@@ -12,5 +12,5 @@ class Launcher : public RenderingLayer
 		void StylesConfig();
 		void ShowProjects();
 
-		std::string projPath;
+		std::string projPath, rootPath;
 };
