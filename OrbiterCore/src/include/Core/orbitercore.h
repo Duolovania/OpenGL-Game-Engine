@@ -5,6 +5,8 @@
 #include "Core/renderinglayer.h"
 #include "Core/debug.h"
 #include "Core/scene.h"
+
+#include "Core/launchersettings.h"
 #include "Core/editorsettings.h"
 #include "Core/projectsettings.h"
 

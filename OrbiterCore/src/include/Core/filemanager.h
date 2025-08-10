@@ -5,6 +5,7 @@
 #include "Core/scene.h"
 #include "Core/editorsettings.h"
 #include "Core/projectsettings.h"
+#include "Core/launchersettings.h"
 #include "yaml-cpp/yaml.h"
 
 // This class handles file creation and loading features.
@@ -83,4 +84,20 @@ class FileManager
 		* @return the file path that was saved to.
 		*/
 		const char* SaveFileExplorer(const char* filters[], const char* prompt, std::string rootPath);
+
+		/**
+		* @brief Creates a new file, storing details of the launcher settings using the YAML format.
+		*
+		* @param settings the object containing the config data.
+		* @param filePath the path to the file. This requires the file extension.
+		*/
+		void CreateLauncherConfig(LauncherSettings settings, std::string filePath);
+
+		/**
+		* @brief Loads launcher config data from a file that uses the YAML format.
+		*
+		* @param filePath the launcher to the file. This requires the file extension.
+		* @return the loaded editor settings data.
+		*/
+		LauncherSettings LoadLauncherConfig(std::string filePath);
 };

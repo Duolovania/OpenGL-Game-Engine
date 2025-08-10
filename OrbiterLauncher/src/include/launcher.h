@@ -13,4 +13,6 @@ class Launcher : public RenderingLayer
 		void ShowProjects();
 
 		std::string projPath, rootPath;
+		LauncherSettings launcherSettings;
+		FileManager fileManager;
 };

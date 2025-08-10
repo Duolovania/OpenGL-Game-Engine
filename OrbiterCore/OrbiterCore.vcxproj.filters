@@ -363,6 +363,7 @@
     <ClInclude Include="src\include\orbiter.h">
       <Filter>src\include</Filter>
     </ClInclude>
+    <ClInclude Include="src\include\Core\launchersettings.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vendor\glm\detail\glm.cpp">

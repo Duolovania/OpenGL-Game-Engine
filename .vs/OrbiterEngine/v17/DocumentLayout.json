@@ -7,12 +7,27 @@
       "RelativeMoniker": "D:0:0:{0EC3DA21-7A4E-48E6-835F-CBDAEF69A4E6}|OrbiterLauncher\\OrbiterLauncher.vcxproj|solutionrelative:OrbiterLauncher\\src\\Launcher.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\src\\Editor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|solutionrelative:OrbiterEditor\\src\\Editor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\filesystem||{3B902123-F8A7-4915-9F01-361F908088D0}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0EC3DA21-7A4E-48E6-835F-CBDAEF69A4E6}|OrbiterLauncher\\OrbiterLauncher.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterLauncher\\src\\include\\launcher.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{0EC3DA21-7A4E-48E6-835F-CBDAEF69A4E6}|OrbiterLauncher\\OrbiterLauncher.vcxproj|solutionrelative:OrbiterLauncher\\src\\include\\launcher.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\src\\Editor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|solutionrelative:OrbiterEditor\\src\\Editor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\include\\Core\\launchersettings.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\src\\include\\Core\\launchersettings.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Core\\FileManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\src\\Core\\FileManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\include\\Core\\filemanager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\src\\include\\Core\\filemanager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +37,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,26 +53,78 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "filesystem",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\filesystem",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\filesystem",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\filesystem",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\filesystem",
+              "ViewState": "AgIAACgHAAAAAAAAAAAcwDkHAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-08-10T11:31:19.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FileManager.cpp",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Core\\FileManager.cpp",
+              "RelativeDocumentMoniker": "OrbiterCore\\src\\Core\\FileManager.cpp",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Core\\FileManager.cpp",
+              "RelativeToolTip": "OrbiterCore\\src\\Core\\FileManager.cpp",
+              "ViewState": "AgIAAO0BAAAAAAAAAAAawBUCAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-08-10T10:56:25.711Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "launchersettings.h",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\include\\Core\\launchersettings.h",
+              "RelativeDocumentMoniker": "OrbiterCore\\src\\include\\Core\\launchersettings.h",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\include\\Core\\launchersettings.h",
+              "RelativeToolTip": "OrbiterCore\\src\\include\\Core\\launchersettings.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-08-10T10:53:24.771Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "filemanager.h",
+              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\include\\Core\\filemanager.h",
+              "RelativeDocumentMoniker": "OrbiterCore\\src\\include\\Core\\filemanager.h",
+              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\include\\Core\\filemanager.h",
+              "RelativeToolTip": "OrbiterCore\\src\\include\\Core\\filemanager.h",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAGUAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-08-10T10:50:37.464Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "launcher.h",
               "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterLauncher\\src\\include\\launcher.h",
               "RelativeDocumentMoniker": "OrbiterLauncher\\src\\include\\launcher.h",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterLauncher\\src\\include\\launcher.h",
               "RelativeToolTip": "OrbiterLauncher\\src\\include\\launcher.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-07-30T11:51:12.08Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Editor.cpp",
               "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\src\\Editor.cpp",
               "RelativeDocumentMoniker": "OrbiterEditor\\src\\Editor.cpp",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\src\\Editor.cpp",
               "RelativeToolTip": "OrbiterEditor\\src\\Editor.cpp",
-              "ViewState": "AgIAANEBAAAAAAAAAAAawOgBAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAawKkAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-07-30T11:49:47.461Z",
               "EditorCaption": ""
@@ -70,7 +137,7 @@
               "RelativeDocumentMoniker": "OrbiterLauncher\\src\\Launcher.cpp",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterLauncher\\src\\Launcher.cpp",
               "RelativeToolTip": "OrbiterLauncher\\src\\Launcher.cpp",
-              "ViewState": "AgIAAIUAAAAAAAAAAAAAALkAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAACgAAAAAAAAAAAAqwEsAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-07-30T11:47:40.361Z",
               "EditorCaption": ""
