@@ -9,12 +9,9 @@
 #include "Core/launchersettings.h"
 #include "Core/editorsettings.h"
 #include "Core/projectsettings.h"
+#include "Core/editorinstructions.h"
 
 #include "GameObjects/gameobject.h"
 
 #include "Components/spriterenderer.h"
 #include "Components/camera.h"
-
-#include "Tests/test.h"
-#include "Tests/testtexture2d.h"
-#include "Tests/testclearcolour.h"

@@ -5,7 +5,7 @@
 
 FileManager fileManager;
 int selectedObject = -2;
-std::string inputString, searchTerm, rootPath, currentPath;
+std::string inputString, searchTerm, assetsPath, currentPath;
 
 float sprintSpeed;
 float iconSize = 200;
@@ -45,7 +45,7 @@ void Editor::Init(GLFWwindow* window)
     StylesConfig();
 
     // Creates frame buffer shader.
-    fbShader = std::make_unique<Shader>("../OrbiterCore/Res/Shaders/Framebuffer.shader");
+    fbShader = std::make_unique<Shader>("res/Shaders/Framebuffer.shader");
     fbShader->CreateShader();
     fbShader->Bind();
 
@@ -70,27 +70,28 @@ void Editor::Init(GLFWwindow* window)
 
     frameBufferVA->AddBuffer(*frameBufferVB, layout); // Adds the vertex buffer to the vertex array.
 
-    // Sets the project 'Assets' folder path to the corresponding project directory using the project name.
-    rootPath = Core.selectedProject.filePath;
-    currentPath = rootPath;
-    //Core.selectedProject.filePath = rootPath;
+    std::string projectPath = fileManager.LoadEditorInstructions(std::filesystem::current_path().string() + "\\launchinstructions.instructOB").selectedProjPath;
 
-    iconTextures = std::make_unique<Texture>("../OrbiterCore/Res/Application Icons/playbutton.png");
+    // Sets the project 'Assets' folder path to the corresponding project directory using the project name.
+    assetsPath = projectPath + "\\Assets";
+    currentPath = assetsPath;
+
+    iconTextures = std::make_unique<Texture>("res/Application Icons/playbutton.png");
 
     // Loads the editor application icons (e.g. play button, folder icon, reset properties icon, etc.)
-    playButton = iconTextures->Load("../OrbiterCore/Res/Application Icons/playbutton.png", true);
-    pauseButton = iconTextures->Load("../OrbiterCore/Res/Application Icons/pausebutton.png", true);
-    stopButton = iconTextures->Load("../OrbiterCore/Res/Application Icons/stopbutton.png", true);
+    playButton = iconTextures->Load("res/Application Icons/playbutton.png", true);
+    pauseButton = iconTextures->Load("res/Application Icons/pausebutton.png", true);
+    stopButton = iconTextures->Load("res/Application Icons/stopbutton.png", true);
 
-    folderIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/foldericon.png", true);
-    fileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/fileicon.png", true);
+    folderIcon = iconTextures->Load("res/Application Icons/foldericon.png", true);
+    fileIcon = iconTextures->Load("res/Application Icons/fileicon.png", true);
 
-    wavFileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/wavfileicon.png", true);
-    fontFileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/fontfileicon.png", true);
-    sceneFileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/scenefileicon.png", true);
-    imageFileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/imagefileicon.png", true);
-    miniFolderIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/foldericon - mini.png", true);
-    resetIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/reset.png", true);
+    wavFileIcon = iconTextures->Load("res/Application Icons/wavfileicon.png", true);
+    fontFileIcon = iconTextures->Load("res/Application Icons/fontfileicon.png", true);
+    sceneFileIcon = iconTextures->Load("res/Application Icons/scenefileicon.png", true);
+    imageFileIcon = iconTextures->Load("res/Application Icons/imagefileicon.png", true);
+    miniFolderIcon = iconTextures->Load("res/Application Icons/foldericon - mini.png", true);
+    resetIcon = iconTextures->Load("res/Application Icons/reset.png", true);
 
     // Sets the first scene to a new, empty scene.
     currentScene.sceneName = "Untitled";
@@ -101,7 +102,7 @@ void Editor::Init(GLFWwindow* window)
     Core.renderer.RegenerateObjects();
 
     // Sets the editor configuration.
-    selectedEditorConfig = fileManager.LoadEditorConfig(std::filesystem::current_path().parent_path().string() + "\\Projects\\" + Core.selectedProject.name + "\\default.editorOB");
+    selectedEditorConfig = fileManager.LoadEditorConfig(projectPath + "\\default.editorOB");
 }
 
 bool Editor::OnUpdate(float deltaTime, float time)
@@ -180,9 +181,9 @@ void Editor::Close()
 void Editor::StylesConfig()
 {
     ImGuiIO& io = ImGui::GetIO(); (void)io;
-    io.FontDefault = io.Fonts->AddFontFromFileTTF("../OrbiterCore/Res/Fonts/open-sans/OpenSans-Semibold.ttf", 18.0f);
-    
-    pixelFont = io.Fonts->AddFontFromFileTTF("../OrbiterCore/Res/Fonts/joystix/joystix monospace.otf", 10.0f);
+
+    io.FontDefault = io.Fonts->AddFontFromFileTTF("res/Fonts/open-sans/OpenSans-Semibold.ttf", 18.0f);    
+    pixelFont = io.Fonts->AddFontFromFileTTF("res/Fonts/joystix/joystix monospace.otf", 10.0f);
 
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
@@ -489,7 +490,7 @@ void Editor::Inspector()
                     const char* filterTypes[4] = { "*.png", "*.jpg"};
                     const char* file_path = tinyfd_openFileDialog(
                         "Open an image file",              // Title of the dialog
-                        (rootPath + "/Assets").c_str(),                         // Default path ("" means current directory)
+                        (assetsPath + "/Assets").c_str(),                         // Default path ("" means current directory)
                         2,                          // Number of file filters
                         filterTypes,                // File filters (e.g., ["*.txt"])
                         "Image",                       // Filter description
@@ -499,7 +500,7 @@ void Editor::Inspector()
                     // Checks if the file exists.
                     if (file_path)
                     {
-                        spriteRenderer->cTexture.m_imagePath = rootPath + std::string(file_path).erase(0, rootPath.length()); // Erases the directories leading up to the "Assets" folder.
+                        spriteRenderer->cTexture.m_imagePath = assetsPath + std::string(file_path).erase(0, assetsPath.length()); // Erases the directories leading up to the "Assets" folder.
                         Core.renderer.RegenerateObject(selectedObject); // Updates the image to apply changes.
                     }
                 }
@@ -681,7 +682,7 @@ void ShowFolders(const std::filesystem::path& folderPath, bool isLeaf = false)
 void Editor::ContentBrowser()
 {
     ImGui::Begin("Assets Folder");
-    std::string toolTipMsg = "This is a repository for all your game assets. This can be found at: " + rootPath;
+    std::string toolTipMsg = "This is a repository for all your game assets. This can be found at: " + assetsPath;
     AddTooltip(toolTipMsg.c_str()); // Add tooltip for UI element above.
 
     ImGui::BeginChild("TableChild", ImVec2(0, ImGui::GetContentRegionAvail().y), true, ImGuiWindowFlags_HorizontalScrollbar);
@@ -696,7 +697,7 @@ void Editor::ContentBrowser()
 
         if (ImGui::BeginChild("Folder List Items"))
         {
-            ShowFolders(rootPath);
+            ShowFolders(assetsPath);
 
             ImGui::EndChild();
         }
@@ -710,7 +711,7 @@ void Editor::ContentBrowser()
             std::filesystem::path parentDir = currentPath;
             currentPath = parentDir.parent_path().string();
 
-            if (currentPath.length() < rootPath.length()) currentPath = rootPath;
+            if (currentPath.length() < assetsPath.length()) currentPath = assetsPath;
         }
 
         ImGui::SameLine();
@@ -726,7 +727,7 @@ void Editor::ContentBrowser()
         ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.224, 0.482, 0.267, 1.0f));
 
         std::string tempPath = currentPath;
-        std::string selectedPath = tempPath.erase(0, rootPath.length());
+        std::string selectedPath = tempPath.erase(0, assetsPath.length());
 
         ImGui::Text(selectedPath.c_str());
         ImGui::PopStyleColor();
@@ -820,7 +821,7 @@ void Editor::ContentBrowser()
                             if (fileExtension == ".worldOB")
                             {
                                 std::size_t pos = entry.path().filename().string().find(fileExtension); // Gets the position of the file extension part of the path.
-                                currentScene = fileManager.LoadSceneFile(entry.path().filename().string().substr(0, pos), rootPath + tempPath + "\\" + entry.path().filename().string());
+                                currentScene = fileManager.LoadSceneFile(entry.path().filename().string().substr(0, pos), assetsPath + tempPath + "\\" + entry.path().filename().string());
 
                                 Core.renderer.objectsToRender = currentScene.objectsToRender;
                                 Core.renderer.RegenerateObjects();
@@ -871,11 +872,11 @@ void Editor::MenuBar()
             if (ImGui::MenuItem("Open Scene"))
             {
                 const char* filterTypes[1] = { "*.worldOB" }; // Defines the filters in the file explorer.
-                std::string filePath = fileManager.OpenFileExplorer(filterTypes, "Open a scene", rootPath); // Gets the full path of the selected file.
+                std::string filePath = fileManager.OpenFileExplorer(filterTypes, "Open a scene", assetsPath); // Gets the full path of the selected file.
 
                 if (!filePath.empty())
                 {
-                    std::string tempPath = filePath.erase(0, rootPath.length());
+                    std::string tempPath = filePath.erase(0, assetsPath.length());
 
                     int fileNamePos = tempPath.find_last_of('\\') + 1; // Gets the final directory position in the file path.
                     int fileExtensionPos = tempPath.find_last_of('.'); // Gets the extension position in the file path.
@@ -910,7 +911,7 @@ void Editor::MenuBar()
             if (ImGui::MenuItem("Save As"))
             {
                 const char* filterTypes[1] = { "*.worldOB" }; // Defines the filters in the file explorer.
-                const char* savePath = fileManager.SaveFileExplorer(filterTypes, "Save scene", rootPath); // Gets the full path of the selected file.
+                const char* savePath = fileManager.SaveFileExplorer(filterTypes, "Save scene", assetsPath); // Gets the full path of the selected file.
 
                 if (savePath) 
                 {
@@ -945,9 +946,9 @@ void Editor::MenuBar()
                     test.objectsToRender = Core.renderer.objectsToRender;
 
                     std::string tempPath = savePath;
-                    std::string newFileName = tempPath.erase(0, rootPath.length());
+                    std::string newFileName = tempPath.erase(0, assetsPath.length());
 
-                    fileManager.CreateSceneFile(test, test.sceneName, rootPath + newFileName);
+                    fileManager.CreateSceneFile(test, test.sceneName, assetsPath + newFileName);
                 }
             }
             AddTooltip("Save the scene manually through your files window."); // Add tooltip for UI element above.
@@ -1160,12 +1161,12 @@ void Editor::AudioManagerComponent()
                     audioManager->Stop(audioManager->sounds[i].soundName); // Stops the audio source.
 
                     const char* filterTypes[1] = { "*.wav" }; // Defines the file filters.
-                    std::string filePath = fileManager.OpenFileExplorer(filterTypes, "Select a sound file", rootPath); // Gets the file path using the file explorer.
+                    std::string filePath = fileManager.OpenFileExplorer(filterTypes, "Select a sound file", assetsPath); // Gets the file path using the file explorer.
 
                     // Checks if file path is valid.
                     if (!filePath.empty())
                     {
-                        audioManager->sounds[i].filePath = filePath.erase(0, rootPath.length() + 1); // Updates the file path.
+                        audioManager->sounds[i].filePath = filePath.erase(0, assetsPath.length() + 1); // Updates the file path.
 
                         audioManager->sounds[i].audioSource->ChangeFile(audioManager->sounds[i].filePath); // Changes the file path for the audio source.
                         audioManager->sounds[i].audioSource->SetProperties(audioManager->sounds[i].pitch, audioManager->sounds[i].volume, audioManager->sounds[i].isLooping, audioManager->sounds[i].position, audioManager->sounds[i].velocity); // Resets audio source properties.

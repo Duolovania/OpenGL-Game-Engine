@@ -20,11 +20,11 @@ void Launcher::Init(GLFWwindow* window)
     rootPath = std::filesystem::current_path().parent_path().string();
     projPath = rootPath + "\\Projects\\";
 
-    iconTextures = std::make_unique<Texture>("../OrbiterCore/Res/Application Icons/playbutton.png");
+    iconTextures = std::make_unique<Texture>("res/Application Icons/playbutton.png");
 
     // Loads the launcher application icons.
-    fileIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/fileicon.png", true);
-    miniFolderIcon = iconTextures->Load("../OrbiterCore/Res/Application Icons/foldericon - mini.png", true);
+    fileIcon = iconTextures->Load("res/Application Icons/fileicon.png", true);
+    miniFolderIcon = iconTextures->Load("res/Application Icons/foldericon - mini.png", true);
 
     launcherSettings = fileManager.LoadLauncherConfig(rootPath + "\\OrbiterLauncher\\config.launchOB");
 }
@@ -75,7 +75,13 @@ bool Launcher::OnUpdate(float deltaTime, float time)
             // Open editor with project.
             std::cout << "Opened file." << std::endl;
             if (std::find(launcherSettings.directories.begin(), launcherSettings.directories.end(), file_path) == launcherSettings.directories.end()) launcherSettings.directories.push_back(file_path);
+            editorInstructions.selectedProjPath = file_path;
         }
+    }
+
+    if (ImGui::Button("Open Editor test"))
+    {
+        OpenEditor();
     }
     ImGui::End();
 
@@ -98,7 +104,7 @@ void Launcher::Close()
 void Launcher::StylesConfig()
 {
     ImGuiIO& io = ImGui::GetIO(); (void)io;
-    io.FontDefault = io.Fonts->AddFontFromFileTTF("../OrbiterCore/Res/Fonts/open-sans/OpenSans-Semibold.ttf", 18.0f);
+    io.FontDefault = io.Fonts->AddFontFromFileTTF("res/Fonts/open-sans/OpenSans-Semibold.ttf", 18.0f);
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
     ImGuiStyle& style = ImGui::GetStyle();
@@ -210,4 +216,10 @@ void Launcher::ShowProjects()
 
         ImGui::EndChild();
     }
+}
+
+void Launcher::OpenEditor()
+{
+    std::cout << rootPath + "/OrbiterEditor/launchinstructions.instructOB" << std::endl;
+    fileManager.CreateEditorInstructions(editorInstructions, rootPath + "/OrbiterEditor/launchinstructions.instructOB");
 }

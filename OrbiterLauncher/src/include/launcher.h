@@ -12,7 +12,11 @@ class Launcher : public RenderingLayer
 		void StylesConfig();
 		void ShowProjects();
 
+		void OpenEditor();
+
 		std::string projPath, rootPath;
 		LauncherSettings launcherSettings;
 		FileManager fileManager;
+
+		EditorInstructions editorInstructions;
 };

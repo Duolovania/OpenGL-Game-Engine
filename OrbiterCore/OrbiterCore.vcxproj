@@ -277,6 +277,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\include\Core\editorinstructions.h" />
     <ClInclude Include="src\include\Core\launchersettings.h" />
     <ClInclude Include="Vendor\glm\simd\common.h" />
     <ClInclude Include="Vendor\glm\simd\exponential.h" />
@@ -328,9 +329,6 @@
     <ClInclude Include="Vendor\stb_image\stb_image.h" />
     <ClInclude Include="Vendor\tinyfiledialogs\more_dialogs\tinyfd_moredialogs.h" />
     <ClInclude Include="Vendor\tinyfiledialogs\tinyfiledialogs.h" />
-    <ClInclude Include="src\Tests\test.h" />
-    <ClInclude Include="src\Tests\testclearcolour.h" />
-    <ClInclude Include="src\Tests\testtexture2d.h" />
     <ClInclude Include="src\include\Audio\audiobuffer.h" />
     <ClInclude Include="src\include\Audio\audiocontext.h" />
     <ClInclude Include="src\include\Audio\audiolistener.h" />
@@ -446,9 +444,6 @@
     <ClCompile Include="src\Rendering\VertexArray.cpp" />
     <ClCompile Include="src\Rendering\VertexBuffer.cpp" />
     <ClCompile Include="src\Scripts\LuaController.cpp" />
-    <ClCompile Include="src\Tests\Test.cpp" />
-    <ClCompile Include="src\Tests\TestClearColour.cpp" />
-    <ClCompile Include="src\Tests\TestTexture2D.cpp" />
     <ClCompile Include="src\include\Math\Vector.cpp" />
   </ItemGroup>
   <ItemGroup>

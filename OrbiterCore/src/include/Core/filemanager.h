@@ -6,6 +6,7 @@
 #include "Core/editorsettings.h"
 #include "Core/projectsettings.h"
 #include "Core/launchersettings.h"
+#include "Core/editorinstructions.h"
 #include "yaml-cpp/yaml.h"
 
 // This class handles file creation and loading features.
@@ -100,4 +101,22 @@ class FileManager
 		* @return the loaded editor settings data.
 		*/
 		LauncherSettings LoadLauncherConfig(std::string filePath);
+
+		/**
+		* @brief Creates a new file, storing details of the editor instructions using the YAML format. 
+			This is used by the launcher to communicate with the editor, guiding the editor to load the correct project.
+		*
+		* @param instructions the object containing the instruction data.
+		* @param filePath the path to the file. This requires the file extension.
+		*/
+		void CreateEditorInstructions(EditorInstructions instructions, std::string filePath);
+
+		/**
+		* @brief Loads editor instructions data from a file that uses the YAML format. 
+			This is used by the editor to open the correct project.
+		*
+		* @param filePath the path to the file. This requires the file extension.
+		* @return the loaded editor instructions.
+		*/
+		EditorInstructions LoadEditorInstructions(std::string filePath);
 };

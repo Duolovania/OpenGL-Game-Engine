@@ -536,3 +536,52 @@ LauncherSettings FileManager::LoadLauncherConfig(std::string filePath)
 
 	return newLauncherConfig;
 }
+
+void FileManager::CreateEditorInstructions(EditorInstructions instructions, std::string filePath)
+{
+	YAML::Node yamlNode;
+
+	// Sets the name of the editor configuration.
+	yamlNode["Selected Project"]["Path"] = instructions.selectedProjPath;
+
+	YAML::Emitter out;
+	out << YAML::Flow;
+	out << yamlNode;
+
+	// Create file at the file path.
+	std::ofstream fout(filePath);
+
+	// Checks if the file was not created.
+	if (!fout) {
+		std::cerr << "Error: Could not create file at " << filePath << std::endl;
+	}
+
+	fout << yamlNode; // Writes data to file.
+	fout.close(); // Closes the file.
+}
+
+EditorInstructions FileManager::LoadEditorInstructions(std::string filePath)
+{
+	EditorInstructions newEditorInstructions;
+
+	try
+	{
+		YAML::Node yamlNode = YAML::LoadFile(filePath);
+
+		// Checks if the file exists.
+		if (!yamlNode)
+		{
+			std::cout << "Failed to load file at:" << filePath << std::endl; // Outputs error message.
+			return newEditorInstructions; // Returns empty scene.
+		}
+
+		// Sets the project path.
+		newEditorInstructions.selectedProjPath = yamlNode["Selected Project"]["Path"].as<std::string>();
+	}
+	catch (const YAML::Exception& e)
+	{
+		std::cerr << "Could not find editor config file. Loading default configuration." << std::endl;
+	}
+
+	return newEditorInstructions;
+}

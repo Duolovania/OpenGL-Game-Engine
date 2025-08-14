@@ -83,7 +83,7 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
     window = glfwCreateWindow(screenWidth, screenHeight, windowTitle, NULL, NULL);
 
     GLFWimage images[1];
-    images[0].pixels = stbi_load("../OrbiterCore/Res/Application Icons/orbitlogo.png", &images[0].width, &images[0].height, 0, 4);
+    images[0].pixels = stbi_load("../OrbiterEditor/res/Application Icons/orbitlogo.png", &images[0].width, &images[0].height, 0, 4);
     glfwSetWindowIcon(window, 1, images);
 
     glfwSetKeyCallback(window, Engine::HandleInput);

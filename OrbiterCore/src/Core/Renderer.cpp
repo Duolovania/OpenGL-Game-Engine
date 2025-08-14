@@ -81,12 +81,12 @@ void Renderer::Init()
 	m_va->AddBuffer(*m_vb, layout); // Adds the vertex buffer to the vertex array.
 
 	// Creates and generates the shader.
-	m_shader = std::make_unique<Shader>("../OrbiterCore/Res/Shaders/Basic.shader");
+	m_shader = std::make_unique<Shader>("../OrbiterEditor/Res/Shaders/Basic.shader");
 	m_shader->CreateShader();
 	m_shader->Bind();
 
 	// Generates and caches the sample white square image as a texture.
-	LiteTexture newTexture = m_text.GenBindlessTexture("../OrbiterCore/Res/Default Sprites/whitesqure.png");
+	LiteTexture newTexture = m_text.GenBindlessTexture("../OrbiterEditor/Res/Default Sprites/whitesqure.png");
 	cachedTextures.push_back(newTexture);
 
 	m_va->Unbind();
