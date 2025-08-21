@@ -21,16 +21,21 @@ void Application::Run()
     // Ensures that only projects are loaded for the editor and game.
     if (applicationType != ApplicationType::LauncherOB)
     {
-        // Loads the project config.
-        Project = fileManager.LoadProjectConfig(std::filesystem::current_path().parent_path().string() + "\\Projects\\" + "Game1" + "\\" + "Game1" + ".projectOB");
+        std::string projectPath = fileManager.LoadLaunchInstructions(std::filesystem::current_path().parent_path().string() + "\\OrbiterCore\\launchinstructions.instructOB").selectedProjPath;
 
-        // Fix the project file path if the config file is corrupted.
-        if (Project.filePath.empty()) Project.filePath = std::filesystem::current_path().parent_path().string() + "\\Projects\\" + "Game1" + "\\Assets"; // Sets the path of the 'Assets' folder.
+        // Loads the project config.
+        Project = fileManager.LoadProjectConfig(projectPath + "\\" + "Game1" + ".projectOB");
+
+        // Fix the project path if the config file is corrupted.
+        if (Project.projectPath.empty()) Project.projectPath = projectPath; // Sets the path of the 'Assets' folder.
+
+        // Fix the project assets path if the config file is corrupted.
+        if (Project.assetsPath.empty()) Project.assetsPath = Project.projectPath + "\\Assets"; // Sets the path of the 'Assets' folder.
 
         // Fix the project name if the config file is corrupted.
         if (Project.name.empty())
         {
-            std::filesystem::path filePath = Project.filePath;
+            std::filesystem::path filePath = Project.assetsPath;
             std::string projectFolderName = filePath.parent_path().filename().string(); // Gets the name of the project folder. This should match the project name either way.
 
             Project.name = projectFolderName;

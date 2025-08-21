@@ -341,7 +341,7 @@ void FileManager::CreateProjectConfig(ProjectSettings settings, std::string file
 
 	// Sets the general data of the project.
 	yamlNode["Project Details"]["Name"] = settings.name;
-	yamlNode["Project Details"]["Path"] = settings.filePath;
+	yamlNode["Project Details"]["Path"] = settings.assetsPath;
 
 	// Sets the first scene data.
 	yamlNode["Project Details"]["First Scene"]["Name"] = settings.firstSceneName;
@@ -408,7 +408,7 @@ ProjectSettings FileManager::LoadProjectConfig(std::string filePath)
 
 		// Sets the general values.
 		newProjectConfig.name = yamlNode["Project Details"]["Name"].as<std::string>();
-		newProjectConfig.filePath = yamlNode["Project Details"]["Path"].as<std::string>();
+		newProjectConfig.assetsPath = yamlNode["Project Details"]["Path"].as<std::string>();
 
 		// Sets the general values.
 		newProjectConfig.firstSceneName = yamlNode["Project Details"]["First Scene"]["Name"].as<std::string>();
@@ -537,7 +537,7 @@ LauncherSettings FileManager::LoadLauncherConfig(std::string filePath)
 	return newLauncherConfig;
 }
 
-void FileManager::CreateEditorInstructions(EditorInstructions instructions, std::string filePath)
+void FileManager::CreateLaunchInstructions(LaunchInstructions instructions, std::string filePath)
 {
 	YAML::Node yamlNode;
 
@@ -560,9 +560,9 @@ void FileManager::CreateEditorInstructions(EditorInstructions instructions, std:
 	fout.close(); // Closes the file.
 }
 
-EditorInstructions FileManager::LoadEditorInstructions(std::string filePath)
+LaunchInstructions FileManager::LoadLaunchInstructions(std::string filePath)
 {
-	EditorInstructions newEditorInstructions;
+	LaunchInstructions newLaunchInstructions;
 
 	try
 	{
@@ -572,16 +572,16 @@ EditorInstructions FileManager::LoadEditorInstructions(std::string filePath)
 		if (!yamlNode)
 		{
 			std::cout << "Failed to load file at:" << filePath << std::endl; // Outputs error message.
-			return newEditorInstructions; // Returns empty scene.
+			return newLaunchInstructions; // Returns empty scene.
 		}
 
 		// Sets the project path.
-		newEditorInstructions.selectedProjPath = yamlNode["Selected Project"]["Path"].as<std::string>();
+		newLaunchInstructions.selectedProjPath = yamlNode["Selected Project"]["Path"].as<std::string>();
 	}
 	catch (const YAML::Exception& e)
 	{
 		std::cerr << "Could not find editor config file. Loading default configuration." << std::endl;
 	}
 
-	return newEditorInstructions;
+	return newLaunchInstructions;
 }

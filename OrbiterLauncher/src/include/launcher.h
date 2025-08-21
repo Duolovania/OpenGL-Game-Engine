@@ -18,5 +18,5 @@ class Launcher : public RenderingLayer
 		LauncherSettings launcherSettings;
 		FileManager fileManager;
 
-		EditorInstructions editorInstructions;
+		LaunchInstructions launchInstructions;
 };

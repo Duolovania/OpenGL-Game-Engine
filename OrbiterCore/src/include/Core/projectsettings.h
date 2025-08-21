@@ -7,7 +7,8 @@ struct ProjectSettings
 {
 	// General project settings data.
 	std::string name;
-	std::string filePath;
+	std::string assetsPath;
+	std::string projectPath;
 
 	// First loaded scene details.
 	std::string firstSceneName;

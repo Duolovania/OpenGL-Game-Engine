@@ -9,7 +9,7 @@
 #include "Core/launchersettings.h"
 #include "Core/editorsettings.h"
 #include "Core/projectsettings.h"
-#include "Core/editorinstructions.h"
+#include "Core/launchinstructions.h"
 
 #include "GameObjects/gameobject.h"
 

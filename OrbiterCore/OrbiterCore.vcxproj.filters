@@ -355,7 +355,7 @@
       <Filter>src\include</Filter>
     </ClInclude>
     <ClInclude Include="src\include\Core\launchersettings.h" />
-    <ClInclude Include="src\include\Core\editorinstructions.h" />
+    <ClInclude Include="src\include\Core\launchinstructions.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vendor\glm\detail\glm.cpp">

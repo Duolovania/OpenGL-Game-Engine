@@ -70,10 +70,8 @@ void Editor::Init(GLFWwindow* window)
 
     frameBufferVA->AddBuffer(*frameBufferVB, layout); // Adds the vertex buffer to the vertex array.
 
-    std::string projectPath = fileManager.LoadEditorInstructions(std::filesystem::current_path().string() + "\\launchinstructions.instructOB").selectedProjPath;
-
     // Sets the project 'Assets' folder path to the corresponding project directory using the project name.
-    assetsPath = projectPath + "\\Assets";
+    assetsPath = Core.selectedProject.assetsPath;
     currentPath = assetsPath;
 
     iconTextures = std::make_unique<Texture>("res/Application Icons/playbutton.png");
@@ -102,7 +100,7 @@ void Editor::Init(GLFWwindow* window)
     Core.renderer.RegenerateObjects();
 
     // Sets the editor configuration.
-    selectedEditorConfig = fileManager.LoadEditorConfig(projectPath + "\\default.editorOB");
+    selectedEditorConfig = fileManager.LoadEditorConfig(Core.selectedProject.projectPath + "\\default.editorOB");
 }
 
 bool Editor::OnUpdate(float deltaTime, float time)

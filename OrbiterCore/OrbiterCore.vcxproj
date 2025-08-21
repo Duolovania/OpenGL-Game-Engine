@@ -277,7 +277,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\include\Core\editorinstructions.h" />
+    <ClInclude Include="src\include\Core\launchinstructions.h" />
     <ClInclude Include="src\include\Core\launchersettings.h" />
     <ClInclude Include="Vendor\glm\simd\common.h" />
     <ClInclude Include="Vendor\glm\simd\exponential.h" />

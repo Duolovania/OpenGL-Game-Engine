@@ -75,7 +75,7 @@ bool Launcher::OnUpdate(float deltaTime, float time)
             // Open editor with project.
             std::cout << "Opened file." << std::endl;
             if (std::find(launcherSettings.directories.begin(), launcherSettings.directories.end(), file_path) == launcherSettings.directories.end()) launcherSettings.directories.push_back(file_path);
-            editorInstructions.selectedProjPath = file_path;
+            launchInstructions.selectedProjPath = file_path;
         }
     }
 
@@ -220,6 +220,6 @@ void Launcher::ShowProjects()
 
 void Launcher::OpenEditor()
 {
-    std::cout << rootPath + "/OrbiterEditor/launchinstructions.instructOB" << std::endl;
-    fileManager.CreateEditorInstructions(editorInstructions, rootPath + "/OrbiterEditor/launchinstructions.instructOB");
+    std::cout << rootPath + "/OrbiterCore/launchinstructions.instructOB" << std::endl;
+    fileManager.CreateLaunchInstructions(launchInstructions, rootPath + "/OrbiterCore/launchinstructions.instructOB");
 }
