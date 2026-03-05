@@ -115,6 +115,7 @@ bool Editor::OnUpdate(float deltaTime, float time)
     MenuBar(); // Shows the navigation bar at the top of the screen.
 
     ContentBrowser(); // Shows the assets folder window.
+    if (!applicationRunning) return applicationRunning;
     Inspector(); // Shows the inspector window.
 
     Hierarchy(); // Shows the hierarchy window.
@@ -638,217 +639,253 @@ bool HasSubFolder(const std::filesystem::path& folderPath)
 // Creates a selectable for each folder in Assets.
 void ShowFolders(const std::filesystem::path& folderPath, bool isLeaf = false) 
 {
-    for (const auto& entry : std::filesystem::directory_iterator(folderPath))
-    {
-        bool isFolderOpen = false;
-
-        if (entry.is_directory()) 
+        for (const auto& entry : std::filesystem::directory_iterator(folderPath))
         {
-            if (HasSubFolder(entry))
+            bool isFolderOpen = false;
+
+            if (entry.is_directory())
             {
-                if (ImGui::TreeNode("##label"))
+                if (HasSubFolder(entry))
                 {
-                    isFolderOpen = true;
-                    ImGui::SameLine();
+                    if (ImGui::TreeNode("##label"))
+                    {
+                        isFolderOpen = true;
+                        ImGui::SameLine();
 
-                    if (ImGui::Selectable(entry.path().filename().string().c_str(), false)) currentPath = std::string(entry.path().string());
+                        if (ImGui::Selectable(entry.path().filename().string().c_str(), false)) currentPath = std::string(entry.path().string());
 
-                    // Recursively display subfolders
-                    ShowFolders(entry.path(), true);
-                    ImGui::TreePop();
+                        // Recursively display subfolders
+                        ShowFolders(entry.path(), true);
+                        ImGui::TreePop();
+                    }
+
+                    if (!isFolderOpen)
+                    {
+                        ImGui::SameLine();
+
+                        if (ImGui::Selectable(entry.path().filename().string().c_str(), false)) currentPath = std::string(entry.path().string());
+                    }
                 }
-
-                if (!isFolderOpen)
+                else
                 {
-                    ImGui::SameLine();
-
-                    if (ImGui::Selectable(entry.path().filename().string().c_str(), false)) currentPath = std::string(entry.path().string());
-                }
-            }
-            else
-            {
-                if (ImGui::Selectable(entry.path().filename().string().c_str(), false))
-                {
-                    currentPath = std::string(entry.path().string());
+                    if (ImGui::Selectable(entry.path().filename().string().c_str(), false))
+                    {
+                        currentPath = std::string(entry.path().string());
+                    }
                 }
             }
         }
-    }
 }
 
 // Draws the assets folder window.
 void Editor::ContentBrowser()
 {
-    ImGui::Begin("Assets Folder");
-    std::string toolTipMsg = "This is a repository for all your game assets. This can be found at: " + assetsPath;
-    AddTooltip(toolTipMsg.c_str()); // Add tooltip for UI element above.
-
-    ImGui::BeginChild("TableChild", ImVec2(0, ImGui::GetContentRegionAvail().y), true, ImGuiWindowFlags_HorizontalScrollbar);
-
-    if (ImGui::BeginTable("FolderTable", 2, ImGuiTableFlags_BordersInner | ImGuiTableFlags_RowBg))
+    // Check if the "Assets" folder exists in the project path.
+    if (!std::filesystem::is_directory(assetsPath))
     {
-        ImGui::TableSetupColumn("List", ImGuiTableColumnFlags_WidthFixed, ImGui::GetWindowContentRegionMax().x * 0.2f); // Set width
-        ImGui::TableSetupColumn("Icon", ImGuiTableColumnFlags_WidthFixed, ImGui::GetContentRegionAvail().x);
+        ImGui::OpenPopup("EDITOR ERROR");
 
-        ImGui::TableNextRow();
-        ImGui::TableSetColumnIndex(0);
-
-        if (ImGui::BeginChild("Folder List Items"))
+        if (ImGui::BeginPopupModal("EDITOR ERROR", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
         {
-            ShowFolders(assetsPath);
+            ImGui::Text("Could not find the 'Assets' folder path for the Assets window.");
 
-            ImGui::EndChild();
-        }
-
-        ImGui::TableSetColumnIndex(1);
-
-        ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 10, ImGui::GetCursorPos().y));
-
-        if (ImGui::Button("<"))
-        {
-            std::filesystem::path parentDir = currentPath;
-            currentPath = parentDir.parent_path().string();
-
-            if (currentPath.length() < assetsPath.length()) currentPath = assetsPath;
-        }
-
-        ImGui::SameLine();
-
-        ImGui::Text("Search");
-        AddTooltip("Search for an item in the folder."); // Add tooltip for UI element above.
-        
-        ImGui::SameLine();
-        ImGui::InputText("##search", &searchTerm);
-
-        ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 10, ImGui::GetCursorPos().y));
-
-        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.224, 0.482, 0.267, 1.0f));
-
-        std::string tempPath = currentPath;
-        std::string selectedPath = tempPath.erase(0, assetsPath.length());
-
-        ImGui::Text(selectedPath.c_str());
-        ImGui::PopStyleColor();
-
-        if (ImGui::BeginChild("FolderItems"))
-        {
-            int counter = 0;
-            ImVec2 padding = ImVec2(iconSize * 0.125f, iconSize * 0.125f);
-            ImVec2 originalPos = ImVec2(ImGui::GetCursorPos().x + padding.x, ImGui::GetCursorPos().y + padding.y);
-
-            for (const auto& entry : std::filesystem::directory_iterator(currentPath))
+            // Exit editor option.
+            if (ImGui::Button("Close Editor"))
             {
-                ImVec2 buttonSize = ImVec2(iconSize, iconSize);
-                ImVec2 buttonPos = ImVec2(originalPos.x + (counter * (buttonSize.x + padding.x)), originalPos.y); // Calculates the x position based on how many items there are.
+                applicationRunning = false;
+                return;
 
-                ImGui::SetWindowFontScale(buttonSize.x / 195.0f);
+                ImGui_ImplGlfw_Shutdown();
+                ImGui_ImplOpenGL3_Shutdown();
+                ImGui::DestroyContext();
+            }
 
-                // Sets the text position to the center of the thumbnail (sets the text origin position to the center of the thumbnail and subtracts it by the amount of characters. The subtraction is to ensure that the text is centered regardless of it's length).
-                ImVec2 textPos = ImVec2(buttonPos.x + (buttonSize.x - ImGui::CalcTextSize(entry.path().filename().string().c_str()).x) / 2, originalPos.y + (buttonSize.y + padding.y));
+            ImGui::SameLine();
+            // Sets clipboard to the folder path.
+            if (ImGui::Button("Copy Folder Path")) 
+            {
+                const char* value_to_copy = assetsPath.c_str();
+                ImGui::SetClipboardText(value_to_copy);
+            }
+        }
 
-                // Checks if the thumbnail will exceed the window size.
-                if ((buttonPos.x + buttonSize.x > ImGui::GetContentRegionMax().x))
+        ImGui::EndPopup();
+    }
+    else
+    {
+        ImGui::Begin("Assets Folder");
+        std::string toolTipMsg = "This is a repository for all your game assets. This can be found at: " + assetsPath;
+        AddTooltip(toolTipMsg.c_str()); // Add tooltip for UI element above.
+
+        ImGui::BeginChild("TableChild", ImVec2(0, ImGui::GetContentRegionAvail().y), true, ImGuiWindowFlags_HorizontalScrollbar);
+
+        if (ImGui::BeginTable("FolderTable", 2, ImGuiTableFlags_BordersInner | ImGuiTableFlags_RowBg))
+        {
+            ImGui::TableSetupColumn("List", ImGuiTableColumnFlags_WidthFixed, ImGui::GetWindowContentRegionMax().x * 0.2f); // Set width
+            ImGui::TableSetupColumn("Icon", ImGuiTableColumnFlags_WidthFixed, ImGui::GetContentRegionAvail().x);
+
+            ImGui::TableNextRow();
+            ImGui::TableSetColumnIndex(0);
+
+            if (ImGui::BeginChild("Folder List Items"))
+            {
+                ShowFolders(assetsPath);
+
+                ImGui::EndChild();
+            }
+
+            ImGui::TableSetColumnIndex(1);
+
+            ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 10, ImGui::GetCursorPos().y));
+
+            if (ImGui::Button("<"))
+            {
+                std::filesystem::path parentDir = currentPath;
+                currentPath = parentDir.parent_path().string();
+
+                if (currentPath.length() < assetsPath.length()) currentPath = assetsPath;
+            }
+
+            ImGui::SameLine();
+
+            ImGui::Text("Search");
+            AddTooltip("Search for an item in the folder."); // Add tooltip for UI element above.
+
+            ImGui::SameLine();
+            ImGui::InputText("##search", &searchTerm);
+
+            ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 10, ImGui::GetCursorPos().y));
+
+            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.224, 0.482, 0.267, 1.0f));
+
+            std::string tempPath = currentPath;
+            std::string selectedPath = tempPath.erase(0, assetsPath.length());
+
+            ImGui::Text(selectedPath.c_str());
+            ImGui::PopStyleColor();
+
+            if (ImGui::BeginChild("FolderItems"))
+            {
+                int counter = 0;
+                ImVec2 padding = ImVec2(iconSize * 0.125f, iconSize * 0.125f);
+                ImVec2 originalPos = ImVec2(ImGui::GetCursorPos().x + padding.x, ImGui::GetCursorPos().y + padding.y);
+
+                for (const auto& entry : std::filesystem::directory_iterator(currentPath))
                 {
-                    counter = 0; // Resets the x position.
-                    originalPos = ImVec2(originalPos.x, ImGui::GetCursorPos().y + ((buttonSize.y / 4) + padding.y)); // Calculates the y position based on the button size and padding amount.
+                    ImVec2 buttonSize = ImVec2(iconSize, iconSize);
+                    ImVec2 buttonPos = ImVec2(originalPos.x + (counter * (buttonSize.x + padding.x)), originalPos.y); // Calculates the x position based on how many items there are.
 
-                    buttonPos = ImVec2(originalPos.x + (counter * (buttonSize.x + padding.x)), originalPos.y); // Recalculates the button position with the x position being reset.
-                    textPos = ImVec2(buttonPos.x + (buttonSize.x - ImGui::CalcTextSize(entry.path().filename().string().c_str()).x) / 2, originalPos.y + (buttonSize.y + padding.y)); // Recalculates the text position with the x position being reset.
-                }
+                    ImGui::SetWindowFontScale(buttonSize.x / 195.0f);
 
-                if (entry.is_directory())
-                {
-                    ImGui::PushID(counter);
-                    ImGui::SetCursorPos(buttonPos);
+                    // Sets the text position to the center of the thumbnail (sets the text origin position to the center of the thumbnail and subtracts it by the amount of characters. The subtraction is to ensure that the text is centered regardless of it's length).
+                    ImVec2 textPos = ImVec2(buttonPos.x + (buttonSize.x - ImGui::CalcTextSize(entry.path().filename().string().c_str()).x) / 2, originalPos.y + (buttonSize.y + padding.y));
 
-                    if (ImGui::ImageButton((void*)folderIcon, buttonSize, ImVec2(0, 1), ImVec2(1, 0)))
+                    // Checks if the thumbnail will exceed the window size.
+                    if ((buttonPos.x + buttonSize.x > ImGui::GetContentRegionMax().x))
                     {
-                        currentPath = std::string(entry.path().string());
+                        counter = 0; // Resets the x position.
+                        originalPos = ImVec2(originalPos.x, ImGui::GetCursorPos().y + ((buttonSize.y / 4) + padding.y)); // Calculates the y position based on the button size and padding amount.
+
+                        buttonPos = ImVec2(originalPos.x + (counter * (buttonSize.x + padding.x)), originalPos.y); // Recalculates the button position with the x position being reset.
+                        textPos = ImVec2(buttonPos.x + (buttonSize.x - ImGui::CalcTextSize(entry.path().filename().string().c_str()).x) / 2, originalPos.y + (buttonSize.y + padding.y)); // Recalculates the text position with the x position being reset.
                     }
 
-                    ImGui::SetCursorPos(textPos);
-
-                    ImGui::Text(entry.path().filename().string().c_str());
-                    ImGui::SameLine();
-                    ImGui::PopID();
-
-                    counter++;
-                }
-                else
-                {
-                    if (strstr(entry.path().filename().string().c_str(), searchTerm.c_str()) != nullptr)
+                    if (entry.is_directory())
                     {
                         ImGui::PushID(counter);
                         ImGui::SetCursorPos(buttonPos);
 
-                        unsigned int fileThumbnail = fileIcon; // Sets the thumbnail image to the generic file icon by default.
-                        int fileNameLength = entry.path().filename().string().find_last_of('.'); // Gets the length of the file name up to the file extension.
-
-                        std::string fileExtension = entry.path().filename().string().substr(fileNameLength); // Gets the file extension.
-
-                        // Sets the correct file thumbnail based on the extension.
-                        if (fileExtension == ".wav")
+                        if (ImGui::ImageButton((void*)folderIcon, buttonSize, ImVec2(0, 1), ImVec2(1, 0)))
                         {
-                            fileThumbnail = wavFileIcon;
+                            currentPath = std::string(entry.path().string());
                         }
-                        else if (fileExtension == ".ttf" || fileExtension == ".otf")
-                        {
-                            fileThumbnail = fontFileIcon;
-                        }
-                        else if (fileExtension == ".worldOB")
-                        {
-                            fileThumbnail = sceneFileIcon;
-                        }
-                        else if (fileExtension == ".png" || fileExtension == ".jpg" || fileExtension == ".gif" || fileExtension == ".PNG" || fileExtension == ".JPG")
-                        {
-                            fileThumbnail = imageFileIcon;
-                        }
-
-                        // Creates the file buttons.
-                        if (ImGui::ImageButton((void*)fileThumbnail, buttonSize, ImVec2(0, 1), ImVec2(1, 0)))
-                        {
-                            if (ImGui::BeginDragDropSource())
-                            {
-                                std::string path = entry.path().filename().string();
-                                ImGui::Text("Dragging");
-                                ImGui::SetDragDropPayload("ITEM_DRAG", &path, sizeof(path)); // Set payload
-                                ImGui::EndDragDropSource();
-                            }
-
-                            // Checks if the file is an engine scene file.
-                            if (fileExtension == ".worldOB")
-                            {
-                                std::size_t pos = entry.path().filename().string().find(fileExtension); // Gets the position of the file extension part of the path.
-                                currentScene = fileManager.LoadSceneFile(entry.path().filename().string().substr(0, pos), assetsPath + tempPath + "\\" + entry.path().filename().string());
-
-                                Core.renderer.objectsToRender = currentScene.objectsToRender;
-                                Core.renderer.RegenerateObjects();
-
-                                savedChanges = true;
-                                SearchMainCamera();
-                            }
-                        };
 
                         ImGui::SetCursorPos(textPos);
 
-                        ImGui::Text(entry.path().filename().string().c_str()); // Creates the file label.
+                        ImGui::Text(entry.path().filename().string().c_str());
                         ImGui::SameLine();
                         ImGui::PopID();
 
                         counter++;
                     }
+                    else
+                    {
+                        if (strstr(entry.path().filename().string().c_str(), searchTerm.c_str()) != nullptr)
+                        {
+                            ImGui::PushID(counter);
+                            ImGui::SetCursorPos(buttonPos);
+
+                            unsigned int fileThumbnail = fileIcon; // Sets the thumbnail image to the generic file icon by default.
+                            int fileNameLength = entry.path().filename().string().find_last_of('.'); // Gets the length of the file name up to the file extension.
+
+                            std::string fileExtension = entry.path().filename().string().substr(fileNameLength); // Gets the file extension.
+
+                            // Sets the correct file thumbnail based on the extension.
+                            if (fileExtension == ".wav")
+                            {
+                                fileThumbnail = wavFileIcon;
+                            }
+                            else if (fileExtension == ".ttf" || fileExtension == ".otf")
+                            {
+                                fileThumbnail = fontFileIcon;
+                            }
+                            else if (fileExtension == ".worldOB")
+                            {
+                                fileThumbnail = sceneFileIcon;
+                            }
+                            else if (fileExtension == ".png" || fileExtension == ".jpg" || fileExtension == ".gif" || fileExtension == ".PNG" || fileExtension == ".JPG")
+                            {
+                                fileThumbnail = imageFileIcon;
+                            }
+
+                            // Creates the file buttons.
+                            if (ImGui::ImageButton((void*)fileThumbnail, buttonSize, ImVec2(0, 1), ImVec2(1, 0)))
+                            {
+                                if (ImGui::BeginDragDropSource())
+                                {
+                                    std::string path = entry.path().filename().string();
+                                    ImGui::Text("Dragging");
+                                    ImGui::SetDragDropPayload("ITEM_DRAG", &path, sizeof(path)); // Set payload
+                                    ImGui::EndDragDropSource();
+                                }
+
+                                // Checks if the file is an engine scene file.
+                                if (fileExtension == ".worldOB")
+                                {
+                                    std::size_t pos = entry.path().filename().string().find(fileExtension); // Gets the position of the file extension part of the path.
+                                    currentScene = fileManager.LoadSceneFile(entry.path().filename().string().substr(0, pos), assetsPath + tempPath + "\\" + entry.path().filename().string());
+
+                                    Core.renderer.objectsToRender = currentScene.objectsToRender;
+                                    Core.renderer.RegenerateObjects();
+
+                                    savedChanges = true;
+                                    SearchMainCamera();
+                                }
+                            };
+
+                            ImGui::SetCursorPos(textPos);
+
+                            ImGui::Text(entry.path().filename().string().c_str()); // Creates the file label.
+                            ImGui::SameLine();
+                            ImGui::PopID();
+
+                            counter++;
+                        }
+                    }
                 }
+
+                ImGui::EndChild();
             }
 
-            ImGui::EndChild();
+            ImGui::SetWindowFontScale(1.0f);
+            ImGui::EndTable();
         }
 
-        ImGui::SetWindowFontScale(1.0f);
-        ImGui::EndTable();
+        ImGui::EndChild();
+        ImGui::End();
     }
 
-    ImGui::EndChild();
-    ImGui::End();
+    
 }
 
 void Editor::MenuBar()
