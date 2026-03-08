@@ -1,24 +1,25 @@
 ﻿cl : command line  warning D9025: overriding '/MTd' with '/MDd'
   Editor.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(144,72): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(244,18): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(297,77): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(478,30): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(548,30): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(765,71): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(765,64): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(765,57): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(824,56): warning C4244: 'initializing': conversion from 'GLuint64' to 'unsigned int', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(825,48): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(832,49): warning C4244: '=': conversion from 'GLuint64' to 'unsigned int', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(836,49): warning C4244: '=': conversion from 'GLuint64' to 'unsigned int', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(840,49): warning C4244: '=': conversion from 'GLuint64' to 'unsigned int', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(844,49): warning C4244: '=': conversion from 'GLuint64' to 'unsigned int', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(848,52): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(922,37): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(923,42): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(1232,79): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(1612,87): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(145,72): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(245,18): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(298,77): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(479,30): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(549,30): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(766,71): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(766,64): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(766,57): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(825,56): warning C4244: 'initializing': conversion from 'GLuint64' to 'unsigned int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(826,48): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(833,49): warning C4244: '=': conversion from 'GLuint64' to 'unsigned int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(837,49): warning C4244: '=': conversion from 'GLuint64' to 'unsigned int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(841,49): warning C4244: '=': conversion from 'GLuint64' to 'unsigned int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(845,49): warning C4244: '=': conversion from 'GLuint64' to 'unsigned int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(849,49): warning C4244: '=': conversion from 'GLuint64' to 'unsigned int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(853,52): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(927,37): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(928,42): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(1237,79): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(1617,87): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\memory(3630,56): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
   (compiling source file 'src/Editor.cpp')
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\memory(3630,56):

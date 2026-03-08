@@ -32,7 +32,7 @@ enum UISelect
 UISelect uiSelect = UISelect::None;
 
 std::unique_ptr<Texture> iconTextures;
-GLuint64 playButton, pauseButton, stopButton, fileIcon, folderIcon, wavFileIcon, fontFileIcon, sceneFileIcon, imageFileIcon, miniFolderIcon, resetIcon;
+GLuint64 playButton, pauseButton, stopButton, fileIcon, folderIcon, wavFileIcon, fontFileIcon, sceneFileIcon, imageFileIcon, miniFolderIcon, resetIcon, scriptIcon;
 
 void Editor::Init(GLFWwindow* window)
 {
@@ -83,6 +83,7 @@ void Editor::Init(GLFWwindow* window)
 
     folderIcon = iconTextures->Load("res/Application Icons/foldericon.png", true);
     fileIcon = iconTextures->Load("res/Application Icons/fileicon.png", true);
+    scriptIcon = iconTextures->Load("res/Application Icons/scriptfileicon.png", true);
 
     wavFileIcon = iconTextures->Load("res/Application Icons/wavfileicon.png", true);
     fontFileIcon = iconTextures->Load("res/Application Icons/fontfileicon.png", true);
@@ -838,6 +839,10 @@ void Editor::ContentBrowser()
                             else if (fileExtension == ".worldOB")
                             {
                                 fileThumbnail = sceneFileIcon;
+                            }
+                            else if (fileExtension == ".lua")
+                            {
+                                fileThumbnail = scriptIcon;
                             }
                             else if (fileExtension == ".png" || fileExtension == ".jpg" || fileExtension == ".gif" || fileExtension == ".PNG" || fileExtension == ".JPG")
                             {
