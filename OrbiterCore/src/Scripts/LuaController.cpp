@@ -26,11 +26,19 @@ void LuaController::Init()
 
 void LuaController::AddScript(std::string filePath)
 {
-    m_lua.script_file(filePath); // Loads lua script file under the script table.
+    try
+    {
+        std::cout << filePath << std::endl;
+        m_lua.script_file(filePath); // Loads lua script file under the script table.
 
-    // Adds the start and update methods to vectors.
-    m_updateFunctions.push_back(m_lua["Update"]);
-    m_startFunctions.push_back(m_lua["Start"]);
+        // Adds the start and update methods to vectors.
+        m_updateFunctions.push_back(m_lua["Update"]);
+        m_startFunctions.push_back(m_lua["Start"]);
+    }
+    catch (const std::invalid_argument& e)
+    {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
 }
 
 void LuaController::CallUpdate() const

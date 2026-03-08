@@ -11,8 +11,33 @@
 
 float timeTime = 0, oldTimeSinceStart = 0, timeSinceStart, deltaTime;
 bool applicationQuit = false, showConsole = false;
+std::vector<std::string> scriptPaths;
 
 Engine Engine::instance;
+
+// Searches each folder for a .lua script files.
+void SearchScripts(const std::filesystem::path& folderPath)
+{
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath))
+    {
+        if (entry.is_directory())
+        {
+            SearchScripts(entry.path());
+        }
+        else
+        {
+            int fileNameLength = entry.path().filename().string().find_last_of('.'); // Gets the length of the file name up to the file extension.
+            std::string fileExtension = entry.path().filename().string().substr(fileNameLength); // Gets the file extension.
+
+            // Checks if the file is an engine project file.
+            if (fileExtension == ".lua")
+            {
+                // Adds the folder to the list of script paths if it is not already there.
+                if (std::find(scriptPaths.begin(), scriptPaths.end(), entry.path().string()) == scriptPaths.end()) scriptPaths.push_back(entry.path().string());
+            }
+        }
+    }
+}
 
 void Application::Run()
 {
@@ -22,22 +47,36 @@ void Application::Run()
     // Ensures that only projects are loaded for the editor and game.
     if (applicationType != OBApplicationType::LauncherOB)
     {
-        std::string projectPath = fileManager.LoadLaunchInstructions(std::filesystem::current_path().parent_path().string() + "\\OrbiterCore\\launchinstructions.instructOB").selectedProjPath;
-        if (projectPath == "") Close(); // Terminates the program if no project was found.
+        std::string projectFilePath = fileManager.LoadLaunchInstructions(std::filesystem::current_path().parent_path().string() + "\\OrbiterCore\\launchinstructions.instructOB").selectedProjPath;
+        if (projectFilePath == "") Close(); // Terminates the program if no project was found.
 
         // Loads the project config.
-        Project = fileManager.LoadProjectConfig(projectPath + "\\" + "Game1" + ".projectOB");
+        Project = fileManager.LoadProjectConfig(projectFilePath);
 
-        // Fix the project path if the config file is corrupted.
-        if (Project.projectPath.empty()) Project.projectPath = projectPath; // Sets the path of the 'Assets' folder.
+        std::filesystem::path fullPath;
+        std::string projectFolderPath;
+
+        // Fix the project file path if the config file is corrupted.
+        if (Project.projectFilePath.empty())
+        {
+            Project.projectFilePath = projectFilePath; // Sets the path of the project file.
+
+            fullPath = Project.projectFilePath;
+            projectFolderPath = fullPath.parent_path().string();
+            Project.projectFolderPath = projectFolderPath;
+        }
 
         // Fix the project assets path if the config file is corrupted.
-        if (Project.assetsPath.empty()) Project.assetsPath = Project.projectPath + "\\Assets"; // Sets the path of the 'Assets' folder.
+        if (Project.assetsFolderPath.empty())
+        {
+            std::string assetsFolder = projectFolderPath + "\\Assets";
+            Project.assetsFolderPath = assetsFolder; // Sets the path of the 'Assets' folder.
+        }
 
         // Fix the project name if the config file is corrupted.
         if (Project.name.empty())
         {
-            std::filesystem::path filePath = Project.assetsPath;
+            std::filesystem::path filePath = Project.assetsFolderPath;
             std::string projectFolderName = filePath.parent_path().filename().string(); // Gets the name of the project folder. This should match the project name either way.
 
             Project.name = projectFolderName;
@@ -66,10 +105,21 @@ void Application::Run()
     // Initializes the window.
     Init(m_screenWidth, m_screenHeight, windowTitle.c_str());
 
-    //// Sets up script controller and attaches scripts.
-    //Core.m_scriptController.Init();
-    //Core.m_scriptController.AddScript(Project.filePath + "\\Scripts\\testscript.lua");
-    //Core.m_scriptController.AddScript(Project.filePath + "\\Scripts\\testscripttwo.lua");
+    // Ensures that only projects are loaded for the editor and game.
+    if (applicationType != OBApplicationType::LauncherOB)
+    {
+        // Sets up script controller and attaches scripts.
+        Core.m_scriptController.Init();
+
+        SearchScripts(Core.selectedProject.assetsFolderPath);
+        for (auto s : scriptPaths)
+        {
+            Core.m_scriptController.AddScript(s);
+        }
+
+        /*Core.m_scriptController.AddScript(Project.assetsFolderPath + "\\Scripts\\testscript.lua");
+        Core.m_scriptController.AddScript(Project.assetsFolderPath + "\\Scripts\\testscripttwo.lua");*/
+    }
 
     // Loop until the user closes the window
     while (!glfwWindowShouldClose(window) && !applicationQuit)
@@ -139,11 +189,11 @@ void Application::Loop()
         // Checks if the game hasn't started yet.
         if (!hasStarted)
         {
-            //Core.m_scriptController.CallStart(); // Calls all 'Start' functions.
+            Core.m_scriptController.CallStart(); // Calls all 'Start' functions.
             hasStarted = true; // Stops start from being called.
         }
 
-        //Core.m_scriptController.CallUpdate(); // Calls all 'Update' functions.
+        Core.m_scriptController.CallUpdate(); // Calls all 'Update' functions.
     }
     else if (Core.m_applicationState == OBApplicationState::Stop)
     {

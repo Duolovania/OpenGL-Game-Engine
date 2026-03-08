@@ -279,6 +279,7 @@
   <ItemGroup>
     <ClInclude Include="src\include\Core\launchinstructions.h" />
     <ClInclude Include="src\include\Core\launchersettings.h" />
+    <ClInclude Include="src\include\Scripts\scriptmanager.h" />
     <ClInclude Include="Vendor\glm\simd\common.h" />
     <ClInclude Include="Vendor\glm\simd\exponential.h" />
     <ClInclude Include="Vendor\glm\simd\geometric.h" />
@@ -372,6 +373,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Scripts\Script.cpp" />
+    <ClCompile Include="src\Scripts\ScriptManager.cpp" />
     <ClCompile Include="Vendor\glm\detail\glm.cpp" />
     <ClCompile Include="Vendor\imgui\imgui.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_demo.cpp" />

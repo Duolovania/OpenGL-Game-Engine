@@ -1,7 +1,56 @@
-﻿Gdi32.lib(GDI32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
-User32.lib(USER32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
-Shell32.lib(SHELL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
-hello.obj : warning LNK4006: main already defined in hello_wchar_t.obj; second definition ignored
-luac.obj : warning LNK4006: main already defined in hello_wchar_t.obj; second definition ignored
-lua.obj : warning LNK4006: main already defined in hello_wchar_t.obj; second definition ignored
-  OrbiterCore.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin\Release-windows-x86_64\OrbiterCore\OrbiterCore.lib
+﻿cl : command line  warning D9025: overriding '/MT' with '/MD'
+  Script.cpp
+  ScriptManager.cpp
+  AudioBuffer.cpp
+  SpriteRenderer.cpp
+  Application.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'src/Core/Application.cpp')
+      C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\Dependencies\Glad\include\glad\glad.h(32,9):
+      see previous definition of 'APIENTRY'
+  
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\Application.cpp(29,32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  FileManager.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\FileManager.cpp(367,32): warning C4101: 'e': unreferenced local variable
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\FileManager.cpp(463,32): warning C4101: 'e': unreferenced local variable
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\FileManager.cpp(588,32): warning C4101: 'e': unreferenced local variable
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\FileManager.cpp(637,32): warning C4101: 'e': unreferenced local variable
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\node\impl.h(229,26): error C2027: use of undefined type 'YAML::convert<T>'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\node\impl.h(229,26): error C2027:         with
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\node\impl.h(229,26): error C2027:         [
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\node\impl.h(229,26): error C2027:             T=Script
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\node\impl.h(229,26): error C2027:         ]
+  (compiling source file 'src/Core/FileManager.cpp')
+      C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\node\node.h(145,8):
+      see declaration of 'YAML::convert<T>'
+          with
+          [
+              T=Script
+          ]
+      C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\node\impl.h(229,26):
+      the template instantiation context (the oldest one first) is
+          C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\src\Core\FileManager.cpp(251,31):
+          see reference to function template instantiation 'void YAML::Node::push_back<_Ty>(const T &)' being compiled
+          with
+          [
+              _Ty=Script,
+              T=Script
+          ]
+          C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\node\impl.h(309,17):
+          see reference to function template instantiation 'YAML::Node::Node<T>(const T &)' being compiled
+          with
+          [
+              T=Script
+          ]
+          C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\node\impl.h(36,3):
+          see reference to function template instantiation 'void YAML::Node::Assign<T>(const T &)' being compiled
+          with
+          [
+              T=Script
+          ]
+  
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterCore\Vendor\yaml-cpp-master\include\yaml-cpp\node\impl.h(229,26): error C3861: 'encode': identifier not found
+  (compiling source file 'src/Core/FileManager.cpp')
+  
+  LuaController.cpp
+  Generating Code...

@@ -1,6 +1,16 @@
 #include "Scripts/script.h"
 
-Script::Script(std::string name)
+Script::Script()
 {
-	m_componentName = name;
+
+}
+
+void Script::SetPath(std::string filePath)
+{
+	m_path = filePath;
+}
+
+std::string Script::GetPath() const
+{
+	return m_path;
 }

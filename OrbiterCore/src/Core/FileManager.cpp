@@ -1,6 +1,7 @@
 #include "Core/filemanager.h"
 #include "Components/spriterenderer.h"
 #include "Components/camera.h"
+#include "Scripts/scriptmanager.h"
 #include "tinyfiledialogs/tinyfiledialogs.h"
 
 #include "Core/input.h"
@@ -72,6 +73,21 @@ std::vector<Sound> GetSoundEffects(const YAML::Node& root)
 	return soundVector;
 }
 
+// Reads a yaml node to generate the vector of scripts.
+std::vector<Script> GetScripts(const YAML::Node& root)
+{
+	std::vector<Script> scripts;
+
+	for (const auto& node : root["Script Manager"])
+	{
+		Script newScript;
+		newScript.SetPath(node["Path"].as<std::string>());
+		scripts.push_back(newScript);
+	}
+
+	return scripts;
+}
+
 // Reads a yaml node to generate the vector of game objects.
 std::vector<std::shared_ptr<GameObject>> GetGameObjects(const YAML::Node& root)
 {
@@ -112,6 +128,13 @@ std::vector<std::shared_ptr<GameObject>> GetGameObjects(const YAML::Node& root)
 			tempgObj->AddComponent(audioManager);
 			tempgObj->GetComponent<AudioManager>()->sounds = GetSoundEffects(node); // Gets the sound effects after the component is added as "AddComponent" initializes the shared pointer so the sound data would be reset.
 			tempgObj->GetComponent<AudioManager>()->GenAllSounds();
+		}
+
+		if (node["Script Manager"])
+		{
+			ScriptManager scriptManager;
+			tempgObj->AddComponent(scriptManager);
+			tempgObj->GetComponent<ScriptManager>()->SetScripts(GetScripts(node));
 		}
 
 		tempgObj->objectName = node["Name"].as<std::string>();
@@ -213,6 +236,25 @@ void FileManager::CreateSceneFile(Scene sceneData, std::string sceneName, std::s
 				newSoundEffect["Delay"] = soundEffect.repeatDelay;
 
 				newGObj["Audio Manager"].push_back(newSoundEffect); // Adds the sound effect details to the yaml data.
+			}
+		}
+
+		// Checks if the object has a script manager component.
+		if (data->HasComponent("Script Manager"))
+		{
+			newGObj["Script Manager"] = YAML::Node(YAML::NodeType::Sequence); // Creates the 'Script Manager' umbrella.
+
+			std::shared_ptr<ScriptManager> scriptManager = data->GetComponent<ScriptManager>();
+
+			// Loops through each script in the list of scripts.
+			for (auto& script : scriptManager->GetScripts())
+			{
+				YAML::Node newScript;
+
+				// Copies script properties.
+				newScript["Path"] = script.GetPath();
+
+				newGObj["Script Manager"].push_back(newScript); // Adds the script details to the yaml data.
 			}
 		}
 
@@ -343,7 +385,7 @@ void FileManager::CreateProjectConfig(ProjectSettings settings, std::string file
 
 	// Sets the general data of the project.
 	yamlNode["Project Details"]["Name"] = settings.name;
-	yamlNode["Project Details"]["Path"] = settings.assetsPath;
+	yamlNode["Project Details"]["Path"] = settings.assetsFolderPath;
 
 	// Sets the first scene data.
 	yamlNode["Project Details"]["First Scene"]["Name"] = settings.firstSceneName;
@@ -410,7 +452,7 @@ ProjectSettings FileManager::LoadProjectConfig(std::string filePath)
 
 		// Sets the general values.
 		newProjectConfig.name = yamlNode["Project Details"]["Name"].as<std::string>();
-		newProjectConfig.assetsPath = yamlNode["Project Details"]["Path"].as<std::string>();
+		newProjectConfig.assetsFolderPath = yamlNode["Project Details"]["Path"].as<std::string>();
 
 		// Sets the general values.
 		newProjectConfig.firstSceneName = yamlNode["Project Details"]["First Scene"]["Name"].as<std::string>();

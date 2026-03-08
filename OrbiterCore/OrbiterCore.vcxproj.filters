@@ -356,6 +356,9 @@
     </ClInclude>
     <ClInclude Include="src\include\Core\launchersettings.h" />
     <ClInclude Include="src\include\Core\launchinstructions.h" />
+    <ClInclude Include="src\include\Scripts\scriptmanager.h">
+      <Filter>src\include\Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vendor\glm\detail\glm.cpp">
@@ -577,7 +580,12 @@
     <ClCompile Include="src\include\Math\Vector.cpp">
       <Filter>src\include\Math</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scripts\Script.cpp" />
+    <ClCompile Include="src\Scripts\Script.cpp">
+      <Filter>src\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scripts\ScriptManager.cpp">
+      <Filter>src\Scripts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vendor\tinyfiledialogs\dll_cs_lua_R_fortran_pascal\tinyfiledialogs_dylib.sh">

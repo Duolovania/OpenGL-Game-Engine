@@ -1,17 +1,19 @@
 #pragma once
-#include "Components/component.h"
+#include <string>
 
 // This class stores the script details.
-class Script : public Component
+class Script
 {
 	public:
 		/**
 		* @brief The default constructor.
 		* 
-		* @param name the name of the script component. This does not need the file extension.
 		*/
-		Script(std::string name);
+		Script();
 
+		void SetPath(std::string filePath);
+		std::string GetPath() const;
+	private:
 		// The path where the script file is stored.
-		std::string filePath;
+		std::string m_path;
 };

@@ -71,7 +71,7 @@ void Editor::Init(GLFWwindow* window)
     frameBufferVA->AddBuffer(*frameBufferVB, layout); // Adds the vertex buffer to the vertex array.
 
     // Sets the project 'Assets' folder path to the corresponding project directory using the project name.
-    assetsPath = Core.selectedProject.assetsPath;
+    assetsPath = Core.selectedProject.assetsFolderPath;
     currentPath = assetsPath;
 
     iconTextures = std::make_unique<Texture>("res/Application Icons/playbutton.png");
@@ -100,7 +100,7 @@ void Editor::Init(GLFWwindow* window)
     Core.renderer.RegenerateObjects();
 
     // Sets the editor configuration.
-    selectedEditorConfig = fileManager.LoadEditorConfig(Core.selectedProject.projectPath + "\\default.editorOB");
+    selectedEditorConfig = fileManager.LoadEditorConfig(Core.selectedProject.projectFolderPath + "\\default.editorOB");
 
     // Shows the console window if it was turned on before. By default, it is turned off in 'Application.cpp', so toggling it will turn it on.
     if (selectedEditorConfig.showConsoleWindow) Core.ToggleConsoleWindow();
@@ -170,10 +170,10 @@ bool Editor::OnUpdate(float deltaTime, float time)
 void Editor::Close()
 {
     // Updates the editor config.
-    fileManager.CreateEditorConfig(selectedEditorConfig, std::filesystem::current_path().parent_path().string() + "\\Projects\\" + Core.selectedProject.name + "\\default.editorOB");
+    fileManager.CreateEditorConfig(selectedEditorConfig, Core.selectedProject.projectFolderPath + "\\default.editorOB");
 
     // Updates the project config.
-    fileManager.CreateProjectConfig(Core.selectedProject, std::filesystem::current_path().parent_path().string() + "\\Projects\\" + Core.selectedProject.name + "\\" + Core.selectedProject.name + ".projectOB");
+    fileManager.CreateProjectConfig(Core.selectedProject, Core.selectedProject.projectFilePath);
 
     ImGui_ImplGlfw_Shutdown();
     ImGui_ImplOpenGL3_Shutdown();
@@ -583,7 +583,7 @@ void Editor::Inspector()
         // Checks if the object has an audio manager component before showing the dropdown.
         if (Core.renderer.objectsToRender[selectedObject]->HasComponent("Audio Manager"))
         {
-            if (ImGui::CollapsingHeader("AudioManager"))
+            if (ImGui::CollapsingHeader("Audio Manager"))
             {
                 AudioManagerComponent();
             }
@@ -602,22 +602,23 @@ void Editor::Inspector()
         }
 
         // Checks if the object has a script component before showing the dropdown.
-        if (Core.renderer.objectsToRender[selectedObject]->HasComponent("Script"))
+        if (Core.renderer.objectsToRender[selectedObject]->HasComponent("Script Manager"))
         {
-            if (ImGui::CollapsingHeader("Script"))
+            if (ImGui::CollapsingHeader("Script Manager"))
             {
-                // Add script UI properties here.
+                ScriptManagerComponent();
             }
         }
-        // Check an object is selected before providing the option to add a script.
-        if (selectedObject >= 0)
+        else
         {
-            if (ImGui::Button("Add Script"))
+            // Check an object is selected before providing the option to add a script.
+            if (selectedObject >= 0)
             {
-                // TODO: show window/pop-up to choose script name. That way you can set the script component name directly through it's constructor.
-
-                /*Script scriptComponent = Script(name);
-                Core.renderer.objectsToRender[selectedObject]->AddComponent(scriptComponent);*/
+                if (ImGui::Button("Add Script Manager"))
+                {
+                    ScriptManager scriptManagerComponent;
+                    Core.renderer.objectsToRender[selectedObject]->AddComponent(scriptManagerComponent);
+                }
             }
         }
     }
@@ -1398,6 +1399,163 @@ void Editor::AudioManagerComponent()
                 {
                     audioManager->sounds[i].audioSource->Stop(); // Stops the sound.
                 }
+
+                ImGui::EndTable();
+            }
+
+            ImGui::Unindent();
+        }
+
+        ImGui::PopID();
+        ImGui::Unindent();
+    }
+}
+
+void Editor::ScriptManagerComponent()
+{
+    ImGui::Text("Scripts: ");
+    ImGui::SameLine();
+
+    std::shared_ptr<ScriptManager> scriptManager = Core.renderer.objectsToRender[selectedObject]->GetComponent<ScriptManager>();
+
+    ImGui::Text(std::to_string(scriptManager->GetScripts().size()).c_str()); // Shows the number of sounds in the vector.
+
+    ImGui::SameLine();
+
+    // New script button.
+    if (ImGui::Button("Bind"))
+    {
+        const char* filterTypes[4] = { "*.lua" };
+        const char* file_path = tinyfd_openFileDialog(
+            "Open a lua script",              // Title of the dialog
+            (assetsPath + "/Assets").c_str(),                         // Default path ("" means current directory)
+            1,                          // Number of file filters
+            filterTypes,                // File filters (e.g., ["*.txt"])
+            "Lua script",                       // Filter description
+            0                           // Allow multiple selections (0 for no)
+        );
+
+        // Checks if the file exists.
+        if (file_path)
+        {
+            // Script changing logic here.
+            scriptManager->BindScript(file_path);
+        }
+    }
+    AddTooltip("Bind an existing script."); // Add tooltip for UI element above.
+
+    ImGui::SameLine();
+
+    // New script button.
+    if (ImGui::Button("Create"))
+    {
+        const char* filterTypes[1] = { "*.lua" }; // Defines the filters in the file explorer.
+        const char* savePath = fileManager.SaveFileExplorer(filterTypes, "Save script", assetsPath); // Gets the full path of the selected file.
+
+        if (savePath)
+        {
+            const char* file_name = strrchr(savePath, '/');  // For Unix-based systems.
+            if (!file_name)
+            {
+                file_name = strrchr(savePath, '\\');  // For Windows paths.
+            }
+
+            if (file_name)
+            {
+                file_name++;  // Move past the slash to get the file name.
+            }
+            else
+            {
+                file_name = savePath;  // If no slash was found, the entire string is the file name.
+            }
+
+            // Now strip the extension by finding the last dot ('.')
+            char file_name_no_ext[256];  // Buffer to store the file name without extension.
+            strcpy(file_name_no_ext, file_name);  // Copy file name.
+            char* dot = strrchr(file_name_no_ext, '.');
+
+            if (dot)
+            {
+                *dot = '\0';  // Truncate at the dot to remove the extension.
+            }
+
+            scriptManager->BindScript(savePath);
+        }
+    }
+    AddTooltip("Create a new script."); // Add tooltip for UI element above.
+
+    // Loops through every item in sounds vector.
+    for (int i = 0; i < scriptManager->GetScripts().size(); i++)
+    {
+        ImGui::Indent();
+
+        ImGui::PushID(i);
+        Script s = scriptManager->GetScripts()[i]; // Gets a sound from the vector.
+
+        if (s.GetPath() != scriptManager->GetScripts()[i].GetPath()) ImGui::SetNextItemOpen(true);
+
+        std::filesystem::path scriptPath = s.GetPath();
+        std::string scriptFolderPath = scriptPath.parent_path().string();
+        std::string scriptName = s.GetPath().erase(0, scriptFolderPath.length() + 1); // Get the name of the script (e.g. 'test.lua')
+
+        // Collapsing header for selected sound.
+        if (ImGui::CollapsingHeader(scriptName.c_str(), ImGuiTreeNodeFlags_DefaultOpen))
+        {
+            ImGui::Indent();
+
+            if (ImGui::BeginTable("ScriptTable", 2))
+            {
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+
+                ImGui::Text("Name:");
+
+                ImGui::TableSetColumnIndex(1);
+
+                ImGui::Text(scriptName.c_str());
+
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+
+                ImGui::Text("File:");
+
+                ImGui::TableSetColumnIndex(1);
+
+                std::string scriptFilePath = scriptManager->GetScripts()[i].GetPath().erase(0, Core.selectedProject.assetsFolderPath.length() + 1);
+
+                ImGui::Text(scriptFilePath.c_str());
+                ImGui::SameLine();
+
+                // Creates a button that allows the user to pick a script file. 
+                if (ImGui::ImageButton((void*)miniFolderIcon, ImVec2(20, 20), ImVec2(0, 1), ImVec2(1, 0)))
+                {
+                    const char* filterTypes[4] = { "*.lua" };
+                    const char* file_path = tinyfd_openFileDialog(
+                        "Open a lua script",              // Title of the dialog
+                        (assetsPath + "/Assets").c_str(),                         // Default path ("" means current directory)
+                        2,                          // Number of file filters
+                        filterTypes,                // File filters (e.g., ["*.txt"])
+                        "Lua script",                       // Filter description
+                        0                           // Allow multiple selections (0 for no)
+                    );
+
+                    // Checks if the file exists.
+                    if (file_path)
+                    {
+                        // Script changing logic here.
+                        scriptManager->GetScripts()[i].SetPath(file_path);
+                    }
+                }
+                AddTooltip("Locate the file through your files window."); // Adds a tooltip to the UI element above.
+
+                ImGui::SameLine();
+
+                // New script button.
+                if (ImGui::Button("-"))
+                {
+                    scriptManager->UnbindScript(scriptManager->GetScripts()[i].GetPath());
+                }
+                AddTooltip("Unbind the script."); // Add tooltip for UI element above.
 
                 ImGui::EndTable();
             }

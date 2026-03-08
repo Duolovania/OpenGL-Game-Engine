@@ -1,2 +1,41 @@
-﻿LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
-  OrbiterEditor.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin\Release-windows-x86_64\OrbiterEditor\OrbiterEditor.exe
+﻿cl : command line  warning D9025: overriding '/MT' with '/MD'
+  Editor.cpp
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(142,72): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(242,18): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(295,77): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(476,30): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(546,30): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(760,71): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(760,64): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(760,57): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(819,56): warning C4244: 'initializing': conversion from 'GLuint64' to 'unsigned int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(820,48): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(827,49): warning C4244: '=': conversion from 'GLuint64' to 'unsigned int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(831,49): warning C4244: '=': conversion from 'GLuint64' to 'unsigned int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(835,49): warning C4244: '=': conversion from 'GLuint64' to 'unsigned int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(839,49): warning C4244: '=': conversion from 'GLuint64' to 'unsigned int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(843,52): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(917,37): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(918,42): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(1227,79): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(1595,87): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\memory(3630,56): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+  (compiling source file 'src/Editor.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\memory(3630,56):
+      the template instantiation context (the oldest one first) is
+          C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterEditor\src\Editor.cpp(63,26):
+          see reference to function template instantiation 'std::unique_ptr<VertexBuffer,std::default_delete<VertexBuffer>> std::make_unique<VertexBuffer,size_t,0>(size_t &&)' being compiled
+  
+  Source.cpp
+  Generating Code...
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+Editor.obj : error LNK2019: unresolved external symbol "public: static void __cdecl Engine::ToggleConsoleWindow(void)" (?ToggleConsoleWindow@Engine@@SAXXZ) referenced in function "public: virtual void __cdecl Editor::Init(struct GLFWwindow *)" (?Init@Editor@@UEAAXPEAUGLFWwindow@@@Z)
+Editor.obj : error LNK2019: unresolved external symbol "public: static bool __cdecl Engine::GetConsoleWindowState(void)" (?GetConsoleWindowState@Engine@@SA_NXZ) referenced in function "private: void __cdecl Editor::MenuBar(void)" (?MenuBar@Editor@@AEAAXXZ)
+Editor.obj : error LNK2019: unresolved external symbol "public: void __cdecl Script::SetPath(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?SetPath@Script@@QEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) referenced in function "private: void __cdecl Editor::ScriptManagerComponent(void)" (?ScriptManagerComponent@Editor@@AEAAXXZ)
+Editor.obj : error LNK2019: unresolved external symbol "public: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl Script::GetPath(void)const " (?GetPath@Script@@QEBA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ) referenced in function "private: void __cdecl Editor::ScriptManagerComponent(void)" (?ScriptManagerComponent@Editor@@AEAAXXZ)
+Editor.obj : error LNK2019: unresolved external symbol "public: __cdecl ScriptManager::ScriptManager(void)" (??0ScriptManager@@QEAA@XZ) referenced in function "private: void __cdecl Editor::Inspector(void)" (?Inspector@Editor@@AEAAXXZ)
+Editor.obj : error LNK2019: unresolved external symbol "public: virtual __cdecl ScriptManager::~ScriptManager(void)" (??1ScriptManager@@UEAA@XZ) referenced in function "public: virtual void * __cdecl ScriptManager::`scalar deleting destructor'(unsigned int)" (??_GScriptManager@@UEAAPEAXI@Z)
+Editor.obj : error LNK2019: unresolved external symbol "public: void __cdecl ScriptManager::UnbindScript(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?UnbindScript@ScriptManager@@QEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) referenced in function "private: void __cdecl Editor::ScriptManagerComponent(void)" (?ScriptManagerComponent@Editor@@AEAAXXZ)
+Editor.obj : error LNK2019: unresolved external symbol "public: void __cdecl ScriptManager::BindScript(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?BindScript@ScriptManager@@QEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) referenced in function "private: void __cdecl Editor::ScriptManagerComponent(void)" (?ScriptManagerComponent@Editor@@AEAAXXZ)
+Editor.obj : error LNK2019: unresolved external symbol "public: class std::vector<class Script,class std::allocator<class Script> > __cdecl ScriptManager::GetScripts(void)const " (?GetScripts@ScriptManager@@QEBA?AV?$vector@VScript@@V?$allocator@VScript@@@std@@@std@@XZ) referenced in function "private: void __cdecl Editor::ScriptManagerComponent(void)" (?ScriptManagerComponent@Editor@@AEAAXXZ)
+..\bin\Release-windows-x86_64\OrbiterEditor\OrbiterEditor.exe : fatal error LNK1120: 9 unresolved externals

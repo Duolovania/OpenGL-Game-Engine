@@ -18,6 +18,7 @@ class Editor : public RenderingLayer
 		void MenuBar();
 
 		void AudioManagerComponent();
+		void ScriptManagerComponent();
 		void SearchMainCamera();
 
 		void DebugWindow();
