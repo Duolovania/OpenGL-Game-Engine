@@ -1,10 +1,1 @@
-﻿cl : command line  warning D9025: overriding '/MTd' with '/MDd'
-  Launcher.cpp
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterLauncher\src\Launcher.cpp(159,48): warning C4244: 'initializing': conversion from 'GLuint64' to 'unsigned int', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterLauncher\src\Launcher.cpp(160,40): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\OrbiterLauncher\src\Launcher.cpp(191,48): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
-  Source.cpp
-  Generating Code...
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-MSVCRTD.lib(initializers.obj) : warning LNK4098: defaultlib 'libcmtd.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
-  OrbiterLauncher.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin\Debug-windows-x86_64\OrbiterLauncher\OrbiterLauncher.exe
+﻿  OrbiterLauncher.vcxproj -> C:\Users\Ryhan Khan\Downloads\GitHub\OpenGL-Engine\OpenGL\bin\Debug-windows-x86_64\OrbiterLauncher\OrbiterLauncher.exe

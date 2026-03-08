@@ -101,6 +101,9 @@ void Editor::Init(GLFWwindow* window)
 
     // Sets the editor configuration.
     selectedEditorConfig = fileManager.LoadEditorConfig(Core.selectedProject.projectPath + "\\default.editorOB");
+
+    // Shows the console window if it was turned on before. By default, it is turned off in 'Application.cpp', so toggling it will turn it on.
+    if (selectedEditorConfig.showConsoleWindow) Core.ToggleConsoleWindow();
 }
 
 bool Editor::OnUpdate(float deltaTime, float time)
@@ -1053,6 +1056,13 @@ void Editor::MenuBar()
             }
             AddTooltip("Shows how many textures are created, how many are used, etc."); // Add tooltip for UI element above.
 
+            if (ImGui::MenuItem("Toggle Console Window"))
+            {
+                Core.ToggleConsoleWindow();
+                selectedEditorConfig.showConsoleWindow = Core.GetConsoleWindowState();
+            }
+            AddTooltip("Shows/hides the console window for debugging."); // Add tooltip for UI element above.
+
             ImGui::EndMenu();
         }
         AddTooltip("Toggle editor windows."); // Add tooltip for UI element above.
@@ -1091,7 +1101,7 @@ void Editor::MenuBar()
         {
             savedChanges = false; // test unsaved indicator.
 
-            Core.m_applicationState = ApplicationState::Play;
+            Core.m_applicationState = OBApplicationState::Play;
         }
         AddTooltip("Play the scene."); // Add tooltip for UI element above.
 
@@ -1099,7 +1109,7 @@ void Editor::MenuBar()
         ImGui::SameLine();
         if (ImGui::ImageButton((void*)pauseButton, ImVec2(ImGui::GetContentRegionMax().x / 120, ImGui::GetContentRegionAvail().y)))
         {
-            Core.m_applicationState = ApplicationState::Pause;
+            Core.m_applicationState = OBApplicationState::Pause;
         }
         AddTooltip("Pause the scene."); // Add tooltip for UI element above.
 
@@ -1107,7 +1117,7 @@ void Editor::MenuBar()
         ImGui::SameLine();
         if (ImGui::ImageButton((void*)stopButton, ImVec2(ImGui::GetContentRegionMax().x / 120, ImGui::GetContentRegionAvail().y)))
         {
-            Core.m_applicationState = ApplicationState::Stop;
+            Core.m_applicationState = OBApplicationState::Stop;
         }
         AddTooltip("Stop the scene."); // Add tooltip for UI element above.
 

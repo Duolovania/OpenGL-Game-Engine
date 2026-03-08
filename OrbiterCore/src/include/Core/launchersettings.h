@@ -7,4 +7,5 @@ class LauncherSettings
 {
 public:
 	std::vector<std::string> directories;
+	std::vector<std::string> scanDirectories;
 };

@@ -279,6 +279,7 @@ void FileManager::CreateEditorConfig(EditorSettings settings, std::string filePa
 	// Sets the window toggle values.
 	yamlNode["Editor Details"]["Window"]["Show Rendering Stats"] = settings.showRenderingStats;
 	yamlNode["Editor Details"]["Window"]["Show Project Settings"] = settings.showProjSettings;
+	yamlNode["Editor Details"]["Window"]["Show Console Window"] = settings.showConsoleWindow;
 
 	YAML::Emitter out;
 	out << YAML::Flow;
@@ -325,6 +326,7 @@ EditorSettings FileManager::LoadEditorConfig(std::string filePath)
 		// Sets the window toggle values.
 		newEditorConfig.showRenderingStats = yamlNode["Editor Details"]["Window"]["Show Rendering Stats"].as<bool>();
 		newEditorConfig.showWireframe = yamlNode["Editor Details"]["Window"]["Show Project Settings"].as<bool>();
+		newEditorConfig.showConsoleWindow = yamlNode["Editor Details"]["Window"]["Show Console Window"].as<bool>();
 	}
 	catch (const YAML::Exception& e)
 	{
@@ -403,7 +405,7 @@ ProjectSettings FileManager::LoadProjectConfig(std::string filePath)
 		if (!yamlNode)
 		{
 			std::cout << "Failed to load file at:" << filePath << std::endl; // Outputs error message.
-			return newProjectConfig; // Returns empty scene.
+			return newProjectConfig; // Returns nothing.
 		}
 
 		// Sets the general values.
@@ -424,7 +426,7 @@ ProjectSettings FileManager::LoadProjectConfig(std::string filePath)
 	}
 	catch (const YAML::Exception& e)
 	{
-		std::cerr << "Could not find project file. Loading New Project." << std::endl;
+		std::cerr << "Could not find project file." << std::endl;
 	}
 
 	return newProjectConfig;
@@ -479,6 +481,20 @@ void FileManager::CreateLauncherConfig(LauncherSettings settings, std::string fi
 		yamlNode["Directories"].push_back(newDirectory); // Adds the path details to the yaml data.
 	}
 
+	// Sets the general data of the project.
+	yamlNode["Scan Directories"] = YAML::Node(YAML::NodeType::Sequence); // Creates the 'Directories' umbrella.
+
+	// Loops through each path in the list of directories.
+	for (auto& path : settings.scanDirectories)
+	{
+		YAML::Node newDirectory;
+
+		// Copies the sound effect properties.
+		newDirectory["Path"] = path;
+
+		yamlNode["Scan Directories"].push_back(newDirectory); // Adds the path details to the yaml data.
+	}
+
 	YAML::Emitter out;
 	out << YAML::Flow;
 	out << yamlNode;
@@ -496,12 +512,12 @@ void FileManager::CreateLauncherConfig(LauncherSettings settings, std::string fi
 }
 
 // Reads a yaml node to generate the vector of directories.
-std::vector<std::string> GetDirectories(const YAML::Node& root)
+std::vector<std::string> GetDirectories(const YAML::Node& root, const char* nodeName = "Directories")
 {
 	std::vector<std::string> directories; // Creates a blank vector of actions.
 
 	// Loops through each action node.
-	for (const auto& pathNode : root["Directories"])
+	for (const auto& pathNode : root[nodeName])
 	{
 		std::string newPath = pathNode["Path"].as<std::string>(); // Gets the name of the action.
 		directories.push_back(newPath); // Adds the action to the list of actions.
@@ -528,6 +544,10 @@ LauncherSettings FileManager::LoadLauncherConfig(std::string filePath)
 		// Checks if any actions were found before overwriting the default action list.
 		std::vector<std::string> newDirectories = GetDirectories(yamlNode);
 		if (newDirectories.size() > 0) newLauncherConfig.directories = newDirectories;
+
+		// Checks if any actions were found before overwriting the default action list.
+		std::vector<std::string> newScanDirectories = GetDirectories(yamlNode, "Scan Directories");
+		if (newScanDirectories.size() > 0) newLauncherConfig.scanDirectories = newScanDirectories;
 	}
 	catch (const YAML::Exception& e)
 	{

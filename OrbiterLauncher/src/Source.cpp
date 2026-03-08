@@ -5,7 +5,7 @@
 int main()
 {
 	Application a;
-	a.applicationType = ApplicationType::LauncherOB;
+	a.applicationType = OBApplicationType::LauncherOB;
 	a.SetScreenResolution(854, 640);
 
 	Launcher launcher;

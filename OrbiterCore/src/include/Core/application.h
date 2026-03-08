@@ -8,7 +8,7 @@
 #include "Scripts/luacontroller.h"
 
 // This is used to define whether the editor, launcher, or solo game is being launched.
-enum ApplicationType
+enum OBApplicationType
 {
 	LauncherOB,
 	EditorOB,
@@ -16,7 +16,7 @@ enum ApplicationType
 };
 
 // This is used to determine whether the game is playing, paused, or stopped.
-enum ApplicationState
+enum OBApplicationState
 {
 	Play,
 	Pause,
@@ -54,7 +54,7 @@ class Application
 		void SetScreenResolution(int screenWidth, int screenHeight);
 
 		GLFWwindow* window;
-		ApplicationType applicationType;
+		OBApplicationType applicationType;
 	private:
 		// 1920 x 1080 by default.
 		int m_screenWidth = 1920, m_screenHeight = 1080;
@@ -79,13 +79,16 @@ class Engine
 		ProjectSettings selectedProject;
 		LuaController m_scriptController;
 
-		ApplicationState m_applicationState = ApplicationState::Stop;
+		OBApplicationState m_applicationState = OBApplicationState::Stop;
 
 		// This method handles the keyboard input.
 		static void HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods);
 
 		// This method handles the mouse scroll wheel input.
 		static void HandleScrollInput(GLFWwindow* window, double xoffset, double yoffset);
+
+		static void ToggleConsoleWindow();
+		static bool GetConsoleWindowState();
 	private:
 		Engine() {}
 		static Engine instance;

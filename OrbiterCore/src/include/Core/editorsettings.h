@@ -16,4 +16,5 @@ struct EditorSettings
 	// Window toggle.
 	bool showRenderingStats = false;
 	bool showProjSettings = false;
+	bool showConsoleWindow = true;
 };

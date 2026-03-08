@@ -27,78 +27,16 @@ void Launcher::Init(GLFWwindow* window)
     miniFolderIcon = iconTextures->Load("res/Application Icons/foldericon - mini.png", true);
 
     launcherSettings = fileManager.LoadLauncherConfig(rootPath + "\\OrbiterLauncher\\config.launchOB");
-}
 
-bool Launcher::OnUpdate(float deltaTime, float time)
-{
-    // Creates ImGui window frames.
-    ImGui_ImplGlfw_NewFrame();
-    ImGui_ImplOpenGL3_NewFrame();
-    ImGui::NewFrame();
-
-    ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport(), ImGuiDockNodeFlags_None);
-
-    ImGui::Begin("Projects");
-    ShowProjects();
-
-    if (ImGui::Button("Add Project Folder"))
+    // Checks if there are any directories to scan.
+    if (launcherSettings.scanDirectories.size() > 0)
     {
-        const char* file_path = tinyfd_selectFolderDialog(
-            "Open a folder",              // Title of the dialog
-            (rootPath).c_str()                    // Allow multiple selections (0 for no)
-        );
-
-        // Checks if the file exists.
-        if (file_path)
+        // Scans directories.
+        for (auto& directory : launcherSettings.scanDirectories)
         {
-            std::cout << projPath << std::endl;
-            projPath = rootPath + std::string(file_path).erase(0, rootPath.length()); // Erases the directories leading up to the "Assets" folder.
-            if (std::find(launcherSettings.directories.begin(), launcherSettings.directories.end(), file_path) == launcherSettings.directories.end()) launcherSettings.directories.push_back(file_path);
+            SearchFolders(directory); // Searches each folder for .projectOB file.
         }
     }
-
-    if (ImGui::Button("Open Project From Disk"))
-    {
-        const char* filterTypes[4] = { "*.projectOB" };
-        const char* file_path = tinyfd_openFileDialog(
-            "Open a project",              // Title of the dialog
-            (rootPath).c_str(),                         // Default path ("" means current directory)
-            1,                          // Number of file filters
-            filterTypes,                // File filters (e.g., ["*.txt"])
-            "Project",                       // Filter description
-            0                           // Allow multiple selections (0 for no)
-        );
-
-        // Checks if the file exists.
-        if (file_path)
-        {
-            // Open editor with project.
-            std::cout << "Opened file." << std::endl;
-            if (std::find(launcherSettings.directories.begin(), launcherSettings.directories.end(), file_path) == launcherSettings.directories.end()) launcherSettings.directories.push_back(file_path);
-            launchInstructions.selectedProjPath = file_path;
-        }
-    }
-
-    if (ImGui::Button("Open Editor test"))
-    {
-        OpenEditor();
-    }
-    ImGui::End();
-
-    // Renders ImGui data.
-    ImGui::Render();
-    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-    return true;
-}
-
-void Launcher::Close()
-{
-    fileManager.CreateLauncherConfig(launcherSettings, rootPath + "\\OrbiterLauncher\\config.launchOB");
-
-	ImGui_ImplGlfw_Shutdown();
-	ImGui_ImplOpenGL3_Shutdown();
-	ImGui::DestroyContext();
 }
 
 void Launcher::StylesConfig()
@@ -148,6 +86,107 @@ void Launcher::StylesConfig()
     style.Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.469f, 0.469f, 0.469f, 1.0f);
 }
 
+bool Launcher::OnUpdate(float deltaTime, float time)
+{
+    // Creates ImGui window frames.
+    ImGui_ImplGlfw_NewFrame();
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui::NewFrame();
+
+    ImGui::DockSpaceOverViewport(0, ImGui::GetMainViewport(), ImGuiDockNodeFlags_None);
+
+    ProjectsTable(); // Shows the project panel.
+
+    // Renders ImGui data.
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+    return true;
+}
+
+void Launcher::Close()
+{
+    fileManager.CreateLauncherConfig(launcherSettings, rootPath + "\\OrbiterLauncher\\config.launchOB");
+
+	ImGui_ImplGlfw_Shutdown();
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui::DestroyContext();
+}
+
+void Launcher::ProjectsTable()
+{
+    ImGui::Begin("Projects");
+
+    if (ImGui::BeginTable("Projects Found", 1))
+    {
+        // Setup columns
+        ImGui::TableSetupColumn("placeholder");
+        ImGui::TableHeadersRow(); // Draws the header row
+
+        ImGui::TableNextRow();
+        ImGui::TableSetColumnIndex(0);
+
+        ShowProjects();
+        ImGui::Separator();
+
+        ImGui::TableNextRow();
+        ImGui::TableSetColumnIndex(0);
+
+        if (ImGui::Button("Scan Folder"))
+        {
+            const char* file_path = tinyfd_selectFolderDialog(
+                "Open a folder",              // Title of the dialog
+                (rootPath).c_str()                    // Allow multiple selections (0 for no)
+            );
+
+            // Checks if the file exists.
+            if (file_path)
+            {
+                SearchFolders(file_path);
+
+                // Adds the directory if the directory is not already in the list.
+                if (std::find(launcherSettings.scanDirectories.begin(), launcherSettings.scanDirectories.end(), file_path) == launcherSettings.scanDirectories.end()) launcherSettings.scanDirectories.push_back(file_path);
+            }
+        }
+        ImGui::SameLine();
+
+        if (ImGui::Button("Open Project From Disk"))
+        {
+            const char* filterTypes[4] = { "*.projectOB" };
+            const char* file_path = tinyfd_openFileDialog(
+                "Open a project",              // Title of the dialog
+                (rootPath).c_str(),                         // Default path ("" means current directory)
+                1,                          // Number of file filters
+                filterTypes,                // File filters (e.g., ["*.txt"])
+                "Project",                       // Filter description
+                0                           // Allow multiple selections (0 for no)
+            );
+
+            // Checks if the file exists.
+            if (file_path)
+            {
+                std::filesystem::path currentPath = std::string(file_path); // Converts the file path (down to .projectOB file) to a filesystem path. 
+                projPath = currentPath.parent_path().string(); // Go back a folder.
+
+                // Adds the folder to the list of directories stored in the launcher if it's not already there.
+                if (std::find(launcherSettings.directories.begin(), launcherSettings.directories.end(), projPath) == launcherSettings.directories.end()) launcherSettings.directories.push_back(projPath);
+                
+                launchInstructions.selectedProjPath = file_path; // Sets the selected project.
+            }
+        }
+
+        // Opens the editor.
+        if (ImGui::Button("Open Editor test"))
+        {
+            OpenEditor();
+        }
+
+        ImGui::EndTable();
+    }
+
+    ImGui::End();
+}
+
 void Launcher::ShowProjects()
 {
     if (ImGui::BeginChild("FolderItems"))
@@ -160,6 +199,7 @@ void Launcher::ShowProjects()
         {
             for (const auto& entry : std::filesystem::directory_iterator(directory))
             {
+                // Only shows files, not folders.
                 if (!entry.is_directory())
                 {
                     unsigned int fileThumbnail = fileIcon; // Sets the thumbnail image to the generic file icon by default.
@@ -198,6 +238,7 @@ void Launcher::ShowProjects()
                         {
                             std::cout << "do stuff" << std::endl;
                         };
+                        if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) ImGui::SetTooltip(entry.path().string().c_str()); // Add tooltip for UI element.
 
 
                         ImGui::SetCursorPos(textPos);
@@ -209,10 +250,12 @@ void Launcher::ShowProjects()
                         counter++;
                     }
                 }
+                else
+                {
+
+                }
             }
         }
-
-        
 
         ImGui::EndChild();
     }
@@ -222,4 +265,31 @@ void Launcher::OpenEditor()
 {
     std::cout << rootPath + "/OrbiterCore/launchinstructions.instructOB" << std::endl;
     fileManager.CreateLaunchInstructions(launchInstructions, rootPath + "/OrbiterCore/launchinstructions.instructOB");
+}
+
+// Searches each folder for a .projectOB file.
+void Launcher::SearchFolders(const std::filesystem::path& folderPath)
+{
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath))
+    {
+        if (entry.is_directory())
+        {
+            SearchFolders(entry.path());
+        }
+        else
+        {
+            int fileNameLength = entry.path().filename().string().find_last_of('.'); // Gets the length of the file name up to the file extension.
+            std::string fileExtension = entry.path().filename().string().substr(fileNameLength); // Gets the file extension.
+
+            // Checks if the file is an engine project file.
+            if (fileExtension == ".projectOB")
+            {
+                std::filesystem::path currentPath = entry.path(); // Converts the file path (down to .projectOB file) to a filesystem path. 
+                std::string tempPath = currentPath.parent_path().string(); // Go back a folder.
+
+                // Adds the folder to the list of directories stored in the launcher if it's not already there.
+                if (std::find(launcherSettings.directories.begin(), launcherSettings.directories.end(), tempPath) == launcherSettings.directories.end()) launcherSettings.directories.push_back(tempPath);
+            }
+        }
+    }
 }

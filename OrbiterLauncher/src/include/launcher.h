@@ -11,8 +11,10 @@ class Launcher : public RenderingLayer
 	private:
 		void StylesConfig();
 		void ShowProjects();
+		void SearchFolders(const std::filesystem::path& folderPath);
 
 		void OpenEditor();
+		void ProjectsTable();
 
 		std::string projPath, rootPath;
 		LauncherSettings launcherSettings;

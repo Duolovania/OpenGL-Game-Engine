@@ -6,10 +6,11 @@
 #include "Rendering/shader.h"
 #include "stb_image.h"
 #include "Core/filemanager.h"
+#include <windows.h>
 #include <filesystem>
 
 float timeTime = 0, oldTimeSinceStart = 0, timeSinceStart, deltaTime;
-bool applicationQuit = false;
+bool applicationQuit = false, showConsole = false;
 
 Engine Engine::instance;
 
@@ -19,9 +20,10 @@ void Application::Run()
     std::string windowTitle;
 
     // Ensures that only projects are loaded for the editor and game.
-    if (applicationType != ApplicationType::LauncherOB)
+    if (applicationType != OBApplicationType::LauncherOB)
     {
         std::string projectPath = fileManager.LoadLaunchInstructions(std::filesystem::current_path().parent_path().string() + "\\OrbiterCore\\launchinstructions.instructOB").selectedProjPath;
+        if (projectPath == "") Close(); // Terminates the program if no project was found.
 
         // Loads the project config.
         Project = fileManager.LoadProjectConfig(projectPath + "\\" + "Game1" + ".projectOB");
@@ -45,17 +47,21 @@ void Application::Run()
     // Sets the title for the window.
     switch (applicationType)
     {
-        case ApplicationType::LauncherOB:
+        case OBApplicationType::LauncherOB:
             windowTitle = "Orbiter Launcher";
+            
             break;
-        case ApplicationType::EditorOB:
+        case OBApplicationType::EditorOB:
             windowTitle = "Orbiter Editor - " + Project.name;
             break;
         default:
             windowTitle = Project.name;
-            Core.m_applicationState = ApplicationState::Play;
+            Core.m_applicationState = OBApplicationState::Play;
             break;
     }
+
+    // Hides the console window by default.
+    ::ShowWindow(::GetConsoleWindow(), SW_HIDE);
 
     // Initializes the window.
     Init(m_screenWidth, m_screenHeight, windowTitle.c_str());
@@ -99,7 +105,7 @@ void Application::Init(int screenWidth, int screenHeight, const char* windowTitl
 
     // Makes this the current window.
     glfwMakeContextCurrent(window);
-    if (applicationType != ApplicationType::LauncherOB) glfwMaximizeWindow(window); // Sets window to fullscreen by default.
+    if (applicationType != OBApplicationType::LauncherOB) glfwMaximizeWindow(window); // Sets window to fullscreen by default.
 
     // Checks if glad is working.
     int status = gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
@@ -118,8 +124,17 @@ void Application::Loop()
 {   
     applicationQuit = !Core.renderingLayer->OnUpdate(deltaTime, timeTime);
 
+    if (showConsole)
+    {
+        ::ShowWindow(::GetConsoleWindow(), SW_SHOW);
+    }
+    else
+    {
+        ::ShowWindow(::GetConsoleWindow(), SW_HIDE);
+    }
+
     // Checks if the game is playing.
-    if (Core.m_applicationState == ApplicationState::Play)
+    if (Core.m_applicationState == OBApplicationState::Play)
     {
         // Checks if the game hasn't started yet.
         if (!hasStarted)
@@ -130,7 +145,7 @@ void Application::Loop()
 
         //Core.m_scriptController.CallUpdate(); // Calls all 'Update' functions.
     }
-    else if (Core.m_applicationState == ApplicationState::Stop)
+    else if (Core.m_applicationState == OBApplicationState::Stop)
     {
         hasStarted = false; // Allows 'Start' functions to run again.
     }
@@ -159,6 +174,16 @@ void Application::SetScreenResolution(int screenWidth, int screenHeight)
 {
     m_screenWidth = screenWidth;
     m_screenHeight = screenHeight;
+}
+
+void Engine::ToggleConsoleWindow()
+{
+    showConsole = !showConsole;
+}
+
+bool Engine::GetConsoleWindowState()
+{
+    return showConsole;
 }
 
 void Engine::HandleInput(GLFWwindow* window, int key, int scanCode, int action, int mods)
