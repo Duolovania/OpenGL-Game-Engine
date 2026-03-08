@@ -5,7 +5,7 @@
 
 FileManager fileManager;
 int selectedObject = -2;
-std::string inputString, searchTerm, assetsPath, currentPath;
+std::string inputString, searchTerm, assetsPath, currentPath, defaultScriptPath;
 
 float sprintSpeed;
 float iconSize = 200;
@@ -90,6 +90,8 @@ void Editor::Init(GLFWwindow* window)
     imageFileIcon = iconTextures->Load("res/Application Icons/imagefileicon.png", true);
     miniFolderIcon = iconTextures->Load("res/Application Icons/foldericon - mini.png", true);
     resetIcon = iconTextures->Load("res/Application Icons/reset.png", true);
+
+    defaultScriptPath = "res/Copy Files/defaultscript.lua";
 
     // Sets the first scene to a new, empty scene.
     currentScene.sceneName = "Untitled";
@@ -1479,7 +1481,17 @@ void Editor::ScriptManagerComponent()
                 *dot = '\0';  // Truncate at the dot to remove the extension.
             }
 
-            scriptManager->BindScript(savePath);
+            try
+            {
+                std::filesystem::copy_file(defaultScriptPath, savePath); // Copies the template lua code from editor resources and renames the file.
+
+                scriptManager->BindScript(savePath);
+                Core.m_scriptController.AddScript(savePath); // Attaches newly created script to lua controller.
+            }
+            catch (std::filesystem::filesystem_error& e)
+            {
+                std::cout << e.what();
+            }
         }
     }
     AddTooltip("Create a new script."); // Add tooltip for UI element above.
@@ -1533,7 +1545,7 @@ void Editor::ScriptManagerComponent()
                     const char* file_path = tinyfd_openFileDialog(
                         "Open a lua script",              // Title of the dialog
                         (assetsPath + "/Assets").c_str(),                         // Default path ("" means current directory)
-                        2,                          // Number of file filters
+                        1,                          // Number of file filters
                         filterTypes,                // File filters (e.g., ["*.txt"])
                         "Lua script",                       // Filter description
                         0                           // Allow multiple selections (0 for no)

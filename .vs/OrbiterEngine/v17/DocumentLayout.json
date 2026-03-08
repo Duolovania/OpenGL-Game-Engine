@@ -3,32 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Core\\FileManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\src\\Core\\FileManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Audio\\AudioManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\src\\Audio\\AudioManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\src\\include\\editor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|solutionrelative:OrbiterEditor\\src\\include\\editor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0EC3DA21-7A4E-48E6-835F-CBDAEF69A4E6}|OrbiterLauncher\\OrbiterLauncher.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterLauncher\\src\\Launcher.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{0EC3DA21-7A4E-48E6-835F-CBDAEF69A4E6}|OrbiterLauncher\\OrbiterLauncher.vcxproj|solutionrelative:OrbiterLauncher\\src\\Launcher.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Scripts\\ScriptManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\src\\Scripts\\ScriptManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\include\\Scripts\\scriptmanager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\src\\include\\Scripts\\scriptmanager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\src\\Editor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{83178E5B-EFD7-0992-B812-530F24924E6E}|OrbiterEditor\\OrbiterEditor.vcxproj|solutionrelative:OrbiterEditor\\src\\Editor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Scripts\\LuaController.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\src\\Scripts\\LuaController.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Core\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -37,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Scripts\\Script.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\src\\Scripts\\Script.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Scripts\\LuaController.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{65079033-D1BC-0829-5AB1-0200C665FF2C}|OrbiterCore\\OrbiterCore.vcxproj|solutionrelative:OrbiterCore\\src\\Scripts\\LuaController.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,21 +26,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "Application.cpp",
               "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Core\\Application.cpp",
               "RelativeDocumentMoniker": "OrbiterCore\\src\\Core\\Application.cpp",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Core\\Application.cpp",
               "RelativeToolTip": "OrbiterCore\\src\\Core\\Application.cpp",
-              "ViewState": "AgIAAJ0AAAAAAAAAAAAcwK4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAcwK4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-03-08T14:06:03.956Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -80,116 +55,38 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ScriptManager.cpp",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Scripts\\ScriptManager.cpp",
-              "RelativeDocumentMoniker": "OrbiterCore\\src\\Scripts\\ScriptManager.cpp",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Scripts\\ScriptManager.cpp",
-              "RelativeToolTip": "OrbiterCore\\src\\Scripts\\ScriptManager.cpp",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAvwCEAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-03-08T22:27:52.461Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "scriptmanager.h",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\include\\Scripts\\scriptmanager.h",
-              "RelativeDocumentMoniker": "OrbiterCore\\src\\include\\Scripts\\scriptmanager.h",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\include\\Scripts\\scriptmanager.h",
-              "RelativeToolTip": "OrbiterCore\\src\\include\\Scripts\\scriptmanager.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-03-08T21:41:29.331Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Launcher.cpp",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterLauncher\\src\\Launcher.cpp",
-              "RelativeDocumentMoniker": "OrbiterLauncher\\src\\Launcher.cpp",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterLauncher\\src\\Launcher.cpp",
-              "RelativeToolTip": "OrbiterLauncher\\src\\Launcher.cpp",
-              "ViewState": "AgIAADgBAAAAAAAAAAAAAFIBAAB1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-03-08T21:21:03.586Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "editor.h",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\src\\include\\editor.h",
-              "RelativeDocumentMoniker": "OrbiterEditor\\src\\include\\editor.h",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\src\\include\\editor.h",
-              "RelativeToolTip": "OrbiterEditor\\src\\include\\editor.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-03-08T20:46:58.453Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AudioManager.cpp",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Audio\\AudioManager.cpp",
-              "RelativeDocumentMoniker": "OrbiterCore\\src\\Audio\\AudioManager.cpp",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Audio\\AudioManager.cpp",
-              "RelativeToolTip": "OrbiterCore\\src\\Audio\\AudioManager.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-03-08T20:46:02.242Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FileManager.cpp",
-              "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Core\\FileManager.cpp",
-              "RelativeDocumentMoniker": "OrbiterCore\\src\\Core\\FileManager.cpp",
-              "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Core\\FileManager.cpp",
-              "RelativeToolTip": "OrbiterCore\\src\\Core\\FileManager.cpp",
-              "ViewState": "AgIAAHQAAAAAAAAAAAAvwIgAAABGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-03-08T19:32:42.982Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
               "Title": "Script.cpp",
               "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Scripts\\Script.cpp",
               "RelativeDocumentMoniker": "OrbiterCore\\src\\Scripts\\Script.cpp",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Scripts\\Script.cpp",
               "RelativeToolTip": "OrbiterCore\\src\\Scripts\\Script.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-03-08T20:00:20.21Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "Editor.cpp",
               "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\src\\Editor.cpp",
               "RelativeDocumentMoniker": "OrbiterEditor\\src\\Editor.cpp",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterEditor\\src\\Editor.cpp",
               "RelativeToolTip": "OrbiterEditor\\src\\Editor.cpp",
-              "ViewState": "AgIAAOoFAAAAAAAAAAAvwPMFAACRAAAAAAAAAA==",
+              "ViewState": "AgIAAKsFAAAAAAAAAAAcwM4FAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-03-08T19:15:09.777Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 1,
               "Title": "LuaController.cpp",
               "DocumentMoniker": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Scripts\\LuaController.cpp",
               "RelativeDocumentMoniker": "OrbiterCore\\src\\Scripts\\LuaController.cpp",
               "ToolTip": "C:\\Users\\Ryhan Khan\\Downloads\\GitHub\\OpenGL-Engine\\OpenGL\\OrbiterCore\\src\\Scripts\\LuaController.cpp",
               "RelativeToolTip": "OrbiterCore\\src\\Scripts\\LuaController.cpp",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAB4AAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-03-08T18:45:11.105Z"
             }
