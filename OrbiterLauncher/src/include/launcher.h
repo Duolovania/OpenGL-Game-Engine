@@ -15,6 +15,7 @@ class Launcher : public RenderingLayer
 
 		void OpenEditor();
 		void ProjectsTable();
+		void OpenProjectCreator();
 
 		std::string projPath, rootPath;
 		LauncherSettings launcherSettings;

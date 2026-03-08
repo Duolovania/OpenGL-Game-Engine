@@ -132,6 +132,14 @@ void Launcher::ProjectsTable()
         ImGui::TableNextRow();
         ImGui::TableSetColumnIndex(0);
 
+        if (ImGui::Button("New Project"))
+        {
+            ImGui::OpenPopup("Create New Project");
+        }
+        ImGui::SameLine();
+
+        OpenProjectCreator();
+
         if (ImGui::Button("Scan Folder"))
         {
             const char* file_path = tinyfd_selectFolderDialog(
@@ -185,6 +193,46 @@ void Launcher::ProjectsTable()
     }
 
     ImGui::End();
+}
+
+void Launcher::OpenProjectCreator()
+{
+    if (ImGui::BeginPopupModal("Create New Project"))
+    {
+        if (ImGui::BeginTable("##Create Table", 2))
+        {
+            // Setup columns
+            ImGui::TableSetupColumn("##1");
+            ImGui::TableSetupColumn("##2");
+            ImGui::TableHeadersRow(); // Draws the header row
+
+            ImGui::TableNextRow();
+            ImGui::TableSetColumnIndex(0);
+
+            ImGui::Text("Name:");
+
+            ImGui::TableSetColumnIndex(1);
+            ImGui::Text("blah");
+
+            ImGui::TableNextRow();
+            ImGui::TableSetColumnIndex(0);
+
+            ImGui::Text("Location:");
+
+            ImGui::TableSetColumnIndex(1);
+            ImGui::Text("blah");
+
+            ImGui::TableNextRow();
+            ImGui::TableSetColumnIndex(1);
+
+            if (ImGui::Button("Cancel")) ImGui::CloseCurrentPopup();
+            ImGui::SameLine();
+            if (ImGui::Button("Create")) ImGui::CloseCurrentPopup();
+
+            ImGui::EndTable();
+        }
+        ImGui::EndPopup();
+    }
 }
 
 void Launcher::ShowProjects()
