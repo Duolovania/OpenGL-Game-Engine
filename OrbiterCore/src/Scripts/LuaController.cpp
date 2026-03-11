@@ -22,6 +22,14 @@ void LuaController::Init()
             DebugOB.Log("Unknown type passed to Log");
         }
     });
+
+    // Expose cpp classes to lua scripts.
+    m_lua.new_usertype<Transform>("Transform", "position", &Transform::position, "rotation", &Transform::rotation, "scale", &Transform::scale);
+    m_lua.new_usertype<glm::vec3>("Vector3", "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
+    m_lua.new_usertype<glm::vec2>("Vector2", "x", &glm::vec3::x, "y", &glm::vec3::y);
+    m_lua.new_usertype<GameObject>("GameObject", "transform", &GameObject::GetComponent<Transform>);
+
+    // TODO: add sprite renderer and camera.
 }
 
 void LuaController::AddScript(std::string filePath)
@@ -38,6 +46,15 @@ void LuaController::AddScript(std::string filePath)
     catch (const std::invalid_argument& e)
     {
         std::cerr << "Error: " << e.what() << std::endl;
+    }
+}
+
+void LuaController::BindGameObject(std::vector<Script> scripts, GameObject gObj)
+{
+    for (auto s : scripts)
+    {
+        sol::table script = m_lua.script_file(s.GetPath());
+        script["self"] = gObj;
     }
 }
 

@@ -144,8 +144,8 @@ bool Editor::OnUpdate(float deltaTime, float time)
 
         sprintSpeed = Project.InputManager.GetActionStrength("sprint") * 150; // Camera movement sprint speed.
 
-        cameraObj->transform.scale = Vector3(viewportSize.x, viewportSize.y, 0);
-        cameraObj->transform.position += Vector2(Project.InputManager.BasicMovement().x * (100.0f + sprintSpeed) * deltaTime, Project.InputManager.BasicMovement().y * (100.0f + sprintSpeed) * deltaTime);
+        cameraObj->transform.scale = glm::vec3(viewportSize.x, viewportSize.y, 0);
+        cameraObj->transform.position += glm::vec2(Project.InputManager.BasicMovement().x * (100.0f + sprintSpeed) * deltaTime, Project.InputManager.BasicMovement().y * (100.0f + sprintSpeed) * deltaTime);
 
         // Render scene objects.
         Core.renderer.Draw(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f), cameraObj->GetView(), { camera->outputColor[0], camera->outputColor[1], camera->outputColor[2], camera->outputColor[3] });
@@ -292,7 +292,7 @@ void Editor::Hierarchy()
     if (ImGui::Button("Add"))
     {
         std::shared_ptr<GameObject> newGObj = std::make_unique<GameObject>();
-        newGObj->transform.position = Vector3();
+        newGObj->transform.position = glm::vec3();
 
         Core.renderer.objectsToRender.push_back(newGObj);
         Core.renderer.RegenerateObject(Core.renderer.objectsToRender.size() - 1);

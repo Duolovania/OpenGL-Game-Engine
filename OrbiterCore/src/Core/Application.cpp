@@ -116,9 +116,6 @@ void Application::Run()
         {
             Core.m_scriptController.AddScript(s);
         }
-
-        /*Core.m_scriptController.AddScript(Project.assetsFolderPath + "\\Scripts\\testscript.lua");
-        Core.m_scriptController.AddScript(Project.assetsFolderPath + "\\Scripts\\testscripttwo.lua");*/
     }
 
     // Loop until the user closes the window

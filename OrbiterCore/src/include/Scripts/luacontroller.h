@@ -3,6 +3,7 @@
 #include "sol/sol.hpp"
 #include <vector>
 #include "GameObjects/gameobject.h"
+#include "Scripts/script.h"
 
 // This class is used for triggering and managing all lua game scripts.
 class LuaController
@@ -19,6 +20,8 @@ class LuaController
 		* @param filePath the path to the script. This must include the file extension.
 		*/
 		void AddScript(std::string filePath);
+
+		void BindGameObject(std::vector<Script> scripts, GameObject gObj);
 
 		///**
 		//* @brief Makes a C++ method usable in scripts.

@@ -1,8 +1,9 @@
 #pragma once
-#include "vector.h"
+#include "glm/glm.hpp"
+#include "gtc/matrix_transform.hpp"
 
 class Transform
 {
 	public:
-		Vector3 position, rotation, scale;
+		glm::vec3 position, rotation, scale;
 };
