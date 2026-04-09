@@ -12,6 +12,7 @@ class Editor : public RenderingLayer
 		void StylesConfig();
 
 		void Viewport();
+		void GameView();
 		void Hierarchy();
 		void Inspector();
 		void ContentBrowser();
@@ -35,8 +36,7 @@ class Editor : public RenderingLayer
 		ImVec2 viewportSize;
 		glm::vec2 inputVector;
 
-		std::shared_ptr<Camera> camera;
-		std::shared_ptr<GameObject> cameraObj;
+		GameObject editorCameraObj, gameCameraObj, previewCameraObj;
 
 		Scene currentScene;
 

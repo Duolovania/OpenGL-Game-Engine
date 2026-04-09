@@ -33,7 +33,7 @@ class Renderer
 
         int GetCachedTextureCount() const; // Gets the number of cached textures. This is for debugging in the editor only.
 
-        std::vector<std::shared_ptr<GameObject>> objectsToRender;
+        std::vector<GameObject> objectsToRender;
 
         int texturesLoaded = 0, newTextures = 0;
     private:
@@ -49,7 +49,7 @@ class Renderer
         std::vector<LiteTexture> cachedTextures;
 
         Vertex* CreateQuad(Vertex* target, glm::mat4 transform, float texID, Vector4 color); // Creates a new quad with the transform matrix and sprite renderer colour values.
-        LiteTexture GetCachedBindlessTexture(std::shared_ptr<SpriteRenderer> spriteRendererComp); // Searches for a cached texture with the same file path.
+        LiteTexture GetCachedBindlessTexture(SpriteRenderer spriteRendererComp); // Searches for a cached texture with the same file path.
 
         GLuint64 samplers[32] = { 0, 1, 2 }; // How many texture slots.
 };

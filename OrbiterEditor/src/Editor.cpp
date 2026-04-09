@@ -4,7 +4,7 @@
 #include <filesystem>
 
 FileManager fileManager;
-int selectedObject = -2;
+int selectedObject = -2, startCameraIndex = -1;
 std::string inputString, searchTerm, assetsPath, currentPath, defaultScriptPath;
 
 float sprintSpeed;
@@ -30,6 +30,8 @@ enum UISelect
 };
 
 UISelect uiSelect = UISelect::None;
+
+std::shared_ptr<FrameBuffer> editorFB, previewFB;
 
 std::unique_ptr<Texture> iconTextures;
 GLuint64 playButton, pauseButton, stopButton, fileIcon, folderIcon, wavFileIcon, fontFileIcon, sceneFileIcon, imageFileIcon, miniFolderIcon, resetIcon, scriptIcon;
@@ -70,6 +72,16 @@ void Editor::Init(GLFWwindow* window)
 
     frameBufferVA->AddBuffer(*frameBufferVB, layout); // Adds the vertex buffer to the vertex array.
 
+    // Copies main framebuffer screen width/height.
+    editorFB = std::make_unique<FrameBuffer>(framebuffer->GetSize().x, framebuffer->GetSize().y);
+    editorFB->Gen();
+
+    previewFB = std::make_unique<FrameBuffer>(framebuffer->GetSize().x, framebuffer->GetSize().y);
+    previewFB->Gen();
+
+    editorCameraObj.transform.position = glm::vec3(0, 0, 0);
+    editorCameraObj.transform.rotation = glm::vec3(0, 0, 0);
+
     // Sets the project 'Assets' folder path to the corresponding project directory using the project name.
     assetsPath = Core.selectedProject.assetsFolderPath;
     currentPath = assetsPath;
@@ -97,6 +109,11 @@ void Editor::Init(GLFWwindow* window)
     // Sets the first scene to a new, empty scene.
     currentScene.sceneName = "Untitled";
     currentScene.objectsToRender.clear();
+
+    Camera defaultCamera;
+    editorCameraObj.AddComponent(defaultCamera);
+    gameCameraObj.AddComponent(defaultCamera);
+    previewCameraObj.AddComponent(defaultCamera);
 
     // Updates the renderer data.
     Core.renderer.objectsToRender = currentScene.objectsToRender;
@@ -126,6 +143,7 @@ bool Editor::OnUpdate(float deltaTime, float time)
 
     Hierarchy(); // Shows the hierarchy window.
     Viewport(); // Shows the viewport window.
+    GameView(); // Shows the game view window.
 
     // Checks if the screen has been minimized.
     if (viewportSize.x < 0 || viewportSize.y < 0)
@@ -134,33 +152,76 @@ bool Editor::OnUpdate(float deltaTime, float time)
         return true;
     }
 
+    // Game camera.
     framebuffer->Bind();
 
-    // Check if the camera does not exist.
-    if (camera != nullptr)
+    Camera gameCamera = *gameCameraObj.GetComponent<Camera>();
+
+    // Copies the main camera view.
+    if (startCameraIndex > -1)
     {
-        GLCall(glClearColor(camera->backgroundColor[0], camera->backgroundColor[1], camera->backgroundColor[2], 1.0f));
-        GLCall(glClear(GL_COLOR_BUFFER_BIT));
-
-        sprintSpeed = Project.InputManager.GetActionStrength("sprint") * 150; // Camera movement sprint speed.
-
-        cameraObj->transform.scale = glm::vec3(viewportSize.x, viewportSize.y, 0);
-        cameraObj->transform.position += glm::vec2(Project.InputManager.BasicMovement().x * (100.0f + sprintSpeed) * deltaTime, Project.InputManager.BasicMovement().y * (100.0f + sprintSpeed) * deltaTime);
-
-        // Render scene objects.
-        Core.renderer.Draw(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f), cameraObj->GetView(), { camera->outputColor[0], camera->outputColor[1], camera->outputColor[2], camera->outputColor[3] });
+        gameCameraObj.transform = Core.renderer.objectsToRender[startCameraIndex].transform;
+        gameCameraObj.GetComponent<Camera>() = Core.renderer.objectsToRender[startCameraIndex].GetComponent<Camera>();
     }
-    else
-    {
-        GLCall(glClearColor(0.0f, 0.0f, 0.0f, 1.0f)); // Output black screen.
-        GLCall(glClear(GL_COLOR_BUFFER_BIT));
-    }
+
+    GLCall(glClearColor(gameCamera.backgroundColor[0], gameCamera.backgroundColor[1], gameCamera.backgroundColor[2], 1.0f));
+    GLCall(glClear(GL_COLOR_BUFFER_BIT));
+
+    sprintSpeed = Project.InputManager.GetActionStrength("sprint") * 150; // Camera movement sprint speed.
+
+    // Game camera properties.
+    gameCameraObj.transform.scale = glm::vec3(viewportSize.x, viewportSize.y, 0);
+
+    // Render scene objects.
+    Core.renderer.Draw(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f), gameCameraObj.GetView(), { gameCamera.outputColor[0], gameCamera.outputColor[1], gameCamera.outputColor[2], gameCamera.outputColor[3] });
 
     DebugWindow(); // Shows the debug console window.
     OptionalWindows(); // Shows additional windows (e.g. rendering stats, project settings, etc.)
 
     // Unbinds frame buffer components.
     framebuffer->UnBind();
+
+    // Editor camera.
+    editorFB->Bind();
+
+    Camera editorCamera = *editorCameraObj.GetComponent<Camera>();
+
+    GLCall(glClearColor(editorCamera.backgroundColor[0], editorCamera.backgroundColor[1], editorCamera.backgroundColor[2], 1.0f));
+    GLCall(glClear(GL_COLOR_BUFFER_BIT));
+
+    // Editor camera properties.
+    editorCameraObj.transform.scale = glm::vec3(viewportSize.x, viewportSize.y, 0);
+    editorCameraObj.transform.position += glm::vec3(Project.InputManager.BasicMovement().x * (100.0f + sprintSpeed) * deltaTime, Project.InputManager.BasicMovement().y * (100.0f + sprintSpeed) * deltaTime, 0);
+
+    // Render scene objects.
+    Core.renderer.Draw(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f), editorCameraObj.GetView(), { editorCamera.outputColor[0], editorCamera.outputColor[1], editorCamera.outputColor[2], editorCamera.outputColor[3] });
+
+    DebugWindow(); // Shows the debug console window.
+    OptionalWindows(); // Shows additional windows (e.g. rendering stats, project settings, etc.)
+
+    // Unbinds frame buffer components.
+    editorFB->UnBind();
+
+    // Camera preview.
+    previewFB->Bind();
+
+    Camera previewCamera = *previewCameraObj.GetComponent<Camera>();
+
+    GLCall(glClearColor(previewCamera.backgroundColor[0], previewCamera.backgroundColor[1], previewCamera.backgroundColor[2], 1.0f));
+    GLCall(glClear(GL_COLOR_BUFFER_BIT));
+
+    // Preview camera properties.
+    previewCameraObj.transform.scale = glm::vec3(viewportSize.x, viewportSize.y, 0);
+
+    // Render scene objects.
+    Core.renderer.Draw(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f), previewCameraObj.GetView(), { previewCamera.outputColor[0], previewCamera.outputColor[1], previewCamera.outputColor[2], previewCamera.outputColor[3] });
+
+    DebugWindow(); // Shows the debug console window.
+    OptionalWindows(); // Shows additional windows (e.g. rendering stats, project settings, etc.)
+
+    // Unbinds frame buffer components.
+    previewFB->UnBind();
+
     fbShader->Bind();
 
     // Renders ImGui data.
@@ -240,6 +301,33 @@ void Editor::Viewport()
     AddTooltip("This window provides a preview of the scene for editing purposes."); // Add tooltip for UI element above.
 
     viewportSize = ImGui::GetContentRegionAvail();
+    if (editorFB->GetSize() != glm::vec2(viewportSize.x, viewportSize.y)) editorFB->Resize(glm::vec2(viewportSize.x, viewportSize.y));
+
+    ImGui::Image((void*)editorFB->GetTexture(), ImVec2(editorFB->GetSize().x, editorFB->GetSize().y), ImVec2(0, 1), ImVec2(1, 0));
+    ImVec2 imagePos = ImGui::GetCursorScreenPos();
+
+    ImVec2 position = ImVec2(imagePos.x * 1.15f, imagePos.y / 10.15f);
+    ImGui::SetCursorScreenPos(position);
+
+    // Checks if the FPS count should be shown.
+    if (selectedEditorConfig.showFPS)
+    {
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.988f, 0.659f, 0.176f, 1.0f));
+        ImGui::Text("FPS: %.1f", double(1.0f / ImGui::GetIO().DeltaTime));
+        ImGui::PopStyleColor();
+    }
+
+    ImGui::End();
+    ImGui::PopStyleVar();
+}
+
+void Editor::GameView()
+{
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+    ImGui::Begin("Game View");
+    AddTooltip("This is how your game will look!"); // Add tooltip for UI element above.
+
+    viewportSize = ImGui::GetContentRegionAvail();
     if (framebuffer->GetSize() != glm::vec2(viewportSize.x, viewportSize.y)) framebuffer->Resize(glm::vec2(viewportSize.x, viewportSize.y));
 
     ImGui::Image((void*)framebuffer->GetTexture(), ImVec2(framebuffer->GetSize().x, framebuffer->GetSize().y), ImVec2(0, 1), ImVec2(1, 0));
@@ -291,8 +379,8 @@ void Editor::Hierarchy()
 
     if (ImGui::Button("Add"))
     {
-        std::shared_ptr<GameObject> newGObj = std::make_unique<GameObject>();
-        newGObj->transform.position = glm::vec3();
+        GameObject newGObj;
+        newGObj.transform.position = glm::vec3();
 
         Core.renderer.objectsToRender.push_back(newGObj);
         Core.renderer.RegenerateObject(Core.renderer.objectsToRender.size() - 1);
@@ -302,7 +390,7 @@ void Editor::Hierarchy()
     for (int i = 0; i < Core.renderer.objectsToRender.size(); i++)
     {
         ImGui::PushID(i);
-        ShowHierarchy(Core.renderer.objectsToRender[i]->objectName, i, true);
+        ShowHierarchy(Core.renderer.objectsToRender[i].objectName, i, true);
         ImGui::PopID();
     }
 
@@ -316,18 +404,15 @@ void Editor::Inspector()
 
     if (selectedObject >= 0 && Core.renderer.objectsToRender.size() >= 1)
     {
-        ImGui::InputText("##label0", &Core.renderer.objectsToRender[selectedObject]->objectName);
+        ImGui::InputText("##label0", &Core.renderer.objectsToRender[selectedObject].objectName);
 
-        if (cameraObj != nullptr)
+        ImGui::SameLine();
+
+        if (ImGui::Button("Jump To"))
         {
-            ImGui::SameLine();
-
-            if (ImGui::Button("Jump To"))
-            {
-                cameraObj->transform.position = Core.renderer.objectsToRender[selectedObject]->transform.position;
-            }
-            AddTooltip("See where this object is located on the scene."); // Add tooltip for UI element above.
+            editorCameraObj.transform.position = Core.renderer.objectsToRender[selectedObject].transform.position;
         }
+        AddTooltip("See where this object is located on the scene."); // Add tooltip for UI element above.
 
         // Check that there is more than 1 object in the scene.
         if (Core.renderer.objectsToRender.size() > 1)
@@ -359,7 +444,7 @@ void Editor::Inspector()
                 ImGui::SameLine();
                 ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
 
-                ImGui::InputFloat("##PX", &Core.renderer.objectsToRender[selectedObject]->transform.position.x, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##PX", &Core.renderer.objectsToRender[selectedObject].transform.position.x, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableSetColumnIndex(2);
@@ -369,7 +454,7 @@ void Editor::Inspector()
                 ImGui::Text("Y");
 
                 ImGui::SameLine();
-                ImGui::InputFloat("##PY", &Core.renderer.objectsToRender[selectedObject]->transform.position.y, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##PY", &Core.renderer.objectsToRender[selectedObject].transform.position.y, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableSetColumnIndex(3);
@@ -380,7 +465,7 @@ void Editor::Inspector()
                 ImGui::Text("Z");
 
                 ImGui::SameLine();
-                ImGui::InputFloat("##PZ", &Core.renderer.objectsToRender[selectedObject]->transform.position.z, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##PZ", &Core.renderer.objectsToRender[selectedObject].transform.position.z, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
 
@@ -397,7 +482,7 @@ void Editor::Inspector()
                 ImGui::SameLine();
                 ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
 
-                ImGui::InputFloat("##RX", &Core.renderer.objectsToRender[selectedObject]->transform.rotation.x, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##RX", &Core.renderer.objectsToRender[selectedObject].transform.rotation.x, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableSetColumnIndex(2);
@@ -408,7 +493,7 @@ void Editor::Inspector()
                 ImGui::Text("Y");
 
                 ImGui::SameLine();
-                ImGui::InputFloat("##RY", &Core.renderer.objectsToRender[selectedObject]->transform.rotation.y, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##RY", &Core.renderer.objectsToRender[selectedObject].transform.rotation.y, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableSetColumnIndex(3);
@@ -419,7 +504,7 @@ void Editor::Inspector()
                 ImGui::Text("Z");
 
                 ImGui::SameLine();
-                ImGui::InputFloat("##RZ", &Core.renderer.objectsToRender[selectedObject]->transform.rotation.z, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##RZ", &Core.renderer.objectsToRender[selectedObject].transform.rotation.z, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableNextRow();
@@ -435,7 +520,7 @@ void Editor::Inspector()
                 ImGui::SameLine();
                 ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
 
-                ImGui::InputFloat("##SX", &Core.renderer.objectsToRender[selectedObject]->transform.scale.x, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##SX", &Core.renderer.objectsToRender[selectedObject].transform.scale.x, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableSetColumnIndex(2);
@@ -446,7 +531,7 @@ void Editor::Inspector()
                 ImGui::Text("Y");
 
                 ImGui::SameLine();
-                ImGui::InputFloat("##SY", &Core.renderer.objectsToRender[selectedObject]->transform.scale.y, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##SY", &Core.renderer.objectsToRender[selectedObject].transform.scale.y, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::TableSetColumnIndex(3);
@@ -457,7 +542,7 @@ void Editor::Inspector()
                 ImGui::Text("Z");
 
                 ImGui::SameLine();
-                ImGui::InputFloat("##SZ", &Core.renderer.objectsToRender[selectedObject]->transform.scale.z, 0.0f, 0.0f, "%.f");
+                ImGui::InputFloat("##SZ", &Core.renderer.objectsToRender[selectedObject].transform.scale.z, 0.0f, 0.0f, "%.f");
                 ImGui::PopStyleColor();
 
                 ImGui::PopItemWidth(); // Reset item width
@@ -470,19 +555,19 @@ void Editor::Inspector()
         }
 
         // Checks if the object has a sprite renderer component before showing the dropdown.
-        if (Core.renderer.objectsToRender[selectedObject]->HasComponent("Sprite Renderer"))
+        if (Core.renderer.objectsToRender[selectedObject].HasComponent("Sprite Renderer"))
         {
             if (ImGui::CollapsingHeader("Sprite Renderer"))
             { 
-                std::shared_ptr<SpriteRenderer> spriteRenderer = Core.renderer.objectsToRender[selectedObject]->GetComponent<SpriteRenderer>();
+                SpriteRenderer spriteRenderer = *Core.renderer.objectsToRender[selectedObject].GetComponent<SpriteRenderer>();
 
-                ImGui::Image((void*)spriteRenderer->cTexture.textureBuffer, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
+                ImGui::Image((void*)spriteRenderer.cTexture.textureBuffer, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
 
                 ImGui::SameLine();
 
                 ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 0.5f)); // Sets the text to green.
 
-                std::string imageName = spriteRenderer->cTexture.m_imagePath.erase(0, spriteRenderer->cTexture.m_imagePath.find_last_of("/") + 1); // Cuts the image directory, leaving just the name and extension.
+                std::string imageName = spriteRenderer.cTexture.m_imagePath.erase(0, spriteRenderer.cTexture.m_imagePath.find_last_of("/") + 1); // Cuts the image directory, leaving just the name and extension.
                 ImGui::Text(imageName.c_str());
 
                 ImGui::PopStyleColor(); // Pops the style.
@@ -505,7 +590,7 @@ void Editor::Inspector()
                     // Checks if the file exists.
                     if (file_path)
                     {
-                        spriteRenderer->cTexture.m_imagePath = assetsPath + std::string(file_path).erase(0, assetsPath.length()); // Erases the directories leading up to the "Assets" folder.
+                        spriteRenderer.cTexture.m_imagePath = assetsPath + std::string(file_path).erase(0, assetsPath.length()); // Erases the directories leading up to the "Assets" folder.
                         Core.renderer.RegenerateObject(selectedObject); // Updates the image to apply changes.
                     }
                 }
@@ -513,13 +598,13 @@ void Editor::Inspector()
 
                 ImGui::Text("Colour:");
                 ImGui::SameLine();
-                ImGui::ColorEdit4("##label4", (float*)&spriteRenderer->color);
+                ImGui::ColorEdit4("##label4", (float*)&spriteRenderer.color);
 
                 ImGui::SameLine();
 
                 if (ImGui::ImageButton((void*) resetIcon, ImVec2(20, 20), ImVec2(0, 1), ImVec2(1, 0)))
                 {
-                    spriteRenderer->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
+                    spriteRenderer.SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
                 }
                 AddTooltip("Reset to default."); // Adds a tooltip to the UI element above.
             }
@@ -527,64 +612,79 @@ void Editor::Inspector()
         else
         {
             // Check if the object does not have a camera component before providing the option to add a sprite renderer.
-            if (selectedObject >= 0 && !Core.renderer.objectsToRender[selectedObject]->HasComponent("Camera"))
+            if (selectedObject >= 0 && !Core.renderer.objectsToRender[selectedObject].HasComponent("Camera"))
             {
                 if (ImGui::Button("Add Sprite Renderer"))
                 {
                     SpriteRenderer spriteRendererComponent;
-                    Core.renderer.objectsToRender[selectedObject]->AddComponent(spriteRendererComponent);
+                    Core.renderer.objectsToRender[selectedObject].AddComponent(spriteRendererComponent);
                 }
             }
         }
 
         // Checks if the object has a camera component before showing the dropdown.
-        if (Core.renderer.objectsToRender[selectedObject]->HasComponent("Camera"))
+        if (Core.renderer.objectsToRender[selectedObject].HasComponent("Camera"))
         {
-            cameraObj = Core.renderer.objectsToRender[selectedObject]; // Sets this gameobject as the scene camera.
+            previewCameraObj = Core.renderer.objectsToRender[selectedObject]; // Sets this gameobject as the scene camera.
 
-            if (ImGui::CollapsingHeader("Camera Output"))
+            if (ImGui::CollapsingHeader("Camera"))
             {
-                camera = Core.renderer.objectsToRender[selectedObject]->GetComponent<Camera>();
+                // BAZINGA
+                Camera camera = *Core.renderer.objectsToRender[selectedObject].GetComponent<Camera>();
 
-                ImGui::Image((void*)framebuffer->GetTexture(), ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
+                ImGui::Image((void*)previewFB->GetTexture(), ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
 
                 ImGui::Text("Output Colour:");
                 ImGui::SameLine();
-                ImGui::ColorEdit4("##label7", (float*)&camera->outputColor);
+                ImGui::ColorEdit4("##label7", (float*)&camera.outputColor);
 
                 ImGui::SameLine();
                 if (ImGui::ImageButton((void*)resetIcon, ImVec2(20, 20), ImVec2(0, 1), ImVec2(1, 0)))
                 {
-                    camera->SetColor(camera->outputColor, { 1.0f, 1.0f, 1.0f, 1.0f });
+                    camera.SetColor(camera.outputColor, { 1.0f, 1.0f, 1.0f, 1.0f });
                 }
 
                 ImGui::Text("Background Colour:");
                 ImGui::SameLine();
-                ImGui::ColorEdit3("##label8", (float*)&camera->backgroundColor);
+                ImGui::ColorEdit3("##label8", (float*)&camera.backgroundColor);
 
                 ImGui::SameLine();
                 if (ImGui::ImageButton((void*)resetIcon, ImVec2(20, 20), ImVec2(0, 1), ImVec2(1, 0)))
                 {
-                    camera->SetColor(camera->backgroundColor, { 0.05f, 0.05f, 0.05f, 1.0f });
+                    camera.SetColor(camera.backgroundColor, { 0.05f, 0.05f, 0.05f, 1.0f });
                 }
                 AddTooltip("Reset to default."); // Adds a tooltip to the UI element above.
+
+                if (ImGui::Button("Set as Starting Camera"))
+                {
+                    // Starting camera logic.
+                    startCameraIndex = selectedObject;
+                }
+                AddTooltip("Set this camera to be the 'main camera.'"); // Adds a tooltip to the UI element above.
+
+                // Checks if this is the starting camera.
+                if (startCameraIndex == selectedObject)
+                {
+                    ImGui::SameLine();
+                    ImGui::Text("[This is the starting camera!]");
+                }
             }
         }
         else
         {
             // Check if the object does not have a sprite renderer component before providing the option to add a camera.
-            if (selectedObject >= 0 && !Core.renderer.objectsToRender[selectedObject]->HasComponent("Sprite Renderer"))
+            if (selectedObject >= 0 && !Core.renderer.objectsToRender[selectedObject].HasComponent("Sprite Renderer"))
             {
                 if (ImGui::Button("Add Camera"))
                 {
                     Camera cameraComponent;
-                    Core.renderer.objectsToRender[selectedObject]->AddComponent(cameraComponent);
+                    Core.renderer.objectsToRender[selectedObject].AddComponent(cameraComponent);
                 }
             }
         }
 
         // Checks if the object has an audio manager component before showing the dropdown.
-        if (Core.renderer.objectsToRender[selectedObject]->HasComponent("Audio Manager"))
+        if (Core.renderer.objectsToRender[selectedObject].HasComponent("Audio Manager"))
         {
             if (ImGui::CollapsingHeader("Audio Manager"))
             {
@@ -599,13 +699,13 @@ void Editor::Inspector()
                 if (ImGui::Button("Add Audio Manager"))
                 {
                     AudioManager audioManagerComponent;
-                    Core.renderer.objectsToRender[selectedObject]->AddComponent(audioManagerComponent);
+                    Core.renderer.objectsToRender[selectedObject].AddComponent(audioManagerComponent);
                 }
             }
         }
 
         // Checks if the object has a script component before showing the dropdown.
-        if (Core.renderer.objectsToRender[selectedObject]->HasComponent("Script Manager"))
+        if (Core.renderer.objectsToRender[selectedObject].HasComponent("Script Manager"))
         {
             if (ImGui::CollapsingHeader("Script Manager"))
             {
@@ -620,7 +720,7 @@ void Editor::Inspector()
                 if (ImGui::Button("Add Script Manager"))
                 {
                     ScriptManager scriptManagerComponent;
-                    Core.renderer.objectsToRender[selectedObject]->AddComponent(scriptManagerComponent);
+                    Core.renderer.objectsToRender[selectedObject].AddComponent(scriptManagerComponent);
                 }
             }
         }
@@ -1148,9 +1248,9 @@ void Editor::AudioManagerComponent()
     ImGui::Text("Sounds: ");
     ImGui::SameLine();
 
-    std::shared_ptr<AudioManager> audioManager = Core.renderer.objectsToRender[selectedObject]->GetComponent<AudioManager>();
+    AudioManager audioManager = *Core.renderer.objectsToRender[selectedObject].GetComponent<AudioManager>();
 
-    ImGui::Text(std::to_string(audioManager->sounds.size()).c_str()); // Shows the number of sounds in the vector.
+    ImGui::Text(std::to_string(audioManager.sounds.size()).c_str()); // Shows the number of sounds in the vector.
 
     ImGui::SameLine();
 
@@ -1167,19 +1267,19 @@ void Editor::AudioManagerComponent()
         s.position = glm::vec3(0);
         s.velocity = glm::vec3(0);
 
-        audioManager->sounds.push_back(s); // Adds a sound to the list.
+        audioManager.sounds.push_back(s); // Adds a sound to the list.
     }
     AddTooltip("Create a new sound effect."); // Add tooltip for UI element above.
 
     // Loops through every item in sounds vector.
-    for (int i = 0; i < audioManager->sounds.size(); i++)
+    for (int i = 0; i < audioManager.sounds.size(); i++)
     {
         ImGui::Indent();
 
         ImGui::PushID(i);
-        Sound sound = audioManager->sounds[i]; // Gets a sound from the vector.
+        Sound sound = audioManager.sounds[i]; // Gets a sound from the vector.
 
-        if (sound.soundName != audioManager->sounds[i].soundName) ImGui::SetNextItemOpen(true);
+        if (sound.soundName != audioManager.sounds[i].soundName) ImGui::SetNextItemOpen(true);
 
         // Collapsing header for selected sound.
         if (ImGui::CollapsingHeader(sound.soundName.c_str(), ImGuiTreeNodeFlags_DefaultOpen))
@@ -1195,7 +1295,7 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::InputText("##name", &audioManager->sounds[i].soundName);
+                ImGui::InputText("##name", &audioManager.sounds[i].soundName);
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
@@ -1204,14 +1304,14 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::Text(audioManager->sounds[i].filePath.c_str());
+                ImGui::Text(audioManager.sounds[i].filePath.c_str());
                 ImGui::SameLine();
 
                 // Creates a button for the user to select a file through the file explorer.
                 if (ImGui::ImageButton((void*)miniFolderIcon, ImVec2(20, 20), ImVec2(0, 1), ImVec2(1, 0)))
                 {
-                    audioManager->GenSound(i); // If a new sound has been created, generate sources and buffers for audio to play.
-                    audioManager->Stop(audioManager->sounds[i].soundName); // Stops the audio source.
+                    audioManager.GenSound(i); // If a new sound has been created, generate sources and buffers for audio to play.
+                    audioManager.Stop(audioManager.sounds[i].soundName); // Stops the audio source.
 
                     const char* filterTypes[1] = { "*.wav" }; // Defines the file filters.
                     std::string filePath = fileManager.OpenFileExplorer(filterTypes, "Select a sound file", assetsPath); // Gets the file path using the file explorer.
@@ -1219,10 +1319,10 @@ void Editor::AudioManagerComponent()
                     // Checks if file path is valid.
                     if (!filePath.empty())
                     {
-                        audioManager->sounds[i].filePath = filePath.erase(0, assetsPath.length() + 1); // Updates the file path.
+                        audioManager.sounds[i].filePath = filePath.erase(0, assetsPath.length() + 1); // Updates the file path.
 
-                        audioManager->sounds[i].audioSource->ChangeFile(audioManager->sounds[i].filePath); // Changes the file path for the audio source.
-                        audioManager->sounds[i].audioSource->SetProperties(audioManager->sounds[i].pitch, audioManager->sounds[i].volume, audioManager->sounds[i].isLooping, audioManager->sounds[i].position, audioManager->sounds[i].velocity); // Resets audio source properties.
+                        audioManager.sounds[i].audioSource->ChangeFile(audioManager.sounds[i].filePath); // Changes the file path for the audio source.
+                        audioManager.sounds[i].audioSource->SetProperties(audioManager.sounds[i].pitch, audioManager.sounds[i].volume, audioManager.sounds[i].isLooping, audioManager.sounds[i].position, audioManager.sounds[i].velocity); // Resets audio source properties.
                     }
                 }
                 AddTooltip("Locate the file through your files window."); // Adds a tooltip to the UI element above.
@@ -1234,7 +1334,7 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::SliderFloat("##pitch", &audioManager->sounds[i].pitch, 0.1, 2.0, "%.2f");
+                ImGui::SliderFloat("##pitch", &audioManager.sounds[i].pitch, 0.1, 2.0, "%.2f");
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
@@ -1243,7 +1343,7 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::SliderFloat("##volume", &audioManager->sounds[i].volume, 0.0, 1.0, "%.2f");
+                ImGui::SliderFloat("##volume", &audioManager.sounds[i].volume, 0.0, 1.0, "%.2f");
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
@@ -1265,7 +1365,7 @@ void Editor::AudioManagerComponent()
                     ImGui::SameLine();
                     ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
 
-                    ImGui::InputFloat("##PX", &audioManager->sounds[i].position.x, 0.0f, 0.0f, "%.f");
+                    ImGui::InputFloat("##PX", &audioManager.sounds[i].position.x, 0.0f, 0.0f, "%.f");
                     ImGui::PopStyleColor();
 
                     ImGui::TableSetColumnIndex(1);
@@ -1275,7 +1375,7 @@ void Editor::AudioManagerComponent()
                     ImGui::Text("Y");
 
                     ImGui::SameLine();
-                    ImGui::InputFloat("##PY", &audioManager->sounds[i].position.y, 0.0f, 0.0f, "%.f");
+                    ImGui::InputFloat("##PY", &audioManager.sounds[i].position.y, 0.0f, 0.0f, "%.f");
                     ImGui::PopStyleColor();
 
                     ImGui::TableSetColumnIndex(2);
@@ -1286,7 +1386,7 @@ void Editor::AudioManagerComponent()
                     ImGui::Text("Z");
 
                     ImGui::SameLine();
-                    ImGui::InputFloat("##PZ", &audioManager->sounds[i].position.z, 0.0f, 0.0f, "%.f");
+                    ImGui::InputFloat("##PZ", &audioManager.sounds[i].position.z, 0.0f, 0.0f, "%.f");
                     ImGui::PopStyleColor();
 
                     ImGui::EndTable();
@@ -1311,7 +1411,7 @@ void Editor::AudioManagerComponent()
                     ImGui::SameLine();
                     ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
 
-                    ImGui::InputFloat("##VX", &audioManager->sounds[i].velocity.x, 0.0f, 0.0f, "%.f");
+                    ImGui::InputFloat("##VX", &audioManager.sounds[i].velocity.x, 0.0f, 0.0f, "%.f");
                     ImGui::PopStyleColor();
 
                     ImGui::TableSetColumnIndex(1);
@@ -1322,7 +1422,7 @@ void Editor::AudioManagerComponent()
                     ImGui::Text("Y");
 
                     ImGui::SameLine();
-                    ImGui::InputFloat("##VY", &audioManager->sounds[i].velocity.y, 0.0f, 0.0f, "%.f");
+                    ImGui::InputFloat("##VY", &audioManager.sounds[i].velocity.y, 0.0f, 0.0f, "%.f");
                     ImGui::PopStyleColor();
 
                     ImGui::TableSetColumnIndex(2);
@@ -1333,7 +1433,7 @@ void Editor::AudioManagerComponent()
                     ImGui::Text("Z");
 
                     ImGui::SameLine();
-                    ImGui::InputFloat("##VZ", &audioManager->sounds[i].velocity.z, 0.0f, 0.0f, "%.f");
+                    ImGui::InputFloat("##VZ", &audioManager.sounds[i].velocity.z, 0.0f, 0.0f, "%.f");
                     ImGui::PopStyleColor();
 
                     ImGui::EndTable();
@@ -1347,7 +1447,7 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::Checkbox("##playStart", &audioManager->sounds[i].playOnStartUp);
+                ImGui::Checkbox("##playStart", &audioManager.sounds[i].playOnStartUp);
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
@@ -1357,7 +1457,7 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::Checkbox("##repeat", &audioManager->sounds[i].repeatDelay);
+                ImGui::Checkbox("##repeat", &audioManager.sounds[i].repeatDelay);
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
@@ -1367,7 +1467,7 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::Checkbox("##loop", &audioManager->sounds[i].isLooping);
+                ImGui::Checkbox("##loop", &audioManager.sounds[i].isLooping);
 
                 ImGui::NewLine();
                 ImGui::TableNextRow();
@@ -1381,14 +1481,14 @@ void Editor::AudioManagerComponent()
                 // The play button.
                 if (ImGui::Button("Play"))
                 {
-                    audioManager->GenSound(i); // If a new sound has been created, generate sources and buffers for audio to play.
+                    audioManager.GenSound(i); // If a new sound has been created, generate sources and buffers for audio to play.
 
-                    audioManager->sounds[i].audioSource->Stop(); // Stops the sound from playing.
+                    audioManager.sounds[i].audioSource->Stop(); // Stops the sound from playing.
 
-                    audioManager->sounds[i].audioSource->ChangeFile(audioManager->sounds[i].filePath); // Changes the file path for the audio source.
-                    audioManager->sounds[i].audioSource->SetProperties(audioManager->sounds[i].pitch, audioManager->sounds[i].volume, audioManager->sounds[i].isLooping, audioManager->sounds[i].position, audioManager->sounds[i].velocity); // Resets audio source properties.
+                    audioManager.sounds[i].audioSource->ChangeFile(audioManager.sounds[i].filePath); // Changes the file path for the audio source.
+                    audioManager.sounds[i].audioSource->SetProperties(audioManager.sounds[i].pitch, audioManager.sounds[i].volume, audioManager.sounds[i].isLooping, audioManager.sounds[i].position, audioManager.sounds[i].velocity); // Resets audio source properties.
                     
-                    audioManager->sounds[i].audioSource->Play(); // Plays the sound.
+                    audioManager.sounds[i].audioSource->Play(); // Plays the sound.
                 }
 
                 ImGui::SameLine();
@@ -1396,7 +1496,7 @@ void Editor::AudioManagerComponent()
                 // The stop button.
                 if (ImGui::Button("Pause"))
                 {
-                    audioManager->sounds[i].audioSource->Pause(); // Stops the sound.
+                    audioManager.sounds[i].audioSource->Pause(); // Stops the sound.
                 }
 
                 ImGui::SameLine();
@@ -1404,7 +1504,7 @@ void Editor::AudioManagerComponent()
                 // The stop button.
                 if (ImGui::Button("Stop"))
                 {
-                    audioManager->sounds[i].audioSource->Stop(); // Stops the sound.
+                    audioManager.sounds[i].audioSource->Stop(); // Stops the sound.
                 }
 
                 ImGui::EndTable();
@@ -1423,9 +1523,9 @@ void Editor::ScriptManagerComponent()
     ImGui::Text("Scripts: ");
     ImGui::SameLine();
 
-    std::shared_ptr<ScriptManager> scriptManager = Core.renderer.objectsToRender[selectedObject]->GetComponent<ScriptManager>();
+    ScriptManager scriptManager = *Core.renderer.objectsToRender[selectedObject].GetComponent<ScriptManager>();
 
-    ImGui::Text(std::to_string(scriptManager->GetScripts().size()).c_str()); // Shows the number of sounds in the vector.
+    ImGui::Text(std::to_string(scriptManager.GetScripts().size()).c_str()); // Shows the number of sounds in the vector.
 
     ImGui::SameLine();
 
@@ -1446,7 +1546,7 @@ void Editor::ScriptManagerComponent()
         if (file_path)
         {
             // Script changing logic here.
-            scriptManager->BindScript(file_path);
+            scriptManager.BindScript(Core.m_scriptController.m_lua, file_path);
         }
     }
     AddTooltip("Bind an existing script."); // Add tooltip for UI element above.
@@ -1489,9 +1589,7 @@ void Editor::ScriptManagerComponent()
             try
             {
                 std::filesystem::copy_file(defaultScriptPath, savePath); // Copies the template lua code from editor resources and renames the file.
-
-                scriptManager->BindScript(savePath);
-                Core.m_scriptController.AddScript(savePath); // Attaches newly created script to lua controller.
+                scriptManager.BindScript(Core.m_scriptController.m_lua, savePath);
             }
             catch (std::filesystem::filesystem_error& e)
             {
@@ -1501,15 +1599,15 @@ void Editor::ScriptManagerComponent()
     }
     AddTooltip("Create a new script."); // Add tooltip for UI element above.
 
-    // Loops through every item in sounds vector.
-    for (int i = 0; i < scriptManager->GetScripts().size(); i++)
+    // Loops through every item in scripts vector.
+    for (int i = 0; i < scriptManager.GetScripts().size(); i++)
     {
         ImGui::Indent();
 
         ImGui::PushID(i);
-        Script s = scriptManager->GetScripts()[i]; // Gets a sound from the vector.
+        Script s = scriptManager.GetScripts()[i]; // Gets a sound from the vector.
 
-        if (s.GetPath() != scriptManager->GetScripts()[i].GetPath()) ImGui::SetNextItemOpen(true);
+        if (s.GetPath() != scriptManager.GetScripts()[i].GetPath()) ImGui::SetNextItemOpen(true);
 
         std::filesystem::path scriptPath = s.GetPath();
         std::string scriptFolderPath = scriptPath.parent_path().string();
@@ -1538,7 +1636,7 @@ void Editor::ScriptManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                std::string scriptFilePath = scriptManager->GetScripts()[i].GetPath().erase(0, Core.selectedProject.assetsFolderPath.length() + 1);
+                std::string scriptFilePath = scriptManager.GetScripts()[i].GetPath().erase(0, Core.selectedProject.assetsFolderPath.length() + 1);
 
                 ImGui::Text(scriptFilePath.c_str());
                 ImGui::SameLine();
@@ -1560,7 +1658,7 @@ void Editor::ScriptManagerComponent()
                     if (file_path)
                     {
                         // Script changing logic here.
-                        scriptManager->GetScripts()[i].SetPath(file_path);
+                        scriptManager.GetScripts()[i].SetPath(file_path);
                     }
                 }
                 AddTooltip("Locate the file through your files window."); // Adds a tooltip to the UI element above.
@@ -1570,7 +1668,7 @@ void Editor::ScriptManagerComponent()
                 // New script button.
                 if (ImGui::Button("-"))
                 {
-                    scriptManager->UnbindScript(scriptManager->GetScripts()[i].GetPath());
+                    scriptManager.UnbindScript(scriptManager.GetScripts()[i].GetPath());
                 }
                 AddTooltip("Unbind the script."); // Add tooltip for UI element above.
 
@@ -1589,13 +1687,9 @@ void Editor::SearchMainCamera()
 {
     for (auto& obj : Core.renderer.objectsToRender)
     {
-        camera = obj->GetComponent<Camera>();
-        cameraObj = obj;
-
-        /*if (camera != nullptr)
-        {
-
-        }*/
+        // TODO: make the main camera a separate thing and use that instead of the editor camera.
+        /*editorCamera = *obj.GetComponent<Camera>();
+        editorCameraObj = obj;*/
     }
 }
 

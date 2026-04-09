@@ -17,11 +17,37 @@ void ScriptManager::UnbindScript(std::string scriptPath)
 	}
 }
 
-void ScriptManager::BindScript(std::string scriptPath)
+void ScriptManager::BindScript(sol::state& luaController, std::string scriptPath)
 {
-	Script newScript;
-	newScript.SetPath(scriptPath);
+	Script newScript = Script(luaController, scriptPath);
 	m_scripts.push_back(newScript); // Adds script to vector.
+}
+
+void ScriptManager::BindGameObjects(sol::state& luaController, GameObject gObj)
+{
+	for (int i = 0; i < m_scripts.size(); i++)
+	{
+		m_scripts[i].Gen(luaController);
+		m_scripts[i].GetLua()["gameobject"] = gObj; // Removes script from vector.
+	}
+}
+
+void ScriptManager::CallUpdate() const
+{
+	for (auto& script : m_scripts)
+	{
+		sol::function updateFunc = script.GetLua()["Update"];
+		if (updateFunc.valid()) updateFunc(script.GetLua());
+	}
+}
+
+void ScriptManager::CallStart() const
+{
+	for (auto& script : m_scripts)
+	{
+		sol::function startFunc = script.GetLua()["Start"];
+		if (startFunc.valid()) startFunc(script.GetLua());
+	}
 }
 
 std::vector<Script> ScriptManager::GetScripts() const

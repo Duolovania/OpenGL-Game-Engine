@@ -6,6 +6,7 @@
 #include "Rendering/shader.h"
 #include "stb_image.h"
 #include "Core/filemanager.h"
+#include "Scripts/scriptmanager.h"
 #include <windows.h>
 #include <filesystem>
 
@@ -112,10 +113,6 @@ void Application::Run()
         Core.m_scriptController.Init();
 
         SearchScripts(Core.selectedProject.assetsFolderPath);
-        for (auto s : scriptPaths)
-        {
-            Core.m_scriptController.AddScript(s);
-        }
     }
 
     // Loop until the user closes the window
@@ -186,11 +183,23 @@ void Application::Loop()
         // Checks if the game hasn't started yet.
         if (!hasStarted)
         {
-            Core.m_scriptController.CallStart(); // Calls all 'Start' functions.
-            hasStarted = true; // Stops start from being called.
+            // Calls all 'Start' functions.
+            for (int i = 0; i < Core.renderer.objectsToRender.size(); i++)
+            {
+                if (Core.renderer.objectsToRender[i].HasComponent("Script Manager"))
+                {
+                    Core.renderer.objectsToRender[i].GetComponent<ScriptManager>()->BindGameObjects(Core.m_scriptController.m_lua, Core.renderer.objectsToRender[i]);
+                    Core.renderer.objectsToRender[i].GetComponent<ScriptManager>()->CallStart();
+                }
+            }
+            hasStarted = true; // Stops start from being called again.
         }
 
-        Core.m_scriptController.CallUpdate(); // Calls all 'Update' functions.
+        // Calls all 'Update' functions.
+        for (int i = 0; i < Core.renderer.objectsToRender.size(); i++)
+        {
+            if (Core.renderer.objectsToRender[i].HasComponent("Script Manager")) Core.renderer.objectsToRender[i].GetComponent<ScriptManager>()->CallUpdate();
+        }
     }
     else if (Core.m_applicationState == OBApplicationState::Stop)
     {

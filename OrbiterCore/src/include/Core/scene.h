@@ -9,5 +9,5 @@ class Scene
 {
 	public:
 		std::string sceneName, scenePath;
-		std::vector<std::shared_ptr<GameObject>> objectsToRender;
+		std::vector<GameObject> objectsToRender;
 };

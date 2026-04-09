@@ -105,21 +105,21 @@ void Renderer::Draw(glm::mat4 projection, glm::mat4 view, glm::vec4 colourTint)
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
 		// Checks if the object has a sprite renderer component.
-		if (objectsToRender[i]->HasComponent("Sprite Renderer"))
+		if (objectsToRender[i].HasComponent("Sprite Renderer"))
 		{
-			std::shared_ptr<SpriteRenderer> spriteRenderer = objectsToRender[i]->GetComponent<SpriteRenderer>();
+			SpriteRenderer spriteRenderer = *objectsToRender[i].GetComponent<SpriteRenderer>();
 
 			// Checks if the sprite is inside the camera.
-			if (spriteRenderer->CheckVisibility(glm::vec2(view[3].x, view[3].y)))
+			if (spriteRenderer.CheckVisibility(glm::vec2(view[3].x, view[3].y)))
 			{
 				// Sets the transform matrix to the object's transform values.
 				glm::mat4 transform =
-					glm::translate(glm::mat4(1.0f), glm::vec3(objectsToRender[i]->transform.position.x, objectsToRender[i]->transform.position.y, 0.0f))
-					* glm::rotate(glm::mat4(1.0f), glm::radians(-objectsToRender[i]->transform.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f))
-					* glm::scale(glm::mat4(1.0f), glm::vec3(objectsToRender[i]->transform.scale.x, objectsToRender[i]->transform.scale.y, 1.0f));
+					glm::translate(glm::mat4(1.0f), glm::vec3(objectsToRender[i].transform.position.x, objectsToRender[i].transform.position.y, 0.0f))
+					* glm::rotate(glm::mat4(1.0f), glm::radians(-objectsToRender[i].transform.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f))
+					* glm::scale(glm::mat4(1.0f), glm::vec3(objectsToRender[i].transform.scale.x, objectsToRender[i].transform.scale.y, 1.0f));
 
 				// Creates a new quad with the transform matrix and sprite renderer colour values.
-				buffer = CreateQuad(buffer, transform, i, { spriteRenderer->color[0], spriteRenderer->color[1], spriteRenderer->color[2], spriteRenderer->color[3] });
+				buffer = CreateQuad(buffer, transform, i, { spriteRenderer.color[0], spriteRenderer.color[1], spriteRenderer.color[2], spriteRenderer.color[3] });
 			}
 		}
 	}
@@ -161,11 +161,11 @@ void Renderer::RegenerateObjects()
 	// Prepares necessary amount of slots and binds each character texture to a slot.
 	for (int i = 0; i < objectsToRender.size(); i++)
 	{
-		if (objectsToRender[i]->HasComponent("Sprite Renderer"))
+		if (objectsToRender[i].HasComponent("Sprite Renderer"))
 		{
-			std::shared_ptr<SpriteRenderer> spriteRenderer = objectsToRender[i]->GetComponent<SpriteRenderer>();
-			spriteRenderer->cTexture = GetCachedBindlessTexture(spriteRenderer);
-			samplers[i] = spriteRenderer->cTexture.textureHandle;
+			SpriteRenderer spriteRenderer = *objectsToRender[i].GetComponent<SpriteRenderer>();
+			spriteRenderer.cTexture = GetCachedBindlessTexture(spriteRenderer);
+			samplers[i] = spriteRenderer.cTexture.textureHandle;
 
 			texturesLoaded++;
 		}
@@ -181,11 +181,11 @@ void Renderer::RegenerateObject(unsigned int index)
 {
 	m_shader->Bind();
 
-	if (objectsToRender[index]->HasComponent("Sprite Renderer"))
+	if (objectsToRender[index].HasComponent("Sprite Renderer"))
 	{
-		std::shared_ptr<SpriteRenderer> spriteRenderer = objectsToRender[index]->GetComponent<SpriteRenderer>();
-		spriteRenderer->cTexture = GetCachedBindlessTexture(spriteRenderer);
-		samplers[index] = spriteRenderer->cTexture.textureHandle;
+		SpriteRenderer spriteRenderer = *objectsToRender[index].GetComponent<SpriteRenderer>();
+		spriteRenderer.cTexture = GetCachedBindlessTexture(spriteRenderer);
+		samplers[index] = spriteRenderer.cTexture.textureHandle;
 
 		texturesLoaded++;
 	}
@@ -231,22 +231,22 @@ Vertex* Renderer::CreateQuad(Vertex* target, glm::mat4 transform, float texID, V
 }
 
 // Searches for a cached texture with the same file path.
-LiteTexture Renderer::GetCachedBindlessTexture(std::shared_ptr<SpriteRenderer> spriteRendererComp)
+LiteTexture Renderer::GetCachedBindlessTexture(SpriteRenderer spriteRendererComp)
 {
 	// Loops through each cached texture.
 	for (int i = 0; i < cachedTextures.size(); i++)
 	{
 		// Checks if the file path matches.
-		if (spriteRendererComp->cTexture.m_imagePath == cachedTextures[i].m_imagePath)
+		if (spriteRendererComp.cTexture.m_imagePath == cachedTextures[i].m_imagePath)
 		{
-			std::cout << "Used caching for " << spriteRendererComp->cTexture.m_imagePath << std::endl;
+			std::cout << "Used caching for " << spriteRendererComp.cTexture.m_imagePath << std::endl;
 			return cachedTextures[i]; // Returns cached texture.
 		}
 	}
 
 	newTextures++; // Increases the number of newly generated textures. This is for debugging only.
 
-	LiteTexture newTexture = m_text.GenBindlessTexture(spriteRendererComp->cTexture.m_imagePath); // Generates a new texture.
+	LiteTexture newTexture = m_text.GenBindlessTexture(spriteRendererComp.cTexture.m_imagePath); // Generates a new texture.
 	cachedTextures.push_back(newTexture); // Caches the new texture.
 
 	return newTexture; // Returns the new texture if none was found.
