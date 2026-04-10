@@ -161,7 +161,7 @@ bool Editor::OnUpdate(float deltaTime, float time)
     if (startCameraIndex > -1)
     {
         gameCameraObj.transform = Core.renderer.objectsToRender[startCameraIndex].transform;
-        gameCameraObj.GetComponent<Camera>() = Core.renderer.objectsToRender[startCameraIndex].GetComponent<Camera>();
+        gameCamera = *Core.renderer.objectsToRender[startCameraIndex].GetComponent<Camera>();
     }
 
     GLCall(glClearColor(gameCamera.backgroundColor[0], gameCamera.backgroundColor[1], gameCamera.backgroundColor[2], 1.0f));
@@ -625,33 +625,33 @@ void Editor::Inspector()
         // Checks if the object has a camera component before showing the dropdown.
         if (Core.renderer.objectsToRender[selectedObject].HasComponent("Camera"))
         {
-            previewCameraObj = Core.renderer.objectsToRender[selectedObject]; // Sets this gameobject as the scene camera.
+            previewCameraObj = Core.renderer.objectsToRender[selectedObject]; // Sets this gameobject as the preview.
 
             if (ImGui::CollapsingHeader("Camera"))
             {
                 // BAZINGA
-                Camera camera = *Core.renderer.objectsToRender[selectedObject].GetComponent<Camera>();
+                Camera *camera = &*Core.renderer.objectsToRender[selectedObject].GetComponent<Camera>();
 
                 ImGui::Image((void*)previewFB->GetTexture(), ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
 
                 ImGui::Text("Output Colour:");
                 ImGui::SameLine();
-                ImGui::ColorEdit4("##label7", (float*)&camera.outputColor);
+                ImGui::ColorEdit4("##label7", (float*)&camera->outputColor);
 
                 ImGui::SameLine();
                 if (ImGui::ImageButton((void*)resetIcon, ImVec2(20, 20), ImVec2(0, 1), ImVec2(1, 0)))
                 {
-                    camera.SetColor(camera.outputColor, { 1.0f, 1.0f, 1.0f, 1.0f });
+                    camera->SetColor(camera->outputColor, { 1.0f, 1.0f, 1.0f, 1.0f });
                 }
 
                 ImGui::Text("Background Colour:");
                 ImGui::SameLine();
-                ImGui::ColorEdit3("##label8", (float*)&camera.backgroundColor);
+                ImGui::ColorEdit3("##label8", (float*)&camera->backgroundColor);
 
                 ImGui::SameLine();
                 if (ImGui::ImageButton((void*)resetIcon, ImVec2(20, 20), ImVec2(0, 1), ImVec2(1, 0)))
                 {
-                    camera.SetColor(camera.backgroundColor, { 0.05f, 0.05f, 0.05f, 1.0f });
+                    camera->SetColor(camera->backgroundColor, { 0.05f, 0.05f, 0.05f, 1.0f });
                 }
                 AddTooltip("Reset to default."); // Adds a tooltip to the UI element above.
 
