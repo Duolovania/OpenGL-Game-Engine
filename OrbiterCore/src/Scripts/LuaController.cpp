@@ -27,7 +27,7 @@ void LuaController::Init()
     m_lua.new_usertype<glm::vec3>("Vector3", "x", &glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
     m_lua.new_usertype<glm::vec2>("Vector2", "x", &glm::vec2::x, "y", &glm::vec2::y);
     m_lua.new_usertype<Transform>("Transform", "position", &Transform::position, "rotation", &Transform::rotation, "scale", &Transform::scale);
-    m_lua.new_usertype<GameObject>("GameObject", "transform", &GameObject::GetComponent<Transform>);
+    m_lua.new_usertype<GameObject>("GameObject", "transform", &GameObject::GetComponent<Transform>, "name", &GameObject::objectName);
 
     // TODO: add sprite renderer and camera.
 }

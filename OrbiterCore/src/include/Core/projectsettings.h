@@ -15,6 +15,10 @@ struct ProjectSettings
 	std::string firstSceneName;
 	std::string firstScenePath;
 
+	// Path to the last scene that was open in the editor.
+	std::string recentSceneName;
+	std::string recentScenePath;
+
 	// Input actions.
 	Input InputManager;
 

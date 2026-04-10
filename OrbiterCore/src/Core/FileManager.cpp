@@ -391,6 +391,10 @@ void FileManager::CreateProjectConfig(ProjectSettings settings, std::string file
 	yamlNode["Project Details"]["First Scene"]["Name"] = settings.firstSceneName;
 	yamlNode["Project Details"]["First Scene"]["Path"] = settings.firstScenePath;
 
+	// Sets the recent scene data.
+	yamlNode["Project Details"]["Recent Scene"]["Name"] = settings.recentSceneName;
+	yamlNode["Project Details"]["Recent Scene"]["Path"] = settings.recentScenePath;
+
 	// Sets the display properties.
 	yamlNode["Project Details"]["Display"]["Resolution"]["X"] = settings.displayResX;
 	yamlNode["Project Details"]["Display"]["Resolution"]["Y"] = settings.displayResY;
@@ -454,9 +458,11 @@ ProjectSettings FileManager::LoadProjectConfig(std::string filePath)
 		newProjectConfig.name = yamlNode["Project Details"]["Name"].as<std::string>();
 		newProjectConfig.assetsFolderPath = yamlNode["Project Details"]["Path"].as<std::string>();
 
-		// Sets the general values.
 		newProjectConfig.firstSceneName = yamlNode["Project Details"]["First Scene"]["Name"].as<std::string>();
 		newProjectConfig.firstScenePath = yamlNode["Project Details"]["First Scene"]["Path"].as<std::string>();
+
+		newProjectConfig.recentSceneName = yamlNode["Project Details"]["Recent Scene"]["Name"].as<std::string>();
+		newProjectConfig.recentScenePath = yamlNode["Project Details"]["Recent Scene"]["Path"].as<std::string>();
 
 		// Sets the display values.
 		newProjectConfig.displayResX = yamlNode["Project Details"]["Display"]["Resolution"]["X"].as<float>();

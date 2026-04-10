@@ -107,8 +107,19 @@ void Editor::Init(GLFWwindow* window)
     defaultScriptPath = "res/Copy Files/defaultscript.lua";
 
     // Sets the first scene to a new, empty scene.
-    currentScene.sceneName = "Untitled";
-    currentScene.objectsToRender.clear();
+
+    if (Core.selectedProject.recentSceneName != "")
+    {
+        currentScene = fileManager.LoadSceneFile(Core.selectedProject.recentSceneName, Core.selectedProject.recentScenePath);
+
+        Core.renderer.objectsToRender = currentScene.objectsToRender;
+        Core.renderer.RegenerateObjects();
+    }
+    else
+    {
+        currentScene.sceneName = "Untitled";
+        currentScene.objectsToRender.clear();
+    }
 
     Camera defaultCamera;
     editorCameraObj.AddComponent(defaultCamera);
@@ -196,9 +207,6 @@ bool Editor::OnUpdate(float deltaTime, float time)
     // Render scene objects.
     Core.renderer.Draw(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f), editorCameraObj.GetView(), { editorCamera.outputColor[0], editorCamera.outputColor[1], editorCamera.outputColor[2], editorCamera.outputColor[3] });
 
-    DebugWindow(); // Shows the debug console window.
-    OptionalWindows(); // Shows additional windows (e.g. rendering stats, project settings, etc.)
-
     // Unbinds frame buffer components.
     editorFB->UnBind();
 
@@ -215,9 +223,6 @@ bool Editor::OnUpdate(float deltaTime, float time)
 
     // Render scene objects.
     Core.renderer.Draw(glm::ortho(((float)viewportSize.x / (float)viewportSize.y) * -100, ((float)viewportSize.x / (float)viewportSize.y) * 100, -100.0f, 100.0f, -1.0f, 1.0f), previewCameraObj.GetView(), { previewCamera.outputColor[0], previewCamera.outputColor[1], previewCamera.outputColor[2], previewCamera.outputColor[3] });
-
-    DebugWindow(); // Shows the debug console window.
-    OptionalWindows(); // Shows additional windows (e.g. rendering stats, project settings, etc.)
 
     // Unbinds frame buffer components.
     previewFB->UnBind();
@@ -952,14 +957,6 @@ void Editor::ContentBrowser()
                             // Creates the file buttons.
                             if (ImGui::ImageButton((void*)fileThumbnail, buttonSize, ImVec2(0, 1), ImVec2(1, 0)))
                             {
-                                if (ImGui::BeginDragDropSource())
-                                {
-                                    std::string path = entry.path().filename().string();
-                                    ImGui::Text("Dragging");
-                                    ImGui::SetDragDropPayload("ITEM_DRAG", &path, sizeof(path)); // Set payload
-                                    ImGui::EndDragDropSource();
-                                }
-
                                 // Checks if the file is an engine scene file.
                                 if (fileExtension == ".worldOB")
                                 {
@@ -970,6 +967,8 @@ void Editor::ContentBrowser()
                                     Core.renderer.RegenerateObjects();
 
                                     savedChanges = true;
+                                    Core.selectedProject.recentScenePath = currentScene.scenePath;
+                                    Core.selectedProject.recentSceneName = currentScene.sceneName;
                                     SearchMainCamera();
                                 }
                             };
@@ -1204,30 +1203,53 @@ void Editor::MenuBar()
         ImGui::SameLine();
         ImGui::SetCursorPosX(ImGui::GetContentRegionMax().x / 1.2f);
 
-        // Play scene button.
-        if (ImGui::ImageButton((void*)playButton, ImVec2(ImGui::GetContentRegionMax().x / 120, ImGui::GetContentRegionAvail().y)))
+        switch (Core.m_applicationState)
         {
-            savedChanges = false; // test unsaved indicator.
+            case OBApplicationState::Play:
+                // Pause scene button.
+                if (ImGui::ImageButton((void*)pauseButton, ImVec2(ImGui::GetContentRegionMax().x / 120, ImGui::GetContentRegionAvail().y)))
+                {
+                    Core.m_applicationState = OBApplicationState::Pause;
+                }
+                AddTooltip("Pause the scene."); // Add tooltip for UI element above.
 
-            Core.m_applicationState = OBApplicationState::Play;
-        }
-        AddTooltip("Play the scene."); // Add tooltip for UI element above.
+                // Stop scene button.
+                ImGui::SameLine();
+                if (ImGui::ImageButton((void*)stopButton, ImVec2(ImGui::GetContentRegionMax().x / 120, ImGui::GetContentRegionAvail().y)))
+                {
+                    Core.m_applicationState = OBApplicationState::Stop;
+                }
+                AddTooltip("Stop the scene."); // Add tooltip for UI element above.
+                break;
+            case OBApplicationState::Pause:
+                // Play scene button.
+                if (ImGui::ImageButton((void*)playButton, ImVec2(ImGui::GetContentRegionMax().x / 120, ImGui::GetContentRegionAvail().y)))
+                {
+                    savedChanges = false; // test unsaved indicator.
 
-        // Pause scene button.
-        ImGui::SameLine();
-        if (ImGui::ImageButton((void*)pauseButton, ImVec2(ImGui::GetContentRegionMax().x / 120, ImGui::GetContentRegionAvail().y)))
-        {
-            Core.m_applicationState = OBApplicationState::Pause;
-        }
-        AddTooltip("Pause the scene."); // Add tooltip for UI element above.
+                    Core.m_applicationState = OBApplicationState::Play;
+                }
+                AddTooltip("Play the scene."); // Add tooltip for UI element above.
 
-        // Stop scene button.
-        ImGui::SameLine();
-        if (ImGui::ImageButton((void*)stopButton, ImVec2(ImGui::GetContentRegionMax().x / 120, ImGui::GetContentRegionAvail().y)))
-        {
-            Core.m_applicationState = OBApplicationState::Stop;
+                // Stop scene button.
+                ImGui::SameLine();
+                if (ImGui::ImageButton((void*)stopButton, ImVec2(ImGui::GetContentRegionMax().x / 120, ImGui::GetContentRegionAvail().y)))
+                {
+                    Core.m_applicationState = OBApplicationState::Stop;
+                }
+                AddTooltip("Stop the scene."); // Add tooltip for UI element above.
+                break;
+            case OBApplicationState::Stop:
+                // Play scene button.
+                if (ImGui::ImageButton((void*)playButton, ImVec2(ImGui::GetContentRegionMax().x / 120, ImGui::GetContentRegionAvail().y)))
+                {
+                    savedChanges = false; // test unsaved indicator.
+
+                    Core.m_applicationState = OBApplicationState::Play;
+                }
+                AddTooltip("Play the scene."); // Add tooltip for UI element above.
+                break;
         }
-        AddTooltip("Stop the scene."); // Add tooltip for UI element above.
 
         ImGui::EndMainMenuBar();
     }
@@ -1523,9 +1545,9 @@ void Editor::ScriptManagerComponent()
     ImGui::Text("Scripts: ");
     ImGui::SameLine();
 
-    ScriptManager scriptManager = *Core.renderer.objectsToRender[selectedObject].GetComponent<ScriptManager>();
+    ScriptManager *scriptManager = &*Core.renderer.objectsToRender[selectedObject].GetComponent<ScriptManager>();
 
-    ImGui::Text(std::to_string(scriptManager.GetScripts().size()).c_str()); // Shows the number of sounds in the vector.
+    ImGui::Text(std::to_string(scriptManager->GetScripts().size()).c_str()); // Shows the number of sounds in the vector.
 
     ImGui::SameLine();
 
@@ -1546,7 +1568,7 @@ void Editor::ScriptManagerComponent()
         if (file_path)
         {
             // Script changing logic here.
-            scriptManager.BindScript(Core.m_scriptController.m_lua, file_path);
+            scriptManager->BindScript(Core.m_scriptController.m_lua, file_path);
         }
     }
     AddTooltip("Bind an existing script."); // Add tooltip for UI element above.
@@ -1589,7 +1611,7 @@ void Editor::ScriptManagerComponent()
             try
             {
                 std::filesystem::copy_file(defaultScriptPath, savePath); // Copies the template lua code from editor resources and renames the file.
-                scriptManager.BindScript(Core.m_scriptController.m_lua, savePath);
+                scriptManager->BindScript(Core.m_scriptController.m_lua, savePath);
             }
             catch (std::filesystem::filesystem_error& e)
             {
@@ -1600,14 +1622,14 @@ void Editor::ScriptManagerComponent()
     AddTooltip("Create a new script."); // Add tooltip for UI element above.
 
     // Loops through every item in scripts vector.
-    for (int i = 0; i < scriptManager.GetScripts().size(); i++)
+    for (int i = 0; i < scriptManager->GetScripts().size(); i++)
     {
         ImGui::Indent();
 
         ImGui::PushID(i);
-        Script s = scriptManager.GetScripts()[i]; // Gets a sound from the vector.
+        Script s = scriptManager->GetScripts()[i]; // Gets a sound from the vector.
 
-        if (s.GetPath() != scriptManager.GetScripts()[i].GetPath()) ImGui::SetNextItemOpen(true);
+        if (s.GetPath() != scriptManager->GetScripts()[i].GetPath()) ImGui::SetNextItemOpen(true);
 
         std::filesystem::path scriptPath = s.GetPath();
         std::string scriptFolderPath = scriptPath.parent_path().string();
@@ -1636,7 +1658,7 @@ void Editor::ScriptManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                std::string scriptFilePath = scriptManager.GetScripts()[i].GetPath().erase(0, Core.selectedProject.assetsFolderPath.length() + 1);
+                std::string scriptFilePath = scriptManager->GetScripts()[i].GetPath().erase(0, Core.selectedProject.assetsFolderPath.length() + 1);
 
                 ImGui::Text(scriptFilePath.c_str());
                 ImGui::SameLine();
@@ -1658,7 +1680,7 @@ void Editor::ScriptManagerComponent()
                     if (file_path)
                     {
                         // Script changing logic here.
-                        scriptManager.GetScripts()[i].SetPath(file_path);
+                        scriptManager->GetScripts()[i].SetPath(file_path);
                     }
                 }
                 AddTooltip("Locate the file through your files window."); // Adds a tooltip to the UI element above.
@@ -1668,7 +1690,7 @@ void Editor::ScriptManagerComponent()
                 // New script button.
                 if (ImGui::Button("-"))
                 {
-                    scriptManager.UnbindScript(scriptManager.GetScripts()[i].GetPath());
+                    scriptManager->UnbindScript(scriptManager->GetScripts()[i].GetPath());
                 }
                 AddTooltip("Unbind the script."); // Add tooltip for UI element above.
 

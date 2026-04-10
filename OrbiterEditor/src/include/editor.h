@@ -25,6 +25,7 @@ class Editor : public RenderingLayer
 		void DebugWindow();
 		void OptionalWindows();
 		
+		// Add tooltip for UI element above.
 		void AddTooltip(const char* message) const;
 		void CreateTransformColumn(const std::array<std::string, 3>& colNames, std::array<Vector3, 3> values);
 
