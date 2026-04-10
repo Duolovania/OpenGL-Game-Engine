@@ -153,6 +153,7 @@ void Renderer::RegenerateObjects()
 {
 	texturesLoaded = 0;
 	newTextures = 0;
+	buffer = vertices.data();
 
 	m_shader->Bind();
 

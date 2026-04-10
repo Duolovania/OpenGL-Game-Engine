@@ -10,4 +10,5 @@ class Scene
 	public:
 		std::string sceneName, scenePath;
 		std::vector<GameObject> objectsToRender;
+		int startCameraIndex = -1;
 };

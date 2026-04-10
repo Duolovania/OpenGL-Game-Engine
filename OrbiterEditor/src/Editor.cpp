@@ -4,7 +4,7 @@
 #include <filesystem>
 
 FileManager fileManager;
-int selectedObject = -2, startCameraIndex = -1;
+int selectedObject = -1; // This sets the object in the inspector.
 std::string inputString, searchTerm, assetsPath, currentPath, defaultScriptPath;
 
 float sprintSpeed;
@@ -169,10 +169,10 @@ bool Editor::OnUpdate(float deltaTime, float time)
     Camera gameCamera = *gameCameraObj.GetComponent<Camera>();
 
     // Copies the main camera view.
-    if (startCameraIndex > -1)
+    if (currentScene.startCameraIndex > -1)
     {
-        gameCameraObj.transform = Core.renderer.objectsToRender[startCameraIndex].transform;
-        gameCamera = *Core.renderer.objectsToRender[startCameraIndex].GetComponent<Camera>();
+        gameCameraObj.transform = Core.renderer.objectsToRender[currentScene.startCameraIndex].transform;
+        gameCamera = *Core.renderer.objectsToRender[currentScene.startCameraIndex].GetComponent<Camera>();
     }
 
     GLCall(glClearColor(gameCamera.backgroundColor[0], gameCamera.backgroundColor[1], gameCamera.backgroundColor[2], 1.0f));
@@ -413,7 +413,7 @@ void Editor::Inspector()
 
         ImGui::SameLine();
 
-        if (ImGui::Button("Jump To"))
+        if (ImGui::Button("Locate"))
         {
             editorCameraObj.transform.position = Core.renderer.objectsToRender[selectedObject].transform.position;
         }
@@ -428,6 +428,7 @@ void Editor::Inspector()
             {
                 Core.renderer.objectsToRender.erase(Core.renderer.objectsToRender.begin() + selectedObject);
                 selectedObject = 0; // Set the default selected item. 
+                Core.renderer.RegenerateObjects();
             }
             AddTooltip("Delete the object from the scene."); // Add tooltip for UI element above.
         }
@@ -564,15 +565,15 @@ void Editor::Inspector()
         {
             if (ImGui::CollapsingHeader("Sprite Renderer"))
             { 
-                SpriteRenderer spriteRenderer = *Core.renderer.objectsToRender[selectedObject].GetComponent<SpriteRenderer>();
+                SpriteRenderer *spriteRenderer = &*Core.renderer.objectsToRender[selectedObject].GetComponent<SpriteRenderer>();
 
-                ImGui::Image((void*)spriteRenderer.cTexture.textureBuffer, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
+                ImGui::Image((void*)spriteRenderer->cTexture.textureBuffer, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
 
                 ImGui::SameLine();
 
                 ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 0.5f)); // Sets the text to green.
 
-                std::string imageName = spriteRenderer.cTexture.m_imagePath.erase(0, spriteRenderer.cTexture.m_imagePath.find_last_of("/") + 1); // Cuts the image directory, leaving just the name and extension.
+                std::string imageName = spriteRenderer->cTexture.m_imagePath.erase(0, spriteRenderer->cTexture.m_imagePath.find_last_of("/") + 1); // Cuts the image directory, leaving just the name and extension.
                 ImGui::Text(imageName.c_str());
 
                 ImGui::PopStyleColor(); // Pops the style.
@@ -595,7 +596,7 @@ void Editor::Inspector()
                     // Checks if the file exists.
                     if (file_path)
                     {
-                        spriteRenderer.cTexture.m_imagePath = assetsPath + std::string(file_path).erase(0, assetsPath.length()); // Erases the directories leading up to the "Assets" folder.
+                        spriteRenderer->cTexture.m_imagePath = assetsPath + std::string(file_path).erase(0, assetsPath.length()); // Erases the directories leading up to the "Assets" folder.
                         Core.renderer.RegenerateObject(selectedObject); // Updates the image to apply changes.
                     }
                 }
@@ -603,13 +604,13 @@ void Editor::Inspector()
 
                 ImGui::Text("Colour:");
                 ImGui::SameLine();
-                ImGui::ColorEdit4("##label4", (float*)&spriteRenderer.color);
+                ImGui::ColorEdit4("##label4", (float*)&spriteRenderer->color);
 
                 ImGui::SameLine();
 
                 if (ImGui::ImageButton((void*) resetIcon, ImVec2(20, 20), ImVec2(0, 1), ImVec2(1, 0)))
                 {
-                    spriteRenderer.SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
+                    spriteRenderer->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
                 }
                 AddTooltip("Reset to default."); // Adds a tooltip to the UI element above.
             }
@@ -663,12 +664,12 @@ void Editor::Inspector()
                 if (ImGui::Button("Set as Starting Camera"))
                 {
                     // Starting camera logic.
-                    startCameraIndex = selectedObject;
+                    currentScene.startCameraIndex = selectedObject;
                 }
                 AddTooltip("Set this camera to be the 'main camera.'"); // Adds a tooltip to the UI element above.
 
                 // Checks if this is the starting camera.
-                if (startCameraIndex == selectedObject)
+                if (currentScene.startCameraIndex == selectedObject)
                 {
                     ImGui::SameLine();
                     ImGui::Text("[This is the starting camera!]");
@@ -962,6 +963,7 @@ void Editor::ContentBrowser()
                                 {
                                     std::size_t pos = entry.path().filename().string().find(fileExtension); // Gets the position of the file extension part of the path.
                                     currentScene = fileManager.LoadSceneFile(entry.path().filename().string().substr(0, pos), assetsPath + tempPath + "\\" + entry.path().filename().string());
+                                    selectedObject = -1;
 
                                     Core.renderer.objectsToRender = currentScene.objectsToRender;
                                     Core.renderer.RegenerateObjects();
@@ -994,8 +996,6 @@ void Editor::ContentBrowser()
         ImGui::EndChild();
         ImGui::End();
     }
-
-    
 }
 
 void Editor::MenuBar()
@@ -1043,12 +1043,13 @@ void Editor::MenuBar()
 
             if (ImGui::MenuItem("Save"))
             {
-                Scene test;
-                test.sceneName = currentScene.sceneName;
-                test.scenePath = currentScene.scenePath;
-                test.objectsToRender = Core.renderer.objectsToRender;
+                Scene sceneCopy;
+                sceneCopy.sceneName = currentScene.sceneName;
+                sceneCopy.scenePath = currentScene.scenePath;
+                sceneCopy.startCameraIndex = currentScene.startCameraIndex;
+                sceneCopy.objectsToRender = Core.renderer.objectsToRender;
 
-                fileManager.CreateSceneFile(test, test.sceneName, test.scenePath);
+                fileManager.CreateSceneFile(sceneCopy, sceneCopy.sceneName, sceneCopy.scenePath);
                 savedChanges = true;
             }
             AddTooltip("Saves the current scene. Make sure to do this regularly!"); // Add tooltip for UI element above.
@@ -1085,15 +1086,16 @@ void Editor::MenuBar()
                         *dot = '\0';  // Truncate at the dot to remove the extension.
                     }
 
-                    Scene test;
-                    test.sceneName = file_name_no_ext;
-                    test.scenePath = savePath;
-                    test.objectsToRender = Core.renderer.objectsToRender;
+                    Scene sceneCopy;
+                    sceneCopy.sceneName = file_name_no_ext;
+                    sceneCopy.scenePath = savePath;
+                    sceneCopy.startCameraIndex = currentScene.startCameraIndex;
+                    sceneCopy.objectsToRender = Core.renderer.objectsToRender;
 
                     std::string tempPath = savePath;
                     std::string newFileName = tempPath.erase(0, assetsPath.length());
 
-                    fileManager.CreateSceneFile(test, test.sceneName, assetsPath + newFileName);
+                    fileManager.CreateSceneFile(sceneCopy, sceneCopy.sceneName, assetsPath + newFileName);
                 }
             }
             AddTooltip("Save the scene manually through your files window."); // Add tooltip for UI element above.
@@ -1738,7 +1740,7 @@ void Editor::DebugWindow()
 
         ImGui::EndChild();
     }
-    AddTooltip("Use 'DebugOB.Log(x)' to make use of the console."); // Add tooltip for UI element above.
+    AddTooltip("Use 'LogOB(x)' to make use of the console."); // Add tooltip for UI element above.
 
     ImGui::End();
 }

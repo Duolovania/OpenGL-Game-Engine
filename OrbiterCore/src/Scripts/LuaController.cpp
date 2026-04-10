@@ -17,6 +17,14 @@ void LuaController::Init()
         {
             DebugOB.Log(std::to_string(obj.as<int>()));
         }
+        else if (obj.is<float>())
+        {
+            DebugOB.Log(std::to_string(obj.as<float>()));
+        }
+        else if (obj.is<bool>())
+        {
+            DebugOB.Log(std::to_string(obj.as<bool>()));
+        }
         else 
         {
             DebugOB.Log("Unknown type passed to Log");

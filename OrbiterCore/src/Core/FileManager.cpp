@@ -180,6 +180,7 @@ void FileManager::CreateSceneFile(Scene sceneData, std::string sceneName, std::s
 	// Sets the scene file header details.
 	yamlNode["Scene Details"]["Name"] = sceneName;
 	yamlNode["Scene Details"]["Path"] = filePath;
+	yamlNode["Scene Details"]["Start Camera Index"] = sceneData.startCameraIndex;
 
 	// Creates the list for game objects in the file structure.
 	yamlNode["GameObjects"] = YAML::Node(YAML::NodeType::Sequence);
@@ -285,11 +286,14 @@ void FileManager::CreateSceneFile(Scene sceneData, std::string sceneName, std::s
 // Loads the YAML file to scene data.
 Scene FileManager::LoadSceneFile(std::string fileName, std::string filePath)
 {
-	YAML::Node yamlNode = YAML::LoadFile(filePath);
+	YAML::Node yamlNode;
 	Scene newScene;
 
-	// Checks if the file exists.
-	if (!yamlNode)
+	try
+	{
+		yamlNode = YAML::LoadFile(filePath);
+	}
+	catch (const std::exception& e)
 	{
 		std::cout << "Failed to load file at:" << filePath << std::endl; // Outputs error message.
 		return newScene; // Returns empty scene.
@@ -298,6 +302,18 @@ Scene FileManager::LoadSceneFile(std::string fileName, std::string filePath)
 	newScene.sceneName = fileName;
 	newScene.scenePath = filePath;
 
+	int tempCamIndex;
+
+	try
+	{
+		tempCamIndex = yamlNode["Scene Details"]["Start Camera Index"].as<int>();
+	}
+	catch (const std::exception& e)
+	{
+		tempCamIndex = -1;
+	}
+
+	newScene.startCameraIndex = tempCamIndex;
 	newScene.objectsToRender = GetGameObjects(yamlNode);
 
 	return newScene;

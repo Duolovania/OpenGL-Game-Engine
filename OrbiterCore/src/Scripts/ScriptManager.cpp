@@ -28,7 +28,8 @@ void ScriptManager::BindGameObjects(sol::state& luaController, GameObject gObj)
 	for (int i = 0; i < m_scripts.size(); i++)
 	{
 		m_scripts[i].Gen(luaController);
-		m_scripts[i].GetLua()["gameobject"] = gObj; // Removes script from vector.
+		m_scripts[i].GetLua()["gameobject"] = gObj;
+		m_scripts[i].GetLua()["transform"] = &gObj.transform;
 	}
 }
 
