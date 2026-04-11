@@ -36,6 +36,8 @@ std::shared_ptr<FrameBuffer> editorFB, previewFB;
 std::unique_ptr<Texture> iconTextures;
 GLuint64 playButton, pauseButton, stopButton, fileIcon, folderIcon, wavFileIcon, fontFileIcon, sceneFileIcon, imageFileIcon, miniFolderIcon, resetIcon, scriptIcon;
 
+std::unordered_map<std::string, GLuint64> spritePreviews;
+
 void Editor::Init(GLFWwindow* window)
 {
     IMGUI_CHECKVERSION();
@@ -160,6 +162,7 @@ bool Editor::OnUpdate(float deltaTime, float time)
     if (viewportSize.x < 0 || viewportSize.y < 0)
     {
         ImGui::Render();
+
         return true;
     }
 
@@ -354,20 +357,20 @@ void Editor::GameView()
 }
 
 // Recursively displays hierarchy.
-void ShowHierarchy(const std::string& name, int index, bool isLeaf = false) 
+void ShowHierarchy(const std::string& name, int index, bool isLeaf = false)
 {
     // Check if the node does not contain other objects.
-    if (isLeaf) 
+    if (isLeaf)
     {
         // Shows a 'regular' button.
-        if (ImGui::Selectable(name.c_str(), false)) 
+        if (ImGui::Selectable(name.c_str(), false))
         {
             selectedObject = index; // Updates the selected object in the hierarchy.
         }
     }
-    else 
+    else
     {
-        if (ImGui::TreeNode(name.c_str())) 
+        if (ImGui::TreeNode(name.c_str()))
         {
             selectedObject = index; // Updates the selected object in the hierarchy.
 
@@ -396,6 +399,27 @@ void Editor::Hierarchy()
     {
         ImGui::PushID(i);
         ShowHierarchy(Core.renderer.objectsToRender[i].objectName, i, true);
+
+        // Right-click menu.
+        if (ImGui::BeginPopupContextItem())
+        {
+            if (ImGui::MenuItem("Duplicate"))
+            {
+                GameObject duplicatedObj = Core.renderer.objectsToRender[i];
+                Core.renderer.objectsToRender.push_back(duplicatedObj);
+            }
+            AddTooltip("Create a copy of this object."); // Add tooltip for UI element above.
+
+            if (ImGui::MenuItem("Delete"))
+            {
+                Core.renderer.objectsToRender.erase(Core.renderer.objectsToRender.begin() + selectedObject);
+                selectedObject = 0; // Set the default selected item. 
+                Core.renderer.RegenerateObjects();
+            }
+            AddTooltip("Delete this object."); // Add tooltip for UI element above.
+
+            ImGui::EndPopup();
+        }
         ImGui::PopID();
     }
 
@@ -419,19 +443,19 @@ void Editor::Inspector()
         }
         AddTooltip("See where this object is located on the scene."); // Add tooltip for UI element above.
 
-        // Check that there is more than 1 object in the scene.
-        if (Core.renderer.objectsToRender.size() > 1)
+        ImGui::SameLine();
+        if (ImGui::Button("C+"))
         {
-            ImGui::SameLine();
-
-            if (ImGui::Button("Delete"))
-            {
-                Core.renderer.objectsToRender.erase(Core.renderer.objectsToRender.begin() + selectedObject);
-                selectedObject = 0; // Set the default selected item. 
-                Core.renderer.RegenerateObjects();
-            }
-            AddTooltip("Delete the object from the scene."); // Add tooltip for UI element above.
+            ImGui::OpenPopup("Add Component");
         }
+        AddTooltip("Add a component."); // Add tooltip for UI element above.
+
+        ImGui::SameLine();
+        if (ImGui::Button("C-"))
+        {
+            ImGui::OpenPopup("Remove Component");
+        }
+        AddTooltip("Delete a component."); // Add tooltip for UI element above.
 
         if (ImGui::CollapsingHeader("Transform"))
         {
@@ -560,20 +584,106 @@ void Editor::Inspector()
             }
         }
 
+        // "Add component" option popup.
+        if (ImGui::BeginPopup("Add Component"))
+        {
+            // Check if the object does not have the component before providing the option to add one.
+            if (!Core.renderer.objectsToRender[selectedObject].HasComponent("Sprite Renderer"))
+            {
+                if (ImGui::Button("Add Sprite Renderer"))
+                {
+                    SpriteRenderer spriteRendererComponent;
+                    Core.renderer.objectsToRender[selectedObject].AddComponent(spriteRendererComponent);
+                }
+            }
+
+            // Check if the object does not have the component before providing the option to add one.
+            if (!Core.renderer.objectsToRender[selectedObject].HasComponent("Camera"))
+            {
+                if (ImGui::Button("Add Camera"))
+                {
+                    Camera cameraComponent;
+                    Core.renderer.objectsToRender[selectedObject].AddComponent(cameraComponent);
+                }
+            }
+
+            // Check if the object does not have the component before providing the option to add one.
+            if (!Core.renderer.objectsToRender[selectedObject].HasComponent("Audio Manager"))
+            {
+                if (ImGui::Button("Add Audio Manager"))
+                {
+                    AudioManager audioManagerComponent;
+                    Core.renderer.objectsToRender[selectedObject].AddComponent(audioManagerComponent);
+                }
+            }
+
+            // Check if the object does not have the component before providing the option to add one.
+            if (!Core.renderer.objectsToRender[selectedObject].HasComponent("Script Manager"))
+            {
+                if (ImGui::Button("Add Script Manager"))
+                {
+                    ScriptManager scriptManagerComponent;
+                    Core.renderer.objectsToRender[selectedObject].AddComponent(scriptManagerComponent);
+                }
+            }
+
+            ImGui::EndPopup();
+        }
+
+        // "Add component" option popup.
+        if (ImGui::BeginPopup("Remove Component"))
+        {
+            // Check if the object does not have the component before providing the option to add one.
+            if (Core.renderer.objectsToRender[selectedObject].HasComponent("Sprite Renderer"))
+            {
+                if (ImGui::Button("Sprite Renderer"))
+                {
+                    Core.renderer.objectsToRender[selectedObject].RemoveComponent("Sprite Renderer");
+                    Core.renderer.RegenerateObjects();
+                }
+            }
+
+            // Check if the object does not have the component before providing the option to add one.
+            if (Core.renderer.objectsToRender[selectedObject].HasComponent("Camera"))
+            {
+                if (ImGui::Button("Camera"))
+                {
+                    Core.renderer.objectsToRender[selectedObject].RemoveComponent("Camera");
+                }
+            }
+
+            // Check if the object does not have the component before providing the option to add one.
+            if (Core.renderer.objectsToRender[selectedObject].HasComponent("Audio Manager"))
+            {
+                if (ImGui::Button("Audio Manager"))
+                {
+                    Core.renderer.objectsToRender[selectedObject].RemoveComponent("Audio Manager");
+                }
+            }
+
+            // Check if the object does not have the component before providing the option to add one.
+            if (Core.renderer.objectsToRender[selectedObject].HasComponent("Script Manager"))
+            {
+                if (ImGui::Button("Script Manager"))
+                {
+                    Core.renderer.objectsToRender[selectedObject].RemoveComponent("Script Manager");
+                }
+            }
+
+            ImGui::EndPopup();
+        }
+
         // Checks if the object has a sprite renderer component before showing the dropdown.
         if (Core.renderer.objectsToRender[selectedObject].HasComponent("Sprite Renderer"))
         {
             if (ImGui::CollapsingHeader("Sprite Renderer"))
             { 
                 SpriteRenderer *spriteRenderer = &*Core.renderer.objectsToRender[selectedObject].GetComponent<SpriteRenderer>();
-
-                ImGui::Image((void*)spriteRenderer->cTexture.textureBuffer, ImVec2(200, 200), ImVec2(0, 1), ImVec2(1, 0));
-
-                ImGui::SameLine();
+                ImGui::Image((void*)spriteRenderer->cTexture.textureBuffer, ImVec2(70, 70), ImVec2(0, 1), ImVec2(1, 0));
 
                 ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.3f, 1.0f, 0.3f, 0.5f)); // Sets the text to green.
 
-                std::string imageName = spriteRenderer->cTexture.m_imagePath.erase(0, spriteRenderer->cTexture.m_imagePath.find_last_of("/") + 1); // Cuts the image directory, leaving just the name and extension.
+                std::string imageName = spriteRenderer->cTexture.m_imagePath.erase(0, spriteRenderer->cTexture.m_imagePath.find_last_of("\\") + 1); // Cuts the image directory, leaving just the name and extension.
                 ImGui::Text(imageName.c_str());
 
                 ImGui::PopStyleColor(); // Pops the style.
@@ -613,18 +723,6 @@ void Editor::Inspector()
                     spriteRenderer->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
                 }
                 AddTooltip("Reset to default."); // Adds a tooltip to the UI element above.
-            }
-        }
-        else
-        {
-            // Check if the object does not have a camera component before providing the option to add a sprite renderer.
-            if (selectedObject >= 0 && !Core.renderer.objectsToRender[selectedObject].HasComponent("Camera"))
-            {
-                if (ImGui::Button("Add Sprite Renderer"))
-                {
-                    SpriteRenderer spriteRendererComponent;
-                    Core.renderer.objectsToRender[selectedObject].AddComponent(spriteRendererComponent);
-                }
             }
         }
 
@@ -676,18 +774,6 @@ void Editor::Inspector()
                 }
             }
         }
-        else
-        {
-            // Check if the object does not have a sprite renderer component before providing the option to add a camera.
-            if (selectedObject >= 0 && !Core.renderer.objectsToRender[selectedObject].HasComponent("Sprite Renderer"))
-            {
-                if (ImGui::Button("Add Camera"))
-                {
-                    Camera cameraComponent;
-                    Core.renderer.objectsToRender[selectedObject].AddComponent(cameraComponent);
-                }
-            }
-        }
 
         // Checks if the object has an audio manager component before showing the dropdown.
         if (Core.renderer.objectsToRender[selectedObject].HasComponent("Audio Manager"))
@@ -696,18 +782,7 @@ void Editor::Inspector()
             {
                 AudioManagerComponent();
             }
-        }
-        else
-        {
-            // Check an object is selected before providing the option to add an audio manager.
-            if (selectedObject >= 0)
-            {
-                if (ImGui::Button("Add Audio Manager"))
-                {
-                    AudioManager audioManagerComponent;
-                    Core.renderer.objectsToRender[selectedObject].AddComponent(audioManagerComponent);
-                }
-            }
+            
         }
 
         // Checks if the object has a script component before showing the dropdown.
@@ -716,18 +791,6 @@ void Editor::Inspector()
             if (ImGui::CollapsingHeader("Script Manager"))
             {
                 ScriptManagerComponent();
-            }
-        }
-        else
-        {
-            // Check an object is selected before providing the option to add a script.
-            if (selectedObject >= 0)
-            {
-                if (ImGui::Button("Add Script Manager"))
-                {
-                    ScriptManager scriptManagerComponent;
-                    Core.renderer.objectsToRender[selectedObject].AddComponent(scriptManagerComponent);
-                }
             }
         }
     }
@@ -1259,22 +1322,12 @@ void Editor::MenuBar()
 
 void Editor::AudioManagerComponent()
 {
-    // Right-click menu.
-    if (ImGui::BeginPopupContextItem()) 
-    {
-        if (ImGui::MenuItem("Delete")) 
-        {
-            //renderer.objectsToRender[selectedObject]->RemoveComponent("Audio Manager");
-        }
-        ImGui::EndPopup();
-    }
-
     ImGui::Text("Sounds: ");
     ImGui::SameLine();
 
-    AudioManager audioManager = *Core.renderer.objectsToRender[selectedObject].GetComponent<AudioManager>();
+    AudioManager *audioManager = &*Core.renderer.objectsToRender[selectedObject].GetComponent<AudioManager>();
 
-    ImGui::Text(std::to_string(audioManager.sounds.size()).c_str()); // Shows the number of sounds in the vector.
+    ImGui::Text(std::to_string(audioManager->sounds.size()).c_str()); // Shows the number of sounds in the vector.
 
     ImGui::SameLine();
 
@@ -1291,19 +1344,19 @@ void Editor::AudioManagerComponent()
         s.position = glm::vec3(0);
         s.velocity = glm::vec3(0);
 
-        audioManager.sounds.push_back(s); // Adds a sound to the list.
+        audioManager->sounds.push_back(s); // Adds a sound to the list.
     }
     AddTooltip("Create a new sound effect."); // Add tooltip for UI element above.
 
     // Loops through every item in sounds vector.
-    for (int i = 0; i < audioManager.sounds.size(); i++)
+    for (int i = 0; i < audioManager->sounds.size(); i++)
     {
         ImGui::Indent();
 
         ImGui::PushID(i);
-        Sound sound = audioManager.sounds[i]; // Gets a sound from the vector.
+        Sound sound = audioManager->sounds[i]; // Gets a sound from the vector.
 
-        if (sound.soundName != audioManager.sounds[i].soundName) ImGui::SetNextItemOpen(true);
+        if (sound.soundName != audioManager->sounds[i].soundName) ImGui::SetNextItemOpen(true);
 
         // Collapsing header for selected sound.
         if (ImGui::CollapsingHeader(sound.soundName.c_str(), ImGuiTreeNodeFlags_DefaultOpen))
@@ -1319,7 +1372,7 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::InputText("##name", &audioManager.sounds[i].soundName);
+                ImGui::InputText("##name", &audioManager->sounds[i].soundName);
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
@@ -1328,14 +1381,14 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::Text(audioManager.sounds[i].filePath.c_str());
+                ImGui::Text(audioManager->sounds[i].filePath.c_str());
                 ImGui::SameLine();
 
                 // Creates a button for the user to select a file through the file explorer.
                 if (ImGui::ImageButton((void*)miniFolderIcon, ImVec2(20, 20), ImVec2(0, 1), ImVec2(1, 0)))
                 {
-                    audioManager.GenSound(i); // If a new sound has been created, generate sources and buffers for audio to play.
-                    audioManager.Stop(audioManager.sounds[i].soundName); // Stops the audio source.
+                    audioManager->GenSound(i); // If a new sound has been created, generate sources and buffers for audio to play.
+                    audioManager->Stop(audioManager->sounds[i].soundName); // Stops the audio source.
 
                     const char* filterTypes[1] = { "*.wav" }; // Defines the file filters.
                     std::string filePath = fileManager.OpenFileExplorer(filterTypes, "Select a sound file", assetsPath); // Gets the file path using the file explorer.
@@ -1343,10 +1396,10 @@ void Editor::AudioManagerComponent()
                     // Checks if file path is valid.
                     if (!filePath.empty())
                     {
-                        audioManager.sounds[i].filePath = filePath.erase(0, assetsPath.length() + 1); // Updates the file path.
+                        audioManager->sounds[i].filePath = filePath.erase(0, assetsPath.length() + 1); // Updates the file path.
 
-                        audioManager.sounds[i].audioSource->ChangeFile(audioManager.sounds[i].filePath); // Changes the file path for the audio source.
-                        audioManager.sounds[i].audioSource->SetProperties(audioManager.sounds[i].pitch, audioManager.sounds[i].volume, audioManager.sounds[i].isLooping, audioManager.sounds[i].position, audioManager.sounds[i].velocity); // Resets audio source properties.
+                        audioManager->sounds[i].audioSource->ChangeFile(audioManager->sounds[i].filePath); // Changes the file path for the audio source.
+                        audioManager->sounds[i].audioSource->SetProperties(audioManager->sounds[i].pitch, audioManager->sounds[i].volume, audioManager->sounds[i].isLooping, audioManager->sounds[i].position, audioManager->sounds[i].velocity); // Resets audio source properties.
                     }
                 }
                 AddTooltip("Locate the file through your files window."); // Adds a tooltip to the UI element above.
@@ -1358,7 +1411,7 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::SliderFloat("##pitch", &audioManager.sounds[i].pitch, 0.1, 2.0, "%.2f");
+                ImGui::SliderFloat("##pitch", &audioManager->sounds[i].pitch, 0.1, 2.0, "%.2f");
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
@@ -1367,7 +1420,7 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::SliderFloat("##volume", &audioManager.sounds[i].volume, 0.0, 1.0, "%.2f");
+                ImGui::SliderFloat("##volume", &audioManager->sounds[i].volume, 0.0, 1.0, "%.2f");
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
@@ -1389,7 +1442,7 @@ void Editor::AudioManagerComponent()
                     ImGui::SameLine();
                     ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
 
-                    ImGui::InputFloat("##PX", &audioManager.sounds[i].position.x, 0.0f, 0.0f, "%.f");
+                    ImGui::InputFloat("##PX", &audioManager->sounds[i].position.x, 0.0f, 0.0f, "%.f");
                     ImGui::PopStyleColor();
 
                     ImGui::TableSetColumnIndex(1);
@@ -1399,7 +1452,7 @@ void Editor::AudioManagerComponent()
                     ImGui::Text("Y");
 
                     ImGui::SameLine();
-                    ImGui::InputFloat("##PY", &audioManager.sounds[i].position.y, 0.0f, 0.0f, "%.f");
+                    ImGui::InputFloat("##PY", &audioManager->sounds[i].position.y, 0.0f, 0.0f, "%.f");
                     ImGui::PopStyleColor();
 
                     ImGui::TableSetColumnIndex(2);
@@ -1410,7 +1463,7 @@ void Editor::AudioManagerComponent()
                     ImGui::Text("Z");
 
                     ImGui::SameLine();
-                    ImGui::InputFloat("##PZ", &audioManager.sounds[i].position.z, 0.0f, 0.0f, "%.f");
+                    ImGui::InputFloat("##PZ", &audioManager->sounds[i].position.z, 0.0f, 0.0f, "%.f");
                     ImGui::PopStyleColor();
 
                     ImGui::EndTable();
@@ -1435,7 +1488,7 @@ void Editor::AudioManagerComponent()
                     ImGui::SameLine();
                     ImGui::SetCursorPosY(ImGui::GetCursorPos().y - 3);
 
-                    ImGui::InputFloat("##VX", &audioManager.sounds[i].velocity.x, 0.0f, 0.0f, "%.f");
+                    ImGui::InputFloat("##VX", &audioManager->sounds[i].velocity.x, 0.0f, 0.0f, "%.f");
                     ImGui::PopStyleColor();
 
                     ImGui::TableSetColumnIndex(1);
@@ -1446,7 +1499,7 @@ void Editor::AudioManagerComponent()
                     ImGui::Text("Y");
 
                     ImGui::SameLine();
-                    ImGui::InputFloat("##VY", &audioManager.sounds[i].velocity.y, 0.0f, 0.0f, "%.f");
+                    ImGui::InputFloat("##VY", &audioManager->sounds[i].velocity.y, 0.0f, 0.0f, "%.f");
                     ImGui::PopStyleColor();
 
                     ImGui::TableSetColumnIndex(2);
@@ -1457,7 +1510,7 @@ void Editor::AudioManagerComponent()
                     ImGui::Text("Z");
 
                     ImGui::SameLine();
-                    ImGui::InputFloat("##VZ", &audioManager.sounds[i].velocity.z, 0.0f, 0.0f, "%.f");
+                    ImGui::InputFloat("##VZ", &audioManager->sounds[i].velocity.z, 0.0f, 0.0f, "%.f");
                     ImGui::PopStyleColor();
 
                     ImGui::EndTable();
@@ -1471,7 +1524,7 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::Checkbox("##playStart", &audioManager.sounds[i].playOnStartUp);
+                ImGui::Checkbox("##playStart", &audioManager->sounds[i].playOnStartUp);
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
@@ -1481,7 +1534,7 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::Checkbox("##repeat", &audioManager.sounds[i].repeatDelay);
+                ImGui::Checkbox("##repeat", &audioManager->sounds[i].repeatDelay);
 
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
@@ -1491,7 +1544,7 @@ void Editor::AudioManagerComponent()
 
                 ImGui::TableSetColumnIndex(1);
 
-                ImGui::Checkbox("##loop", &audioManager.sounds[i].isLooping);
+                ImGui::Checkbox("##loop", &audioManager->sounds[i].isLooping);
 
                 ImGui::NewLine();
                 ImGui::TableNextRow();
@@ -1505,14 +1558,14 @@ void Editor::AudioManagerComponent()
                 // The play button.
                 if (ImGui::Button("Play"))
                 {
-                    audioManager.GenSound(i); // If a new sound has been created, generate sources and buffers for audio to play.
+                    audioManager->GenSound(i); // If a new sound has been created, generate sources and buffers for audio to play.
 
-                    audioManager.sounds[i].audioSource->Stop(); // Stops the sound from playing.
+                    audioManager->sounds[i].audioSource->Stop(); // Stops the sound from playing.
 
-                    audioManager.sounds[i].audioSource->ChangeFile(audioManager.sounds[i].filePath); // Changes the file path for the audio source.
-                    audioManager.sounds[i].audioSource->SetProperties(audioManager.sounds[i].pitch, audioManager.sounds[i].volume, audioManager.sounds[i].isLooping, audioManager.sounds[i].position, audioManager.sounds[i].velocity); // Resets audio source properties.
+                    audioManager->sounds[i].audioSource->ChangeFile(audioManager->sounds[i].filePath); // Changes the file path for the audio source.
+                    audioManager->sounds[i].audioSource->SetProperties(audioManager->sounds[i].pitch, audioManager->sounds[i].volume, audioManager->sounds[i].isLooping, audioManager->sounds[i].position, audioManager->sounds[i].velocity); // Resets audio source properties.
                     
-                    audioManager.sounds[i].audioSource->Play(); // Plays the sound.
+                    audioManager->sounds[i].audioSource->Play(); // Plays the sound.
                 }
 
                 ImGui::SameLine();
@@ -1520,7 +1573,7 @@ void Editor::AudioManagerComponent()
                 // The stop button.
                 if (ImGui::Button("Pause"))
                 {
-                    audioManager.sounds[i].audioSource->Pause(); // Stops the sound.
+                    audioManager->sounds[i].audioSource->Pause(); // Stops the sound.
                 }
 
                 ImGui::SameLine();
@@ -1528,7 +1581,7 @@ void Editor::AudioManagerComponent()
                 // The stop button.
                 if (ImGui::Button("Stop"))
                 {
-                    audioManager.sounds[i].audioSource->Stop(); // Stops the sound.
+                    audioManager->sounds[i].audioSource->Stop(); // Stops the sound.
                 }
 
                 ImGui::EndTable();
